@@ -14,7 +14,6 @@ interface MapPinProps {
 export function MapPin({ location, isHovered, isSelected, onHover, onClick, scale }: MapPinProps) {
   const color = CATEGORY_COLORS[location.category];
   const pinSize = Math.max(12, 16 / scale);
-  const fontSize = Math.max(10, 12 / scale);
 
   return (
     <div
@@ -33,11 +32,6 @@ export function MapPin({ location, isHovered, isSelected, onHover, onClick, scal
       }}
     >
       <div className="pin-dot" />
-      {(isHovered || isSelected) && (
-        <div className="pin-label" style={{ fontSize }}>
-          {location.name}
-        </div>
-      )}
     </div>
   );
 }
