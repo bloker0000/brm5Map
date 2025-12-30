@@ -1,0 +1,124 @@
+.welcome-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5000;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+
+.welcome-modal {
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 4px solid #e84040;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.welcome-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #888;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.welcome-close:hover {
+  background: rgba(255, 68, 68, 0.2);
+  color: #e84040;
+}
+
+.welcome-header {
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.welcome-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.welcome-content {
+  padding: 20px 24px;
+  color: #ccc;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.welcome-content p {
+  margin: 0 0 12px 0;
+}
+
+.welcome-content p:last-child {
+  margin-bottom: 0;
+}
+
+.welcome-content strong {
+  color: #e84040;
+  font-weight: 600;
+}
+
+.welcome-footer {
+  padding: 16px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.welcome-btn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: rgba(232, 64, 64, 0.15);
+  border: 1px solid rgba(232, 64, 64, 0.3);
+  color: #e84040;
+  transition: all 0.2s ease;
+}
+
+.welcome-btn:hover {
+  background: rgba(232, 64, 64, 0.25);
+  border-color: rgba(232, 64, 64, 0.5);
+}
+
+@media (max-width: 600px) {
+  .welcome-modal {
+    max-height: 90vh;
+    border-radius: 12px 12px 0 0;
+    margin-top: auto;
+  }
+
+  .welcome-header {
+    padding: 20px 16px 12px;
+  }
+
+  .welcome-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .welcome-content {
+    padding: 16px;
+  }
+
+  .welcome-footer {
+    padding: 12px 16px;
+  }
+}
