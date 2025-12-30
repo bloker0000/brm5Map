@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import Fuse from 'fuse.js';
 import type { MapLocation, LocationCategory } from '../types/location';
-import { loadLocations, saveLocations, generateId } from '../data/locations';
+import { loadLocations, generateId } from '../data/locations';
 
 export function useLocations() {
   const [locations, setLocations] = useState<MapLocation[]>([]);
@@ -13,12 +13,6 @@ export function useLocations() {
   useEffect(() => {
     setLocations(loadLocations());
   }, []);
-
-  useEffect(() => {
-    if (locations.length > 0) {
-      saveLocations(locations);
-    }
-  }, [locations]);
 
   const fuse = useMemo(() => {
     return new Fuse(locations, {

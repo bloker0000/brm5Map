@@ -27,7 +27,25 @@
     "x": 1215,
     "y": 2105,
     "description": "A three-story office building. Access to the third-floor office requires a key.",
-    "category": "Office Building Small"
+    "category": "Office Building Small",
+    "images": [
+      {
+        "url": "https://i.imgur.com/doAECVl.png",
+        "description": "First floor"
+      },
+      {
+        "url": "https://i.imgur.com/86rgm7G.png",
+        "description": "Second floor"
+      },
+      {
+        "url": "https://i.imgur.com/KOvOSVL.png",
+        "description": "third floor door"
+      },
+      {
+        "url": "https://i.imgur.com/2uhGiXi.png",
+        "description": "third floor"
+      }
+    ]
   },
   {
     "id": "3",
@@ -466,17 +484,33 @@
     "name": "Westbridge Partners Office",
     "x": 1042,
     "y": 1638,
-    "description": "TBA",
+    "description": "A large office building that has 2 stairs going up to access the offices. one at the front left side (Southwest) and one on the left (Northwest).",
     "category": "Office Building Large",
-    "id": "mjrvpwtv3pnawe7s3dp"
+    "id": "mjrvpwtv3pnawe7s3dp",
+    "images": [
+      {
+        "url": "https://i.imgur.com/LOquDAk.png",
+        "description": "inside the office"
+      }
+    ]
   },
   {
     "name": "05 Key",
     "x": 1067,
     "y": 1543,
-    "description": "TBA",
+    "description": "An office room accessible with the 05 key. Inside, you can frequently find 7.62 and 5.56 ammunition, weapons, as well as clothing and gas masks. Occasionally, other keys may also spawn here.\n\nOn the right side, near the windows, there is another enterable building directly across from this one. Proceed with caution. If you are spotted, a gunfight is likely.",
     "category": "Key Use Location",
-    "id": "mjrvq6fklicvyaavd9o"
+    "id": "mjrvq6fklicvyaavd9o",
+    "images": [
+      {
+        "url": "https://i.imgur.com/EAUSl2g.png",
+        "description": "The 05 office"
+      },
+      {
+        "url": "https://i.imgur.com/oNCfYal.png",
+        "description": "Inside the office"
+      }
+    ]
   },
   {
     "name": "Dorisa",
@@ -556,9 +590,19 @@
     "name": "Office key",
     "x": 1197,
     "y": 2099,
-    "description": "TBA",
+    "description": "A key used to access the third-floor office in Stone 6. This office often contains large ammunition boxes, 5.56 weapons, and food and water supplies.",
     "category": "Key Use Location",
-    "id": "mjrvuh1xeb2sx6scjg"
+    "id": "mjrvuh1xeb2sx6scjg",
+    "images": [
+      {
+        "url": "https://i.imgur.com/2uhGiXi.png",
+        "description": "floor 3"
+      },
+      {
+        "url": "https://i.imgur.com/KOvOSVL.png",
+        "description": "entrance to floor 3"
+      }
+    ]
   },
   {
     "name": "Zombie Nest",

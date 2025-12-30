@@ -2,20 +2,20 @@ import { useState, useEffect } from 'react';
 import { CloseIcon } from './Icons';
 import './WelcomeModal.css';
 
-const STORAGE_KEY = 'brm5_map_welcome_dismissed';
+const SESSION_KEY = 'brm5_map_welcome_dismissed';
 
 export function WelcomeModal() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const dismissed = localStorage.getItem(STORAGE_KEY);
+    const dismissed = sessionStorage.getItem(SESSION_KEY);
     if (!dismissed) {
       setIsVisible(true);
     }
   }, []);
 
   const handleDismiss = () => {
-    localStorage.setItem(STORAGE_KEY, 'true');
+    sessionStorage.setItem(SESSION_KEY, 'true');
     setIsVisible(false);
   };
 
