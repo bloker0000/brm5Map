@@ -231,7 +231,7 @@ function App() {
         <div className="sidebar-footer">
           <div className="sidebar-footer-info">
             <span className="footer-credit">
-              Current Art: {currentCredit?.url ? (
+              Current Art By: {currentCredit?.url ? (
                 <a href={currentCredit.url} target="_blank" rel="noopener noreferrer">
                   {currentCredit.name}
                 </a>
