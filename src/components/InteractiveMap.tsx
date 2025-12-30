@@ -101,25 +101,30 @@ export function InteractiveMap({
     }
   }, [imageLoaded, centerMap]);
 
-  const handleWheel = useCallback((e: React.WheelEvent) => {
-    e.preventDefault();
+  useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const rect = container.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const rect = container.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
 
-    setTransform(prev => {
-      const zoomFactor = 1 - e.deltaY * ZOOM_SENSITIVITY;
-      const newScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, prev.scale * zoomFactor));
-      
-      const scaleRatio = newScale / prev.scale;
-      const newX = mouseX - (mouseX - prev.x) * scaleRatio;
-      const newY = mouseY - (mouseY - prev.y) * scaleRatio;
+      setTransform(prev => {
+        const zoomFactor = 1 - e.deltaY * ZOOM_SENSITIVITY;
+        const newScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, prev.scale * zoomFactor));
+        
+        const scaleRatio = newScale / prev.scale;
+        const newX = mouseX - (mouseX - prev.x) * scaleRatio;
+        const newY = mouseY - (mouseY - prev.y) * scaleRatio;
 
-      return clampTransform({ x: newX, y: newY, scale: newScale });
-    });
+        return clampTransform({ x: newX, y: newY, scale: newScale });
+      });
+    };
+
+    container.addEventListener('wheel', handleWheel, { passive: false });
+    return () => container.removeEventListener('wheel', handleWheel);
   }, [clampTransform]);
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
@@ -237,7 +242,6 @@ export function InteractiveMap({
     <div 
       className={`interactive-map ${isAdminMode ? 'admin-mode' : ''} ${isDragging ? 'dragging' : ''}`} 
       ref={containerRef}
-      onWheel={handleWheel}
       onMouseDown={handleMouseDown}
     >
       <div 
