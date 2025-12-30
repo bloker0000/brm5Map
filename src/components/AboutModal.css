@@ -122,6 +122,37 @@
   margin-top: 16px;
 }
 
+.about-visits {
+  border-top: 1px solid var(--brm-border);
+  padding-top: 16px;
+  margin-top: 16px;
+}
+
+.visit-stats {
+  display: flex;
+  gap: 24px;
+}
+
+.visit-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.visit-label {
+  color: var(--brm-text-dim);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.visit-number {
+  color: var(--brm-accent);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

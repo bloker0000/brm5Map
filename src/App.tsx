@@ -170,7 +170,7 @@ function App() {
       <div className="sidebar">
         <div className="sidebar-header">
           <h1 className="sidebar-title">BRM5 MAP</h1>
-          <div className="sidebar-subtitle">Interactive Location Guide</div>
+          <div className="sidebar-subtitle">Operation Cryo Zombies</div>
         </div>
 
         <div className="sidebar-actions">

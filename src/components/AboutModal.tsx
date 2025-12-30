@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useVisitorCount } from '../hooks/useVisitorCount';
 import './AboutModal.css';
 
 interface AboutModalProps {
@@ -8,6 +9,7 @@ interface AboutModalProps {
 
 export function AboutModal({ isOpen, onClose }: AboutModalProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const { totalVisits, yourVisitNumber, isLoading } = useVisitorCount();
 
   useEffect(() => {
     if (isOpen) {
@@ -71,6 +73,24 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
             <h3>Credits</h3>
             <p>Map and website made by Multyply.</p>
             <p>Background artwork by many talented artists. See footer for current artist.</p>
+          </section>
+
+          <section className="about-visits">
+            <h3>Site Stats</h3>
+            {isLoading ? (
+              <p>Loading visitor stats...</p>
+            ) : (
+              <div className="visit-stats">
+                <div className="visit-stat">
+                  <span className="visit-label">Total Visits</span>
+                  <span className="visit-number">{totalVisits?.toLocaleString() ?? '—'}</span>
+                </div>
+                <div className="visit-stat">
+                  <span className="visit-label">You Are Visitor</span>
+                  <span className="visit-number">#{yourVisitNumber?.toLocaleString() ?? '—'}</span>
+                </div>
+              </div>
+            )}
           </section>
         </div>
       </div>
