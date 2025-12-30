@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { MapLocation, LocationImage } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
 import { CategoryIcon, CloseIcon } from './Icons';
@@ -24,13 +24,18 @@ function getAllImages(location: MapLocation): LocationImage[] {
 export function LocationModal({ location, onClose }: LocationModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [location?.id]);
+  
   if (!location) return null;
 
   const color = CATEGORY_COLORS[location.category];
   const images = getAllImages(location);
   const hasImages = images.length > 0;
   const hasMultipleImages = images.length > 1;
-  const currentImage = images[currentImageIndex];
+  const safeIndex = Math.min(currentImageIndex, images.length - 1);
+  const currentImage = hasImages ? images[Math.max(0, safeIndex)] : null;
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
@@ -61,7 +66,7 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
           </div>
         </div>
 
-        {hasImages && (
+        {hasImages && currentImage && (
           <div className="modal-gallery">
             <div className="modal-image">
               <img src={currentImage.url} alt={location.name} />
@@ -84,7 +89,7 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
                 {images.map((_, index) => (
                   <button
                     key={index}
-                    className={`gallery-dot ${index === currentImageIndex ? 'active' : ''}`}
+                    className={`gallery-dot ${index === safeIndex ? 'active' : ''}`}
                     onClick={() => setCurrentImageIndex(index)}
                   />
                 ))}
