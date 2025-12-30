@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 
-const STORAGE_KEY = 'brm5-visit-number';
+const STORAGE_KEY = 'brm5-real-visit-number';
+const OLD_STORAGE_KEY = 'brm5-visit-number';
+const OLD_FIRST_VISIT_KEY = 'brm5-first-visit-time';
 
 interface VisitorData {
   totalVisits: number | null;
@@ -16,6 +18,9 @@ export function useVisitorCount(): VisitorData {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    localStorage.removeItem(OLD_STORAGE_KEY);
+    localStorage.removeItem(OLD_FIRST_VISIT_KEY);
+    
     const storedVisitNumber = localStorage.getItem(STORAGE_KEY);
     
     if (storedVisitNumber) {
