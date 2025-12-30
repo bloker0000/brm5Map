@@ -236,9 +236,8 @@ function App() {
 
         <div className="sidebar-footer">
           <div className="sidebar-footer-info">
-            <span className="footer-rotation">Rotation: {formatRotation(currentRotation)}</span>
             <span className="footer-credit">
-              Art: {currentCredit?.url ? (
+              Current Art: {currentCredit?.url ? (
                 <a href={currentCredit.url} target="_blank" rel="noopener noreferrer">
                   {currentCredit.name}
                 </a>

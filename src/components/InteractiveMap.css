@@ -137,6 +137,62 @@
   pointer-events: none;
 }
 
+.rotation-display {
+  position: absolute;
+  bottom: 70px;
+  left: 20px;
+  background: rgba(10, 10, 10, 0.9);
+  border: 1px solid var(--brm-border);
+  padding: 10px 16px;
+  z-index: 100;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  pointer-events: none;
+}
+
+.rotation-label {
+  color: var(--brm-text-dim);
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+}
+
+.rotation-value {
+  color: var(--brm-accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+
+.coords-display {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(10, 10, 10, 0.9);
+  border: 1px solid var(--brm-border);
+  padding: 10px 16px;
+  z-index: 100;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  pointer-events: none;
+}
+
+.coords-label {
+  color: var(--brm-text-dim);
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+}
+
+.coords-value {
+  color: var(--brm-accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+
 @media (max-width: 768px) {
   .zoom-controls {
     bottom: 10px;
@@ -154,5 +210,33 @@
     right: 10px;
     width: 120px;
     height: 120px;
+  }
+
+  .rotation-display {
+    bottom: 60px;
+    left: 10px;
+    padding: 8px 12px;
+  }
+
+  .rotation-label {
+    font-size: 0.75rem;
+  }
+
+  .rotation-value {
+    font-size: 0.8rem;
+  }
+
+  .coords-display {
+    bottom: 10px;
+    left: 10px;
+    padding: 8px 12px;
+  }
+
+  .coords-label {
+    font-size: 0.75rem;
+  }
+
+  .coords-value {
+    font-size: 0.8rem;
   }
 }

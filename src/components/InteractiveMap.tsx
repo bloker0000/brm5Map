@@ -75,6 +75,7 @@ export function InteractiveMap({
   const [isCompassDragging, setIsCompassDragging] = useState(false);
   const [bgIndex] = useState(() => Math.floor(Math.random() * BG_IMAGES.length));
   const [isAnimating, setIsAnimating] = useState(false);
+  const [mouseCoords, setMouseCoords] = useState({ x: 0, y: 0 });
   
   const compassRotation = -MAP_NORTH_OFFSET + mapRotation;
   
@@ -407,12 +408,25 @@ export function InteractiveMap({
     }
   }, [focusedLocations, centerOnLocations]);
 
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    const container = containerRef.current;
+    const content = contentRef.current;
+    if (!container || !content) return;
+
+    const rect = content.getBoundingClientRect();
+    const x = Math.round((e.clientX - rect.left) / transform.scale);
+    const y = Math.round((e.clientY - rect.top) / transform.scale);
+    
+    setMouseCoords({ x, y });
+  }, [transform.scale]);
+
   return (
     <div 
       className={`interactive-map ${isAdminMode ? 'admin-mode' : ''} ${isDragging ? 'dragging' : ''} ${isRotating ? 'rotating' : ''}`} 
       ref={containerRef}
       onMouseDown={handleMouseDown}
       onContextMenu={handleContextMenu}
+      onMouseMove={handleMouseMove}
     >
       <div 
         className="map-bg"
@@ -488,6 +502,19 @@ export function InteractiveMap({
           Click on map to set coordinates
         </div>
       )}
+
+      <div className="rotation-display">
+        <span className="rotation-label">Rotation:</span>
+        <span className="rotation-value">{(() => {
+          let heading = ((-mapRotation + 40) % 360 + 360) % 360;
+          return heading.toFixed(0);
+        })()}</span>
+      </div>
+
+      <div className="coords-display">
+        <span className="coords-label">Coords:</span>
+        <span className="coords-value">{mouseCoords.x}, {mouseCoords.y}</span>
+      </div>
     </div>
   );
 }

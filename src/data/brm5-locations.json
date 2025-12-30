@@ -232,11 +232,17 @@
   },
   {
     "name": "Water Treatment Plant",
-    "x": 2224,
-    "y": 1768,
+    "x": 2223,
+    "y": 1779,
     "description": "An area with a very high zombie population. Raiding this location is strongly recommended with multiple team members.",
     "category": "Zombie Nest",
-    "id": "mjrurjdgevrvm94t688"
+    "id": "mjrurjdgevrvm94t688",
+    "images": [
+      {
+        "url": "https://i.imgur.com/ebdrtek.png",
+        "description": "outside"
+      }
+    ]
   },
   {
     "name": "Hospital",
@@ -400,11 +406,17 @@
   },
   {
     "name": "85 Broad Street Goldman Sachs",
-    "x": 1773,
-    "y": 1813,
+    "x": 1807,
+    "y": 1792,
     "description": "TBA",
     "category": "Building",
-    "id": "mjrvikn0jh6fgfp2wh"
+    "id": "mjrvikn0jh6fgfp2wh",
+    "images": [
+      {
+        "url": "https://i.imgur.com/qk9eXll.png",
+        "description": ""
+      }
+    ]
   },
   {
     "name": "Enemy Location",
@@ -439,28 +451,44 @@
     "id": "mjrvn6gujqbuynmtqz"
   },
   {
-    "name": "Enemy Outpost",
-    "x": 1556,
-    "y": 1985,
-    "description": "TBA",
+    "name": "Broadway Street Camp",
+    "x": 1580,
+    "y": 1970,
+    "description": "An enemy outpost. More info TBA",
     "category": "Enemy Outpost",
     "id": "mjrvnhy0kng3cvc4i2q"
   },
   {
     "name": "Liberty Bank",
-    "x": 1298,
-    "y": 1987,
-    "description": "TBA",
+    "x": 1304,
+    "y": 1982,
+    "description": "A bank. At the back, there is a reinforced glass door that cannot be broken. Mounted on the wall beside it is a keycard reader. Insert the keycard to unlock the door and access the vault. More info TBA",
     "category": "Key Use Location",
-    "id": "mjrvob8nmok6jfgzced"
+    "id": "mjrvob8nmok6jfgzced",
+    "images": [
+      {
+        "url": "https://i.imgur.com/P4uSGqg.png",
+        "description": "the keycard door"
+      }
+    ]
   },
   {
     "name": "Stone 8",
-    "x": 1243,
-    "y": 1979,
-    "description": "TBA",
+    "x": 1245,
+    "y": 1990,
+    "description": "An apartment building that appears to have belonged to a former militant. Upon entering the second-floor apartment, the best loot is immediately to the right. It usually contains gas masks, camouflage gear, and ammunition. More info TBA",
     "category": "Key Use Location",
-    "id": "mjrvol1mdop1ngywhtc"
+    "id": "mjrvol1mdop1ngywhtc",
+    "images": [
+      {
+        "url": "https://i.imgur.com/cBip203.png",
+        "description": "The apartment you need a key for"
+      },
+      {
+        "url": "https://i.imgur.com/5aPAHOC.png",
+        "description": "outside"
+      }
+    ]
   },
   {
     "name": "Safe at Activity-Full",
@@ -605,12 +633,18 @@
     ]
   },
   {
-    "name": "Zombie Nest",
-    "x": 653,
-    "y": 1564,
+    "name": "Zombie Nest Maiden",
+    "x": 645,
+    "y": 1560,
     "description": "TBA",
     "category": "Zombie Nest",
-    "id": "mjrvv68b48b96iwqjdc"
+    "id": "mjrvv68b48b96iwqjdc",
+    "images": [
+      {
+        "url": "https://i.imgur.com/KYoG5Yd.png",
+        "description": "West side outside"
+      }
+    ]
   },
   {
     "name": "Quarantine Zone",
@@ -825,5 +859,59 @@
       }
     ],
     "id": "mjsnzloswtsupdfe1xg"
+  },
+  {
+    "name": "Pearl street camp",
+    "x": 1372,
+    "y": 1901,
+    "description": "A sheepdog camp, about 5+ enemies. More info TBA.",
+    "category": "Enemy Outpost",
+    "id": "mjt40ao50mx9h7pcc3j"
+  },
+  {
+    "name": "Carl's Cars",
+    "x": 1812,
+    "y": 1967,
+    "description": "TBA",
+    "category": "Building",
+    "images": [
+      {
+        "url": "https://i.imgur.com/mxDILMv.png",
+        "description": ""
+      }
+    ],
+    "id": "mjt4hf7ssf7dc0z70l"
+  },
+  {
+    "name": "Soren Aurore",
+    "x": 1716,
+    "y": 1877,
+    "description": "TBA",
+    "category": "Building",
+    "images": [
+      {
+        "url": "https://i.imgur.com/QARda1U.png",
+        "description": ""
+      }
+    ],
+    "id": "mjt4i7214ukvc6unyne"
+  },
+  {
+    "name": "Whitehall Spawnpoint",
+    "x": 533,
+    "y": 1775,
+    "description": "",
+    "category": "Spawnpoint",
+    "images": [
+      {
+        "url": "https://i.imgur.com/SUyuFG1.png",
+        "description": "spawnpoint"
+      },
+      {
+        "url": "https://i.imgur.com/N48ePSP.png",
+        "description": "outside"
+      }
+    ],
+    "id": "mjt4x7f9x4jf66sh7ae"
   }
 ]
