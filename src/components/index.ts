@@ -7,4 +7,6 @@ export { SearchBar } from './SearchBar';
 export { CategoryFilter } from './CategoryFilter';
 export { AdminPanel } from './AdminPanel';
 export { WelcomeModal } from './WelcomeModal';
+export { AboutModal } from './AboutModal';
+export { LocationsList } from './LocationsList';
 export * from './Icons';

@@ -3,12 +3,29 @@
 }
 
 :root {
-  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --brm-bg-dark: #0a0a0a;
+  --brm-bg-panel: #111111;
+  --brm-bg-element: #1a1a1a;
+  --brm-accent: #d4a544;
+  --brm-accent-hover: #e6b84d;
+  --brm-accent-dim: #8b7230;
+  --brm-text: #ffffff;
+  --brm-text-dim: #888888;
+  --brm-text-muted: #555555;
+  --brm-border: #2a2a2a;
+  --brm-border-accent: #3a3a3a;
+  --brm-danger: #cc4444;
+  --brm-success: #44cc88;
+  
+  --font-display: 'Rajdhani', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  
+  font-family: var(--font-body);
   line-height: 1.5;
   font-weight: 400;
   color-scheme: dark;
-  color: rgba(255, 255, 255, 0.9);
-  background-color: #0a0a0a;
+  color: var(--brm-text);
+  background-color: var(--brm-bg-dark);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -32,26 +49,29 @@ button {
   font-family: inherit;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--brm-bg-dark);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
+  background: var(--brm-border-accent);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: var(--brm-text-muted);
 }
 
 ::selection {
-  background: rgba(255, 68, 68, 0.3);
+  background: rgba(212, 165, 68, 0.4);
   color: #fff;
 }
 

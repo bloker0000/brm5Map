@@ -1,6 +1,8 @@
 import type { MapLocation } from '../types/location';
 
 const STORAGE_KEY = 'brm5_map_locations';
+const LOCATIONS_VERSION = 2;
+const VERSION_KEY = 'brm5_map_locations_version';
 
 export const defaultLocations: MapLocation[] = [
   {
@@ -88,7 +90,7 @@ export const defaultLocations: MapLocation[] = [
     "x": 2331,
     "y": 732,
     "description": "TBA",
-    "category": "Other",
+    "category": "Building",
     "id": "mjruiv7hrbxfyt6d6cc"
   },
   {
@@ -583,6 +585,15 @@ export const defaultLocations: MapLocation[] = [
 
 export function loadLocations(): MapLocation[] {
   try {
+    const storedVersion = localStorage.getItem(VERSION_KEY);
+    const currentVersion = LOCATIONS_VERSION.toString();
+    
+    if (storedVersion !== currentVersion) {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.setItem(VERSION_KEY, currentVersion);
+      return defaultLocations;
+    }
+    
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
       return JSON.parse(stored);

@@ -1,44 +1,45 @@
 .tooltip {
   position: fixed;
-  background: rgba(20, 20, 20, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-left: 3px solid var(--tooltip-color);
-  border-radius: 6px;
-  padding: 10px 14px;
+  background: var(--brm-bg-dark);
+  border: 1px solid var(--brm-border);
+  border-top: 2px solid var(--tooltip-color);
+  padding: 12px 16px;
   pointer-events: none;
   z-index: 1000;
-  max-width: 240px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(8px);
+  max-width: 260px;
 }
 
 .tooltip-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
+  gap: 10px;
+  margin-bottom: 6px;
 }
 
 .tooltip-icon {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 .tooltip-name {
+  font-family: var(--font-display);
   font-weight: 700;
-  color: #fff;
-  font-size: 0.95rem;
+  color: var(--brm-text);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .tooltip-category {
   color: var(--tooltip-color);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   margin-bottom: 8px;
 }
 
 .tooltip-hint {
-  color: #666;
-  font-size: 0.7rem;
-  font-style: italic;
+  color: var(--brm-text-muted);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }

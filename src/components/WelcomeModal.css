@@ -7,30 +7,26 @@
   justify-content: center;
   z-index: 5000;
   padding: 1rem;
-  backdrop-filter: blur(4px);
 }
 
 .welcome-modal {
-  background: #1a1a1a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-left: 4px solid #e84040;
-  border-radius: 8px;
+  background: var(--brm-bg-panel);
+  border: 1px solid var(--brm-border);
+  border-top: 3px solid var(--brm-accent);
   max-width: 500px;
   width: 100%;
   position: relative;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
 }
 
 .welcome-close {
   position: absolute;
   top: 12px;
   right: 12px;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  color: #888;
+  background: var(--brm-bg-dark);
+  border: 1px solid var(--brm-border);
+  color: var(--brm-text-dim);
   width: 36px;
   height: 36px;
-  border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -39,27 +35,31 @@
 }
 
 .welcome-close:hover {
-  background: rgba(255, 68, 68, 0.2);
-  color: #e84040;
+  background: var(--brm-danger);
+  border-color: var(--brm-danger);
+  color: var(--brm-text);
 }
 
 .welcome-header {
   padding: 24px 24px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--brm-border);
 }
 
 .welcome-header h2 {
   margin: 0;
-  font-size: 1.4rem;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--brm-text);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 .welcome-content {
   padding: 20px 24px;
-  color: #ccc;
+  color: var(--brm-text-dim);
   line-height: 1.6;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .welcome-content p {
@@ -71,38 +71,38 @@
 }
 
 .welcome-content strong {
-  color: #e84040;
+  color: var(--brm-accent);
   font-weight: 600;
 }
 
 .welcome-footer {
   padding: 16px 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--brm-border);
   display: flex;
   justify-content: flex-end;
 }
 
 .welcome-btn {
-  padding: 10px 20px;
-  border-radius: 6px;
+  padding: 12px 28px;
+  font-family: var(--font-display);
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  background: rgba(232, 64, 64, 0.15);
-  border: 1px solid rgba(232, 64, 64, 0.3);
-  color: #e84040;
-  transition: all 0.2s ease;
+  background: var(--brm-accent);
+  border: none;
+  color: var(--brm-bg-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: background 0.15s ease;
 }
 
 .welcome-btn:hover {
-  background: rgba(232, 64, 64, 0.25);
-  border-color: rgba(232, 64, 64, 0.5);
+  background: var(--brm-accent-hover);
 }
 
 @media (max-width: 600px) {
   .welcome-modal {
     max-height: 90vh;
-    border-radius: 12px 12px 0 0;
     margin-top: auto;
   }
 
@@ -111,7 +111,7 @@
   }
 
   .welcome-header h2 {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .welcome-content {

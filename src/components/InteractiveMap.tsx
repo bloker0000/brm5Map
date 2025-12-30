@@ -13,6 +13,10 @@ interface InteractiveMapProps {
   onMapClick: (x: number, y: number) => void;
   highlightedLocation: MapLocation | null;
   isAdminMode?: boolean;
+  showPins?: boolean;
+  onBgChange?: (index: number) => void;
+  onRotationChange?: (rotation: number) => void;
+  focusedLocations?: MapLocation[];
 }
 
 interface Transform {
@@ -24,6 +28,24 @@ interface Transform {
 const MIN_SCALE = 0.15;
 const MAX_SCALE = 4;
 const ZOOM_SENSITIVITY = 0.002;
+const MAP_NORTH_OFFSET = 40;
+
+const BG_IMAGES = [
+  '/BG/BG1.jpeg',
+  '/BG/BG2.png',
+  '/BG/BG3.png',
+  '/BG/BG4.png',
+  '/BG/BG5.jpg',
+  '/BG/BG6.png',
+  '/BG/BG7.jpeg',
+  '/BG/BG8.png',
+  '/BG/BG9.png',
+  '/BG/BG10.png',
+  '/BG/BG11.png',
+  '/BG/BG12.png',
+  '/BG/BG13.png',
+  '/BG/BG14.png',
+];
 
 export function InteractiveMap({
   locations,
@@ -34,18 +56,39 @@ export function InteractiveMap({
   onMapClick,
   highlightedLocation,
   isAdminMode = false,
+  showPins = true,
+  onBgChange,
+  onRotationChange,
+  focusedLocations = [],
 }: InteractiveMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
+  const compassRef = useRef<HTMLDivElement>(null);
   
   const [transform, setTransform] = useState<Transform>({ x: 0, y: 0, scale: 0.5 });
   const [isDragging, setIsDragging] = useState(false);
   const [hasDragged, setHasDragged] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [mapRotation, setMapRotation] = useState(0);
+  const [isRotating, setIsRotating] = useState(false);
+  const [isCompassDragging, setIsCompassDragging] = useState(false);
+  const [bgIndex] = useState(() => Math.floor(Math.random() * BG_IMAGES.length));
+  const [isAnimating, setIsAnimating] = useState(false);
+  
+  const compassRotation = -MAP_NORTH_OFFSET + mapRotation;
   
   const dragStartRef = useRef({ x: 0, y: 0 });
+  const rotationStartRef = useRef({ angle: 0, startX: 0 });
   const transformRef = useRef(transform);
+  
+  useEffect(() => {
+    onBgChange?.(bgIndex);
+  }, [bgIndex, onBgChange]);
+  
+  useEffect(() => {
+    onRotationChange?.(mapRotation);
+  }, [mapRotation, onRotationChange]);
   transformRef.current = transform;
 
   const clampTransform = useCallback((t: Transform): Transform => {
@@ -60,20 +103,16 @@ export function InteractiveMap({
     let { x, y, scale } = t;
     scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, scale));
 
-    const minX = containerRect.width - scaledWidth;
-    const minY = containerRect.height - scaledHeight;
+    const wiggleRoomY = Math.min(containerRect.width, containerRect.height) * 0.3;
+    const wiggleRoomX = containerRect.width * 0.5;
+    
+    const minX = containerRect.width - scaledWidth - wiggleRoomX;
+    const maxX = wiggleRoomX;
+    const minY = containerRect.height - scaledHeight - wiggleRoomY;
+    const maxY = wiggleRoomY;
 
-    if (scaledWidth < containerRect.width) {
-      x = (containerRect.width - scaledWidth) / 2;
-    } else {
-      x = Math.max(minX, Math.min(0, x));
-    }
-
-    if (scaledHeight < containerRect.height) {
-      y = (containerRect.height - scaledHeight) / 2;
-    } else {
-      y = Math.max(minY, Math.min(0, y));
-    }
+    x = Math.max(minX, Math.min(maxX, x));
+    y = Math.max(minY, Math.min(maxY, y));
 
     return { x, y, scale };
   }, []);
@@ -93,6 +132,7 @@ export function InteractiveMap({
     const y = (containerRect.height - image.naturalHeight * scale) / 2;
 
     setTransform({ x, y, scale });
+    setMapRotation(0);
   }, []);
 
   useEffect(() => {
@@ -128,6 +168,15 @@ export function InteractiveMap({
   }, [clampTransform]);
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    if (e.button === 2) {
+      e.preventDefault();
+      setIsRotating(true);
+      rotationStartRef.current = { 
+        angle: mapRotation, 
+        startX: e.clientX 
+      };
+      return;
+    }
     if (e.button !== 0) return;
     e.preventDefault();
     setIsDragging(true);
@@ -136,7 +185,7 @@ export function InteractiveMap({
       x: e.clientX - transformRef.current.x, 
       y: e.clientY - transformRef.current.y 
     };
-  }, []);
+  }, [mapRotation]);
 
   useEffect(() => {
     if (!isDragging) return;
@@ -169,6 +218,72 @@ export function InteractiveMap({
       document.body.style.userSelect = '';
     };
   }, [isDragging, clampTransform]);
+
+  useEffect(() => {
+    if (!isRotating) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      e.preventDefault();
+      const deltaX = e.clientX - rotationStartRef.current.startX;
+      const newRotation = rotationStartRef.current.angle + deltaX * 0.15;
+      setMapRotation(newRotation);
+    };
+
+    const handleMouseUp = () => {
+      setIsRotating(false);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+    document.body.style.userSelect = 'none';
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.body.style.userSelect = '';
+    };
+  }, [isRotating]);
+
+  useEffect(() => {
+    if (!isCompassDragging) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      e.preventDefault();
+      const compass = compassRef.current;
+      if (!compass) return;
+      
+      const rect = compass.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI);
+      setMapRotation(angle + 90 - MAP_NORTH_OFFSET);
+    };
+
+    const handleMouseUp = () => {
+      setIsCompassDragging(false);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+    document.body.style.userSelect = 'none';
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.body.style.userSelect = '';
+    };
+  }, [isCompassDragging]);
+
+  const handleCompassMouseDown = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsCompassDragging(true);
+  }, []);
+
+  const handleContextMenu = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+  }, []);
 
   const handleContentClick = useCallback((e: React.MouseEvent) => {
     if (hasDragged) return;
@@ -219,36 +334,103 @@ export function InteractiveMap({
     });
   }, [clampTransform]);
 
-  const centerOnLocation = useCallback((location: MapLocation) => {
+  const centerOnLocations = useCallback((locs: MapLocation[]) => {
     const container = containerRef.current;
-    if (!container) return;
+    const image = imageRef.current;
+    if (!container || !image || locs.length === 0) return;
 
     const rect = container.getBoundingClientRect();
-    const newScale = 2;
-    const x = rect.width / 2 - location.x * newScale;
-    const y = rect.height / 2 - location.y * newScale;
+    const imgCenterX = image.naturalWidth / 2;
+    const imgCenterY = image.naturalHeight / 2;
+    const rad = (mapRotation * Math.PI) / 180;
+    const cos = Math.cos(rad);
+    const sin = Math.sin(rad);
 
+    const rotatePoint = (px: number, py: number, scale: number) => {
+      const dx = px - imgCenterX;
+      const dy = py - imgCenterY;
+      const rotatedX = dx * cos - dy * sin;
+      const rotatedY = dx * sin + dy * cos;
+      return {
+        x: (imgCenterX + rotatedX) * scale,
+        y: (imgCenterY + rotatedY) * scale,
+      };
+    };
+    
+    if (locs.length === 1) {
+      const loc = locs[0];
+      const newScale = 2;
+      const rotated = rotatePoint(loc.x, loc.y, newScale);
+      const x = rect.width / 2 - rotated.x;
+      const y = rect.height / 2 - rotated.y;
+      
+      setIsAnimating(true);
+      setTransform(clampTransform({ x, y, scale: newScale }));
+      setTimeout(() => setIsAnimating(false), 500);
+      return;
+    }
+
+    const minX = Math.min(...locs.map(l => l.x));
+    const maxX = Math.max(...locs.map(l => l.x));
+    const minY = Math.min(...locs.map(l => l.y));
+    const maxY = Math.max(...locs.map(l => l.y));
+    
+    const boundingWidth = maxX - minX;
+    const boundingHeight = maxY - minY;
+    const locCenterX = (minX + maxX) / 2;
+    const locCenterY = (minY + maxY) / 2;
+    
+    const padding = 100;
+    const scaleX = (rect.width - padding * 2) / Math.max(boundingWidth, 1);
+    const scaleY = (rect.height - padding * 2) / Math.max(boundingHeight, 1);
+    const newScale = Math.min(Math.max(MIN_SCALE, Math.min(scaleX, scaleY)), 2);
+    
+    const rotated = rotatePoint(locCenterX, locCenterY, newScale);
+    const x = rect.width / 2 - rotated.x;
+    const y = rect.height / 2 - rotated.y;
+    
+    setIsAnimating(true);
     setTransform(clampTransform({ x, y, scale: newScale }));
-  }, [clampTransform]);
+    setTimeout(() => setIsAnimating(false), 500);
+  }, [clampTransform, mapRotation]);
 
   useEffect(() => {
     if (highlightedLocation) {
-      const timer = setTimeout(() => centerOnLocation(highlightedLocation), 100);
+      const timer = setTimeout(() => centerOnLocations([highlightedLocation]), 100);
       return () => clearTimeout(timer);
     }
-  }, [highlightedLocation, centerOnLocation]);
+  }, [highlightedLocation, centerOnLocations]);
+
+  useEffect(() => {
+    if (focusedLocations.length > 0) {
+      centerOnLocations(focusedLocations);
+    }
+  }, [focusedLocations, centerOnLocations]);
 
   return (
     <div 
-      className={`interactive-map ${isAdminMode ? 'admin-mode' : ''} ${isDragging ? 'dragging' : ''}`} 
+      className={`interactive-map ${isAdminMode ? 'admin-mode' : ''} ${isDragging ? 'dragging' : ''} ${isRotating ? 'rotating' : ''}`} 
       ref={containerRef}
       onMouseDown={handleMouseDown}
+      onContextMenu={handleContextMenu}
     >
       <div 
-        className="map-content"
+        className="map-bg"
+        style={{ backgroundImage: `url(${BG_IMAGES[bgIndex]})` }}
+      />
+      <div className="map-overlay" />
+      
+      <div 
+        className={`map-content ${isAnimating ? 'animating' : ''}`}
         ref={contentRef}
         style={{
-          transform: `translate(${transform.x}px, ${transform.y}px) scale(${transform.scale})`,
+          transform: (() => {
+            const img = imageRef.current;
+            if (!img) return `translate(${transform.x}px, ${transform.y}px) scale(${transform.scale})`;
+            const cx = (img.naturalWidth * transform.scale) / 2;
+            const cy = (img.naturalHeight * transform.scale) / 2;
+            return `translate(${transform.x + cx}px, ${transform.y + cy}px) rotate(${mapRotation}deg) translate(${-cx}px, ${-cy}px) scale(${transform.scale})`;
+          })(),
           transformOrigin: '0 0',
         }}
         onClick={handleContentClick}
@@ -262,7 +444,7 @@ export function InteractiveMap({
           onDragStart={(e) => e.preventDefault()}
           onLoad={() => setImageLoaded(true)}
         />
-        {locations.map((location) => (
+        {showPins && locations.map((location) => (
           <MapPin
             key={location.id}
             location={location}
@@ -285,6 +467,20 @@ export function InteractiveMap({
         <button onClick={centerMap} title="Reset View">
           <ResetIcon size={18} />
         </button>
+      </div>
+
+      <div 
+        className="compass" 
+        ref={compassRef}
+        onMouseDown={handleCompassMouseDown}
+      >
+        <img
+          src="/compass.png"
+          alt="Compass"
+          className="compass-image"
+          style={{ transform: `rotate(${compassRotation}deg)` }}
+          draggable={false}
+        />
       </div>
 
       {isAdminMode && (

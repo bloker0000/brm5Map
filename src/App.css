@@ -3,14 +3,14 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: #0a0a0a;
+  background: var(--brm-bg-dark);
 }
 
 .sidebar {
-  width: 300px;
+  width: 320px;
   flex-shrink: 0;
-  background: #111;
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--brm-bg-panel);
+  border-right: 1px solid var(--brm-border);
   display: flex;
   flex-direction: column;
   z-index: 50;
@@ -18,23 +18,87 @@
 
 .sidebar-header {
   padding: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--brm-border);
+  background: var(--brm-bg-dark);
 }
 
 .sidebar-title {
   margin: 0;
+  font-family: var(--font-display);
   font-size: 1.6rem;
-  font-weight: 800;
-  color: #e84040;
-  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--brm-accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 .sidebar-subtitle {
-  color: #666;
-  font-size: 0.75rem;
+  color: var(--brm-text-muted);
+  font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   margin-top: 4px;
+}
+
+.sidebar-actions {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--brm-border);
+}
+
+.sidebar-action-btn {
+  flex: 1;
+  padding: 8px 12px;
+  background: var(--brm-bg-element);
+  border: 1px solid var(--brm-border);
+  color: var(--brm-text-dim);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sidebar-action-btn:hover {
+  border-color: var(--brm-accent);
+  color: var(--brm-accent);
+}
+
+.sidebar-action-btn.active {
+  background: var(--brm-accent);
+  border-color: var(--brm-accent);
+  color: var(--brm-bg-dark);
+}
+
+.sidebar-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--brm-border);
+}
+
+.sidebar-tab {
+  flex: 1;
+  padding: 12px 16px;
+  background: var(--brm-bg-dark);
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--brm-text-dim);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sidebar-tab:hover {
+  color: var(--brm-text);
+}
+
+.sidebar-tab.active {
+  color: var(--brm-accent);
+  border-bottom-color: var(--brm-accent);
 }
 
 .sidebar-content {
@@ -43,49 +107,77 @@
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
+  min-height: 0;
 }
 
 .sidebar-stats {
   display: flex;
-  gap: 12px;
-  margin-top: auto;
-  padding-top: 16px;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--brm-border);
+  flex-shrink: 0;
 }
 
 .stat {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  padding: 12px;
-  text-align: center;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
 }
 
 .stat-value {
-  display: block;
-  font-size: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--brm-accent);
 }
 
 .stat-label {
-  display: block;
-  font-size: 0.65rem;
-  color: #666;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--brm-text-dim);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-top: 4px;
+  letter-spacing: 0.05em;
 }
 
 .sidebar-footer {
-  padding: 12px 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(0, 0, 0, 0.3);
+  padding: 16px;
+  border-top: 1px solid var(--brm-border);
+  background: var(--brm-bg-dark);
+}
+
+.sidebar-footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-rotation {
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.footer-credit {
+  color: #ffffff;
+  font-size: 0.85rem;
+}
+
+.footer-credit a {
+  color: var(--brm-accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer-credit a:hover {
+  text-decoration: underline;
 }
 
 .sidebar-hint {
-  color: #444;
+  color: var(--brm-text-muted);
   font-size: 0.7rem;
   text-align: center;
   font-family: monospace;
@@ -107,7 +199,7 @@
     height: auto;
     max-height: 35vh;
     border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--brm-border);
   }
 
   .sidebar-header {
@@ -115,7 +207,7 @@
   }
 
   .sidebar-title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 
   .sidebar-content {

@@ -13,7 +13,7 @@ interface MapPinProps {
 
 export function MapPin({ location, isHovered, isSelected, onHover, onClick, scale }: MapPinProps) {
   const color = CATEGORY_COLORS[location.category];
-  const pinSize = Math.max(12, 16 / scale);
+  const pinSize = Math.max(8, 10 / scale);
 
   return (
     <div

@@ -4,28 +4,53 @@ import {
   InteractiveMap,
   Tooltip,
   LocationModal,
-  SearchBar,
   CategoryFilter,
-  // AdminPanel,
   WelcomeModal,
+  AboutModal,
+  LocationsList,
+  AdminPanel,
 } from './components';
 import { useLocations } from './hooks/useLocations';
 import type { MapLocation } from './types/location';
 import './App.css';
 
+const IS_DEV = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+const BG_CREDITS = [
+  { name: 'Platinum Five', url: 'https://www.roblox.com/communities/4668709/PLATINUM-FIVE#!/about' },
+  { name: 'MentalShocked', url: 'https://www.reddit.com/user/MentalShocked/' },
+  { name: 'buymechickensalt', url: 'https://x.com/BuymetheWeeb' },
+  { name: 'buymechickensalt', url: 'https://x.com/BuymetheWeeb' },
+  { name: 'rinchantea', url: 'https://x.com/RinChanTea' },
+  { name: 'mister.roztov', url: 'https://sites.google.com/view/roztovportfolio?usp=sharing' },
+  { name: 'postal__pal', url: null },
+  { name: 'basically_gdg', url: null },
+  { name: 'a5t3r1k', url: null },
+  { name: 'buymechickensalt', url: 'https://x.com/BuymetheWeeb' },
+  { name: 'ryz_vik', url: null },
+  { name: 'docc_a', url: null },
+  { name: 'ala_koli', url: 'https://x.com/ala_koli' },
+  { name: 'kenemony', url: null },
+];
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  // const [isAdminOpen, setIsAdminOpen] = useState(false);
-  // const [adminClickPosition, setAdminClickPosition] = useState<{ x: number; y: number } | null>(null);
   const [highlightedLocation, setHighlightedLocation] = useState<MapLocation | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [activeTab, setActiveTab] = useState<'categories' | 'locations'>('categories');
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [showPins, setShowPins] = useState(true);
+  const [currentBgIndex, setCurrentBgIndex] = useState(0);
+  const [currentRotation, setCurrentRotation] = useState(0);
+  const [selectedLocations, setSelectedLocations] = useState<Set<string>>(new Set());
+  const [focusedLocations, setFocusedLocations] = useState<MapLocation[]>([]);
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
+  const [adminClickPosition, setAdminClickPosition] = useState<{ x: number; y: number } | null>(null);
 
   const {
     locations,
     filteredLocations,
-    searchQuery,
-    setSearchQuery,
     selectedCategories,
     toggleCategory,
     clearFilters,
@@ -34,9 +59,9 @@ function App() {
     setSelectedLocation,
     hoveredLocation,
     setHoveredLocation,
-    // addLocation,
-    // updateLocation,
-    // deleteLocation,
+    addLocation,
+    updateLocation,
+    deleteLocation,
   } = useLocations();
 
   useEffect(() => {
@@ -57,21 +82,22 @@ function App() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        // if (isAdminOpen) {
-        //   setIsAdminOpen(false);
-        // } else if (selectedLocation) {
-        if (selectedLocation) {
+        if (isAdminOpen) {
+          setIsAdminOpen(false);
+        } else if (isAboutOpen) {
+          setIsAboutOpen(false);
+        } else if (selectedLocation) {
           setSelectedLocation(null);
         }
       }
-      // if (e.ctrlKey && e.shiftKey && e.key === 'A') {
-      //   e.preventDefault();
-      //   setIsAdminOpen((prev) => !prev);
-      // }
+      if (IS_DEV && e.ctrlKey && e.shiftKey && e.key === 'A') {
+        e.preventDefault();
+        setIsAdminOpen(prev => !prev);
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedLocation, setSelectedLocation]);
+  }, [selectedLocation, setSelectedLocation, isAboutOpen, isAdminOpen]);
 
   const handleLoaded = useCallback(() => {
     setIsLoading(false);
@@ -84,11 +110,35 @@ function App() {
     [setSelectedLocation]
   );
 
-  // const handleMapClick = useCallback((x: number, y: number) => {
-  //   setAdminClickPosition({ x, y });
-  // }, []);
+  const handleMapClick = useCallback((x: number, y: number) => {
+    if (IS_DEV && isAdminOpen) {
+      setAdminClickPosition({ x, y });
+    }
+  }, [isAdminOpen]);
 
-  const handleSearchSelect = useCallback(
+  const handleToggleLocation = useCallback(
+    (location: MapLocation, multiSelect: boolean) => {
+      setSelectedLocations(prev => {
+        const next = new Set(multiSelect ? prev : []);
+        if (next.has(location.id)) {
+          next.delete(location.id);
+        } else {
+          next.add(location.id);
+        }
+        
+        const locsToFocus = filteredLocations.filter(loc => next.has(loc.id));
+        if (locsToFocus.length > 0) {
+          setFocusedLocations([...locsToFocus]);
+          setTimeout(() => setFocusedLocations([]), 100);
+        }
+        
+        return next;
+      });
+    },
+    [filteredLocations]
+  );
+
+  const handleLocationSelect = useCallback(
     (location: MapLocation) => {
       setHighlightedLocation(location);
       setTimeout(() => setHighlightedLocation(null), 500);
@@ -97,29 +147,64 @@ function App() {
     [setSelectedLocation]
   );
 
+  const displayedLocations = selectedLocations.size > 0
+    ? filteredLocations.filter(loc => selectedLocations.has(loc.id))
+    : filteredLocations;
+
+  const formatRotation = (rotation: number) => {
+    let heading = ((-rotation + 40) % 360 + 360) % 360;
+    return `${heading.toFixed(0)}`;
+  };
+
   if (isLoading) {
     return <Preloader onLoaded={handleLoaded} />;
   }
 
+  const currentCredit = BG_CREDITS[currentBgIndex];
+
   return (
     <div className="app">
       <WelcomeModal />
+      <AboutModal isOpen={isAboutOpen} onClose={() => setIsAboutOpen(false)} />
       
       <div className="sidebar">
         <div className="sidebar-header">
           <h1 className="sidebar-title">BRM5 MAP</h1>
-          <div className="sidebar-subtitle">Blackhawk Rescue Mission 5</div>
+          <div className="sidebar-subtitle">Interactive Location Guide</div>
+        </div>
+
+        <div className="sidebar-actions">
+          <button 
+            className={`sidebar-action-btn ${showPins ? 'active' : ''}`}
+            onClick={() => setShowPins(!showPins)}
+          >
+            {showPins ? 'HIDE PINS' : 'SHOW PINS'}
+          </button>
+          <button 
+            className="sidebar-action-btn"
+            onClick={() => setIsAboutOpen(true)}
+          >
+            ABOUT
+          </button>
+        </div>
+
+        <div className="sidebar-tabs">
+          <button 
+            className={`sidebar-tab ${activeTab === 'categories' ? 'active' : ''}`}
+            onClick={() => setActiveTab('categories')}
+          >
+            Categories
+          </button>
+          <button 
+            className={`sidebar-tab ${activeTab === 'locations' ? 'active' : ''}`}
+            onClick={() => setActiveTab('locations')}
+          >
+            Locations
+          </button>
         </div>
 
         <div className="sidebar-content">
-          <SearchBar
-            query={searchQuery}
-            onQueryChange={setSearchQuery}
-            results={filteredLocations}
-            onSelectLocation={handleSearchSelect}
-          />
-
-          {!isMobile && (
+          {activeTab === 'categories' && !isMobile && (
             <CategoryFilter
               categories={allCategories}
               selectedCategories={selectedCategories}
@@ -128,33 +213,57 @@ function App() {
             />
           )}
 
+          {activeTab === 'locations' && (
+            <LocationsList
+              locations={filteredLocations}
+              selectedLocations={selectedLocations}
+              onToggleLocation={handleToggleLocation}
+              onSelectLocation={handleLocationSelect}
+            />
+          )}
+
           <div className="sidebar-stats">
             <div className="stat">
               <span className="stat-value">{locations.length}</span>
-              <span className="stat-label">Total Locations</span>
+              <span className="stat-label">Total</span>
             </div>
             <div className="stat">
-              <span className="stat-value">{filteredLocations.length}</span>
+              <span className="stat-value">{displayedLocations.length}</span>
               <span className="stat-label">Showing</span>
             </div>
           </div>
         </div>
 
         <div className="sidebar-footer">
-          {/* <div className="sidebar-hint">Ctrl+Shift+A for Admin</div> */}
+          <div className="sidebar-footer-info">
+            <span className="footer-rotation">Rotation: {formatRotation(currentRotation)}</span>
+            <span className="footer-credit">
+              Art: {currentCredit?.url ? (
+                <a href={currentCredit.url} target="_blank" rel="noopener noreferrer">
+                  {currentCredit.name}
+                </a>
+              ) : (
+                currentCredit?.name
+              )}
+            </span>
+          </div>
         </div>
       </div>
 
       <div className="map-container">
         <InteractiveMap
-          locations={filteredLocations}
+          locations={displayedLocations}
           hoveredLocation={hoveredLocation}
           selectedLocation={selectedLocation}
           onHover={setHoveredLocation}
           onClick={handleLocationClick}
-          onMapClick={() => {}}
+          onMapClick={handleMapClick}
           highlightedLocation={highlightedLocation}
-          isAdminMode={false}
+          isAdminMode={IS_DEV && isAdminOpen}
+          showPins={showPins}
+          onBgChange={setCurrentBgIndex}
+          onRotationChange={setCurrentRotation}
+          focusedLocations={focusedLocations}
         />
       </div>
 
@@ -167,18 +276,19 @@ function App() {
         onClose={() => setSelectedLocation(null)}
       />
 
-      {/* <AdminPanel
-        isOpen={isAdminOpen}
-        onClose={() => setIsAdminOpen(false)}
-        locations={locations}
-        onAdd={addLocation}
-        onUpdate={updateLocation}
-        onDelete={deleteLocation}
-        clickPosition={adminClickPosition}
-      /> */}
+      {IS_DEV && (
+        <AdminPanel
+          isOpen={isAdminOpen}
+          onClose={() => setIsAdminOpen(false)}
+          locations={locations}
+          onAdd={addLocation}
+          onUpdate={updateLocation}
+          onDelete={deleteLocation}
+          clickPosition={adminClickPosition}
+        />
+      )}
     </div>
   );
 }
 
 export default App;
-
