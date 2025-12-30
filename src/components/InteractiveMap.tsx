@@ -15,7 +15,6 @@ interface InteractiveMapProps {
   isAdminMode?: boolean;
   showPins?: boolean;
   onBgChange?: (index: number) => void;
-  onRotationChange?: (rotation: number) => void;
   focusedLocations?: MapLocation[];
 }
 
@@ -58,7 +57,6 @@ export function InteractiveMap({
   isAdminMode = false,
   showPins = true,
   onBgChange,
-  onRotationChange,
   focusedLocations = [],
 }: InteractiveMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -87,9 +85,6 @@ export function InteractiveMap({
     onBgChange?.(bgIndex);
   }, [bgIndex, onBgChange]);
   
-  useEffect(() => {
-    onRotationChange?.(mapRotation);
-  }, [mapRotation, onRotationChange]);
   transformRef.current = transform;
 
   const clampTransform = useCallback((t: Transform): Transform => {

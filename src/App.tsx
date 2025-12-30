@@ -42,7 +42,6 @@ function App() {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [showPins, setShowPins] = useState(true);
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
-  const [currentRotation, setCurrentRotation] = useState(0);
   const [selectedLocations, setSelectedLocations] = useState<Set<string>>(new Set());
   const [focusedLocations, setFocusedLocations] = useState<MapLocation[]>([]);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
@@ -151,11 +150,6 @@ function App() {
     ? filteredLocations.filter(loc => selectedLocations.has(loc.id))
     : filteredLocations;
 
-  const formatRotation = (rotation: number) => {
-    let heading = ((-rotation + 40) % 360 + 360) % 360;
-    return `${heading.toFixed(0)}`;
-  };
-
   if (isLoading) {
     return <Preloader onLoaded={handleLoaded} />;
   }
@@ -261,7 +255,6 @@ function App() {
           isAdminMode={IS_DEV && isAdminOpen}
           showPins={showPins}
           onBgChange={setCurrentBgIndex}
-          onRotationChange={setCurrentRotation}
           focusedLocations={focusedLocations}
         />
       </div>
