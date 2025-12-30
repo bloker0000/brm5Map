@@ -53,6 +53,7 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
               <li><strong>Search:</strong> Type in the search bar to find specific locations</li>
               <li><strong>Filter:</strong> Use Categories to filter by location type</li>
               <li><strong>Select:</strong> Click on a pin or list item to view details</li>
+              <li><strong>Un-Select:</strong> Ctrl/Cmd click on a selected pin or list item to un-select</li>
               <li><strong>Multi-select:</strong> Hold Ctrl/Cmd while clicking to select multiple</li>
             </ul>
           </section>
@@ -68,8 +69,8 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
 
           <section className="about-credits">
             <h3>Credits</h3>
-            <p>Map and interface created for the Black Hawk Rescue Mission 5 community.</p>
-            <p>Background artwork by various talented artists - see footer for current artist.</p>
+            <p>Map and website made by Multyply.</p>
+            <p>Background artwork by many talented artists. See footer for current artist.</p>
           </section>
         </div>
       </div>

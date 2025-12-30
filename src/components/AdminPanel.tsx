@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { MapLocation, LocationCategory } from '../types/location';
+import type { MapLocation, LocationCategory, LocationImage } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
 import { CloseIcon, CrosshairIcon } from './Icons';
 import './AdminPanel.css';
@@ -49,7 +49,7 @@ export function AdminPanel({
     y: 0,
     description: '',
     category: 'Other' as LocationCategory,
-    image: '',
+    images: [] as LocationImage[],
   });
 
   useEffect(() => {
@@ -69,7 +69,7 @@ export function AdminPanel({
       y: 0,
       description: '',
       category: 'Other',
-      image: '',
+      images: [],
     });
     setEditingLocation(null);
   };
@@ -88,13 +88,18 @@ export function AdminPanel({
 
   const handleStartEdit = (location: MapLocation) => {
     setEditingLocation(location);
+    const images: LocationImage[] = location.images && location.images.length > 0
+      ? location.images
+      : location.image
+        ? [{ url: location.image, description: '' }]
+        : [];
     setFormData({
       name: location.name,
       x: location.x,
       y: location.y,
       description: location.description,
       category: location.category,
-      image: location.image || '',
+      images,
     });
     setMode('edit');
   };
@@ -104,13 +109,15 @@ export function AdminPanel({
 
     if (!formData.name.trim()) return;
 
+    const validImages = formData.images.filter(img => img.url.trim() !== '');
+
     const locationData = {
       name: formData.name.trim(),
       x: formData.x,
       y: formData.y,
       description: formData.description.trim(),
       category: formData.category,
-      image: formData.image.trim() || undefined,
+      images: validImages.length > 0 ? validImages : undefined,
     };
 
     if (mode === 'add') {
@@ -121,6 +128,29 @@ export function AdminPanel({
 
     resetForm();
     setMode('list');
+  };
+
+  const handleAddImage = () => {
+    setFormData(prev => ({
+      ...prev,
+      images: [...prev.images, { url: '', description: '' }],
+    }));
+  };
+
+  const handleUpdateImage = (index: number, field: 'url' | 'description', value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      images: prev.images.map((img, i) => 
+        i === index ? { ...img, [field]: value } : img
+      ),
+    }));
+  };
+
+  const handleRemoveImage = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      images: prev.images.filter((_, i) => i !== index),
+    }));
   };
 
   const handleDelete = (id: string) => {
@@ -300,15 +330,37 @@ export function AdminPanel({
               />
             </label>
 
-            <label className="admin-field">
-              <span>Image URL (optional)</span>
-              <input
-                type="text"
-                value={formData.image}
-                onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                placeholder="https://example.com/image.png"
-              />
-            </label>
+            <div className="admin-field">
+              <span>Images</span>
+              <div className="admin-images-list">
+                {formData.images.map((img, index) => (
+                  <div key={index} className="admin-image-item">
+                    <input
+                      type="text"
+                      value={img.url}
+                      onChange={(e) => handleUpdateImage(index, 'url', e.target.value)}
+                      placeholder="Image URL"
+                    />
+                    <input
+                      type="text"
+                      value={img.description || ''}
+                      onChange={(e) => handleUpdateImage(index, 'description', e.target.value)}
+                      placeholder="Description (optional)"
+                    />
+                    <button
+                      type="button"
+                      className="admin-image-remove"
+                      onClick={() => handleRemoveImage(index)}
+                    >
+                      <CloseIcon size={14} />
+                    </button>
+                  </div>
+                ))}
+                <button type="button" className="admin-btn" onClick={handleAddImage}>
+                  + Add Image
+                </button>
+              </div>
+            </div>
 
             <div className="admin-form-actions">
               <button type="button" className="admin-btn" onClick={() => setMode('list')}>

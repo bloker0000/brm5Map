@@ -256,6 +256,61 @@
   flex: 1;
 }
 
+.admin-images-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-image-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.admin-image-item input {
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.admin-image-item input:focus {
+  border-color: #ff4444;
+}
+
+.admin-image-item input::placeholder {
+  color: #666;
+}
+
+.admin-image-remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 68, 68, 0.2);
+  border: 1px solid rgba(255, 68, 68, 0.4);
+  color: #ff6666;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.admin-image-remove:hover {
+  background: rgba(255, 68, 68, 0.4);
+  color: #ff8888;
+}
+
 @media (max-width: 500px) {
   .admin-overlay {
     max-width: 100%;

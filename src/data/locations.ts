@@ -1,17 +1,31 @@
 import type { MapLocation } from '../types/location';
 
 const STORAGE_KEY = 'brm5_map_locations';
-const LOCATIONS_VERSION = 2;
+const LOCATIONS_VERSION = 3;
 const VERSION_KEY = 'brm5_map_locations_version';
 
 export const defaultLocations: MapLocation[] = [
   {
     "id": "1",
-    "name": "NYPlug",
+    "name": "NYPlug New York Power Group",
     "x": 1059,
     "y": 2165,
     "description": "Entrance and exit to a building. At the rear, there is a spawn point and an additional entrance. The building has multiple stories.",
-    "category": "Building"
+    "category": "Building",
+    "images": [
+      {
+        "url": "https://i.imgur.com/3htCIUM.png",
+        "description": "NYPlug Inside"
+      },
+      {
+        "url": "https://i.imgur.com/RT9kTdG.png",
+        "description": "NYPlug Outside"
+      },
+      {
+        "url": "https://i.imgur.com/DseoK2g.png",
+        "description": "NYPlug Inside Break Room"
+      }
+    ]
   },
   {
     "id": "2",
@@ -24,18 +38,107 @@ export const defaultLocations: MapLocation[] = [
   {
     "id": "3",
     "name": "Activity-Full Sphere Solutions",
-    "x": 1015,
-    "y": 1960,
+    "x": 1025,
+    "y": 1962,
     "description": "A multi-story office building. The penultimate floor contains a safe that can be opened with a key. Two staircases provide access to this floor: the staircase closest to the front of the building, which faces southwest, continues to the top of the building, while the other terminates at the penultimate floor.",
-    "category": "Office Building Large"
+    "category": "Office Building Large",
+    "images": [
+      {
+        "url": "https://i.imgur.com/eHStlTT.png",
+        "description": "Main entrance"
+      },
+      {
+        "url": "https://i.imgur.com/974Jqhs.png",
+        "description": "Main entrance inside"
+      },
+      {
+        "url": "https://i.imgur.com/iIjgYEt.png",
+        "description": "second entrance inside"
+      },
+      {
+        "url": "https://i.imgur.com/DtpzF5T.png",
+        "description": "third entrance inside"
+      },
+      {
+        "url": "https://i.imgur.com/gfx4Xua.png",
+        "description": "some kind of storage space"
+      },
+      {
+        "url": "https://i.imgur.com/SmK8BGy.png",
+        "description": "fourth entrance"
+      },
+      {
+        "url": "https://i.imgur.com/J6mGw2C.png",
+        "description": "second floor"
+      },
+      {
+        "url": "https://i.imgur.com/QHkPi6c.png",
+        "description": "first staircase"
+      },
+      {
+        "url": "https://i.imgur.com/LyBrUoh.png",
+        "description": "top floor"
+      },
+      {
+        "url": "https://i.imgur.com/pl2VQuh.png",
+        "description": "top floor 2"
+      },
+      {
+        "url": "https://i.imgur.com/X52Uc53.png",
+        "description": "poor guy"
+      },
+      {
+        "url": "https://i.imgur.com/NTXk5Ae.png",
+        "description": "second-to-last floor 1"
+      },
+      {
+        "url": "https://i.imgur.com/2oW7XGV.png",
+        "description": "the safe on the second to last floor (1)"
+      },
+      {
+        "url": "https://i.imgur.com/Gyh0a1d.png",
+        "description": "second to last floor 2"
+      },
+      {
+        "url": "https://i.imgur.com/P8marhq.png",
+        "description": "another entrance located at the side of the building"
+      }
+    ]
   },
   {
     "id": "4",
-    "name": "Spawnpoint near NYPlug",
-    "x": 929,
-    "y": 2251,
-    "description": "A spawn point. This is where players may spawn on the second or third floor of the building.",
-    "category": "Residence"
+    "name": "Apartment Building Near NYPlug",
+    "x": 931,
+    "y": 2248,
+    "description": "A four-story apartment building connected to NYPlug. Following the hallways on the first floor, as shown on the map, will lead to NYPlug. Be aware that players may spawn on the upper floors. During the night, a medium to large number of zombies may also spawn here.",
+    "category": "Residence",
+    "image": "https://i.imgur.com/wAt3i6f.png",
+    "images": [
+      {
+        "url": "https://i.imgur.com/wAt3i6f.png",
+        "description": "First Floor"
+      },
+      {
+        "url": "https://i.imgur.com/hQIGjjQ.png",
+        "description": "Second Floor"
+      },
+      {
+        "url": "https://i.imgur.com/MNNUQeD.png",
+        "description": "Third Floor"
+      },
+      {
+        "url": "https://i.imgur.com/nQAFnVJ.png",
+        "description": "Fourth Floor"
+      },
+      {
+        "url": "https://i.imgur.com/VkJ3ppR.png",
+        "description": "First Floor Entrance and Hallway Entrance"
+      },
+      {
+        "url": "https://i.imgur.com/bVb2mEK.png",
+        "description": "Hallway Leading to NYPlug"
+      }
+    ]
   },
   {
     "id": "5",
@@ -43,7 +146,13 @@ export const defaultLocations: MapLocation[] = [
     "x": 753,
     "y": 2038,
     "description": "An extraction point. An enemy outpost, where two enemies may spawn, is located at the ladder leading to the extraction point.",
-    "category": "Extraction Point"
+    "category": "Extraction Point",
+    "images": [
+      {
+        "url": "https://i.imgur.com/1XRq5OA.png",
+        "description": "extraction point on top of the ladder"
+      }
+    ]
   },
   {
     "name": "Extraction Point Pier",
@@ -342,12 +451,22 @@ export const defaultLocations: MapLocation[] = [
     "id": "mjrvol1mdop1ngywhtc"
   },
   {
-    "name": "Safe",
-    "x": 991,
-    "y": 1936,
-    "description": "TBA",
+    "name": "Safe at Activity-Full",
+    "x": 984,
+    "y": 1950,
+    "description": "A safe located on the second to last floor of the Activity Full Sphere Solutions Office. When taking the first stairs, go left on the second to last floor. It should be on that side of the building.",
     "category": "Key Use Location",
-    "id": "mjrvoz6urfycx8xq8q"
+    "id": "mjrvoz6urfycx8xq8q",
+    "images": [
+      {
+        "url": "https://i.imgur.com/2oW7XGV.png",
+        "description": "The safe"
+      },
+      {
+        "url": "https://i.imgur.com/NTXk5Ae.png",
+        "description": "The second-to-last floor"
+      }
+    ]
   },
   {
     "name": "Westbridge Partners Office",
@@ -391,35 +510,53 @@ export const defaultLocations: MapLocation[] = [
   },
   {
     "name": "Quill",
-    "x": 849,
-    "y": 1960,
-    "description": "TBA",
+    "x": 852,
+    "y": 1952,
+    "description": "A clothing store, can be used to access the maintance gate.",
     "category": "Building",
-    "id": "mjrvrytly5lyzeir8k"
+    "id": "mjrvrytly5lyzeir8k",
+    "images": [
+      {
+        "url": "https://i.imgur.com/zhtcDWq.png",
+        "description": "inside"
+      }
+    ]
   },
   {
-    "name": "Spawnpoint",
-    "x": 964,
-    "y": 2251,
-    "description": "TBA",
+    "name": "Spawnpoint Near NYPlug",
+    "x": 963,
+    "y": 2239,
+    "description": "The spawn point is in the building next to NYPlug. Players can spawn on one of the upper floors, usually inside a room.",
     "category": "Spawnpoint",
     "id": "mjrvseahe6vji28wobj"
   },
   {
-    "name": "Spawn Location",
+    "name": "S William spawnpoint",
     "x": 675,
     "y": 1925,
-    "description": "TBA",
+    "description": "Spawnpoint, pretty close to a extraction point.",
     "category": "Spawnpoint",
-    "id": "mjrvt84rqomx0v3io8"
+    "id": "mjrvt84rqomx0v3io8",
+    "images": [
+      {
+        "url": "https://i.imgur.com/GlZypkG.png",
+        "description": "yes"
+      }
+    ]
   },
   {
-    "name": "Enemy Location",
-    "x": 738,
-    "y": 1983,
-    "description": "TBA",
+    "name": "Enemy Outpost near whitehall extraction",
+    "x": 733,
+    "y": 1988,
+    "description": "An enemy outpost pretty much guarding the extraction point. Though only 2 basic enemies spawn here, but they can gain the attention of nearby zombies that can come out of the Quill clothing store.",
     "category": "Enemy Outpost",
-    "id": "mjrvtq3vt1itadzeuss"
+    "id": "mjrvtq3vt1itadzeuss",
+    "images": [
+      {
+        "url": "https://i.imgur.com/kB8HGWy.png",
+        "description": "The outpost"
+      }
+    ]
   },
   {
     "name": "Office key",
@@ -521,25 +658,51 @@ export const defaultLocations: MapLocation[] = [
     "name": "Armory",
     "x": 1504,
     "y": 1356,
-    "description": "TBA",
+    "description": "Here you can use the armory key, located at the lowest floor.",
     "category": "Key Use Location",
-    "id": "mjrvzhe8153uoqgvi28"
+    "id": "mjrvzhe8153uoqgvi28",
+    "images": [
+      {
+        "url": "https://i.imgur.com/P0sskeu.png",
+        "description": "armory"
+      }
+    ]
   },
   {
     "name": "Zombie Nest",
     "x": 1523,
     "y": 1323,
-    "description": "TBA",
+    "description": "This zombie nest is located inside and beneath the building. Large numbers of zombies spawn here. It is recommended to enter only during the day.",
     "category": "Zombie Nest",
-    "id": "mjrvzs8dbgpc1cacni"
+    "id": "mjrvzs8dbgpc1cacni",
+    "images": [
+      {
+        "url": "https://i.imgur.com/y1jxYen.png",
+        "description": "entrance"
+      },
+      {
+        "url": "https://i.imgur.com/P0sskeu.png",
+        "description": "armory"
+      }
+    ]
   },
   {
-    "name": "Quarantine Zone",
-    "x": 1617,
-    "y": 1314,
-    "description": "TBA",
+    "name": "Quarantine Zone Broadway",
+    "x": 1621,
+    "y": 1329,
+    "description": "A quarantine zone that includes a military checkpoint. Many militant zombies spawn here. There is also an underground system next to it where the armory is located. An M249 usually spawns there, along with other valuable items. More images TBA",
     "category": "Quarantine Zone",
-    "id": "mjrw01k5pt8lvq0z0c"
+    "id": "mjrw01k5pt8lvq0z0c",
+    "images": [
+      {
+        "url": "https://i.imgur.com/eaTiHLB.png",
+        "description": "Outside"
+      },
+      {
+        "url": "https://i.imgur.com/X0ZAqlA.png",
+        "description": "The back entrance, which is the recommended entry point, located right next to the basketball field."
+      }
+    ]
   },
   {
     "name": "Cities Service Building",
@@ -580,6 +743,50 @@ export const defaultLocations: MapLocation[] = [
     "description": "TBA",
     "category": "Enemy Outpost",
     "id": "mjrw1r1ewvq9wl4885c"
+  },
+  {
+    "name": "Spawnpoint broadway",
+    "x": 1557,
+    "y": 1587,
+    "description": "Players can spawn here.",
+    "category": "Spawnpoint",
+    "images": [
+      {
+        "url": "https://i.imgur.com/UYzopDx.png",
+        "description": "spawn location"
+      },
+      {
+        "url": "https://i.imgur.com/uVqsq2P.png",
+        "description": "another spawn location"
+      }
+    ],
+    "id": "mjsnrnthymdi0vkio1"
+  },
+  {
+    "name": "646 Broadway",
+    "x": 1539,
+    "y": 1570,
+    "description": "A fairly large apartment building. On the second-to-last floor, there is a long hallway that leads to another set of stairs outside the building. Using these stairs, you can reach the top floor if you have the key. Be cautious, as there is a zombie nest right next to it. Zombies may spawn in large numbers outside the nest and can spot you from the stairs.",
+    "category": "Building",
+    "images": [
+      {
+        "url": "https://i.imgur.com/Xf5D91H.png",
+        "description": "The hallway on the second to last floor."
+      },
+      {
+        "url": "https://i.imgur.com/d1eNGOI.png",
+        "description": "Entrance"
+      },
+      {
+        "url": "https://i.imgur.com/RbN64yH.png",
+        "description": "view on the outside stairs"
+      },
+      {
+        "url": "https://i.imgur.com/GlkHTwA.png",
+        "description": "last floor"
+      }
+    ],
+    "id": "mjsnzloswtsupdfe1xg"
   }
 ];
 

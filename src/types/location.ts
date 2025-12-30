@@ -15,6 +15,11 @@ export type LocationCategory =
   | 'Landmark'
   | 'Other';
 
+export interface LocationImage {
+  url: string;
+  description?: string;
+}
+
 export interface MapLocation {
   id: string;
   name: string;
@@ -23,6 +28,7 @@ export interface MapLocation {
   description: string;
   category: LocationCategory;
   image?: string;
+  images?: LocationImage[];
 }
 
 export const CATEGORY_COLORS: Record<LocationCategory, string> = {

@@ -1,4 +1,5 @@
-import type { MapLocation } from '../types/location';
+import { useState } from 'react';
+import type { MapLocation, LocationImage } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
 import { CategoryIcon, CloseIcon } from './Icons';
 import './LocationModal.css';
@@ -8,10 +9,36 @@ interface LocationModalProps {
   onClose: () => void;
 }
 
+function getAllImages(location: MapLocation): LocationImage[] {
+  const images: LocationImage[] = [];
+  
+  if (location.images && location.images.length > 0) {
+    images.push(...location.images);
+  } else if (location.image) {
+    images.push({ url: location.image });
+  }
+  
+  return images;
+}
+
 export function LocationModal({ location, onClose }: LocationModalProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
   if (!location) return null;
 
   const color = CATEGORY_COLORS[location.category];
+  const images = getAllImages(location);
+  const hasImages = images.length > 0;
+  const hasMultipleImages = images.length > 1;
+  const currentImage = images[currentImageIndex];
+
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -34,9 +61,35 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
           </div>
         </div>
 
-        {location.image && (
-          <div className="modal-image">
-            <img src={location.image} alt={location.name} />
+        {hasImages && (
+          <div className="modal-gallery">
+            <div className="modal-image">
+              <img src={currentImage.url} alt={location.name} />
+              {hasMultipleImages && (
+                <>
+                  <button className="gallery-nav gallery-prev" onClick={handlePrevImage}>
+                    <ChevronIcon direction="left" />
+                  </button>
+                  <button className="gallery-nav gallery-next" onClick={handleNextImage}>
+                    <ChevronIcon direction="right" />
+                  </button>
+                </>
+              )}
+            </div>
+            {currentImage.description && (
+              <div className="modal-image-description">{currentImage.description}</div>
+            )}
+            {hasMultipleImages && (
+              <div className="modal-gallery-dots">
+                {images.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`gallery-dot ${index === currentImageIndex ? 'active' : ''}`}
+                    onClick={() => setCurrentImageIndex(index)}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
 
@@ -50,5 +103,25 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
         </div>
       </div>
     </div>
+  );
+}
+
+function ChevronIcon({ direction }: { direction: 'left' | 'right' }) {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="square"
+    >
+      {direction === 'left' ? (
+        <polyline points="15 18 9 12 15 6" />
+      ) : (
+        <polyline points="9 6 15 12 9 18" />
+      )}
+    </svg>
   );
 }

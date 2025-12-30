@@ -8,10 +8,18 @@ interface TooltipProps {
   mousePosition: { x: number; y: number };
 }
 
+function getFirstImage(location: MapLocation): string | undefined {
+  if (location.images && location.images.length > 0) {
+    return location.images[0].url;
+  }
+  return location.image;
+}
+
 export function Tooltip({ location, mousePosition }: TooltipProps) {
   if (!location) return null;
 
   const color = CATEGORY_COLORS[location.category];
+  const previewImage = getFirstImage(location);
 
   return (
     <div
@@ -22,6 +30,11 @@ export function Tooltip({ location, mousePosition }: TooltipProps) {
         '--tooltip-color': color,
       } as React.CSSProperties}
     >
+      {previewImage && (
+        <div className="tooltip-image">
+          <img src={previewImage} alt={location.name} />
+        </div>
+      )}
       <div className="tooltip-header">
         <CategoryIcon category={location.category} size={16} color={color} />
         <span className="tooltip-name">{location.name}</span>
