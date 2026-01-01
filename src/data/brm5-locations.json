@@ -420,27 +420,53 @@
   },
   {
     "name": "Enemy Location",
-    "x": 1894,
-    "y": 2009,
+    "x": 1879,
+    "y": 2001,
     "description": "They spawn as well as inside as outside.",
     "category": "Enemy Outpost",
-    "id": "mjrvj0bwpto8itfovkp"
+    "id": "mjrvj0bwpto8itfovkp",
+    "images": [
+      {
+        "url": "https://i.imgur.com/LUJESsD.png",
+        "description": ""
+      }
+    ]
   },
   {
     "name": "Former NYPD Station",
     "x": 2016,
-    "y": 2025,
+    "y": 2024,
     "description": "TBA",
     "category": "Building",
-    "id": "mjrvjqdpw63iztfj1v9"
+    "id": "mjrvjqdpw63iztfj1v9",
+    "images": [
+      {
+        "url": "https://i.imgur.com/8Koy68G.png",
+        "description": "The building"
+      }
+    ]
   },
   {
-    "name": "Extraction Point",
+    "name": "Extraction Point South",
     "x": 2001,
-    "y": 2179,
+    "y": 2180,
     "description": "It can be accessed via the southeast or northwest staircases.",
     "category": "Extraction Point",
-    "id": "mjrvk7yp6ewdm0dtggd"
+    "id": "mjrvk7yp6ewdm0dtggd",
+    "images": [
+      {
+        "url": "https://i.imgur.com/i2cBHhq.png",
+        "description": "Northwest staircase"
+      },
+      {
+        "url": "https://i.imgur.com/LjEBPhC.png",
+        "description": "Southeast staircase"
+      },
+      {
+        "url": "https://i.imgur.com/q3Eyn2i.jpeg",
+        "description": "Extraction point"
+      }
+    ]
   },
   {
     "name": "Stone 16",
@@ -448,15 +474,27 @@
     "y": 1976,
     "description": "TBA",
     "category": "Key Use Location",
-    "id": "mjrvn6gujqbuynmtqz"
+    "id": "mjrvn6gujqbuynmtqz",
+    "images": [
+      {
+        "url": "https://i.imgur.com/mhkP8eh.png",
+        "description": "outside"
+      }
+    ]
   },
   {
-    "name": "Broadway Street Camp",
-    "x": 1580,
+    "name": "Triple R Diner Camp",
+    "x": 1570,
     "y": 1970,
-    "description": "An enemy outpost. More info TBA",
+    "description": "An enemy camp. More info TBA",
     "category": "Enemy Outpost",
-    "id": "mjrvnhy0kng3cvc4i2q"
+    "id": "mjrvnhy0kng3cvc4i2q",
+    "images": [
+      {
+        "url": "https://i.imgur.com/VRaQpIn.png",
+        "description": "enemy camp"
+      }
+    ]
   },
   {
     "name": "Liberty Bank",
@@ -469,6 +507,10 @@
       {
         "url": "https://i.imgur.com/P4uSGqg.png",
         "description": "the keycard door"
+      },
+      {
+        "url": "https://i.imgur.com/0zJadsx.png",
+        "description": "outside"
       }
     ]
   },
@@ -866,7 +908,13 @@
     "y": 1901,
     "description": "A sheepdog camp, about 5+ enemies. More info TBA.",
     "category": "Enemy Outpost",
-    "id": "mjt40ao50mx9h7pcc3j"
+    "id": "mjt40ao50mx9h7pcc3j",
+    "images": [
+      {
+        "url": "https://i.imgur.com/EUXqvVI.png",
+        "description": "The camp"
+      }
+    ]
   },
   {
     "name": "Carl's Cars",
@@ -913,5 +961,33 @@
       }
     ],
     "id": "mjt4x7f9x4jf66sh7ae"
+  },
+  {
+    "name": "Spawnpoint Acitivity Full",
+    "x": 974,
+    "y": 1982,
+    "description": "TBA",
+    "category": "Spawnpoint",
+    "images": [
+      {
+        "url": "https://i.imgur.com/WaxzINR.png",
+        "description": "spawnpoint"
+      }
+    ],
+    "id": "mjvl38frqesnehb57hm"
+  },
+  {
+    "name": "metro station Southwest",
+    "x": 1638,
+    "y": 2151,
+    "description": "A underground metro station. Usually contains lots of medical items as well as ammo and rare loot. Gas mask is required. Be aware that lots of zombies can spawn here.",
+    "category": "Zombie Nest",
+    "images": [
+      {
+        "url": "https://i.imgur.com/LWniuBc.png",
+        "description": "entrance"
+      }
+    ],
+    "id": "mjvll2a7ck8qg0up0xl"
   }
 ]
