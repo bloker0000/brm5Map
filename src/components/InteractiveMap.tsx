@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { MapPin } from './MapPin';
-import { PlusIcon, MinusIcon, ResetIcon } from './Icons';
+import { PlusIcon, MinusIcon, ResetPositionIcon, ResetRotationIcon } from './Icons';
 import type { MapLocation } from '../types/location';
 import './InteractiveMap.css';
 
@@ -128,14 +128,18 @@ export function InteractiveMap({
     const y = (containerRect.height - image.naturalHeight * scale) / 2;
 
     setTransform({ x, y, scale });
+  }, []);
+
+  const resetRotation = useCallback(() => {
     setMapRotation(0);
   }, []);
 
   useEffect(() => {
     if (imageLoaded) {
       centerMap();
+      resetRotation();
     }
-  }, [imageLoaded, centerMap]);
+  }, [imageLoaded, centerMap, resetRotation]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -473,8 +477,11 @@ export function InteractiveMap({
         <button onClick={handleZoomOut} title="Zoom Out">
           <MinusIcon size={18} />
         </button>
-        <button onClick={centerMap} title="Reset View">
-          <ResetIcon size={18} />
+        <button onClick={centerMap} title="Reset Position">
+          <ResetPositionIcon size={18} />
+        </button>
+        <button onClick={resetRotation} title="Reset Rotation">
+          <ResetRotationIcon size={18} />
         </button>
       </div>
 

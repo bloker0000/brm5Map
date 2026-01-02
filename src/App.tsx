@@ -146,6 +146,10 @@ function App() {
     [setSelectedLocation]
   );
 
+  const handleClearSelection = useCallback(() => {
+    setSelectedLocations(new Set());
+  }, []);
+
   const displayedLocations = selectedLocations.size > 0
     ? filteredLocations.filter(loc => selectedLocations.has(loc.id))
     : filteredLocations;
@@ -163,8 +167,8 @@ function App() {
       
       <div className="sidebar">
         <div className="sidebar-header">
-          <h1 className="sidebar-title">BRM5 MAP</h1>
-          <div className="sidebar-subtitle">Operation Cryo Zombies</div>
+          <h1 className="sidebar-title">BRMAP5</h1>
+          <div className="sidebar-subtitle">Blackhawk Rescue Map 5</div>
         </div>
 
         <div className="sidebar-actions">
@@ -213,6 +217,7 @@ function App() {
               selectedLocations={selectedLocations}
               onToggleLocation={handleToggleLocation}
               onSelectLocation={handleLocationSelect}
+              onClearSelection={handleClearSelection}
             />
           )}
 

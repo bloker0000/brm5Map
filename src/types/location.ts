@@ -1,9 +1,6 @@
 export type LocationCategory =
   | 'Spawnpoint'
   | 'Building'
-  | 'Residence'
-  | 'Office Building Small'
-  | 'Office Building Large'
   | 'Extraction Point'
   | 'Enemy Outpost'
   | 'Zombie Nest'
@@ -13,6 +10,7 @@ export type LocationCategory =
   | 'Medical'
   | 'Shop'
   | 'Landmark'
+  | 'Subway Station'
   | 'Other';
 
 export interface LocationImage {
@@ -34,9 +32,6 @@ export interface MapLocation {
 export const CATEGORY_COLORS: Record<LocationCategory, string> = {
   'Spawnpoint': '#44cc88',
   'Building': '#6699cc',
-  'Residence': '#6699cc',
-  'Office Building Small': '#6699cc',
-  'Office Building Large': '#6699cc',
   'Extraction Point': '#44cc88',
   'Enemy Outpost': '#cc4444',
   'Zombie Nest': '#cc4444',
@@ -46,6 +41,7 @@ export const CATEGORY_COLORS: Record<LocationCategory, string> = {
   'Medical': '#44aacc',
   'Shop': '#aa88cc',
   'Landmark': '#cccc44',
+  'Subway Station': '#9966cc',
   'Other': '#888888',
 };
 

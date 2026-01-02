@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './Preloader.css';
 
 interface PreloaderProps {
@@ -22,11 +22,28 @@ const BG_IMAGES = [
   '/BG/BG14.png',
 ];
 
+const MIN_STAGE_DURATION = 500;
+
+interface LoadingStage {
+  name: string;
+  progress: number;
+}
+
+const LOADING_STAGES: LoadingStage[] = [
+  { name: 'INITIALIZING...', progress: 10 },
+  { name: 'LOADING MAP DATA...', progress: 40 },
+  { name: 'LOADING ASSETS...', progress: 70 },
+  { name: 'FINALIZING...', progress: 90 },
+  { name: 'READY', progress: 100 },
+];
+
 export function Preloader({ onLoaded }: PreloaderProps) {
   const [progress, setProgress] = useState(0);
+  const [statusText, setStatusText] = useState(LOADING_STAGES[0].name);
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
   const [nextBgIndex, setNextBgIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const stageStartTimeRef = useRef<number>(Date.now());
 
   useEffect(() => {
     const randomStart = Math.floor(Math.random() * BG_IMAGES.length);
@@ -47,25 +64,45 @@ export function Preloader({ onLoaded }: PreloaderProps) {
     return () => clearInterval(interval);
   }, [nextBgIndex]);
 
+  const advanceStage = async (stageIndex: number) => {
+    const stage = LOADING_STAGES[stageIndex];
+    const elapsed = Date.now() - stageStartTimeRef.current;
+    const remainingTime = Math.max(0, MIN_STAGE_DURATION - elapsed);
+    
+    if (remainingTime > 0) {
+      await new Promise(resolve => setTimeout(resolve, remainingTime));
+    }
+    
+    stageStartTimeRef.current = Date.now();
+    setProgress(stage.progress);
+    setStatusText(stage.name);
+  };
+
   useEffect(() => {
     const loadAssets = async () => {
-      setProgress(10);
+      stageStartTimeRef.current = Date.now();
+      await advanceStage(0);
 
       const mapImage = new Image();
-      const svgLoaded = new Promise<void>((resolve, reject) => {
+      const svgLoadPromise = new Promise<void>((resolve, reject) => {
         mapImage.onload = () => resolve();
         mapImage.onerror = () => reject(new Error('Failed to load map'));
         mapImage.src = '/Brm5Map.svg';
       });
 
+      await advanceStage(1);
+
       try {
-        await svgLoaded;
-        setProgress(80);
+        await svgLoadPromise;
+        await advanceStage(2);
 
-        await new Promise(resolve => setTimeout(resolve, 500));
-        setProgress(100);
+        const logoImage = new Image();
+        logoImage.src = '/logos/logoyellow.svg';
+        await advanceStage(3);
 
-        await new Promise(resolve => setTimeout(resolve, 400));
+        await advanceStage(4);
+        
+        await new Promise(resolve => setTimeout(resolve, 300));
         onLoaded();
       } catch (error) {
         console.error('Failed to load assets:', error);
@@ -90,15 +127,18 @@ export function Preloader({ onLoaded }: PreloaderProps) {
       
       <div className="preloader-content">
         <div className="preloader-logo">
-          <div className="preloader-title">BLACK HAWK</div>
-          <div className="preloader-subtitle">RESCUE MISSION 5</div>
+          <img 
+            src="/logos/logoyellow.svg" 
+            alt="BRMap5" 
+            className="preloader-logo-image"
+          />
         </div>
         
         <div className="preloader-bar-container">
           <div className="preloader-bar" style={{ width: `${progress}%` }} />
         </div>
         <div className="preloader-status">
-          {progress < 100 ? 'LOADING MAP DATA...' : 'INITIALIZING...'}
+          {statusText}
         </div>
       </div>
     </div>

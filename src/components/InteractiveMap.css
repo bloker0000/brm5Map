@@ -95,11 +95,7 @@
   justify-content: center;
 }
 
-.zoom-controls button:first-child {
-  border-bottom: none;
-}
-
-.zoom-controls button:last-child {
+.zoom-controls button:not(:first-child) {
   border-top: none;
 }
 

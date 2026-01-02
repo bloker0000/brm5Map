@@ -88,12 +88,67 @@
 .modal-image {
   position: relative;
   padding: 16px 24px 0 24px;
+  cursor: pointer;
+  min-height: 150px;
 }
 
 .modal-image img {
   width: 100%;
   height: auto;
   display: block;
+  transition: opacity 0.3s ease;
+}
+
+.modal-image-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.modal-image-loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-image-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--brm-border);
+  border-top-color: var(--brm-accent);
+  border-radius: 50%;
+  animation: modal-spin 1s linear infinite;
+}
+
+@keyframes modal-spin {
+  to { transform: rotate(360deg); }
+}
+
+.modal-image-zoom-hint {
+  position: absolute;
+  bottom: 8px;
+  right: 32px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--brm-border);
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--brm-text-dim);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.modal-image:hover .modal-image-zoom-hint {
+  opacity: 1;
 }
 
 .gallery-nav {
@@ -158,6 +213,41 @@
 
 .gallery-dot.active {
   background: var(--brm-accent);
+}
+
+.modal-gallery-thumbnails {
+  display: flex;
+  gap: 6px;
+  padding: 12px 24px;
+  background: var(--brm-bg-dark);
+  overflow-x: auto;
+  justify-content: center;
+}
+
+.modal-thumbnail {
+  width: 48px;
+  height: 36px;
+  padding: 0;
+  background: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.modal-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-thumbnail:hover {
+  border-color: var(--brm-text-muted);
+}
+
+.modal-thumbnail.active {
+  border-color: var(--brm-accent);
 }
 
 .modal-description {

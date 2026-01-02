@@ -9,6 +9,7 @@ interface LocationsListProps {
   selectedLocations: Set<string>;
   onToggleLocation: (location: MapLocation, multiSelect: boolean) => void;
   onSelectLocation: (location: MapLocation) => void;
+  onClearSelection: () => void;
 }
 
 export function LocationsList({
@@ -16,6 +17,7 @@ export function LocationsList({
   selectedLocations,
   onToggleLocation,
   onSelectLocation,
+  onClearSelection,
 }: LocationsListProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
@@ -55,7 +57,14 @@ export function LocationsList({
 
   const handleItemClick = (e: React.MouseEvent, location: MapLocation) => {
     const multiSelect = e.ctrlKey || e.metaKey;
-    onToggleLocation(location, multiSelect);
+    const isSelected = selectedLocations.has(location.id);
+    const isOnlyOneSelected = selectedLocations.size === 1 && isSelected;
+    
+    if (isOnlyOneSelected) {
+      onClearSelection();
+    } else {
+      onToggleLocation(location, multiSelect);
+    }
   };
 
   const handleViewClick = (e: React.MouseEvent, location: MapLocation) => {
@@ -84,9 +93,17 @@ export function LocationsList({
 
       <div className="locations-list-info">
         {selectedLocations.size > 0 && (
-          <span className="locations-selected-count">
-            {selectedLocations.size} selected
-          </span>
+          <>
+            <span className="locations-selected-count">
+              {selectedLocations.size} selected
+            </span>
+            <button 
+              className="locations-list-clear-selection"
+              onClick={onClearSelection}
+            >
+              Clear
+            </button>
+          </>
         )}
         <span className="locations-total-count">
           {filteredLocations.length} locations

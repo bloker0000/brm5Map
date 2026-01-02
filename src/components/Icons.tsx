@@ -32,43 +32,15 @@ export function BuildingIcon({ size = 16, color = 'currentColor', className }: I
   );
 }
 
-export function ResidenceIcon({ size = 16, color = 'currentColor', className }: IconProps) {
+export function SubwayStationIcon({ size = 16, color = 'currentColor', className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
-      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-      <polyline points="9 22 9 12 15 12 15 22" />
-    </svg>
-  );
-}
-
-export function OfficeBuildingSmallIcon({ size = 16, color = 'currentColor', className }: IconProps) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
-      <rect x="4" y="2" width="16" height="20" rx="2" />
-      <line x1="9" y1="6" x2="9" y2="6.01" />
-      <line x1="15" y1="6" x2="15" y2="6.01" />
-      <line x1="9" y1="10" x2="9" y2="10.01" />
-      <line x1="15" y1="10" x2="15" y2="10.01" />
-      <line x1="9" y1="14" x2="9" y2="14.01" />
-      <line x1="15" y1="14" x2="15" y2="14.01" />
-      <path d="M9 18h6v4H9z" />
-    </svg>
-  );
-}
-
-export function OfficeBuildingLargeIcon({ size = 16, color = 'currentColor', className }: IconProps) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
-      <rect x="1" y="4" width="14" height="18" rx="1" />
-      <rect x="15" y="8" width="8" height="14" rx="1" />
-      <line x1="5" y1="8" x2="5" y2="8.01" />
-      <line x1="9" y1="8" x2="9" y2="8.01" />
-      <line x1="5" y1="12" x2="5" y2="12.01" />
-      <line x1="9" y1="12" x2="9" y2="12.01" />
-      <line x1="5" y1="16" x2="5" y2="16.01" />
-      <line x1="9" y1="16" x2="9" y2="16.01" />
-      <line x1="19" y1="12" x2="19" y2="12.01" />
-      <line x1="19" y1="16" x2="19" y2="16.01" />
+      <rect x="3" y="4" width="18" height="14" rx="2" />
+      <circle cx="8" cy="18" r="2" />
+      <circle cx="16" cy="18" r="2" />
+      <line x1="3" y1="10" x2="21" y2="10" />
+      <circle cx="8" cy="7" r="1" fill={color} />
+      <circle cx="16" cy="7" r="1" fill={color} />
     </svg>
   );
 }
@@ -227,9 +199,6 @@ export function CrosshairIcon({ size = 16, color = 'currentColor', className }: 
 const iconComponents: Record<LocationCategory, React.FC<IconProps>> = {
   'Spawnpoint': SpawnpointIcon,
   'Building': BuildingIcon,
-  'Residence': ResidenceIcon,
-  'Office Building Small': OfficeBuildingSmallIcon,
-  'Office Building Large': OfficeBuildingLargeIcon,
   'Extraction Point': ExtractionPointIcon,
   'Enemy Outpost': EnemyOutpostIcon,
   'Zombie Nest': ZombieNestIcon,
@@ -239,10 +208,30 @@ const iconComponents: Record<LocationCategory, React.FC<IconProps>> = {
   'Medical': MedicalIcon,
   'Shop': ShopIcon,
   'Landmark': LandmarkIcon,
+  'Subway Station': SubwayStationIcon,
   'Other': OtherIcon,
 };
 
 export function CategoryIcon({ category, size = 16, color = 'currentColor', className }: IconProps & { category: LocationCategory }) {
   const IconComponent = iconComponents[category] || OtherIcon;
   return <IconComponent size={size} color={color} className={className} />;
+}
+
+export function ResetPositionIcon({ size = 16, color = 'currentColor', className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
+      <circle cx="12" cy="12" r="3" />
+      <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+    </svg>
+  );
+}
+
+export function ResetRotationIcon({ size = 16, color = 'currentColor', className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
+      <path d="M21 12a9 9 0 1 1-9-9" />
+      <polyline points="21 3 21 9 15 9" />
+      <path d="M21 9l-6-6" />
+    </svg>
+  );
 }

@@ -27,7 +27,7 @@
     "x": 1215,
     "y": 2105,
     "description": "A three-story office building. Access to the third-floor office requires a key.",
-    "category": "Office Building Small",
+    "category": "Building",
     "images": [
       {
         "url": "https://i.imgur.com/doAECVl.png",
@@ -53,7 +53,7 @@
     "x": 1025,
     "y": 1962,
     "description": "A multi-story office building. The penultimate floor contains a safe that can be opened with a key. Two staircases provide access to this floor: the staircase closest to the front of the building, which faces southwest, continues to the top of the building, while the other terminates at the penultimate floor.",
-    "category": "Office Building Large",
+    "category": "Building",
     "images": [
       {
         "url": "https://i.imgur.com/eHStlTT.png",
@@ -123,7 +123,7 @@
     "x": 931,
     "y": 2248,
     "description": "A four-story apartment building connected to NYPlug. Following the hallways on the first floor, as shown on the map, will lead to NYPlug. Be aware that players may spawn on the upper floors. During the night, a medium to large number of zombies may also spawn here.",
-    "category": "Residence",
+    "category": "Building",
     "image": "https://i.imgur.com/wAt3i6f.png",
     "images": [
       {
@@ -603,7 +603,7 @@
     "x": 1042,
     "y": 1638,
     "description": "A large office building that has 2 stairs going up to access the offices. one at the front left side (Southwest) and one on the left (Northwest).",
-    "category": "Office Building Large",
+    "category": "Building",
     "id": "mjrvpwtv3pnawe7s3dp",
     "images": [
       {
@@ -1029,7 +1029,7 @@
     "x": 1638,
     "y": 2151,
     "description": "A underground metro station. Usually contains lots of medical items as well as ammo and rare loot. Gas mask is required. Be aware that lots of zombies can spawn here.",
-    "category": "Zombie Nest",
+    "category": "Subway Station",
     "images": [
       {
         "url": "https://i.imgur.com/LWniuBc.png",
@@ -1039,3 +1039,4 @@
     "id": "mjvll2a7ck8qg0up0xl"
   }
 ]
+

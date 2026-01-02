@@ -1,0 +1,107 @@
+import { useState, useEffect } from 'react';
+import './ChangelogModal.css';
+
+interface ChangelogModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+interface ChangelogEntry {
+  version: string;
+  date: string;
+  changes: string[];
+}
+
+const CHANGELOG: ChangelogEntry[] = [
+  {
+    version: '1.2.0',
+    date: '2026-01-02',
+    changes: [
+      'Added fullscreen image lightbox with zoom controls',
+      'Double-click or use +/- buttons to zoom images up to 500%',
+      'Pan zoomed images by dragging',
+      'Navigate images with arrow keys in lightbox',
+      'Added thumbnail navigation in location modal and lightbox',
+      'Tooltip now shows automatic slideshow when hovering pins with multiple images',
+      'Added loading spinners for images',
+      'Click to enlarge hint on modal images',
+      'Image count indicator in tooltips',
+    ],
+  },
+  {
+    version: '1.1.0',
+    date: '2026-01-02',
+    changes: [
+      'Rebranded to BRMap5 (Blackhawk Rescue Map 5)',
+      'Added Subway Station category',
+      'Consolidated building categories (Residence, Office Building Small/Large) into Building',
+      'Added clear button for location selection',
+      'Simplified location unselect - no longer need Ctrl+click for last selected item',
+      'Added Changelog modal',
+      'Separated reset rotation and reset position buttons',
+      'Improved loading screen with minimum stage duration',
+      'Updated logo design',
+    ],
+  },
+  {
+    version: '1.0.0',
+    date: '2025-12-15',
+    changes: [
+      'Initial release',
+      'Interactive map with pan, zoom, and rotate',
+      'Location pins with categories',
+      'Search and filter functionality',
+      'Location details modal with images',
+      'Visitor counter',
+    ],
+  },
+];
+
+export function ChangelogModal({ isOpen, onClose }: ChangelogModalProps) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsVisible(true);
+    }
+  }, [isOpen]);
+
+  const handleAnimationEnd = () => {
+    if (!isOpen) {
+      setIsVisible(false);
+    }
+  };
+
+  if (!isVisible) return null;
+
+  return (
+    <div 
+      className={`changelog-modal-overlay ${isOpen ? 'open' : 'closing'}`}
+      onClick={onClose}
+      onAnimationEnd={handleAnimationEnd}
+    >
+      <div className="changelog-modal" onClick={e => e.stopPropagation()}>
+        <div className="changelog-modal-header">
+          <h2>Changelog</h2>
+          <button className="changelog-modal-close" onClick={onClose}>X</button>
+        </div>
+        
+        <div className="changelog-modal-content">
+          {CHANGELOG.map((entry) => (
+            <div key={entry.version} className="changelog-entry">
+              <div className="changelog-entry-header">
+                <span className="changelog-version">v{entry.version}</span>
+                <span className="changelog-date">{entry.date}</span>
+              </div>
+              <ul className="changelog-changes">
+                {entry.changes.map((change, index) => (
+                  <li key={index}>{change}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

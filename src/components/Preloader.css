@@ -49,6 +49,12 @@
   text-align: center;
 }
 
+.preloader-logo-image {
+  max-width: 400px;
+  width: 90vw;
+  height: auto;
+}
+
 .preloader-title {
   font-family: var(--font-display);
   font-size: 3.5rem;

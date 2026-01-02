@@ -9,4 +9,6 @@ export { AdminPanel } from './AdminPanel';
 export { WelcomeModal } from './WelcomeModal';
 export { AboutModal } from './AboutModal';
 export { LocationsList } from './LocationsList';
+export { ChangelogModal } from './ChangelogModal';
+export { ImageLightbox } from './ImageLightbox';
 export * from './Icons';
