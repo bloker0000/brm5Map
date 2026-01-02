@@ -470,23 +470,51 @@
   },
   {
     "name": "Stone 16",
-    "x": 1515,
-    "y": 1976,
-    "description": "TBA",
+    "x": 1520,
+    "y": 1987,
+    "description": "This is an apartment building with a diner on the ground floor. The first floor has a hallway that connects the stairs, kitchen, and restaurant. The second floor contains an apartment that can be accessed using the 16 Stone Key. The apartment usually contains ammo, weapons, and food or water supplies. It consists of a kitchen, a small living area, and a bedroom. The building also has a third floor.",
     "category": "Key Use Location",
     "id": "mjrvn6gujqbuynmtqz",
     "images": [
       {
         "url": "https://i.imgur.com/mhkP8eh.png",
         "description": "outside"
+      },
+      {
+        "url": "https://i.imgur.com/06fSKna.png",
+        "description": "stairs"
+      },
+      {
+        "url": "https://i.imgur.com/0SVecLj.png",
+        "description": "restaurant"
+      },
+      {
+        "url": "https://i.imgur.com/Vw7DgUS.png",
+        "description": "kitchen"
+      },
+      {
+        "url": "https://i.imgur.com/EI6WohK.png",
+        "description": "the second floor apartment room openable with a key"
+      },
+      {
+        "url": "https://i.imgur.com/WvULaTp.png",
+        "description": "inside the second floor apartment room"
+      },
+      {
+        "url": "https://i.imgur.com/eEiYJaH.png",
+        "description": "inside the second floor apartment room"
+      },
+      {
+        "url": "https://i.imgur.com/IXChUiK.png",
+        "description": "inside the second floor apartment room"
       }
     ]
   },
   {
     "name": "Triple R Diner Camp",
-    "x": 1570,
+    "x": 1568,
     "y": 1970,
-    "description": "An enemy camp. More info TBA",
+    "description": "An enemy camp. For more info about the building see the Stone 16 location pin.",
     "category": "Enemy Outpost",
     "id": "mjrvnhy0kng3cvc4i2q",
     "images": [
@@ -516,8 +544,8 @@
   },
   {
     "name": "Stone 8",
-    "x": 1245,
-    "y": 1990,
+    "x": 1244,
+    "y": 1991,
     "description": "An apartment building that appears to have belonged to a former militant. Upon entering the second-floor apartment, the best loot is immediately to the right. It usually contains gas masks, camouflage gear, and ammunition. More info TBA",
     "category": "Key Use Location",
     "id": "mjrvol1mdop1ngywhtc",
@@ -529,6 +557,26 @@
       {
         "url": "https://i.imgur.com/5aPAHOC.png",
         "description": "outside"
+      },
+      {
+        "url": "https://i.imgur.com/HxAMVdH.png",
+        "description": "inside apartment 1"
+      },
+      {
+        "url": "https://i.imgur.com/ms9f36R.png",
+        "description": "inside apartment 1"
+      },
+      {
+        "url": "https://i.imgur.com/FwBaQ6r.png",
+        "description": "inside apartment 1"
+      },
+      {
+        "url": "https://i.imgur.com/91NR3t6.png",
+        "description": "inside apartment 1"
+      },
+      {
+        "url": "https://i.imgur.com/31qI5eS.png",
+        "description": "inside apartment 1"
       }
     ]
   },
