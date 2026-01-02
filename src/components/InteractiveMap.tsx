@@ -44,6 +44,8 @@ const BG_IMAGES = [
   '/BG/BG12.png',
   '/BG/BG13.png',
   '/BG/BG14.png',
+  '/BG/BG15.png',
+  '/BG/BG16.png',
 ];
 
 export function InteractiveMap({

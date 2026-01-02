@@ -23,14 +23,16 @@ const BG_CREDITS = [
   { name: 'buymechickensalt', url: 'https://x.com/BuymetheWeeb' },
   { name: 'rinchantea', url: 'https://x.com/RinChanTea' },
   { name: 'mister.roztov', url: 'https://sites.google.com/view/roztovportfolio?usp=sharing' },
-  { name: 'postal__pal', url: null },
+  { name: 'postal__pal', url: 'https://www.roblox.com/users/1538934843/profile?friendshipSourceType=PlayerSearch' },
   { name: 'basically_gdg', url: null },
-  { name: 'a5t3r1k', url: null },
+  { name: 'a5t3r1k', url: 'https://www.roblox.com/users/1458471315/profile?friendshipSourceType=PlayerSearch' },
   { name: 'buymechickensalt', url: 'https://x.com/BuymetheWeeb' },
   { name: 'ryz_vik', url: null },
   { name: 'docc_a', url: null },
   { name: 'ala_koli', url: 'https://x.com/ala_koli' },
   { name: 'kenemony', url: null },
+  { name: 'a5t3r1k', url: 'https://www.roblox.com/users/1458471315/profile?friendshipSourceType=PlayerSearch' },
+  { name: 'postal__pal', url: 'https://www.roblox.com/users/1538934843/profile?friendshipSourceType=PlayerSearch' },
 ];
 
 function App() {
