@@ -168,7 +168,7 @@ function App() {
       <div className="sidebar">
         <div className="sidebar-header">
           <h1 className="sidebar-title">BRMAP5</h1>
-          <div className="sidebar-subtitle">Blackhawk Rescue Map 5</div>
+          <div className="sidebar-subtitle">Operation CRYO Zombies</div>
         </div>
 
         <div className="sidebar-actions">
