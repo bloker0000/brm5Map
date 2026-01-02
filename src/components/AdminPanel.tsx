@@ -7,9 +7,6 @@ import './AdminPanel.css';
 const ALL_CATEGORIES: LocationCategory[] = [
   'Spawnpoint',
   'Building',
-  'Residence',
-  'Office Building Small',
-  'Office Building Large',
   'Extraction Point',
   'Enemy Outpost',
   'Zombie Nest',
@@ -19,6 +16,7 @@ const ALL_CATEGORIES: LocationCategory[] = [
   'Medical',
   'Shop',
   'Landmark',
+  'Subway Station',
   'Other',
 ];
 
