@@ -107,6 +107,10 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
                 </div>
               </div>
             )}
+            <p style={{ marginTop: '12px', fontSize: '0.8rem' }}>
+              Not an IP grabber. <a href="https://github.com/bloker0000/brm5Map" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brm-accent)', textDecoration: 'underline' }}>Source code</a> available on GitHub.
+            </p>
+            <p style={{ fontSize: '0.8rem' }}>Hosted on Vercel.</p>
             <button 
               className="about-changelog-btn"
               onClick={() => setIsChangelogOpen(true)}
