@@ -216,8 +216,8 @@
   },
   {
     "name": "Damage Bridge1",
-    "x": 2228,
-    "y": 469,
+    "x": 2220,
+    "y": 503,
     "description": "This area of the bridge is damaged.",
     "category": "Landmark",
     "id": "mjrumdh97nqjpqv32an"
@@ -311,9 +311,9 @@
     ]
   },
   {
-    "name": "Bandit Location",
+    "name": "Bandit Location Peck Slip",
     "x": 1966,
-    "y": 371,
+    "y": 378,
     "description": "Enemies may spawn here",
     "category": "Enemy Outpost",
     "id": "mjrv6sqgvldq0vwu2rs"
@@ -334,8 +334,8 @@
   },
   {
     "name": "Enemy Outpost",
-    "x": 1789,
-    "y": 655,
+    "x": 1774,
+    "y": 658,
     "description": "TBA",
     "category": "Enemy Outpost",
     "id": "mjrv9gckk0fdmss301l"
@@ -349,9 +349,9 @@
     "id": "mjrvbvm2xw7dk78r5yb"
   },
   {
-    "name": "Enemy Outpost",
-    "x": 1934,
-    "y": 874,
+    "name": "Enemy Outpost Water/Pine",
+    "x": 1922,
+    "y": 881,
     "description": "TBA",
     "category": "Enemy Outpost",
     "id": "mjrvcgr8zcifyxvmm3"
@@ -801,14 +801,6 @@
     "id": "mjrvxkgr2pbael5wj9q"
   },
   {
-    "name": "40 Wall Street",
-    "x": 774,
-    "y": 923,
-    "description": "TBA",
-    "category": "Building",
-    "id": "mjrvxu9xiwm5dp7kcbr"
-  },
-  {
     "name": "Spawn Location",
     "x": 966,
     "y": 885,
@@ -889,14 +881,6 @@
     "description": "TBA",
     "category": "Building",
     "id": "mjrw0f5rf810z62ai7"
-  },
-  {
-    "name": "70 Pine Street",
-    "x": 1389,
-    "y": 945,
-    "description": "TBA",
-    "category": "Building",
-    "id": "mjrw0nfd49ydztq3o7g"
   },
   {
     "name": "RDII Mega Solution",
@@ -1083,5 +1067,13 @@
     "description": "TBA",
     "category": "Subway Station",
     "id": "mjz2gox8a8bupwe6f0n"
+  },
+  {
+    "name": "Fallen Construction Crane",
+    "x": 1616,
+    "y": 1565,
+    "description": "A fallen down construction crane, you can still pass trough though, more info TBA.",
+    "category": "Landmark",
+    "id": "mjztyhvdjwl1kgf5x9"
   }
 ]

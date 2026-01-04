@@ -28,7 +28,7 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
   if (!isVisible) return null;
 
   return (
-    <div 
+    <div
       className={`about-modal-overlay ${isOpen ? 'open' : 'closing'}`}
       onClick={onClose}
       onAnimationEnd={handleAnimationEnd}
@@ -38,7 +38,7 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
           <h2>About BRMap5</h2>
           <button className="about-modal-close" onClick={onClose}>X</button>
         </div>
-        
+
         <div className="about-modal-content">
           <section>
             <h3>Navigation</h3>
@@ -108,10 +108,10 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
               </div>
             )}
             <p style={{ marginTop: '12px', fontSize: '0.8rem' }}>
-              Not an IP grabber. <a href="https://github.com/bloker0000/brm5Map" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brm-accent)', textDecoration: 'underline' }}>Source code</a> available on GitHub.
+              <a href="https://github.com/bloker0000/brm5Map" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brm-accent)', textDecoration: 'underline' }}>Source code</a> available on GitHub.
             </p>
             <p style={{ fontSize: '0.8rem' }}>Hosted on Vercel.</p>
-            <button 
+            <button
               className="about-changelog-btn"
               onClick={() => setIsChangelogOpen(true)}
             >
@@ -120,9 +120,9 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
           </section>
         </div>
       </div>
-      <ChangelogModal 
-        isOpen={isChangelogOpen} 
-        onClose={() => setIsChangelogOpen(false)} 
+      <ChangelogModal
+        isOpen={isChangelogOpen}
+        onClose={() => setIsChangelogOpen(false)}
       />
     </div>
   );

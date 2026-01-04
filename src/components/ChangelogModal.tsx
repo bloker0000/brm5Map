@@ -14,6 +14,16 @@ interface ChangelogEntry {
 
 const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.3.0',
+    date: '2026-01-04',
+    changes: [
+      'Fixed SVG map and pin pixelation when zooming',
+      'Improved visuals between spawn and extraction points with different colors',
+      'Redesigned location category icons',
+      'Some location coordinate refinements',
+    ],
+  },
+  {
     version: '1.2.0',
     date: '2026-01-02',
     changes: [

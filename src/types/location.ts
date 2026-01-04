@@ -32,7 +32,7 @@ export interface MapLocation {
 export const CATEGORY_COLORS: Record<LocationCategory, string> = {
   'Spawnpoint': '#44cc88',
   'Building': '#6699cc',
-  'Extraction Point': '#44cc88',
+  'Extraction Point': '#ff6b9d',
   'Enemy Outpost': '#cc4444',
   'Zombie Nest': '#cc4444',
   'Key Spawn Location': '#d4a544',

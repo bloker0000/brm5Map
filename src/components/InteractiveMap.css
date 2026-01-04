@@ -38,8 +38,8 @@
 
 .map-content {
   position: absolute;
-  will-change: transform;
   z-index: 2;
+  transform-origin: 0 0;
 }
 
 .map-content.animating {
@@ -68,6 +68,7 @@
   user-select: none;
   -webkit-user-drag: none;
   pointer-events: none;
+  image-rendering: optimizeQuality;
 }
 
 .zoom-controls {

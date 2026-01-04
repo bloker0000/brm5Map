@@ -441,10 +441,10 @@ export function InteractiveMap({
         style={{
           transform: (() => {
             const img = imageRef.current;
-            if (!img) return `translate(${transform.x}px, ${transform.y}px) scale(${transform.scale})`;
+            if (!img) return `translate(${transform.x}px, ${transform.y}px)`;
             const cx = (img.naturalWidth * transform.scale) / 2;
             const cy = (img.naturalHeight * transform.scale) / 2;
-            return `translate(${transform.x + cx}px, ${transform.y + cy}px) rotate(${mapRotation}deg) translate(${-cx}px, ${-cy}px) scale(${transform.scale})`;
+            return `translate(${transform.x + cx}px, ${transform.y + cy}px) rotate(${mapRotation}deg) translate(${-cx}px, ${-cy}px)`;
           })(),
           transformOrigin: '0 0',
         }}
@@ -455,6 +455,10 @@ export function InteractiveMap({
           src="/Brm5Map.svg"
           alt="BRM5 Map"
           className="map-image"
+          style={{
+            width: imageRef.current ? `${imageRef.current.naturalWidth * transform.scale}px` : undefined,
+            height: imageRef.current ? `${imageRef.current.naturalHeight * transform.scale}px` : undefined,
+          }}
           draggable={false}
           onDragStart={(e) => e.preventDefault()}
           onLoad={() => setImageLoaded(true)}

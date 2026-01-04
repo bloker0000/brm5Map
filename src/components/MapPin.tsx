@@ -13,14 +13,14 @@ interface MapPinProps {
 
 export function MapPin({ location, isHovered, isSelected, onHover, onClick, scale }: MapPinProps) {
   const color = CATEGORY_COLORS[location.category];
-  const pinSize = Math.max(8, 10 / scale);
+  const pinSize = 12;
 
   return (
     <div
       className={`map-pin ${isHovered ? 'hovered' : ''} ${isSelected ? 'selected' : ''}`}
       style={{
-        left: location.x,
-        top: location.y,
+        left: location.x * scale,
+        top: location.y * scale,
         '--pin-color': color,
         '--pin-size': `${pinSize}px`,
       } as React.CSSProperties}

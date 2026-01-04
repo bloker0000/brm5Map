@@ -17,8 +17,9 @@
   width: var(--pin-size);
   height: var(--pin-size);
   background: var(--pin-color);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  opacity: 0.7;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  opacity: 0.9;
   transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
