@@ -86,7 +86,7 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
 
           <section className="about-credits">
             <h3>Credits</h3>
-            <p>Map and website made by Multyply.</p>
+            <p>Map and website made by Multyply, a good ammount of location images by <a href="https://roblox-blackhawk-rescue-mission-5.fandom.com/wiki/User:Nintendoboi2" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brm-accent)', textDecoration: 'underline' }}>Nintendoboi2</a></p>
             <p>Background artwork by many talented artists. See footer for current artist.</p>
             <p>Help is always welcome, send me a DM on discord if you want to.</p>
           </section>

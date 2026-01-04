@@ -241,6 +241,10 @@
       {
         "url": "https://i.imgur.com/ebdrtek.png",
         "description": "outside"
+      },
+      {
+        "url": "https://i.imgur.com/OpuH8GX.png",
+        "description": "Northeast Entrance Inside (Photographer:Nintendoboi2)"
       }
     ]
   },
@@ -298,7 +302,13 @@
     "y": 294,
     "description": "Looks like some power plant, location is used for a PVE mission.",
     "category": "Building",
-    "id": "mjrv5xcwy1hj2ugofn"
+    "id": "mjrv5xcwy1hj2ugofn",
+    "images": [
+      {
+        "url": "https://i.imgur.com/tApI6cK.png",
+        "description": "Outside (Photographer:Nintendoboi2)"
+      }
+    ]
   },
   {
     "name": "Bandit Location",
@@ -314,7 +324,13 @@
     "y": 635,
     "description": "A small, multi-story building that is excellent for scouting. It provides an almost complete view of the entire bridge, with the top floor offering a near 360-degree view.",
     "category": "Building",
-    "id": "mjrv8r38qirhjh5858k"
+    "id": "mjrv8r38qirhjh5858k",
+    "images": [
+      {
+        "url": "https://i.imgur.com/zdRLhEV.png",
+        "description": "Outside (photographer:Nintendoboi2)"
+      }
+    ]
   },
   {
     "name": "Enemy Outpost",
@@ -1026,8 +1042,8 @@
   },
   {
     "name": "metro station Southwest",
-    "x": 1638,
-    "y": 2151,
+    "x": 1609,
+    "y": 2132,
     "description": "A underground metro station. Usually contains lots of medical items as well as ammo and rare loot. Gas mask is required. Be aware that lots of zombies can spawn here.",
     "category": "Subway Station",
     "images": [
@@ -1037,6 +1053,35 @@
       }
     ],
     "id": "mjvll2a7ck8qg0up0xl"
+  },
+  {
+    "name": "Residence Front/Dover",
+    "x": 2000,
+    "y": 183,
+    "description": "TBA",
+    "category": "Building",
+    "images": [
+      {
+        "url": "https://i.imgur.com/Kk30wFe.png",
+        "description": "Outside (photographer:Nintendoboi2)"
+      }
+    ],
+    "id": "mjyvz0g2h8f6f6itq8s"
+  },
+  {
+    "name": "Subway Station Outside Hospital QZ",
+    "x": 1823,
+    "y": 779,
+    "description": "TBA",
+    "category": "Subway Station",
+    "id": "mjz2g22gnhk3y5uk0yb"
+  },
+  {
+    "name": "Subway Station Inside Hospital QZ",
+    "x": 1534,
+    "y": 735,
+    "description": "TBA",
+    "category": "Subway Station",
+    "id": "mjz2gox8a8bupwe6f0n"
   }
 ]
-
