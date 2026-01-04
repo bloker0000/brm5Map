@@ -154,15 +154,15 @@
   },
   {
     "id": "5",
-    "name": "Extract Whitehall",
-    "x": 753,
-    "y": 2038,
+    "name": "Extraction Point Whitehall",
+    "x": 755,
+    "y": 2041,
     "description": "An extraction point. An enemy outpost, where two enemies may spawn, is located at the ladder leading to the extraction point.",
     "category": "Extraction Point",
     "images": [
       {
-        "url": "https://i.imgur.com/1XRq5OA.png",
-        "description": "extraction point on top of the ladder"
+        "url": "https://i.imgur.com/0oSFLBJ.png",
+        "description": "extraction point on top of the ladder (Photographer:Nintendoboi2)"
       }
     ]
   },
@@ -175,12 +175,18 @@
     "id": "mjrsuqm7is7kgdoys7"
   },
   {
-    "name": "Booth",
-    "x": 2328,
+    "name": "Booth Pier 13",
+    "x": 2331,
     "y": 998,
     "description": "A small booth, can be entered.",
     "category": "Building",
-    "id": "mjru18uyt94j1yss0i"
+    "id": "mjru18uyt94j1yss0i",
+    "images": [
+      {
+        "url": "https://i.imgur.com/WUvAdwT.png",
+        "description": "booth (Photographer:Nintendoboi2)"
+      }
+    ]
   },
   {
     "name": "Cobble Fish",
@@ -192,11 +198,17 @@
   },
   {
     "name": "Pier 17",
-    "x": 2540,
-    "y": 739,
-    "description": "A medium-to-large building with multiple floors, resembling a former shopping center. On the northeast side, directly next to the building, there is a medium-sized enemy outpost.",
+    "x": 2517,
+    "y": 743,
+    "description": "A medium to large multi story building that appears to be a former shopping center. On the northeast side, directly next to the building, there is a medium sized enemy outpost. The top floor can be reached using the escalators and has an extraction point on the roof.",
     "category": "Building",
-    "id": "mjrufsit5s55teg03a"
+    "id": "mjrufsit5s55teg03a",
+    "images": [
+      {
+        "url": "https://i.imgur.com/cCUTHCT.png",
+        "description": "outside (Photographer:Nintendoboi2)"
+      }
+    ]
   },
   {
     "name": "Pier Enemy Outpost",
@@ -754,11 +766,17 @@
   },
   {
     "name": "Quarantine Zone",
-    "x": 740,
-    "y": 1461,
+    "x": 743,
+    "y": 1464,
     "description": "TBA",
     "category": "Quarantine Zone",
-    "id": "mjrvvish6y9sad2bfmb"
+    "id": "mjrvvish6y9sad2bfmb",
+    "images": [
+      {
+        "url": "https://i.imgur.com/1Xy1Lqq.png",
+        "description": "Northern entrance point (photographer:Nintendoboi2)"
+      }
+    ]
   },
   {
     "name": "Meeting Room Key",
@@ -818,11 +836,17 @@
   },
   {
     "name": "Gate",
-    "x": 1035,
+    "x": 1034,
     "y": 824,
     "description": "TBA",
     "category": "Key Use Location",
-    "id": "mjrvypk5pxrrb4sh73"
+    "id": "mjrvypk5pxrrb4sh73",
+    "images": [
+      {
+        "url": "https://i.imgur.com/vmJ26OA.png",
+        "description": "the gate (photographer:Nintendoboi2)"
+      }
+    ]
   },
   {
     "name": "Armory",
@@ -1070,10 +1094,34 @@
   },
   {
     "name": "Fallen Construction Crane",
-    "x": 1616,
-    "y": 1565,
+    "x": 1614,
+    "y": 1566,
     "description": "A fallen down construction crane, you can still pass trough though, more info TBA.",
     "category": "Landmark",
-    "id": "mjztyhvdjwl1kgf5x9"
+    "id": "mjztyhvdjwl1kgf5x9",
+    "images": [
+      {
+        "url": "https://i.imgur.com/sOY0dcn.png",
+        "description": "the crane (photographer:Nintendoboi2)"
+      }
+    ]
+  },
+  {
+    "name": "Emergency Exit 646 Broadway",
+    "x": 1533,
+    "y": 1487,
+    "description": "Here you can use the key for the emergency exit at the top floor of 646 broadway. Can only be accessed using the outside stairs.",
+    "category": "Key Use Location",
+    "images": [
+      {
+        "url": "https://i.imgur.com/d5XCWHx.png",
+        "description": "the door opened (photographer:Nintendoboi2)"
+      },
+      {
+        "url": "https://i.imgur.com/GlkHTwA.png",
+        "description": "the door closed"
+      }
+    ],
+    "id": "mjzuncmdpvmuxzfohv"
   }
 ]
