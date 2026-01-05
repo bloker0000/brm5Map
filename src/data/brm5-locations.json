@@ -752,8 +752,8 @@
   },
   {
     "name": "Zombie Nest Maiden",
-    "x": 645,
-    "y": 1560,
+    "x": 678,
+    "y": 1553,
     "description": "TBA",
     "category": "Zombie Nest",
     "id": "mjrvv68b48b96iwqjdc",
@@ -766,8 +766,8 @@
   },
   {
     "name": "Quarantine Zone",
-    "x": 743,
-    "y": 1464,
+    "x": 784,
+    "y": 1458,
     "description": "TBA",
     "category": "Quarantine Zone",
     "id": "mjrvvish6y9sad2bfmb",
@@ -779,12 +779,26 @@
     ]
   },
   {
-    "name": "Meeting Room Key",
-    "x": 691,
-    "y": 1555,
+    "name": "Improvised Meeting Room Key",
+    "x": 652,
+    "y": 1566,
     "description": "TBA",
     "category": "Key Use Location",
-    "id": "mjrvw2jf49vtrwja4gr"
+    "id": "mjrvw2jf49vtrwja4gr",
+    "images": [
+      {
+        "url": "https://i.imgur.com/vZ7Y8BR.png",
+        "description": ""
+      },
+      {
+        "url": "https://i.imgur.com/ISG3jJ1.png",
+        "description": ""
+      },
+      {
+        "url": "https://i.imgur.com/YIznejp.png",
+        "description": ""
+      }
+    ]
   },
   {
     "name": "Federal Reserve Bank of New York",
