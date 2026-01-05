@@ -14,6 +14,13 @@ interface ChangelogEntry {
 
 const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.3.2',
+    date: '2026-01-05',
+    changes: [
+      'Improved preloader',
+    ],
+  },
+  {
     version: '1.3.1',
     date: '2026-01-05',
     changes: [
@@ -93,7 +100,7 @@ export function ChangelogModal({ isOpen, onClose }: ChangelogModalProps) {
   if (!isVisible) return null;
 
   return (
-    <div 
+    <div
       className={`changelog-modal-overlay ${isOpen ? 'open' : 'closing'}`}
       onClick={onClose}
       onAnimationEnd={handleAnimationEnd}
@@ -103,7 +110,7 @@ export function ChangelogModal({ isOpen, onClose }: ChangelogModalProps) {
           <h2>Changelog</h2>
           <button className="changelog-modal-close" onClick={onClose}>X</button>
         </div>
-        
+
         <div className="changelog-modal-content">
           {CHANGELOG.map((entry) => (
             <div key={entry.version} className="changelog-entry">

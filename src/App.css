@@ -6,6 +6,14 @@
   background: var(--brm-bg-dark);
 }
 
+.app.app-hidden {
+  visibility: hidden;
+}
+
+.app.app-visible {
+  visibility: visible;
+}
+
 .sidebar {
   width: 320px;
   flex-shrink: 0;

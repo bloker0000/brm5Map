@@ -1,8 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import './Preloader.css';
 
 interface PreloaderProps {
   onLoaded: () => void;
+  isFadingOut?: boolean;
+  onFadeComplete?: () => void;
 }
 
 const BG_IMAGES = [
@@ -24,40 +26,36 @@ const BG_IMAGES = [
   '/BG/BG16.png',
 ];
 
-const MIN_STAGE_DURATION = 500;
+const getRandomDelay = () => Math.random() * (400 - 150) + 150;
 
-interface LoadingStage {
-  name: string;
-  progress: number;
-}
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-const LOADING_STAGES: LoadingStage[] = [
-  { name: 'INITIALIZING...', progress: 10 },
-  { name: 'LOADING MAP DATA...', progress: 40 },
-  { name: 'LOADING ASSETS...', progress: 70 },
-  { name: 'FINALIZING...', progress: 90 },
-  { name: 'READY', progress: 100 },
-];
+const getRandomBgIndex = () => Math.floor(Math.random() * BG_IMAGES.length);
 
-export function Preloader({ onLoaded }: PreloaderProps) {
+export function Preloader({ onLoaded, isFadingOut = false, onFadeComplete }: PreloaderProps) {
   const [progress, setProgress] = useState(0);
-  const [statusText, setStatusText] = useState(LOADING_STAGES[0].name);
-  const [currentBgIndex, setCurrentBgIndex] = useState(0);
-  const [nextBgIndex, setNextBgIndex] = useState(1);
+  const [statusText, setStatusText] = useState('INITIALIZING...');
+  const [currentBgIndex] = useState(getRandomBgIndex);
+  const [nextBgIndex, setNextBgIndex] = useState(() => (getRandomBgIndex() + 1) % BG_IMAGES.length);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const stageStartTimeRef = useRef<number>(Date.now());
+  const [bgReady, setBgReady] = useState(false);
+
+  const handleAnimationEnd = () => {
+    if (isFadingOut && onFadeComplete) {
+      onFadeComplete();
+    }
+  };
 
   useEffect(() => {
-    const randomStart = Math.floor(Math.random() * BG_IMAGES.length);
-    setCurrentBgIndex(randomStart);
-    setNextBgIndex((randomStart + 1) % BG_IMAGES.length);
-  }, []);
+    const img = new Image();
+    img.onload = () => setBgReady(true);
+    img.src = BG_IMAGES[currentBgIndex];
+  }, [currentBgIndex]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setIsTransitioning(true);
       setTimeout(() => {
-        setCurrentBgIndex(nextBgIndex);
         setNextBgIndex((prev) => (prev + 1) % BG_IMAGES.length);
         setIsTransitioning(false);
       }, 1000);
@@ -66,45 +64,43 @@ export function Preloader({ onLoaded }: PreloaderProps) {
     return () => clearInterval(interval);
   }, [nextBgIndex]);
 
-  const advanceStage = async (stageIndex: number) => {
-    const stage = LOADING_STAGES[stageIndex];
-    const elapsed = Date.now() - stageStartTimeRef.current;
-    const remainingTime = Math.max(0, MIN_STAGE_DURATION - elapsed);
-    
-    if (remainingTime > 0) {
-      await new Promise(resolve => setTimeout(resolve, remainingTime));
-    }
-    
-    stageStartTimeRef.current = Date.now();
-    setProgress(stage.progress);
-    setStatusText(stage.name);
-  };
-
   useEffect(() => {
     const loadAssets = async () => {
-      stageStartTimeRef.current = Date.now();
-      await advanceStage(0);
-
-      const mapImage = new Image();
-      const svgLoadPromise = new Promise<void>((resolve, reject) => {
-        mapImage.onload = () => resolve();
-        mapImage.onerror = () => reject(new Error('Failed to load map'));
-        mapImage.src = '/Brm5Map.svg';
-      });
-
-      await advanceStage(1);
-
       try {
-        await svgLoadPromise;
-        await advanceStage(2);
+        setStatusText('INITIALIZING...');
+        setProgress(10);
+        await delay(getRandomDelay());
 
+        setStatusText('LOADING MAP DATA...');
+        setProgress(30);
+        const mapImage = new Image();
+        await new Promise<void>((resolve, reject) => {
+          mapImage.onload = () => resolve();
+          mapImage.onerror = () => reject(new Error('Failed to load map'));
+          mapImage.src = '/Brm5Map.svg';
+        });
+        setProgress(50);
+        await delay(getRandomDelay());
+
+        setStatusText('LOADING ASSETS...');
+        setProgress(60);
         const logoImage = new Image();
-        logoImage.src = '/logos/logoyellow.svg';
-        await advanceStage(3);
+        await new Promise<void>((resolve, reject) => {
+          logoImage.onload = () => resolve();
+          logoImage.onerror = () => reject(new Error('Failed to load logo'));
+          logoImage.src = '/logos/logoyellow.svg';
+        });
+        setProgress(80);
+        await delay(getRandomDelay());
 
-        await advanceStage(4);
-        
-        await new Promise(resolve => setTimeout(resolve, 300));
+        setStatusText('FINALIZING...');
+        setProgress(90);
+        await delay(getRandomDelay());
+
+        setStatusText('READY');
+        setProgress(100);
+        await delay(getRandomDelay());
+
         onLoaded();
       } catch (error) {
         console.error('Failed to load assets:', error);
@@ -116,15 +112,22 @@ export function Preloader({ onLoaded }: PreloaderProps) {
   }, [onLoaded]);
 
   return (
-    <div className="preloader">
-      <div 
-        className="preloader-bg current"
-        style={{ backgroundImage: `url(${BG_IMAGES[currentBgIndex]})` }}
-      />
-      <div 
-        className={`preloader-bg next ${isTransitioning ? 'visible' : ''}`}
-        style={{ backgroundImage: `url(${BG_IMAGES[nextBgIndex]})` }}
-      />
+    <div 
+      className={`preloader ${isFadingOut ? 'fade-out' : ''}`}
+      onAnimationEnd={handleAnimationEnd}
+    >
+      {bgReady && (
+        <>
+          <div 
+            className="preloader-bg current"
+            style={{ backgroundImage: `url(${BG_IMAGES[currentBgIndex]})` }}
+          />
+          <div 
+            className={`preloader-bg next ${isTransitioning ? 'visible' : ''}`}
+            style={{ backgroundImage: `url(${BG_IMAGES[nextBgIndex]})` }}
+          />
+        </>
+      )}
       <div className="preloader-overlay" />
       
       <div className="preloader-content">

@@ -37,6 +37,8 @@ const BG_CREDITS = [
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isPreloaderVisible, setIsPreloaderVisible] = useState(true);
+  const [isFadingOut, setIsFadingOut] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [highlightedLocation, setHighlightedLocation] = useState<MapLocation | null>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -102,6 +104,13 @@ function App() {
 
   const handleLoaded = useCallback(() => {
     setIsLoading(false);
+    setTimeout(() => {
+      setIsFadingOut(true);
+    }, 100);
+  }, []);
+
+  const handleFadeComplete = useCallback(() => {
+    setIsPreloaderVisible(false);
   }, []);
 
   const handleLocationClick = useCallback(
@@ -156,19 +165,23 @@ function App() {
     ? filteredLocations.filter(loc => selectedLocations.has(loc.id))
     : filteredLocations;
 
-  if (isLoading) {
-    return <Preloader onLoaded={handleLoaded} />;
-  }
-
   const currentCredit = BG_CREDITS[currentBgIndex];
 
   return (
-    <div className="app">
-      <WelcomeModal />
-      <AboutModal isOpen={isAboutOpen} onClose={() => setIsAboutOpen(false)} />
-      
-      <div className="sidebar">
-        <div className="sidebar-header">
+    <>
+      {isPreloaderVisible && (
+        <Preloader 
+          onLoaded={handleLoaded} 
+          isFadingOut={isFadingOut}
+          onFadeComplete={handleFadeComplete}
+        />
+      )}
+      <div className={`app ${isLoading ? 'app-hidden' : 'app-visible'}`}>
+        <WelcomeModal />
+        <AboutModal isOpen={isAboutOpen} onClose={() => setIsAboutOpen(false)} />
+        
+        <div className="sidebar">
+          <div className="sidebar-header">
           <h1 className="sidebar-title">BRMAP5</h1>
           <div className="sidebar-subtitle">Operation CRYO Zombies</div>
         </div>
@@ -287,6 +300,7 @@ function App() {
         />
       )}
     </div>
+    </>
   );
 }
 

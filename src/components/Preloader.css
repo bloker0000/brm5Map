@@ -8,6 +8,20 @@
   justify-content: center;
 }
 
+.preloader.fade-out {
+  animation: preloaderFadeOut 0.6s ease-out forwards;
+}
+
+@keyframes preloaderFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 .preloader-bg {
   position: absolute;
   inset: 0;
@@ -20,6 +34,16 @@
 
 .preloader-bg.current {
   opacity: 1;
+  animation: bgFadeIn 0.4s ease-out;
+}
+
+@keyframes bgFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .preloader-bg.next {
@@ -84,7 +108,7 @@
 .preloader-bar {
   height: 100%;
   background: var(--brm-accent);
-  transition: width 0.3s ease;
+  transition: width 0.4s ease-out;
 }
 
 .preloader-status {
@@ -92,6 +116,7 @@
   color: var(--brm-text-muted);
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  transition: opacity 0.2s ease;
 }
 
 @media (max-width: 600px) {
