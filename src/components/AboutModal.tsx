@@ -84,6 +84,22 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
             </ul>
           </section>
 
+          <section>
+            <h3>FAQ</h3>
+            <div className="faq-item">
+              <p className="faq-question"><strong>Q: What are the green and yellow shapes on the map?</strong></p>
+              <p className="faq-answer">A: Green shapes represent military tents, and yellow shapes represent medical or quarantine tents.</p>
+            </div>
+            <div className="faq-item">
+              <p className="faq-question"><strong>Q: What are the yellow marked areas?</strong></p>
+              <p className="faq-answer">A: They indicate quarantine zones.</p>
+            </div>
+            <div className="faq-item">
+              <p className="faq-question"><strong>Q: What are the red rectangles?</strong></p>
+              <p className="faq-answer">A: They are reinforced walls used as map borders or to separate quarantine zones.</p>
+            </div>
+          </section>
+
           <section className="about-credits">
             <h3>Credits</h3>
             <p>Map and website made by Multyply, a good ammount of location images by <a href="https://roblox-blackhawk-rescue-mission-5.fandom.com/wiki/User:Nintendoboi2" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brm-accent)', textDecoration: 'underline' }}>Nintendoboi2</a></p>

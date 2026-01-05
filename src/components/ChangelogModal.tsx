@@ -14,6 +14,14 @@ interface ChangelogEntry {
 
 const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.3.1',
+    date: '2026-01-05',
+    changes: [
+      'Added FAQ section to About modal',
+      'Some map changes, added images and tweaked coordinates',
+    ],
+  },
+  {
     version: '1.3.0',
     date: '2026-01-04',
     changes: [

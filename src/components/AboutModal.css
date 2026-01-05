@@ -116,6 +116,24 @@
   margin: 0 0 8px 0;
 }
 
+.faq-item {
+  margin-bottom: 12px;
+}
+
+.faq-item:last-child {
+  margin-bottom: 0;
+}
+
+.faq-question {
+  color: var(--brm-text-light);
+  margin-bottom: 4px;
+}
+
+.faq-answer {
+  color: var(--brm-text-dim);
+  padding-left: 16px;
+}
+
 .about-credits {
   border-top: 1px solid var(--brm-border);
   padding-top: 16px;
