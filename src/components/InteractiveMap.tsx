@@ -497,7 +497,7 @@ export function InteractiveMap({
         onMouseDown={handleCompassMouseDown}
       >
         <img
-          src="/compass.png"
+          src="/compass.svg"
           alt="Compass"
           className="compass-image"
           style={{ transform: `rotate(${compassRotation}deg)` }}
