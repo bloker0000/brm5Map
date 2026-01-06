@@ -243,10 +243,10 @@
     "id": "mjrumoor2ejyp50h2h9"
   },
   {
-    "name": "Water Treatment Plant",
-    "x": 2223,
-    "y": 1779,
-    "description": "An area with a very high zombie population. Raiding this location is strongly recommended with multiple team members.",
+    "name": "Water Treatment Plant (Site C)",
+    "x": 2226,
+    "y": 1782,
+    "description": "The Water Treatment Plant, also known as Site C, located under the bridge, has the most aggressive zombie spawns and the highest population. Raiding this location is strongly recommended with multiple team members, as solo runs are nearly impossible. The area includes an underground sewer system where spawns are at their worst, with zombies sometimes appearing right in front of you. Common strategies include shooting zombies in the legs to immobilize them and prevent respawns, or having one teammate lure them out while another moves in.",
     "category": "Zombie Nest",
     "id": "mjrurjdgevrvm94t688",
     "images": [
@@ -261,11 +261,11 @@
     ]
   },
   {
-    "name": "Hospital",
-    "x": 1367,
-    "y": 468,
-    "description": "A highly populated zombie area centered around a large hospital. Enter with caution. The area can be accessed from the southeast via the Southbridge Towers, or from the west by passing through the buildings on William Street and entering through the gate. The gate may require a key if it is not already open. Enemy spawns may also occur between the buildings.",
-    "category": "Quarantine Zone",
+    "name": "Metro New York Hospital",
+    "x": 1368,
+    "y": 474,
+    "description": "A massive explorable building with multiple floors, a rooftop extraction point, and an overwhelming number of zombies. Make sure you’re fully prepared before heading in.",
+    "category": "Building",
     "id": "mjruy5f9grckcevy77f"
   },
   {
@@ -628,9 +628,9 @@
   },
   {
     "name": "Westbridge Partners Office",
-    "x": 1042,
-    "y": 1638,
-    "description": "A large office building that has 2 stairs going up to access the offices. one at the front left side (Southwest) and one on the left (Northwest).",
+    "x": 1022,
+    "y": 1634,
+    "description": "A large office building with two staircases leading up to the offices: one at the front-left (southwest) and one on the left side (northwest). Typically, 3–5 zombies spawn here, though the spawning can be quite aggressive. Zombies can appear on the opposite side of the building, so even if you’re standing on one side, they may spawn behind you.",
     "category": "Building",
     "id": "mjrvpwtv3pnawe7s3dp",
     "images": [
@@ -642,9 +642,9 @@
   },
   {
     "name": "05 Key",
-    "x": 1067,
-    "y": 1543,
-    "description": "An office room accessible with the 05 key. Inside, you can frequently find 7.62 and 5.56 ammunition, weapons, as well as clothing and gas masks. Occasionally, other keys may also spawn here.\n\nOn the right side, near the windows, there is another enterable building directly across from this one. Proceed with caution. If you are spotted, a gunfight is likely.",
+    "x": 1069,
+    "y": 1544,
+    "description": "An office room accessible with the 05 key. Inside, you can frequently find 7.62 and 5.56 ammunition, weapons, as well as clothing and gas masks. Occasionally, other keys may also spawn here.\n\nOn the right side, near the windows, there is another enterable building directly across from this one. Proceed with caution.",
     "category": "Key Use Location",
     "id": "mjrvq6fklicvyaavd9o",
     "images": [
@@ -751,52 +751,56 @@
     ]
   },
   {
-    "name": "Zombie Nest Maiden",
-    "x": 678,
-    "y": 1553,
-    "description": "TBA",
+    "name": "Zombie Nest Ground Zero 2 Garage",
+    "x": 685,
+    "y": 1561,
+    "description": "An underground garage system. The top level contains an improvised meeting room, accessible with a key. Below are two garage floors packed with cars and tight spaces. Clear out most zombies in the larger open areas as you move down to avoid getting ambushed while looting. Stealth isn’t an option here unless zombie numbers are low.",
     "category": "Zombie Nest",
     "id": "mjrvv68b48b96iwqjdc",
     "images": [
       {
         "url": "https://i.imgur.com/KYoG5Yd.png",
-        "description": "West side outside"
+        "description": "West entrance point"
       }
     ]
   },
   {
-    "name": "Quarantine Zone",
+    "name": "Ground Zero 2 Quarantine Zone",
     "x": 784,
-    "y": 1458,
-    "description": "TBA",
+    "y": 1460,
+    "description": "A quarantine zone with an underground garage. The top level of the garage contains an improvised meeting room, accessible with a key. Below it are two more levels packed with cars, tight corners, and plenty of zombies.",
     "category": "Quarantine Zone",
     "id": "mjrvvish6y9sad2bfmb",
     "images": [
       {
         "url": "https://i.imgur.com/1Xy1Lqq.png",
         "description": "Northern entrance point (photographer:Nintendoboi2)"
+      },
+      {
+        "url": "https://i.imgur.com/KYoG5Yd.png",
+        "description": "Western entrance point"
       }
     ]
   },
   {
-    "name": "Improvised Meeting Room Key",
-    "x": 652,
-    "y": 1566,
-    "description": "TBA",
+    "name": "Improvised Meeting Room",
+    "x": 651,
+    "y": 1564,
+    "description": "The improvised meeting room is located on the top floor of the Ground Zero 2 garage. When heading there, it’s best to use the west entrance and go straight to the garage. Silently take out the zombies in front and loot the room without being spotted, or you’ll aggro the horde below. The room usually contains ammo and medical supplies.",
     "category": "Key Use Location",
     "id": "mjrvw2jf49vtrwja4gr",
     "images": [
       {
         "url": "https://i.imgur.com/vZ7Y8BR.png",
-        "description": ""
+        "description": "Western entrance point of the garage"
       },
       {
         "url": "https://i.imgur.com/ISG3jJ1.png",
-        "description": ""
+        "description": "Better view of the gate"
       },
       {
         "url": "https://i.imgur.com/YIznejp.png",
-        "description": ""
+        "description": "Inside of the meeting room"
       }
     ]
   },
@@ -809,26 +813,10 @@
     "id": "mjrvwm09mz9or34hjtp"
   },
   {
-    "name": "33 Liberty Street",
-    "x": 807,
-    "y": 1123,
-    "description": "TBA",
-    "category": "Building",
-    "id": "mjrvwv7zsfug2sg7259"
-  },
-  {
-    "name": "Trump Building",
-    "x": 849,
-    "y": 1020,
-    "description": "TBA",
-    "category": "Building",
-    "id": "mjrvx6wf2n1r8cqubta"
-  },
-  {
     "name": "Quill Jewerly",
-    "x": 776,
-    "y": 1019,
-    "description": "TBA",
+    "x": 777,
+    "y": 1021,
+    "description": "Has already been ransacked however a locked room is in the back. Can only be accessed through the windows. (written by Nintendoboi2)",
     "category": "Key Use Location",
     "id": "mjrvxkgr2pbael5wj9q"
   },
@@ -841,18 +829,24 @@
     "id": "mjrvy7p30pd1dveub0i"
   },
   {
-    "name": "Enemy Location",
+    "name": "Ground Zero Bandit Camp",
     "x": 1015,
-    "y": 820,
-    "description": "TBA",
+    "y": 838,
+    "description": "Small bandit camp, they hold down a gate that leads into ground zero. Gate requires a key. Has 3 bandits, one of them roams into the parking lot across.\n\nStash Spot for the distraction device in Wetwork, pt. 4\n  (written by Nintendoboi2)",
     "category": "Enemy Outpost",
-    "id": "mjrvyhprb84kvtssp2a"
+    "id": "mjrvyhprb84kvtssp2a",
+    "images": [
+      {
+        "url": "https://i.imgur.com/KuEvYOA.png",
+        "description": "(photographer:Nintendoboi2)"
+      }
+    ]
   },
   {
     "name": "Gate",
-    "x": 1034,
-    "y": 824,
-    "description": "TBA",
+    "x": 1035,
+    "y": 821,
+    "description": "The gate that leads into Ground Zero Quarantine zone. Protected by 3 bandits. Can be opened using a key.",
     "category": "Key Use Location",
     "id": "mjrvypk5pxrrb4sh73",
     "images": [
@@ -878,9 +872,9 @@
   },
   {
     "name": "Zombie Nest",
-    "x": 1523,
-    "y": 1323,
-    "description": "This zombie nest is located inside and beneath the building. Large numbers of zombies spawn here. It is recommended to enter only during the day.",
+    "x": 1504,
+    "y": 1321,
+    "description": "This zombie nest is located in and beneath a garage. Large numbers of zombies spawn here, so it’s best to enter during the day. The area can be accessed from the southeast and the northwest.",
     "category": "Zombie Nest",
     "id": "mjrvzs8dbgpc1cacni",
     "images": [
@@ -895,10 +889,10 @@
     ]
   },
   {
-    "name": "Quarantine Zone Broadway",
-    "x": 1621,
-    "y": 1329,
-    "description": "A quarantine zone that includes a military checkpoint. Many militant zombies spawn here. There is also an underground system next to it where the armory is located. An M249 usually spawns there, along with other valuable items. More images TBA",
+    "name": "Quarantine Zone Military Checkpoint",
+    "x": 1612,
+    "y": 1311,
+    "description": "A quarantine zone that includes a military checkpoint. Many militant zombies spawn here. There is also an underground system which seems to be a garage next to it where the armory is located on the lowest floor. An M249 usually spawns next to it there, along with other valuable items. More info TBA",
     "category": "Quarantine Zone",
     "id": "mjrw01k5pt8lvq0z0c",
     "images": [
@@ -913,12 +907,18 @@
     ]
   },
   {
-    "name": "Cities Service Building",
-    "x": 1431,
-    "y": 999,
-    "description": "TBA",
+    "name": "Cities service buildings",
+    "x": 1433,
+    "y": 1006,
+    "description": "This hotel has a jewelry store, 2 cafes, and a clothing store. The jewelry store wasn't fully ransacked and some loot can be found inside. The two stairs on the right side are buggy and allow the player to somewhat \"clip\" inside of them when crouched. (written by nintendoboi2)",
     "category": "Building",
-    "id": "mjrw0f5rf810z62ai7"
+    "id": "mjrw0f5rf810z62ai7",
+    "images": [
+      {
+        "url": "https://i.imgur.com/dHWK7Lp.png",
+        "description": "photographer:nintendoboi2)"
+      }
+    ]
   },
   {
     "name": "RDII Mega Solution",
@@ -945,10 +945,10 @@
     "id": "mjrw1r1ewvq9wl4885c"
   },
   {
-    "name": "Spawnpoint broadway",
+    "name": "Spawnpoint broadway 646",
     "x": 1557,
-    "y": 1587,
-    "description": "Players can spawn here.",
+    "y": 1590,
+    "description": "Players can spawn here. (multiple spawn locations inside of the building)",
     "category": "Spawnpoint",
     "images": [
       {
@@ -1091,17 +1091,17 @@
     "id": "mjyvz0g2h8f6f6itq8s"
   },
   {
-    "name": "Subway Station Outside Hospital QZ",
-    "x": 1823,
-    "y": 779,
+    "name": "Subway Station Outside Ground Zero/Hospital",
+    "x": 1824,
+    "y": 777,
     "description": "TBA",
     "category": "Subway Station",
     "id": "mjz2g22gnhk3y5uk0yb"
   },
   {
-    "name": "Subway Station Inside Hospital QZ",
-    "x": 1534,
-    "y": 735,
+    "name": "Subway Station Inside Ground Zero/Hospital",
+    "x": 1535,
+    "y": 737,
     "description": "TBA",
     "category": "Subway Station",
     "id": "mjz2gox8a8bupwe6f0n"
@@ -1109,8 +1109,8 @@
   {
     "name": "Fallen Construction Crane",
     "x": 1614,
-    "y": 1566,
-    "description": "A fallen down construction crane, you can still pass trough though, more info TBA.",
+    "y": 1563,
+    "description": "A fallen down construction crane, you can still pass trough though.",
     "category": "Landmark",
     "id": "mjztyhvdjwl1kgf5x9",
     "images": [
@@ -1137,5 +1137,85 @@
       }
     ],
     "id": "mjzuncmdpvmuxzfohv"
+  },
+  {
+    "name": "Ground Zero Quarantine Zone",
+    "x": 1510,
+    "y": 586,
+    "description": "The largest quarantine zone, Ground Zero. It contains the biggest explorable building, Metro New York Hospital. \nThe zone can be accessed from the southeast via the Southbridge Towers, from the northwest through a key-required gate, or from the southeast using the subway station at the intersection of Pine and Water Street.",
+    "category": "Quarantine Zone",
+    "id": "mk30bc0959csc4m45a"
+  },
+  {
+    "name": "Pine Apartment Complex",
+    "x": 1073,
+    "y": 920,
+    "description": "Has 4ish zombies. An exit leading NW onto William and SE onto Broad. A bandit camp is outside on the NW side along with a survivor spawn and infiltration point. Has 5 floors with rooftop access and a emergency fire exit on the NW side. On the NE side is a police checkpoint with a SWAT van.\n (Written by Nintendoboi2)",
+    "category": "Building",
+    "images": [
+      {
+        "url": "https://i.imgur.com/avkwtL1.png",
+        "description": "outside (photographer:Nintendoboi2)"
+      }
+    ],
+    "id": "mk31fgf6qoqp0b99vw"
+  },
+  {
+    "name": "Lucia & Proxy's Midnight Cafe Safehouse",
+    "x": 867,
+    "y": 971,
+    "description": "Small Cafe located on William. Has no zombies and a small back room. (written by nintendoboi2)",
+    "category": "Building",
+    "id": "mk31ns977xd9nnm7cpx"
+  },
+  {
+    "name": "Watson and Stone Hotel Safehouse",
+    "x": 1215,
+    "y": 1012,
+    "description": "A hotel located on Wall and Broad. Has a few zombies inside. Has 3 floors with zombies on every level. Strangely the TV's are on in all rooms. The second and third floors only have one room each. (written by nintendoboi2)",
+    "category": "Building",
+    "images": [
+      {
+        "url": "https://i.imgur.com/CN0YIxp.png",
+        "description": "photographer:nintendoboi2)"
+      }
+    ],
+    "id": "mk31pfnn4b3gmo55yj7"
+  },
+  {
+    "name": "Stone 8 Spawnpoint",
+    "x": 1264,
+    "y": 1981,
+    "description": "This is a player spawnpoint",
+    "category": "Spawnpoint",
+    "id": "mk31yzwbcqgg8iwal6c"
+  },
+  {
+    "name": "Maiden Alleyway Bandit Camp",
+    "x": 974,
+    "y": 1517,
+    "description": "Small bandit camp with 3 bandits.\n(written by Nintendoboi2)",
+    "category": "Enemy Outpost",
+    "images": [
+      {
+        "url": "https://i.imgur.com/y4QAzhX.png",
+        "description": "(photographer Nintendoboi2)"
+      }
+    ],
+    "id": "mk321525s3r8tei5w5o"
+  },
+  {
+    "name": "Gym Panda",
+    "x": 1067,
+    "y": 1642,
+    "description": "",
+    "category": "Building",
+    "images": [
+      {
+        "url": "https://i.imgur.com/VhSbkmf.png",
+        "description": "photographer:Nintendoboi2)"
+      }
+    ],
+    "id": "mk324slfjz6t2o891v"
   }
 ]
