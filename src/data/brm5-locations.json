@@ -167,17 +167,23 @@
     ]
   },
   {
-    "name": "Extraction Point Pier",
-    "x": 2653,
-    "y": 744,
+    "name": "Extraction Point Pier 17 Mall",
+    "x": 2654,
+    "y": 743,
     "description": "A rooftop extraction point on top of this building.\n\n### Access\nUse the **escalators** to reach the rooftop.\n\n### PvP Warning\nThis is a **high-traffic PvP area** - players frequently camp or loot here. Proceed with caution.",
     "category": "Extraction Point",
-    "id": "mjrsuqm7is7kgdoys7"
+    "id": "mjrsuqm7is7kgdoys7",
+    "images": [
+      {
+        "url": "https://i.imgur.com/K4DdTc0.png",
+        "description": "The extraction point"
+      }
+    ]
   },
   {
-    "name": "Booth Pier 13",
-    "x": 2331,
-    "y": 998,
+    "name": "Booth Pier 17",
+    "x": 2324,
+    "y": 999,
     "description": "A small booth that can be entered. Limited space but provides cover.",
     "category": "Building",
     "id": "mjru18uyt94j1yss0i",
@@ -190,23 +196,73 @@
   },
   {
     "name": "Cobble Fish",
-    "x": 2444,
-    "y": 977,
-    "description": "A small storage building. **Cannot be entered** - appears to be used for storage only.",
+    "x": 2443,
+    "y": 983,
+    "description": "A small storage building. **Cannot be entered** - probably used for small storage.",
     "category": "Building",
-    "id": "mjru2z86li39r26htj"
+    "id": "mjru2z86li39r26htj",
+    "images": [
+      {
+        "url": "https://i.imgur.com/S6ftWoW.png",
+        "description": "Cobble Fish"
+      }
+    ]
   },
   {
-    "name": "Pier 17",
+    "name": "Pier 17 Mall",
     "x": 2517,
     "y": 743,
-    "description": "A **former shopping center** with multiple stories.\n\n### Key Features\n- Escalators provide access to upper floors\n- **Extraction point** on the rooftop\n- Medium-sized enemy outpost on the northeast side\n\n### Threat Level\nExpect enemy activity near the building exterior.",
+    "description": "A **former multi-story shopping mall** that offers several points of interest and tactical considerations.\n\n### Key Features\n\n* Escalators connecting the upper floors\n* **Extraction point** located on the rooftop\n* Medium-sized enemy outpost positioned on the northeast side\n* A mounted **PKM machine gun** located on the second floor on the southwestern side\n\n### Threats\n\nA large number of zombies can spawn inside and around the mall, with their numbers increasing significantly at night. In PVE, be aware that the Sheepdog enemy camp on the northeastern side may aggro the zombies. If this happens, they may begin firing at them, potentially causing every zombie in the area to swarm toward the mall.",
     "category": "Building",
     "id": "mjrufsit5s55teg03a",
     "images": [
       {
-        "url": "https://i.imgur.com/cCUTHCT.png",
-        "description": "outside (Photographer:Nintendoboi2)"
+        "url": "https://i.imgur.com/wUbYWoK.png",
+        "description": "The mall"
+      },
+      {
+        "url": "https://i.imgur.com/Sgy14Gs.png",
+        "description": "Sheepdog camp on the northeastern side"
+      },
+      {
+        "url": "https://i.imgur.com/K4DdTc0.png",
+        "description": "Extraction point on the roof."
+      },
+      {
+        "url": "https://i.imgur.com/ZIMq8Az.png",
+        "description": "Sheepdog camp backside"
+      },
+      {
+        "url": "https://i.imgur.com/NBC3x6t.png",
+        "description": "Sheepdog camp backside"
+      },
+      {
+        "url": "https://i.imgur.com/eIe8Ano.png",
+        "description": "Sheepdog camp stash"
+      },
+      {
+        "url": "https://i.imgur.com/AkHlFTQ.png",
+        "description": "Southwestern entry point"
+      },
+      {
+        "url": "https://i.imgur.com/nnyv5QO.png",
+        "description": "Second floor room with mounted PKM"
+      },
+      {
+        "url": "https://i.imgur.com/h5j3gaD.png",
+        "description": "second floor"
+      },
+      {
+        "url": "https://i.imgur.com/NDz3WEO.png",
+        "description": "third floor"
+      },
+      {
+        "url": "https://i.imgur.com/bcWeb2e.png",
+        "description": "third floor medical baricade?"
+      },
+      {
+        "url": "https://i.imgur.com/RnKnw0A.png",
+        "description": "Trash collection southeast"
       }
     ]
   },
@@ -221,10 +277,16 @@
   {
     "name": "Tin Building Market Flood Hall",
     "x": 2331,
-    "y": 732,
-    "description": "*TBA*",
+    "y": 739,
+    "description": "A **non-entrable** building. Nothing much to say.",
     "category": "Building",
-    "id": "mjruiv7hrbxfyt6d6cc"
+    "id": "mjruiv7hrbxfyt6d6cc",
+    "images": [
+      {
+        "url": "https://i.imgur.com/7curMDD.png",
+        "description": "The building"
+      }
+    ]
   },
   {
     "name": "Damage Bridge1",
@@ -326,11 +388,153 @@
   },
   {
     "name": "Metro New York Hospital",
-    "x": 1368,
-    "y": 474,
-    "description": "The **largest explorable building** in the game.\n\n### Features\n- Multiple floors with extensive loot\n- Rooftop extraction point\n- **Overwhelming zombie presence**\n\n### Warning\n*Come fully prepared* - ammunition, medical supplies, and a gas mask are essential.",
+    "x": 1369,
+    "y": 466,
+    "description": "The **largest** explorable building on the map.\n### Features\n\n* Multiple floors with **extensive loot throughout**\n* Rooftop extraction point on the 15th floor\n* **Overwhelming zombie presence**\n\n### Entrances\n\n* Northeastern (staircase to the 2nd floor)\n* Eastern\n* Southeast\n* South\n* Southwest\n\n### Loot Highlights\n\n* **Abundant loot on every floor except the top**: ammunition, medical supplies, and other essentials\n* 15th floor contains **the extraction landing pad** and an enterable room called **15A2**, which mostly has office furniture (chairs, desks, etc.) and **little to no valuable loot**\n* Food is limited, but water supplies can be found in the northeastern entrance building\n* Gas masks are common, so gas damage is usually not a concern\n\n### Tactics\n\n* Multiple enemy locations around the hospital mean zombies can hear gunfire and rush toward the sound\n* **Stealth tips:**\n\n  * Avoid being seen when zombies start running\n  * Be patient and use zombie spawn/despawn mechanics to move safely\n  * It’s possible to loot the hospital **without killing a single zombie** using careful stealth\n\n### Warning\n\n*Come fully prepared*: ammunition, medical supplies, and a gas mask are essential.*",
     "category": "Building",
-    "id": "mjruy5f9grckcevy77f"
+    "id": "mjruy5f9grckcevy77f",
+    "images": [
+      {
+        "url": "https://i.imgur.com/9wfPrTV.png",
+        "description": "Southwest entrance outside"
+      },
+      {
+        "url": "https://i.imgur.com/CDgIMvh.png",
+        "description": "Southwest entrance inside"
+      },
+      {
+        "url": "https://i.imgur.com/eDL8sEu.png",
+        "description": "Southwest entrance inside 2"
+      },
+      {
+        "url": "https://i.imgur.com/PcKbdc9.png",
+        "description": "Southeast entrance"
+      },
+      {
+        "url": "https://i.imgur.com/6IbDMdF.png",
+        "description": "Center hallways 1"
+      },
+      {
+        "url": "https://i.imgur.com/xuhm3ED.png",
+        "description": "Center hallways 2"
+      },
+      {
+        "url": "https://i.imgur.com/19dkkca.png",
+        "description": "Center hallways 3"
+      },
+      {
+        "url": "https://i.imgur.com/8Y22W2k.png",
+        "description": "Northeast entrance outside"
+      },
+      {
+        "url": "https://i.imgur.com/KKvXjHT.png",
+        "description": "Northeast entrance inside"
+      },
+      {
+        "url": "https://i.imgur.com/1f1AL2z.png",
+        "description": "Center hallways Southwest stairs"
+      },
+      {
+        "url": "https://i.imgur.com/YickafJ.png",
+        "description": "Northeast hallways 1"
+      },
+      {
+        "url": "https://i.imgur.com/LLmkKKi.png",
+        "description": "Northeast hallways 2"
+      },
+      {
+        "url": "https://i.imgur.com/bv7QI29.png",
+        "description": "Northeast/Southeast entrance"
+      },
+      {
+        "url": "https://i.imgur.com/n64SI94.png",
+        "description": "Crashed helicopter"
+      },
+      {
+        "url": "https://i.imgur.com/N17Xqqm.png",
+        "description": "OR hallway rooms second floor"
+      },
+      {
+        "url": "https://i.imgur.com/5tUsmLT.png",
+        "description": "Inside of O.R 3 second floor"
+      },
+      {
+        "url": "https://i.imgur.com/15e72Yc.png",
+        "description": "Northeast stairs second floor"
+      },
+      {
+        "url": "https://i.imgur.com/L0Mgqg1.png",
+        "description": "Northeast stairs first floor"
+      },
+      {
+        "url": "https://i.imgur.com/Mcvwmnl.png",
+        "description": "ICU rooms and labs second floor"
+      },
+      {
+        "url": "https://i.imgur.com/iyMdGnB.png",
+        "description": "center hallways near ICU second floor"
+      },
+      {
+        "url": "https://i.imgur.com/MmhUucc.png",
+        "description": "ICU second floor"
+      },
+      {
+        "url": "https://i.imgur.com/PwtnLeB.png",
+        "description": "Southeast stairs second floor"
+      },
+      {
+        "url": "https://i.imgur.com/mqLvEGZ.png",
+        "description": "Open rooftop area Southeast"
+      },
+      {
+        "url": "https://i.imgur.com/gnypfzy.png",
+        "description": "Second floor Wing A southeast stairs"
+      },
+      {
+        "url": "https://i.imgur.com/1ktNEZC.png",
+        "description": "Wing A Southeast stairs 11th floor"
+      },
+      {
+        "url": "https://i.imgur.com/IbjdIW7.png",
+        "description": "11th floor Wing A Southeast stairs hallway"
+      },
+      {
+        "url": "https://i.imgur.com/r0b0IJS.png",
+        "description": "13th floor wing A souteast stairs hallway"
+      },
+      {
+        "url": "https://i.imgur.com/U1jJYJr.png",
+        "description": "Wing A 13th floor southeast stairs"
+      },
+      {
+        "url": "https://i.imgur.com/b1EP3ig.png",
+        "description": "15th floor wing a southeast stairs hallway"
+      },
+      {
+        "url": "https://i.imgur.com/mvNv3Le.png",
+        "description": "room 15A2"
+      },
+      {
+        "url": "https://i.imgur.com/N3MSDpw.png",
+        "description": "room 15A2 inside"
+      },
+      {
+        "url": "https://i.imgur.com/Z2AAPQa.png",
+        "description": "Landing pad"
+      },
+      {
+        "url": "https://i.imgur.com/34OvACc.png",
+        "description": "Wing A first floor southeast stairs"
+      },
+      {
+        "url": "https://i.imgur.com/l9zgjUg.png",
+        "description": "South entrance"
+      },
+      {
+        "url": "https://i.imgur.com/PHkyMTl.png",
+        "description": "South entrances"
+      }
+    ]
   },
   {
     "name": "Extraction point hospital",
@@ -342,11 +546,17 @@
   },
   {
     "name": "Crashed Helicopter",
-    "x": 1379,
-    "y": 324,
+    "x": 1362,
+    "y": 332,
     "description": "A **crashed helicopter** adjacent to the hospital building. Serves as a notable landmark.",
     "category": "Landmark",
-    "id": "mjrv23gm29chalazqa"
+    "id": "mjrv23gm29chalazqa",
+    "images": [
+      {
+        "url": "https://i.imgur.com/n64SI94.png",
+        "description": "the blackhawk helicopter"
+      }
+    ]
   },
   {
     "name": "Saul Mart",
@@ -433,12 +643,18 @@
     "id": "mjrvcgr8zcifyxvmm3"
   },
   {
-    "name": "Enemy Outpost",
-    "x": 2244,
-    "y": 800,
-    "description": "Enemy outpost located **under the bridge**. Limited visibility from above.",
+    "name": "Bandit camp under the bridge",
+    "x": 2247,
+    "y": 846,
+    "description": "Enemy outpost located **under the bridge**.",
     "category": "Enemy Outpost",
-    "id": "mjrvdg92ey7j6v936t9"
+    "id": "mjrvdg92ey7j6v936t9",
+    "images": [
+      {
+        "url": "https://i.imgur.com/7y7n7rI.png",
+        "description": "The camp"
+      }
+    ]
   },
   {
     "name": "199 water street",
@@ -1204,11 +1420,25 @@
   },
   {
     "name": "Ground Zero Quarantine Zone",
-    "x": 1510,
-    "y": 586,
+    "x": 1512,
+    "y": 595,
     "description": "The **largest quarantine zone** containing the biggest explorable building: **Metro New York Hospital**.\n\n\n### Access Points\n\n- **Southeast**: Via Southbridge Towers\n\n- **Northwest**: Key-required gate\n\n- **Southeast**: Subway station at Pine/Water Street intersection",
     "category": "Quarantine Zone",
-    "id": "mk30bc0959csc4m45a"
+    "id": "mk30bc0959csc4m45a",
+    "images": [
+      {
+        "url": "https://i.imgur.com/n64SI94.png",
+        "description": "Crashed blackhawk helicopter next northeast"
+      },
+      {
+        "url": "https://i.imgur.com/PciHtuL.png",
+        "description": "Wall street"
+      },
+      {
+        "url": "https://i.imgur.com/9wfPrTV.png",
+        "description": "Entrance to the hospital"
+      }
+    ]
   },
   {
     "name": "Pine Apartment Complex",
@@ -1315,5 +1545,37 @@
       }
     ],
     "id": "mk3b64868bx8pknjl3d"
+  },
+  {
+    "name": "Pier 17 Warehouse",
+    "x": 2350,
+    "y": 500,
+    "description": "**Non-enterable**, nothing else to add.",
+    "category": "Building",
+    "images": [
+      {
+        "url": "https://i.imgur.com/5Cjwssa.png",
+        "description": "The warehouse"
+      }
+    ],
+    "id": "mk3sv96niawpi0szal"
+  },
+  {
+    "name": "Ship",
+    "x": 3383,
+    "y": 1111,
+    "description": "yezzir",
+    "category": "Other",
+    "images": [
+      {
+        "url": "https://i.imgur.com/WefVobH.png",
+        "description": ""
+      },
+      {
+        "url": "https://i.imgur.com/lhOV5Tx.png",
+        "description": ""
+      }
+    ],
+    "id": "mk3xixs4jq4o0c2do9"
   }
 ]

@@ -14,6 +14,13 @@ interface ChangelogEntry {
 
 const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.4.3',
+    date: '2026-01-07',
+    changes: [
+      'Updated hospital location images and description',
+    ],
+  },
+  {
     version: '1.4.2',
     date: '2026-01-07',
     changes: [
