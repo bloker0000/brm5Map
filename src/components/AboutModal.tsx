@@ -45,7 +45,7 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
             <ul>
               <li><strong>Pan:</strong> Click and drag the map to move around</li>
               <li><strong>Zoom:</strong> Use the scroll wheel or the +/- buttons</li>
-              <li><strong>Rotate:</strong> Right-click and drag left/right, or drag the compass</li>
+              <li><strong>Rotate:</strong> Right-click and drag left/right, or left-click and drag the compass</li>
               <li><strong>Reset Position:</strong> Click the crosshair button to center the map</li>
               <li><strong>Reset Rotation:</strong> Click the rotation arrow button to reset rotation</li>
             </ul>
@@ -79,8 +79,10 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
             <h3>Display</h3>
             <ul>
               <li><strong>Toggle Pins:</strong> Show or hide all map pins</li>
+              <li><strong>Toggle Sidebar:</strong> Use the arrow button on the left edge to hide/show the sidebar</li>
+              <li><strong>Toggle Compass:</strong> Show or hide the compass via the sidebar button</li>
+              <li><strong>Compass Hover:</strong> Hover over the compass to enlarge it for easier interaction</li>
               <li><strong>Background:</strong> Refresh the page for a new background image</li>
-              <li><strong>Compass:</strong> Shows the current map orientation</li>
             </ul>
           </section>
 

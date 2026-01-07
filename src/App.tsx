@@ -45,6 +45,8 @@ function App() {
   const [activeTab, setActiveTab] = useState<'categories' | 'locations'>('categories');
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [showPins, setShowPins] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(true);
+  const [showCompass, setShowCompass] = useState(true);
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
   const [selectedLocations, setSelectedLocations] = useState<Set<string>>(new Set());
   const [focusedLocations, setFocusedLocations] = useState<MapLocation[]>([]);
@@ -180,7 +182,15 @@ function App() {
         <WelcomeModal />
         <AboutModal isOpen={isAboutOpen} onClose={() => setIsAboutOpen(false)} />
         
-        <div className="sidebar">
+        <button 
+          className={`sidebar-toggle-btn${showSidebar ? '' : ' sidebar-hidden'}`}
+          onClick={() => setShowSidebar(!showSidebar)}
+          title={showSidebar ? 'Hide Sidebar' : 'Show Sidebar'}
+        >
+          {showSidebar ? '◀' : '▶'}
+        </button>
+
+        <div className={`sidebar${showSidebar ? '' : ' hidden'}`}>
           <div className="sidebar-header">
           <h1 className="sidebar-title">BRMAP5</h1>
           <div className="sidebar-subtitle">Operation CRYO Zombies</div>
@@ -192,6 +202,12 @@ function App() {
             onClick={() => setShowPins(!showPins)}
           >
             {showPins ? 'HIDE PINS' : 'SHOW PINS'}
+          </button>
+          <button 
+            className={`sidebar-action-btn ${showCompass ? 'active' : ''}`}
+            onClick={() => setShowCompass(!showCompass)}
+          >
+            {showCompass ? 'HIDE COMPASS' : 'SHOW COMPASS'}
           </button>
           <button 
             className="sidebar-action-btn"
@@ -274,6 +290,7 @@ function App() {
           highlightedLocation={highlightedLocation}
           isAdminMode={IS_DEV && isAdminOpen}
           showPins={showPins}
+          showCompass={showCompass}
           onBgChange={setCurrentBgIndex}
           focusedLocations={focusedLocations}
         />
