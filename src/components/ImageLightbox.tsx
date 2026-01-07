@@ -17,6 +17,8 @@ export function ImageLightbox({ images, initialIndex, onClose, locationName }: I
   const [isLoading, setIsLoading] = useState(true);
   const dragStartRef = useRef({ x: 0, y: 0, panX: 0, panY: 0 });
   const imageRef = useRef<HTMLImageElement>(null);
+  const thumbnailsContainerRef = useRef<HTMLDivElement>(null);
+  const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const currentImage = images[currentIndex];
   const hasMultiple = images.length > 1;
@@ -126,6 +128,17 @@ export function ImageLightbox({ images, initialIndex, onClose, locationName }: I
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [onClose, hasMultiple, goToPrev, goToNext, handleZoomIn, handleZoomOut, resetView]);
 
+  useEffect(() => {
+    const thumbnail = thumbnailRefs.current[currentIndex];
+    if (thumbnail && thumbnailsContainerRef.current) {
+      thumbnail.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+    }
+  }, [currentIndex]);
+
   const handleImageDoubleClick = useCallback(() => {
     if (zoom > 1) {
       resetView();
@@ -200,10 +213,11 @@ export function ImageLightbox({ images, initialIndex, onClose, locationName }: I
           </div>
 
           {hasMultiple && (
-            <div className="lightbox-thumbnails">
+            <div className="lightbox-thumbnails" ref={thumbnailsContainerRef}>
               {images.map((img, index) => (
                 <button
                   key={index}
+                  ref={(el) => { thumbnailRefs.current[index] = el; }}
                   className={`lightbox-thumbnail ${index === currentIndex ? 'active' : ''}`}
                   onClick={() => {
                     setCurrentIndex(index);

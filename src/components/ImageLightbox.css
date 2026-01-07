@@ -202,7 +202,24 @@
   gap: 8px;
   max-width: 60%;
   overflow-x: auto;
-  padding: 4px;
+  padding: 4px 8px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--brm-accent) rgba(0, 0, 0, 0.3);
+}
+
+.lightbox-thumbnails::-webkit-scrollbar {
+  height: 6px;
+}
+
+.lightbox-thumbnails::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+.lightbox-thumbnails::-webkit-scrollbar-thumb {
+  background: var(--brm-accent);
+  border-radius: 3px;
 }
 
 .lightbox-thumbnail {

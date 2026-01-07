@@ -1,4 +1,4 @@
-﻿[
+[
   {
     "id": "1",
     "name": "NYPlug New York Power Group",
@@ -246,17 +246,77 @@
     "name": "Water Treatment Plant (Site C)",
     "x": 2226,
     "y": 1782,
-    "description": "The **most dangerous zombie location** in the game, also known as *Site C*.\n\n### Threat Level: EXTREME\n- Most aggressive zombie spawns in the game\n- Highest zombie population density\n- Zombies can spawn directly in front of you\n\n### Location\nLocated under the bridge with an underground sewer system.\n\n### Recommended Strategy\n- **Bring a team** - solo runs are nearly impossible\n- Shoot zombies in the legs to immobilize and prevent respawns\n- Have one teammate lure zombies while another moves in\n\n*Do not attempt alone.*",
+    "description": "The **most dangerous zombie location** in the game, the *Water Treatment Plant*, also known as *Site C*.\n\n### Threat Level: EXTREME\n- Most aggressive zombie spawns in the game\n- Highest zombie population density\n- Zombies can spawn directly in front of you\n\n### Location\nLocated under the bridge with an underground sewer system.\n\n### Recommended Strategy\n- **Bring a team** - solo runs are nearly impossible\n- Shoot zombies in the legs to immobilize and prevent respawns\n- Have one teammate lure zombies while another moves in\n- Utilise the smaller sewage tunnels shown in the images\n\n*Do not attempt alone.*",
     "category": "Zombie Nest",
     "id": "mjrurjdgevrvm94t688",
     "images": [
       {
-        "url": "https://i.imgur.com/ebdrtek.png",
-        "description": "outside"
+        "url": "https://i.imgur.com/ExCR6ki.png",
+        "description": "Northwestern entrance"
       },
       {
-        "url": "https://i.imgur.com/OpuH8GX.png",
-        "description": "Northeast Entrance Inside (Photographer:Nintendoboi2)"
+        "url": "https://i.imgur.com/Ci5vtFq.png",
+        "description": "Northeast entrance inside"
+      },
+      {
+        "url": "https://i.imgur.com/qOLPQPe.png",
+        "description": "catwalks 1"
+      },
+      {
+        "url": "https://i.imgur.com/LgAg1bd.png",
+        "description": "catwalks 2"
+      },
+      {
+        "url": "https://i.imgur.com/wbo3Lwg.png",
+        "description": "sewer entrance"
+      },
+      {
+        "url": "https://i.imgur.com/Of1s6ZZ.png",
+        "description": "Southeastern entrance"
+      },
+      {
+        "url": "https://i.imgur.com/CogIFGz.png",
+        "description": "Northeastern entrance"
+      },
+      {
+        "url": "https://i.imgur.com/IL6PRq8.png",
+        "description": "The elevated office, accesible using a set of stairs from the norheastern side"
+      },
+      {
+        "url": "https://i.imgur.com/xOtmNtI.png",
+        "description": "Catwalks lower/sewer entrance"
+      },
+      {
+        "url": "https://i.imgur.com/GgdjTCB.png",
+        "description": "Sewer celing entrance from outside"
+      },
+      {
+        "url": "https://i.imgur.com/780Ow5q.png",
+        "description": "Sewer ceiling entrance from inside"
+      },
+      {
+        "url": "https://i.imgur.com/PoRIRin.png",
+        "description": "Sewage pipes entrance (northeast)"
+      },
+      {
+        "url": "https://i.imgur.com/haaOCx8.png",
+        "description": "Sewage pipes exit"
+      },
+      {
+        "url": "https://i.imgur.com/jIYATdB.png",
+        "description": "Sewage pipes inside"
+      },
+      {
+        "url": "https://i.imgur.com/jRUa0f3.png",
+        "description": "Sewer 1"
+      },
+      {
+        "url": "https://i.imgur.com/ETrQQ4H.png",
+        "description": "Sewer 2"
+      },
+      {
+        "url": "https://i.imgur.com/8mo0wD2.png",
+        "description": "Sewer 3 near exit"
       }
     ]
   },

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { MapLocation, LocationImage } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
 import { CategoryIcon, CloseIcon } from './Icons';
@@ -28,11 +28,23 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [imageLoadStates, setImageLoadStates] = useState<Record<number, boolean>>({});
+  const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([]);
   
   useEffect(() => {
     setCurrentImageIndex(0);
     setImageLoadStates({});
   }, [location?.id]);
+
+  useEffect(() => {
+    const thumbnail = thumbnailRefs.current[currentImageIndex];
+    if (thumbnail) {
+      thumbnail.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+    }
+  }, [currentImageIndex]);
   
   if (!location) return null;
 
@@ -116,6 +128,7 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
                   {images.map((img, index) => (
                     <button
                       key={index}
+                      ref={(el) => { thumbnailRefs.current[index] = el; }}
                       className={`modal-thumbnail ${index === safeIndex ? 'active' : ''}`}
                       onClick={() => setCurrentImageIndex(index)}
                     >

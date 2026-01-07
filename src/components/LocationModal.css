@@ -221,7 +221,29 @@
   padding: 12px 24px;
   background: var(--brm-bg-dark);
   overflow-x: auto;
-  justify-content: center;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--brm-accent) rgba(0, 0, 0, 0.3);
+}
+
+.modal-gallery-thumbnails::before,
+.modal-gallery-thumbnails::after {
+  content: '';
+  flex: 1 0 auto;
+}
+
+.modal-gallery-thumbnails::-webkit-scrollbar {
+  height: 6px;
+}
+
+.modal-gallery-thumbnails::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+.modal-gallery-thumbnails::-webkit-scrollbar-thumb {
+  background: var(--brm-accent);
+  border-radius: 3px;
 }
 
 .modal-thumbnail {
