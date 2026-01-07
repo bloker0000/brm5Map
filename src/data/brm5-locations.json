@@ -620,11 +620,17 @@
   },
   {
     "name": "Enemy Outpost",
-    "x": 1774,
+    "x": 1760,
     "y": 658,
-    "description": "*TBA*",
+    "description": "## Small Outpost\n\n- **Enemies:** Approximately 5  \n- **Features:**  \n  - Garage containing loot",
     "category": "Enemy Outpost",
-    "id": "mjrv9gckk0fdmss301l"
+    "id": "mjrv9gckk0fdmss301l",
+    "images": [
+      {
+        "url": "https://i.imgur.com/9i8xbTg.png",
+        "description": ""
+      }
+    ]
   },
   {
     "name": "Fluton Market",
@@ -1372,19 +1378,63 @@
   },
   {
     "name": "Subway Station Outside Ground Zero/Hospital",
-    "x": 1824,
-    "y": 777,
-    "description": "*TBA*",
+    "x": 1823,
+    "y": 780,
+    "description": "## Subway Station (Outside Ground Zero / Hospital)\n\n- **Location:** Outside the Ground Zero quarantine zone  \n- **Purpose:** Serves as the entrance to the subway leading into the quarantine area  \n\n### Details:\n- **Enemies:** Few zombies in the surrounding area; however, **you must pass 2 zombie nests** at both the entrance and exit to traverse the subway safely  \n- **Points of Interest:**  \n  - Entrance leads directly toward the subway tunnels  \n  - Nearby streets provide limited cover and scavenging opportunities",
     "category": "Subway Station",
-    "id": "mjz2g22gnhk3y5uk0yb"
+    "id": "mjz2g22gnhk3y5uk0yb",
+    "images": [
+      {
+        "url": "https://i.imgur.com/WzXrZNj.png",
+        "description": "entrance"
+      },
+      {
+        "url": "https://i.imgur.com/me1JGSd.png",
+        "description": "entrance inside"
+      },
+      {
+        "url": "https://i.imgur.com/oMYTexj.png",
+        "description": "entrance inside 2"
+      },
+      {
+        "url": "https://i.imgur.com/Di6YYC4.png",
+        "description": "subway"
+      },
+      {
+        "url": "https://i.imgur.com/1k8OHTc.png",
+        "description": "the zombie nest"
+      }
+    ]
   },
   {
     "name": "Subway Station Inside Ground Zero/Hospital",
     "x": 1535,
-    "y": 737,
-    "description": "*TBA*",
+    "y": 734,
+    "description": "## Subway Station (Inside Ground Zero / Hospital)\n\n- **Location:** Entrance outside the quarantine zone at the intersection of Pine & Water Street  \n- **Purpose:** Provides access to the Ground Zero quarantine zone  \n\n### Details:\n- **Enemies:** Low zombie spawn inside the subway, but you must pass **2 zombie nests** to traverse it fully  \n- **Points of Interest:**  \n  - Small operating room containing what appears to be **power controls** and related equipment",
     "category": "Subway Station",
-    "id": "mjz2gox8a8bupwe6f0n"
+    "id": "mjz2gox8a8bupwe6f0n",
+    "images": [
+      {
+        "url": "https://i.imgur.com/OcIAAHw.png",
+        "description": "hospital view from subway"
+      },
+      {
+        "url": "https://i.imgur.com/hmbab6u.png",
+        "description": "entrance"
+      },
+      {
+        "url": "https://i.imgur.com/ZLpWpCk.png",
+        "description": "entrance inside"
+      },
+      {
+        "url": "https://i.imgur.com/vqwHcy1.png",
+        "description": "a small room inside the subway"
+      },
+      {
+        "url": "https://i.imgur.com/RtAETnH.png",
+        "description": "zombie nest near the exit of the subway along with the hallway"
+      }
+    ]
   },
   {
     "name": "Fallen Construction Crane",
