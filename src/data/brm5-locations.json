@@ -317,6 +317,10 @@
       {
         "url": "https://i.imgur.com/8mo0wD2.png",
         "description": "Sewer 3 near exit"
+      },
+      {
+        "url": "https://i.imgur.com/D5Lz1iV.png",
+        "description": "The key you can use to open the Plant Office"
       }
     ]
   },
@@ -1277,5 +1281,39 @@
       }
     ],
     "id": "mk324slfjz6t2o891v"
+  },
+  {
+    "name": "Plant Office",
+    "x": 2222,
+    "y": 1760,
+    "description": "A secured office inside the *Water Treatment Plant* that requires the **Plant Office Key** to access.\n\n### Access\n\n* Requires the **Plant Office Key**\n* Key description: *Key to the raised office in the Water Treatment Plant.*\n\n### Loot\n\n* Large amounts of ammo\n* Medical supplies\n* Possible weapon spawns *(not yet confirmed)*\n\n### Notes\n\n* A hole in the back wall provides an **alternate exit**\n* Useful escape route if the area becomes overrun",
+    "category": "Key Use Location",
+    "images": [
+      {
+        "url": "https://i.imgur.com/D5Lz1iV.png",
+        "description": "Plant office key"
+      },
+      {
+        "url": "https://i.imgur.com/2bfc9nr.png",
+        "description": "Stairs going up to the office"
+      },
+      {
+        "url": "https://i.imgur.com/mT2ylCs.png",
+        "description": "Entrance to the office"
+      },
+      {
+        "url": "https://i.imgur.com/q0Ccgn7.png",
+        "description": "Inside the office 1"
+      },
+      {
+        "url": "https://i.imgur.com/wrGyded.png",
+        "description": "Inside the office 2"
+      },
+      {
+        "url": "https://i.imgur.com/QBlSWdU.png",
+        "description": "The hole in the wall"
+      }
+    ],
+    "id": "mk3b64868bx8pknjl3d"
   }
 ]

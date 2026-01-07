@@ -14,6 +14,13 @@ interface ChangelogEntry {
 
 const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.4.2',
+    date: '2026-01-07',
+    changes: [
+      'Added water treatment plant office location',
+    ],
+  },
+  {
     version: '1.4.1',
     date: '2026-01-07',
     changes: [
