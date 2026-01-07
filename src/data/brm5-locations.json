@@ -1,10 +1,10 @@
-[
+﻿[
   {
     "id": "1",
     "name": "NYPlug New York Power Group",
     "x": 1059,
     "y": 2165,
-    "description": "Entrance and exit to a building. At the rear, there is a spawn point and an additional entrance. The building has multiple stories.",
+    "description": "A multi-story power company building with **multiple entry points**.\n\n### Key Features\n- Main entrance at the front\n- Additional entrance at the rear\n- **Player spawn point** nearby\n- Connected to the adjacent apartment building via hallways",
     "category": "Building",
     "images": [
       {
@@ -26,7 +26,7 @@
     "name": "Stone 6 (Saul & Co)",
     "x": 1215,
     "y": 2105,
-    "description": "A three-story office building. Access to the third-floor office requires a key.",
+    "description": "A **three-story office building** with valuable loot.\n\n### Access\n- Floors 1-2 are freely accessible\n- **Third floor requires a key** to enter\n\nThe locked office on the third floor often contains ammunition and supplies.",
     "category": "Building",
     "images": [
       {
@@ -52,7 +52,7 @@
     "name": "Activity-Full Sphere Solutions",
     "x": 1025,
     "y": 1962,
-    "description": "A multi-story office building. The penultimate floor contains a safe that can be opened with a key. Two staircases provide access to this floor: the staircase closest to the front of the building, which faces southwest, continues to the top of the building, while the other terminates at the penultimate floor.",
+    "description": "A **large multi-story office building** with a hidden safe.\n\n### Building Layout\n- Multiple entrances including a side entrance\n- Two staircases throughout the building\n- Storage space on lower floors\n\n### Safe Location\nThe **safe is located on the second-to-last floor**. When using the front staircase (southwest), go left upon reaching that floor.\n\n### Navigation Tips\n- Front staircase (SW) continues to the rooftop\n- Rear staircase terminates at the penultimate floor",
     "category": "Building",
     "images": [
       {
@@ -122,7 +122,7 @@
     "name": "Apartment Building Near NYPlug",
     "x": 931,
     "y": 2248,
-    "description": "A four-story apartment building connected to NYPlug. Following the hallways on the first floor, as shown on the map, will lead to NYPlug. Be aware that players may spawn on the upper floors. During the night, a medium to large number of zombies may also spawn here.",
+    "description": "A **four-story apartment building** connected to NYPlug.\n\n### Connection to NYPlug\nFollow the hallways on the first floor to reach the NYPlug building.\n\n### Warnings\n- **Player spawn location** on upper floors\n- Medium to large zombie spawns at night\n\nThis building serves as both a spawn point and a connector between the apartment complex and NYPlug.",
     "category": "Building",
     "image": "https://i.imgur.com/wAt3i6f.png",
     "images": [
@@ -157,7 +157,7 @@
     "name": "Extraction Point Whitehall",
     "x": 755,
     "y": 2041,
-    "description": "An extraction point. An enemy outpost, where two enemies may spawn, is located at the ladder leading to the extraction point.",
+    "description": "An extraction point accessible via ladder.\n\n### Enemy Presence\n**2 enemies** may spawn at the ladder leading up to the extraction point. Clear them before extracting.",
     "category": "Extraction Point",
     "images": [
       {
@@ -170,7 +170,7 @@
     "name": "Extraction Point Pier",
     "x": 2653,
     "y": 744,
-    "description": "An extraction point located on the rooftop of this building. Use the escalators to reach the top. In PvP, players often camp or loot this area, so proceed with caution.",
+    "description": "A rooftop extraction point on top of this building.\n\n### Access\nUse the **escalators** to reach the rooftop.\n\n### PvP Warning\nThis is a **high-traffic PvP area** — players frequently camp or loot here. Proceed with caution.",
     "category": "Extraction Point",
     "id": "mjrsuqm7is7kgdoys7"
   },
@@ -178,7 +178,7 @@
     "name": "Booth Pier 13",
     "x": 2331,
     "y": 998,
-    "description": "A small booth, can be entered.",
+    "description": "A small booth that can be entered. Limited space but provides cover.",
     "category": "Building",
     "id": "mjru18uyt94j1yss0i",
     "images": [
@@ -192,7 +192,7 @@
     "name": "Cobble Fish",
     "x": 2444,
     "y": 977,
-    "description": "A small building. Cannot be entered. Probably used for storage",
+    "description": "A small storage building. **Cannot be entered** — appears to be used for storage only.",
     "category": "Building",
     "id": "mjru2z86li39r26htj"
   },
@@ -200,7 +200,7 @@
     "name": "Pier 17",
     "x": 2517,
     "y": 743,
-    "description": "A medium to large multi story building that appears to be a former shopping center. On the northeast side, directly next to the building, there is a medium sized enemy outpost. The top floor can be reached using the escalators and has an extraction point on the roof.",
+    "description": "A **former shopping center** with multiple stories.\n\n### Key Features\n- Escalators provide access to upper floors\n- **Extraction point** on the rooftop\n- Medium-sized enemy outpost on the northeast side\n\n### Threat Level\nExpect enemy activity near the building exterior.",
     "category": "Building",
     "id": "mjrufsit5s55teg03a",
     "images": [
@@ -214,7 +214,7 @@
     "name": "Pier Enemy Outpost",
     "x": 2615,
     "y": 635,
-    "description": "An enemy outpost near Pier 17.",
+    "description": "An enemy outpost positioned near Pier 17. Watch for hostiles when approaching the pier area.",
     "category": "Enemy Outpost",
     "id": "mjrugla1my8fmhkkaw"
   },
@@ -222,7 +222,7 @@
     "name": "Tin Building Market Flood Hall",
     "x": 2331,
     "y": 732,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Building",
     "id": "mjruiv7hrbxfyt6d6cc"
   },
@@ -230,7 +230,7 @@
     "name": "Damage Bridge1",
     "x": 2220,
     "y": 503,
-    "description": "This area of the bridge is damaged.",
+    "description": "**Damaged section** of the bridge. Navigation may be limited.",
     "category": "Landmark",
     "id": "mjrumdh97nqjpqv32an"
   },
@@ -238,7 +238,7 @@
     "name": "Damaged Bridge2",
     "x": 2224,
     "y": 1365,
-    "description": "This area of the bridge is damaged.",
+    "description": "**Damaged section** of the bridge. Navigation may be limited.",
     "category": "Landmark",
     "id": "mjrumoor2ejyp50h2h9"
   },
@@ -246,7 +246,7 @@
     "name": "Water Treatment Plant (Site C)",
     "x": 2226,
     "y": 1782,
-    "description": "The Water Treatment Plant, also known as Site C, located under the bridge, has the most aggressive zombie spawns and the highest population. Raiding this location is strongly recommended with multiple team members, as solo runs are nearly impossible. The area includes an underground sewer system where spawns are at their worst, with zombies sometimes appearing right in front of you. Common strategies include shooting zombies in the legs to immobilize them and prevent respawns, or having one teammate lure them out while another moves in.",
+    "description": "The **most dangerous zombie location** in the game, also known as *Site C*.\n\n### Threat Level: EXTREME\n- Most aggressive zombie spawns in the game\n- Highest zombie population density\n- Zombies can spawn directly in front of you\n\n### Location\nLocated under the bridge with an underground sewer system.\n\n### Recommended Strategy\n- **Bring a team** — solo runs are nearly impossible\n- Shoot zombies in the legs to immobilize and prevent respawns\n- Have one teammate lure zombies while another moves in\n\n*Do not attempt alone.*",
     "category": "Zombie Nest",
     "id": "mjrurjdgevrvm94t688",
     "images": [
@@ -264,7 +264,7 @@
     "name": "Metro New York Hospital",
     "x": 1368,
     "y": 474,
-    "description": "A massive explorable building with multiple floors, a rooftop extraction point, and an overwhelming number of zombies. Make sure you’re fully prepared before heading in.",
+    "description": "The **largest explorable building** in the game.\n\n### Features\n- Multiple floors with extensive loot\n- Rooftop extraction point\n- **Overwhelming zombie presence**\n\n### Warning\n*Come fully prepared* — ammunition, medical supplies, and a gas mask are essential.",
     "category": "Building",
     "id": "mjruy5f9grckcevy77f"
   },
@@ -272,7 +272,7 @@
     "name": "Extraction point hospital",
     "x": 1471,
     "y": 381,
-    "description": "The exact conditions for using this extraction point are unclear for me, but it appears to be used by a helicopter when extracting from the hospital quarantine zone via the CSEL extraction radio. The helicopter lands on the highest accessible floor of the helicopter landing pad.",
+    "description": "Helicopter extraction point for the hospital quarantine zone.\n\n### Usage\nActivate via **CSEL extraction radio**. The helicopter lands on the highest accessible floor of the helipad.\n\n*Exact activation conditions are still being documented.*",
     "category": "Extraction Point",
     "id": "mjrv19m6j8i15ykkmf"
   },
@@ -280,7 +280,7 @@
     "name": "Crashed Helicopter",
     "x": 1379,
     "y": 324,
-    "description": "A crashed helicopter right next to the hospital building.",
+    "description": "A **crashed helicopter** adjacent to the hospital building. Serves as a notable landmark.",
     "category": "Landmark",
     "id": "mjrv23gm29chalazqa"
   },
@@ -288,7 +288,7 @@
     "name": "Saul Mart",
     "x": 1654,
     "y": 226,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Building",
     "id": "mjrv2vig3klf2lnqy9d"
   },
@@ -296,7 +296,7 @@
     "name": "Southbridge Towers",
     "x": 1701,
     "y": 300,
-    "description": "Two towers of varying height that can be used to access the hospital quarantine zone.",
+    "description": "Two towers of **varying heights** that provide access to the hospital quarantine zone from the southeast.",
     "category": "Building",
     "id": "mjrv4bp27lq8yth8pz6"
   },
@@ -304,7 +304,7 @@
     "name": "Peck Slip Plaza",
     "x": 2029,
     "y": 467,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Landmark",
     "id": "mjrv576jhfopdf83x5i"
   },
@@ -312,7 +312,7 @@
     "name": "Substation",
     "x": 2104,
     "y": 294,
-    "description": "Looks like some power plant, location is used for a PVE mission.",
+    "description": "A power plant substation. **Used in a PVE mission** objective.",
     "category": "Building",
     "id": "mjrv5xcwy1hj2ugofn",
     "images": [
@@ -326,7 +326,7 @@
     "name": "Bandit Location Peck Slip",
     "x": 1966,
     "y": 378,
-    "description": "Enemies may spawn here",
+    "description": "Enemy spawn location near Peck Slip. **Watch for hostiles** when passing through.",
     "category": "Enemy Outpost",
     "id": "mjrv6sqgvldq0vwu2rs"
   },
@@ -334,7 +334,7 @@
     "name": "Euro Deli",
     "x": 2125,
     "y": 635,
-    "description": "A small, multi-story building that is excellent for scouting. It provides an almost complete view of the entire bridge, with the top floor offering a near 360-degree view.",
+    "description": "A small multi-story building **excellent for scouting**.\n\n\n### Vantage Point\n\n- Near-complete view of the entire bridge\n\n- Top floor offers a **360-degree view**\n\nIdeal for reconnaissance before crossing the bridge.",
     "category": "Building",
     "id": "mjrv8r38qirhjh5858k",
     "images": [
@@ -348,7 +348,7 @@
     "name": "Enemy Outpost",
     "x": 1774,
     "y": 658,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Enemy Outpost",
     "id": "mjrv9gckk0fdmss301l"
   },
@@ -356,7 +356,7 @@
     "name": "Fluton Market",
     "x": 2072,
     "y": 1243,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Building",
     "id": "mjrvbvm2xw7dk78r5yb"
   },
@@ -364,7 +364,7 @@
     "name": "Enemy Outpost Water/Pine",
     "x": 1922,
     "y": 881,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Enemy Outpost",
     "id": "mjrvcgr8zcifyxvmm3"
   },
@@ -372,7 +372,7 @@
     "name": "Enemy Outpost",
     "x": 2244,
     "y": 800,
-    "description": "This is under the bridge",
+    "description": "Enemy outpost located **under the bridge**. Limited visibility from above.",
     "category": "Enemy Outpost",
     "id": "mjrvdg92ey7j6v936t9"
   },
@@ -380,7 +380,7 @@
     "name": "199 water street",
     "x": 1777,
     "y": 1133,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Building",
     "id": "mjrvegrhkx3df85yxgm"
   },
@@ -388,7 +388,7 @@
     "name": "One Seaport Plaza",
     "x": 1774,
     "y": 1304,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Building",
     "id": "mjrvernx7yndcvyogsu"
   },
@@ -396,7 +396,7 @@
     "name": "Imagination Playground",
     "x": 2015,
     "y": 1344,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Landmark",
     "id": "mjrvfb5runy7yuzeu5c"
   },
@@ -404,7 +404,7 @@
     "name": "Enemy Outpost",
     "x": 2103,
     "y": 1468,
-    "description": "This outpost is near a drop off location. You may get shot at when getting dropped off here in PVE.",
+    "description": "Enemy outpost near a **PVE drop-off location**.\n\n\n### Warning\nYou may get shot at immediately upon drop-off. *Be ready to engage.*",
     "category": "Enemy Outpost",
     "id": "mjrvg2yu12fqri0iple"
   },
@@ -412,7 +412,7 @@
     "name": "Parking Lot",
     "x": 1948,
     "y": 1470,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Landmark",
     "id": "mjrvgrtswnpdlpuclgf"
   },
@@ -420,7 +420,7 @@
     "name": "Fairfield Inn & Suites",
     "x": 1946,
     "y": 1649,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Building",
     "id": "mjrvh8tdvgr30i8ck1"
   },
@@ -428,7 +428,7 @@
     "name": "32 Slip Old Plaza",
     "x": 2001,
     "y": 1771,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Building",
     "id": "mjrvi2oysnybmrvr28"
   },
@@ -436,7 +436,7 @@
     "name": "85 Broad Street Goldman Sachs",
     "x": 1807,
     "y": 1792,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Building",
     "id": "mjrvikn0jh6fgfp2wh",
     "images": [
@@ -450,7 +450,7 @@
     "name": "Enemy Location",
     "x": 1879,
     "y": 2001,
-    "description": "They spawn as well as inside as outside.",
+    "description": "Enemies spawn **both inside and outside** this location. Approach with caution.",
     "category": "Enemy Outpost",
     "id": "mjrvj0bwpto8itfovkp",
     "images": [
@@ -464,7 +464,7 @@
     "name": "Former NYPD Station",
     "x": 2016,
     "y": 2024,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Building",
     "id": "mjrvjqdpw63iztfj1v9",
     "images": [
@@ -478,7 +478,7 @@
     "name": "Extraction Point South",
     "x": 2001,
     "y": 2180,
-    "description": "It can be accessed via the southeast or northwest staircases.",
+    "description": "Southern extraction point with **two access routes**.\n\n\n### Access\n\n- Southeast staircase\n\n- Northwest staircase",
     "category": "Extraction Point",
     "id": "mjrvk7yp6ewdm0dtggd",
     "images": [
@@ -500,7 +500,7 @@
     "name": "Stone 16",
     "x": 1520,
     "y": 1987,
-    "description": "This is an apartment building with a diner on the ground floor. The first floor has a hallway that connects the stairs, kitchen, and restaurant. The second floor contains an apartment that can be accessed using the 16 Stone Key. The apartment usually contains ammo, weapons, and food or water supplies. It consists of a kitchen, a small living area, and a bedroom. The building also has a third floor.",
+    "description": "An apartment building with the **Triple R Diner** on the ground floor.\n\n\n### Building Layout\n\n- **Ground Floor**: Diner (kitchen, restaurant), hallway, stairs\n\n- **Second Floor**: Locked apartment (**requires 16 Stone Key**)\n\n- **Third Floor**: Additional accessible area\n\n\n### Loot (Second Floor Apartment)\n\n- Ammo and weapons\n\n- Food and water supplies\n\n- Kitchen, living area, and bedroom",
     "category": "Key Use Location",
     "id": "mjrvn6gujqbuynmtqz",
     "images": [
@@ -542,7 +542,7 @@
     "name": "Triple R Diner Camp",
     "x": 1568,
     "y": 1970,
-    "description": "An enemy camp. For more info about the building see the Stone 16 location pin.",
+    "description": "An **enemy camp** at the diner entrance.\n\nSee **Stone 16** for building details.",
     "category": "Enemy Outpost",
     "id": "mjrvnhy0kng3cvc4i2q",
     "images": [
@@ -556,7 +556,7 @@
     "name": "Liberty Bank",
     "x": 1304,
     "y": 1982,
-    "description": "A bank. At the back, there is a reinforced glass door that cannot be broken. Mounted on the wall beside it is a keycard reader. Insert the keycard to unlock the door and access the vault. More info TBA",
+    "description": "A bank with a **secured vault**.\n\n\n### Vault Access\nThe reinforced glass door at the back cannot be broken. Use a **keycard** on the wall-mounted reader to unlock it.\n\n*More details TBA*",
     "category": "Key Use Location",
     "id": "mjrvob8nmok6jfgzced",
     "images": [
@@ -574,7 +574,7 @@
     "name": "Stone 8",
     "x": 1244,
     "y": 1991,
-    "description": "An apartment building that appears to have belonged to a former militant. Upon entering the second-floor apartment, the best loot is immediately to the right. It usually contains gas masks, camouflage gear, and ammunition. More info TBA",
+    "description": "A former militant's apartment building.\n\n\n### Key Location (Second Floor)\n**Requires key** to access the second-floor apartment.\n\n\n### Loot\n\n- Gas masks\n\n- Camouflage gear\n\n- Ammunition\n\n**Tip**: The best loot is immediately to the right upon entering.\n\n*More details TBA*",
     "category": "Key Use Location",
     "id": "mjrvol1mdop1ngywhtc",
     "images": [
@@ -612,7 +612,7 @@
     "name": "Safe at Activity-Full",
     "x": 984,
     "y": 1950,
-    "description": "A safe located on the second to last floor of the Activity Full Sphere Solutions Office. When taking the first stairs, go left on the second to last floor. It should be on that side of the building.",
+    "description": "A **locked safe** on the second-to-last floor of Activity-Full Sphere Solutions.\n\n\n### Directions\n1. Take the first staircase\n2. Go **left** on the second-to-last floor\n3. Safe is on that side of the building",
     "category": "Key Use Location",
     "id": "mjrvoz6urfycx8xq8q",
     "images": [
@@ -630,7 +630,7 @@
     "name": "Westbridge Partners Office",
     "x": 1022,
     "y": 1634,
-    "description": "A large office building with two staircases leading up to the offices: one at the front-left (southwest) and one on the left side (northwest). Typically, 3–5 zombies spawn here, though the spawning can be quite aggressive. Zombies can appear on the opposite side of the building, so even if you’re standing on one side, they may spawn behind you.",
+    "description": "A large office building with **two staircases**.\n\n### Access Points\n- Front-left (southwest) staircase\n- Left side (northwest) staircase\n\n### Zombie Threat\n**3-5 zombies** typically spawn here, but spawning can be aggressive. Zombies may appear on the opposite side of the building.\n\n*Stay alert - they can spawn behind you.*",
     "category": "Building",
     "id": "mjrvpwtv3pnawe7s3dp",
     "images": [
@@ -644,7 +644,7 @@
     "name": "05 Key",
     "x": 1069,
     "y": 1544,
-    "description": "An office room accessible with the 05 key. Inside, you can frequently find 7.62 and 5.56 ammunition, weapons, as well as clothing and gas masks. Occasionally, other keys may also spawn here.\n\nOn the right side, near the windows, there is another enterable building directly across from this one. Proceed with caution.",
+    "description": "An office room accessible with the **05 Key**.\n\n\n### Common Loot\n\n- 7.62 and 5.56 ammunition\n\n- Weapons\n\n- Clothing and gas masks\n\n- Occasionally other keys\n\n\n### Warning\nAnother enterable building is directly across from this one on the right side, near the windows. *Proceed with caution.*",
     "category": "Key Use Location",
     "id": "mjrvq6fklicvyaavd9o",
     "images": [
@@ -662,7 +662,7 @@
     "name": "Dorisa",
     "x": 814,
     "y": 1833,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Building",
     "id": "mjrvqwzr30168dstyr8"
   },
@@ -670,7 +670,7 @@
     "name": "Maintance Key",
     "x": 845,
     "y": 1885,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Key Use Location",
     "id": "mjrvr8dbyfizchv9dae"
   },
@@ -678,7 +678,7 @@
     "name": "Enemy Location",
     "x": 885,
     "y": 1925,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Enemy Outpost",
     "id": "mjrvrqkf557nhfupfur"
   },
@@ -686,7 +686,7 @@
     "name": "Quill",
     "x": 852,
     "y": 1952,
-    "description": "A clothing store, can be used to access the maintance gate.",
+    "description": "A **clothing store** that provides access to the maintenance gate.",
     "category": "Building",
     "id": "mjrvrytly5lyzeir8k",
     "images": [
@@ -700,7 +700,7 @@
     "name": "Spawnpoint Near NYPlug",
     "x": 963,
     "y": 2239,
-    "description": "The spawn point is in the building next to NYPlug. Players can spawn on one of the upper floors, usually inside a room.",
+    "description": "Player spawn point in the building next to NYPlug.\n\nPlayers typically spawn on the **upper floors**, usually inside a room.",
     "category": "Spawnpoint",
     "id": "mjrvseahe6vji28wobj"
   },
@@ -708,7 +708,7 @@
     "name": "S William spawnpoint",
     "x": 675,
     "y": 1925,
-    "description": "Spawnpoint, pretty close to a extraction point.",
+    "description": "Player spawn point located **close to an extraction point**.",
     "category": "Spawnpoint",
     "id": "mjrvt84rqomx0v3io8",
     "images": [
@@ -722,7 +722,7 @@
     "name": "Enemy Outpost near whitehall extraction",
     "x": 733,
     "y": 1988,
-    "description": "An enemy outpost pretty much guarding the extraction point. Though only 2 basic enemies spawn here, but they can gain the attention of nearby zombies that can come out of the Quill clothing store.",
+    "description": "An enemy outpost **guarding the extraction point**.\n\n\n### Threat Level\n\n- Only **2 basic enemies** spawn here\n\n- They can alert zombies from the nearby Quill clothing store\n\n*Clear the outpost quietly to avoid attracting a horde.*",
     "category": "Enemy Outpost",
     "id": "mjrvtq3vt1itadzeuss",
     "images": [
@@ -736,7 +736,7 @@
     "name": "Office key",
     "x": 1197,
     "y": 2099,
-    "description": "A key used to access the third-floor office in Stone 6. This office often contains large ammunition boxes, 5.56 weapons, and food and water supplies.",
+    "description": "Key location for the **third-floor office in Stone 6**.\n\n\n### Common Loot\n\n- Large ammunition boxes\n\n- 5.56 weapons\n\n- Food and water supplies",
     "category": "Key Use Location",
     "id": "mjrvuh1xeb2sx6scjg",
     "images": [
@@ -754,7 +754,7 @@
     "name": "Zombie Nest Ground Zero 2 Garage",
     "x": 685,
     "y": 1561,
-    "description": "An underground garage system. The top level contains an improvised meeting room, accessible with a key. Below are two garage floors packed with cars and tight spaces. Clear out most zombies in the larger open areas as you move down to avoid getting ambushed while looting. Stealth isn’t an option here unless zombie numbers are low.",
+    "description": "An **underground garage system** filled with zombies.\n\n### Layout\n- **Top Level**: Improvised meeting room (key required)\n- **Lower Levels**: Two garage floors with cars and tight spaces\n\n### Strategy\nClear zombies in larger open areas before moving down. *Stealth is not viable unless zombie numbers are low.*",
     "category": "Zombie Nest",
     "id": "mjrvv68b48b96iwqjdc",
     "images": [
@@ -768,7 +768,7 @@
     "name": "Ground Zero 2 Quarantine Zone",
     "x": 784,
     "y": 1460,
-    "description": "A quarantine zone with an underground garage. The top level of the garage contains an improvised meeting room, accessible with a key. Below it are two more levels packed with cars, tight corners, and plenty of zombies.",
+    "description": "A quarantine zone featuring an **underground garage**.\n\n\n### Layout\n\n- **Top Level**: Improvised meeting room (key required)\n\n- **Lower Levels**: Two floors with cars, tight corners, and zombies\n\nExpect heavy zombie presence throughout.",
     "category": "Quarantine Zone",
     "id": "mjrvvish6y9sad2bfmb",
     "images": [
@@ -786,7 +786,7 @@
     "name": "Improvised Meeting Room",
     "x": 651,
     "y": 1564,
-    "description": "The improvised meeting room is located on the top floor of the Ground Zero 2 garage. When heading there, it’s best to use the west entrance and go straight to the garage. Silently take out the zombies in front and loot the room without being spotted, or you’ll aggro the horde below. The room usually contains ammo and medical supplies.",
+    "description": "A key-locked meeting room on the **top floor** of the Ground Zero 2 garage.\n\n### Best Approach\n1. Use the **west entrance**\n2. Go straight to the garage\n3. Silently eliminate zombies in front\n4. Loot without being spotted\n\n### Common Loot\n- Ammo\n- Medical supplies\n\n**Warning**: Getting spotted will aggro the horde below.",
     "category": "Key Use Location",
     "id": "mjrvw2jf49vtrwja4gr",
     "images": [
@@ -808,7 +808,7 @@
     "name": "Federal Reserve Bank of New York",
     "x": 775,
     "y": 1327,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Building",
     "id": "mjrvwm09mz9or34hjtp"
   },
@@ -816,7 +816,7 @@
     "name": "Quill Jewerly",
     "x": 777,
     "y": 1021,
-    "description": "Has already been ransacked however a locked room is in the back. Can only be accessed through the windows. (written by Nintendoboi2)",
+    "description": "A ransacked jewelry store with a **locked back room**.\n\n\n### Access\nCan only be entered through the **windows**.\n\n*(Contributed by Nintendoboi2)*",
     "category": "Key Use Location",
     "id": "mjrvxkgr2pbael5wj9q"
   },
@@ -824,7 +824,7 @@
     "name": "Spawn Location",
     "x": 966,
     "y": 885,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Spawnpoint",
     "id": "mjrvy7p30pd1dveub0i"
   },
@@ -832,7 +832,7 @@
     "name": "Ground Zero Bandit Camp",
     "x": 1015,
     "y": 838,
-    "description": "Small bandit camp, they hold down a gate that leads into ground zero. Gate requires a key. Has 3 bandits, one of them roams into the parking lot across.\n\nStash Spot for the distraction device in Wetwork, pt. 4\n  (written by Nintendoboi2)",
+    "description": "A small bandit camp guarding a **gate to Ground Zero**.\n\n\n### Enemy Count\n\n- **3 bandits** total\n\n- One roams into the parking lot across\n\n\n### Gate Access\nRequires a **key** to open.\n\n\n### Mission Objective\n**Stash spot** for the distraction device in *Wetwork, pt. 4*\n\n*(Contributed by Nintendoboi2)*",
     "category": "Enemy Outpost",
     "id": "mjrvyhprb84kvtssp2a",
     "images": [
@@ -846,7 +846,7 @@
     "name": "Gate",
     "x": 1035,
     "y": 821,
-    "description": "The gate that leads into Ground Zero Quarantine zone. Protected by 3 bandits. Can be opened using a key.",
+    "description": "The main gate leading into **Ground Zero Quarantine Zone**.\n\n\n### Security\n\n- Protected by **3 bandits**\n\n- Requires a **key** to open",
     "category": "Key Use Location",
     "id": "mjrvypk5pxrrb4sh73",
     "images": [
@@ -860,7 +860,7 @@
     "name": "Armory",
     "x": 1504,
     "y": 1356,
-    "description": "Here you can use the armory key, located at the lowest floor.",
+    "description": "The **armory** is located on the **lowest floor**. Requires the armory key to access.",
     "category": "Key Use Location",
     "id": "mjrvzhe8153uoqgvi28",
     "images": [
@@ -874,7 +874,7 @@
     "name": "Zombie Nest",
     "x": 1504,
     "y": 1321,
-    "description": "This zombie nest is located in and beneath a garage. Large numbers of zombies spawn here, so it’s best to enter during the day. The area can be accessed from the southeast and the northwest.",
+    "description": "A zombie nest located **in and beneath a garage**.\n\n### Spawn Info\nLarge numbers of zombies spawn here. *Enter during daytime for best results.*\n\n### Access Points\n- Southeast entrance\n- Northwest entrance\n\n**Heavy zombie activity.**",
     "category": "Zombie Nest",
     "id": "mjrvzs8dbgpc1cacni",
     "images": [
@@ -892,7 +892,7 @@
     "name": "Quarantine Zone Military Checkpoint",
     "x": 1612,
     "y": 1311,
-    "description": "A quarantine zone that includes a military checkpoint. Many militant zombies spawn here. There is also an underground system which seems to be a garage next to it where the armory is located on the lowest floor. An M249 usually spawns next to it there, along with other valuable items. More info TBA",
+    "description": "A quarantine zone with a **military checkpoint**.\n\n\n### Enemies\nMany **militant zombies** spawn here.\n\n\n### Armory Location\nUnderground garage on the lowest floor. **M249** usually spawns nearby, along with other valuable items.\n\n\n### Recommended Entry\nUse the **back entrance** next to the basketball field.\n\n*More details TBA*",
     "category": "Quarantine Zone",
     "id": "mjrw01k5pt8lvq0z0c",
     "images": [
@@ -910,7 +910,7 @@
     "name": "Cities service buildings",
     "x": 1433,
     "y": 1006,
-    "description": "This hotel has a jewelry store, 2 cafes, and a clothing store. The jewelry store wasn't fully ransacked and some loot can be found inside. The two stairs on the right side are buggy and allow the player to somewhat \"clip\" inside of them when crouched. (written by nintendoboi2)",
+    "description": "A hotel complex with multiple stores.\n\n\n### Shops Inside\n\n- Jewelry store (partially ransacked, some loot remains)\n\n- 2 cafes\n\n- Clothing store\n\n\n### Bug Note\nThe two stairs on the right side are buggy - players can partially clip inside when crouched.\n\n*(Contributed by Nintendoboi2)*",
     "category": "Building",
     "id": "mjrw0f5rf810z62ai7",
     "images": [
@@ -924,7 +924,7 @@
     "name": "RDII Mega Solution",
     "x": 1315,
     "y": 1126,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Building",
     "id": "mjrw10kjfs3ptbcfmuh"
   },
@@ -932,7 +932,7 @@
     "name": "Spawn Location",
     "x": 1291,
     "y": 1130,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Spawnpoint",
     "id": "mjrw1c2nj7fo9rackf"
   },
@@ -940,7 +940,7 @@
     "name": "Enemy Location",
     "x": 953,
     "y": 1150,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Enemy Outpost",
     "id": "mjrw1r1ewvq9wl4885c"
   },
@@ -948,7 +948,7 @@
     "name": "Spawnpoint broadway 646",
     "x": 1557,
     "y": 1590,
-    "description": "Players can spawn here. (multiple spawn locations inside of the building)",
+    "description": "Player spawn location with **multiple spawn points** inside the building.",
     "category": "Spawnpoint",
     "images": [
       {
@@ -966,7 +966,7 @@
     "name": "646 Broadway",
     "x": 1539,
     "y": 1570,
-    "description": "A fairly large apartment building. On the second-to-last floor, there is a long hallway that leads to another set of stairs outside the building. Using these stairs, you can reach the top floor if you have the key. Be cautious, as there is a zombie nest right next to it. Zombies may spawn in large numbers outside the nest and can spot you from the stairs.",
+    "description": "A large apartment building with **rooftop access**.\n\n\n### Building Layout\n\n- Second-to-last floor has a long hallway leading to **outside stairs**\n\n- Top floor requires a **key** to access\n\n\n### Warning\nA **zombie nest** is right next to the building. Zombies may spawn in large numbers and can spot you from the stairs.",
     "category": "Building",
     "images": [
       {
@@ -992,7 +992,7 @@
     "name": "Pearl street camp",
     "x": 1372,
     "y": 1901,
-    "description": "A sheepdog camp, about 5+ enemies. More info TBA.",
+    "description": "A **Sheepdog faction camp** with **5+ enemies**.\n\n*More details TBA*",
     "category": "Enemy Outpost",
     "id": "mjt40ao50mx9h7pcc3j",
     "images": [
@@ -1006,7 +1006,7 @@
     "name": "Carl's Cars",
     "x": 1812,
     "y": 1967,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Building",
     "images": [
       {
@@ -1020,7 +1020,7 @@
     "name": "Soren Aurore",
     "x": 1716,
     "y": 1877,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Building",
     "images": [
       {
@@ -1034,7 +1034,7 @@
     "name": "Whitehall Spawnpoint",
     "x": 533,
     "y": 1775,
-    "description": "",
+    "description": "Player spawn location near Whitehall.",
     "category": "Spawnpoint",
     "images": [
       {
@@ -1052,7 +1052,7 @@
     "name": "Spawnpoint Acitivity Full",
     "x": 974,
     "y": 1982,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Spawnpoint",
     "images": [
       {
@@ -1066,7 +1066,7 @@
     "name": "metro station Southwest",
     "x": 1609,
     "y": 2132,
-    "description": "A underground metro station. Usually contains lots of medical items as well as ammo and rare loot. Gas mask is required. Be aware that lots of zombies can spawn here.",
+    "description": "An **underground metro station** with valuable loot.\n\n\n### Common Loot\n\n- Medical items\n\n- Ammunition\n\n- Rare loot\n\n\n### Requirements\n**Gas mask required**\n\n\n### Warning\nHigh zombie spawn rate. *Come prepared.*",
     "category": "Subway Station",
     "images": [
       {
@@ -1080,7 +1080,7 @@
     "name": "Residence Front/Dover",
     "x": 2000,
     "y": 183,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Building",
     "images": [
       {
@@ -1094,7 +1094,7 @@
     "name": "Subway Station Outside Ground Zero/Hospital",
     "x": 1824,
     "y": 777,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Subway Station",
     "id": "mjz2g22gnhk3y5uk0yb"
   },
@@ -1102,7 +1102,7 @@
     "name": "Subway Station Inside Ground Zero/Hospital",
     "x": 1535,
     "y": 737,
-    "description": "TBA",
+    "description": "*TBA*",
     "category": "Subway Station",
     "id": "mjz2gox8a8bupwe6f0n"
   },
@@ -1110,7 +1110,7 @@
     "name": "Fallen Construction Crane",
     "x": 1614,
     "y": 1563,
-    "description": "A fallen down construction crane, you can still pass trough though.",
+    "description": "A **fallen construction crane** blocking the road. *You can still pass through.*",
     "category": "Landmark",
     "id": "mjztyhvdjwl1kgf5x9",
     "images": [
@@ -1124,7 +1124,7 @@
     "name": "Emergency Exit 646 Broadway",
     "x": 1533,
     "y": 1487,
-    "description": "Here you can use the key for the emergency exit at the top floor of 646 broadway. Can only be accessed using the outside stairs.",
+    "description": "Key location for the **emergency exit** at the top floor of 646 Broadway.\n\n\n### Access\nCan only be reached using the **outside stairs**.",
     "category": "Key Use Location",
     "images": [
       {
@@ -1142,7 +1142,7 @@
     "name": "Ground Zero Quarantine Zone",
     "x": 1510,
     "y": 586,
-    "description": "The largest quarantine zone, Ground Zero. It contains the biggest explorable building, Metro New York Hospital. \nThe zone can be accessed from the southeast via the Southbridge Towers, from the northwest through a key-required gate, or from the southeast using the subway station at the intersection of Pine and Water Street.",
+    "description": "The **largest quarantine zone** containing the biggest explorable building: **Metro New York Hospital**.\n\n\n### Access Points\n\n- **Southeast**: Via Southbridge Towers\n\n- **Northwest**: Key-required gate\n\n- **Southeast**: Subway station at Pine/Water Street intersection",
     "category": "Quarantine Zone",
     "id": "mk30bc0959csc4m45a"
   },
@@ -1150,7 +1150,7 @@
     "name": "Pine Apartment Complex",
     "x": 1073,
     "y": 920,
-    "description": "Has 4ish zombies. An exit leading NW onto William and SE onto Broad. A bandit camp is outside on the NW side along with a survivor spawn and infiltration point. Has 5 floors with rooftop access and a emergency fire exit on the NW side. On the NE side is a police checkpoint with a SWAT van.\n (Written by Nintendoboi2)",
+    "description": "A **5-floor apartment complex** with rooftop access.\n\n### Building Features\n- Exit NW onto William Street\n- Exit SE onto Broad Street\n- Emergency fire exit on NW side\n- Police checkpoint with SWAT van on NE side\n\n### Nearby Threats\n- Bandit camp outside (NW side)\n- Survivor spawn point\n- Infiltration point\n\n### Zombies\n**~4 zombies** inside.\n\n*(Contributed by Nintendoboi2)*",
     "category": "Building",
     "images": [
       {
@@ -1164,7 +1164,7 @@
     "name": "Lucia & Proxy's Midnight Cafe Safehouse",
     "x": 867,
     "y": 971,
-    "description": "Small Cafe located on William. Has no zombies and a small back room. (written by nintendoboi2)",
+    "description": "A **small cafe** located on William Street.\n\n\n### Features\n\n- **No zombies** inside\n\n- Small back room for cover\n\n*(Contributed by Nintendoboi2)*",
     "category": "Building",
     "id": "mk31ns977xd9nnm7cpx"
   },
@@ -1172,7 +1172,7 @@
     "name": "Watson and Stone Hotel Safehouse",
     "x": 1215,
     "y": 1012,
-    "description": "A hotel located on Wall and Broad. Has a few zombies inside. Has 3 floors with zombies on every level. Strangely the TV's are on in all rooms. The second and third floors only have one room each. (written by nintendoboi2)",
+    "description": "A hotel located at **Wall and Broad**.\n\n\n### Building Layout\n\n- **3 floors** with zombies on every level\n\n- Second and third floors have only one room each\n\n\n### Oddity\nThe TVs are on in all rooms.\n\n*(Contributed by Nintendoboi2)*",
     "category": "Building",
     "images": [
       {
@@ -1186,7 +1186,7 @@
     "name": "Stone 8 Spawnpoint",
     "x": 1264,
     "y": 1981,
-    "description": "This is a player spawnpoint",
+    "description": "A **player spawn location** near Stone 8.",
     "category": "Spawnpoint",
     "id": "mk31yzwbcqgg8iwal6c"
   },
@@ -1194,7 +1194,7 @@
     "name": "Maiden Alleyway Bandit Camp",
     "x": 974,
     "y": 1517,
-    "description": "Small bandit camp with 3 bandits.\n(written by Nintendoboi2)",
+    "description": "A small bandit camp with **3 bandits**.\n\n*(Contributed by Nintendoboi2)*",
     "category": "Enemy Outpost",
     "images": [
       {
@@ -1208,7 +1208,7 @@
     "name": "Gym Panda",
     "x": 1067,
     "y": 1642,
-    "description": "",
+    "description": "*TBA*",
     "category": "Building",
     "images": [
       {

@@ -14,6 +14,14 @@ interface ChangelogEntry {
 
 const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.4.0',
+    date: '2026-01-07',
+    changes: [
+      'Updated location descriptions to markdown format for better readability',
+      'Large update to the admin panel',
+    ],
+  },
+  {
     version: '1.3.3',
     date: '2026-01-06',
     changes: [

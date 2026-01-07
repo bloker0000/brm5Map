@@ -66,6 +66,32 @@ export function Tooltip({ location, mousePosition }: TooltipProps) {
 
   const color = CATEGORY_COLORS[location.category];
   const currentImage = images[currentImageIndex];
+  
+  const getPreviewText = () => {
+    if (location.shortDescription) {
+      return location.shortDescription;
+    }
+    const desc = location.description || '';
+    const plainText = desc
+      .replace(/#{1,6}\s/g, '')
+      .replace(/\*\*/g, '')
+      .replace(/\*/g, '')
+      .replace(/~~.*?~~/g, '')
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/`/g, '')
+      .replace(/>\s?/g, '')
+      .replace(/---/g, '')
+      .replace(/-\s/g, '')
+      .replace(/\n+/g, ' ')
+      .trim();
+    
+    if (plainText.length > 80) {
+      return plainText.substring(0, 77) + '...';
+    }
+    return plainText;
+  };
+
+  const previewText = getPreviewText();
 
   return (
     <div
@@ -98,6 +124,9 @@ export function Tooltip({ location, mousePosition }: TooltipProps) {
         <span className="tooltip-name">{location.name}</span>
       </div>
       <div className="tooltip-category">{location.category}</div>
+      {previewText && (
+        <div className="tooltip-preview">{previewText}</div>
+      )}
       {hasMultipleImages && (
         <div className="tooltip-image-count">
           {images.length} images

@@ -257,6 +257,163 @@
   font-size: 0.9rem;
 }
 
+.modal-description h1,
+.modal-description h2,
+.modal-description h3,
+.modal-description h4 {
+  font-family: var(--font-display);
+  color: var(--brm-text);
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.modal-description h1 {
+  font-size: 1.3rem;
+  color: var(--modal-color);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--brm-border);
+  margin-bottom: 16px;
+}
+
+.modal-description h2 {
+  font-size: 1.1rem;
+  color: var(--brm-accent);
+  margin-top: 20px;
+}
+
+.modal-description h3 {
+  font-size: 0.95rem;
+}
+
+.modal-description h4 {
+  font-size: 0.85rem;
+  color: var(--brm-text-dim);
+}
+
+.modal-description p {
+  margin: 0 0 12px 0;
+  color: var(--brm-text-dim);
+}
+
+.modal-description p:last-child {
+  margin-bottom: 0;
+}
+
+.modal-description ul,
+.modal-description ol {
+  margin: 0 0 12px 0;
+  padding-left: 24px;
+  color: var(--brm-text-dim);
+}
+
+.modal-description li {
+  margin-bottom: 6px;
+}
+
+.modal-description li::marker {
+  color: var(--modal-color);
+}
+
+.modal-description blockquote {
+  margin: 12px 0;
+  padding: 12px 16px;
+  background: rgba(212, 165, 68, 0.08);
+  border-left: 3px solid var(--brm-accent);
+  color: var(--brm-text-dim);
+  font-style: italic;
+}
+
+.modal-description blockquote p {
+  margin: 0;
+}
+
+.modal-description hr {
+  border: none;
+  border-top: 1px solid var(--brm-border);
+  margin: 16px 0;
+}
+
+.modal-description a {
+  color: var(--brm-accent);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.modal-description a:hover {
+  color: var(--brm-accent-hover);
+  text-decoration: underline;
+}
+
+.modal-description code {
+  background: var(--brm-bg-element);
+  padding: 2px 6px;
+  font-size: 0.85em;
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.modal-description pre {
+  background: var(--brm-bg-dark);
+  border: 1px solid var(--brm-border);
+  padding: 12px 16px;
+  margin: 12px 0;
+  overflow-x: auto;
+}
+
+.modal-description pre code {
+  background: none;
+  padding: 0;
+}
+
+.modal-description strong {
+  color: var(--brm-text);
+  font-weight: 600;
+}
+
+.modal-description em {
+  color: var(--brm-text-dim);
+  font-style: italic;
+}
+
+.modal-description del {
+  color: var(--brm-text-muted);
+}
+
+.modal-description table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 0.85rem;
+}
+
+.modal-description th,
+.modal-description td {
+  padding: 8px 12px;
+  border: 1px solid var(--brm-border);
+  text-align: left;
+}
+
+.modal-description th {
+  background: var(--brm-bg-dark);
+  color: var(--brm-text);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.modal-description td {
+  background: var(--brm-bg-element);
+}
+
+.modal-description img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 12px 0;
+  border: 1px solid var(--brm-border);
+}
+
 .modal-coords {
   padding: 16px 24px;
   background: var(--brm-bg-dark);

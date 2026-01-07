@@ -505,12 +505,6 @@ export function InteractiveMap({
         />
       </div>
 
-      {isAdminMode && (
-        <div className="admin-mode-indicator">
-          Click on map to set coordinates
-        </div>
-      )}
-
       <div className="rotation-display">
         <span className="rotation-label">Rotation:</span>
         <span className="rotation-value">{(() => {

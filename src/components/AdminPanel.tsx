@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { MapLocation, LocationCategory, LocationImage } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
-import { CloseIcon, CrosshairIcon } from './Icons';
+import { CloseIcon, CrosshairIcon, CategoryIcon } from './Icons';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import './AdminPanel.css';
 
 const ALL_CATEGORIES: LocationCategory[] = [
@@ -30,6 +32,9 @@ interface AdminPanelProps {
   clickPosition: { x: number; y: number } | null;
 }
 
+type ViewMode = 'list' | 'add' | 'edit';
+type EditorTab = 'basic' | 'content' | 'images';
+
 export function AdminPanel({
   isOpen,
   onClose,
@@ -39,16 +44,23 @@ export function AdminPanel({
   onDelete,
   clickPosition,
 }: AdminPanelProps) {
-  const [mode, setMode] = useState<'list' | 'add' | 'edit'>('list');
+  const [mode, setMode] = useState<ViewMode>('list');
   const [editingLocation, setEditingLocation] = useState<MapLocation | null>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [activeTab, setActiveTab] = useState<EditorTab>('basic');
+  const [showPreview, setShowPreview] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filterCategory, setFilterCategory] = useState<LocationCategory | 'all'>('all');
   const [formData, setFormData] = useState({
     name: '',
     x: 0,
     y: 0,
     description: '',
+    shortDescription: '',
     category: 'Other' as LocationCategory,
     images: [] as LocationImage[],
   });
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (clickPosition && (mode === 'add' || mode === 'edit')) {
@@ -60,16 +72,25 @@ export function AdminPanel({
     }
   }, [clickPosition, mode]);
 
+  useEffect(() => {
+    if (mode === 'add' || mode === 'edit') {
+      setIsExpanded(true);
+    }
+  }, [mode]);
+
   const resetForm = () => {
     setFormData({
       name: '',
       x: 0,
       y: 0,
       description: '',
+      shortDescription: '',
       category: 'Other',
       images: [],
     });
     setEditingLocation(null);
+    setActiveTab('basic');
+    setShowPreview(false);
   };
 
   const handleStartAdd = () => {
@@ -82,6 +103,7 @@ export function AdminPanel({
       }));
     }
     setMode('add');
+    setIsExpanded(true);
   };
 
   const handleStartEdit = (location: MapLocation) => {
@@ -96,24 +118,25 @@ export function AdminPanel({
       x: location.x,
       y: location.y,
       description: location.description,
+      shortDescription: location.shortDescription || '',
       category: location.category,
       images,
     });
     setMode('edit');
+    setIsExpanded(true);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!formData.name.trim()) return;
 
     const validImages = formData.images.filter(img => img.url.trim() !== '');
-
     const locationData = {
       name: formData.name.trim(),
       x: formData.x,
       y: formData.y,
       description: formData.description.trim(),
+      shortDescription: formData.shortDescription.trim() || undefined,
       category: formData.category,
       images: validImages.length > 0 ? validImages : undefined,
     };
@@ -126,6 +149,13 @@ export function AdminPanel({
 
     resetForm();
     setMode('list');
+    setIsExpanded(false);
+  };
+
+  const handleCancel = () => {
+    resetForm();
+    setMode('list');
+    setIsExpanded(false);
   };
 
   const handleAddImage = () => {
@@ -149,6 +179,14 @@ export function AdminPanel({
       ...prev,
       images: prev.images.filter((_, i) => i !== index),
     }));
+  };
+
+  const handleMoveImage = (index: number, direction: 'up' | 'down') => {
+    const newImages = [...formData.images];
+    const newIndex = direction === 'up' ? index - 1 : index + 1;
+    if (newIndex < 0 || newIndex >= newImages.length) return;
+    [newImages[index], newImages[newIndex]] = [newImages[newIndex], newImages[index]];
+    setFormData(prev => ({ ...prev, images: newImages }));
   };
 
   const handleDelete = (id: string) => {
@@ -183,12 +221,13 @@ export function AdminPanel({
               x: loc.x,
               y: loc.y,
               description: loc.description,
+              shortDescription: loc.shortDescription,
               category: loc.category,
-              image: loc.image,
+              images: loc.images,
             });
           });
         }
-      } catch (err) {
+      } catch {
         alert('Failed to import locations. Invalid JSON format.');
       }
     };
@@ -196,179 +235,476 @@ export function AdminPanel({
     e.target.value = '';
   };
 
+  const insertMarkdown = (syntax: string, wrap: boolean = false) => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const text = formData.description;
+    const selectedText = text.substring(start, end);
+
+    let newText: string;
+    let newCursorPos: number;
+
+    if (wrap && selectedText) {
+      newText = text.substring(0, start) + syntax + selectedText + syntax + text.substring(end);
+      newCursorPos = end + syntax.length * 2;
+    } else {
+      newText = text.substring(0, start) + syntax + text.substring(end);
+      newCursorPos = start + syntax.length;
+    }
+
+    setFormData(prev => ({ ...prev, description: newText }));
+    setTimeout(() => {
+      textarea.focus();
+      textarea.setSelectionRange(newCursorPos, newCursorPos);
+    }, 0);
+  };
+
+  const filteredLocations = locations.filter(loc => {
+    const matchesSearch = loc.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         loc.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = filterCategory === 'all' || loc.category === filterCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  const sortedLocations = [...filteredLocations].sort((a, b) => a.name.localeCompare(b.name));
+
   if (!isOpen) return null;
 
   return (
-    <div className="admin-overlay">
+    <div className={`admin-overlay ${isExpanded ? 'expanded' : ''}`}>
       <div className="admin-panel">
         <div className="admin-header">
-          <h2 className="admin-title">Admin Panel</h2>
-          <button className="admin-close" onClick={onClose}>
-            <CloseIcon size={20} />
-          </button>
+          <div className="admin-header-left">
+            <h2 className="admin-title">
+              <span className="admin-title-icon">⚙</span>
+              Admin Panel
+            </h2>
+            {mode !== 'list' && (
+              <span className="admin-mode-badge">
+                {mode === 'add' ? 'Adding' : 'Editing'}
+              </span>
+            )}
+          </div>
+          <div className="admin-header-actions">
+            {(mode === 'add' || mode === 'edit') && (
+              <button 
+                className={`admin-toggle-expand ${isExpanded ? 'active' : ''}`}
+                onClick={() => setIsExpanded(!isExpanded)}
+                title={isExpanded ? 'Collapse panel' : 'Expand panel'}
+              >
+                {isExpanded ? '◀' : '▶'}
+              </button>
+            )}
+            <button className="admin-close" onClick={onClose}>
+              <CloseIcon size={20} />
+            </button>
+          </div>
         </div>
 
         {mode === 'list' && (
-          <>
-            <div className="admin-actions">
+          <div className="admin-list-view">
+            <div className="admin-toolbar">
               <button className="admin-btn primary" onClick={handleStartAdd}>
+                <span className="btn-icon">+</span>
                 Add Location
               </button>
-              <button className="admin-btn" onClick={handleExport}>
-                Export
-              </button>
-              <label className="admin-btn">
-                Import
-                <input
-                  type="file"
-                  accept=".json"
-                  onChange={handleImport}
-                  style={{ display: 'none' }}
-                />
-              </label>
+              <div className="admin-toolbar-group">
+                <button className="admin-btn" onClick={handleExport} title="Export locations">
+                  <span className="btn-icon">↓</span>
+                  Export
+                </button>
+                <label className="admin-btn" title="Import locations">
+                  <span className="btn-icon">↑</span>
+                  Import
+                  <input
+                    type="file"
+                    accept=".json"
+                    onChange={handleImport}
+                    style={{ display: 'none' }}
+                  />
+                </label>
+              </div>
             </div>
 
             {clickPosition && (
               <div className="admin-click-info">
-                <CrosshairIcon size={14} /> X: {Math.round(clickPosition.x)}, Y: {Math.round(clickPosition.y)}
+                <CrosshairIcon size={14} />
+                <span>Clicked: X: {Math.round(clickPosition.x)}, Y: {Math.round(clickPosition.y)}</span>
               </div>
             )}
 
-            <div className="admin-list">
-              <div className="admin-list-header">
-                {locations.length} location{locations.length !== 1 ? 's' : ''}
+            <div className="admin-filters">
+              <div className="admin-search">
+                <input
+                  type="text"
+                  placeholder="Search locations..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                {searchQuery && (
+                  <button className="admin-search-clear" onClick={() => setSearchQuery('')}>×</button>
+                )}
               </div>
-              {locations.map((loc) => (
+              <select
+                className="admin-filter-select"
+                value={filterCategory}
+                onChange={(e) => setFilterCategory(e.target.value as LocationCategory | 'all')}
+              >
+                <option value="all">All Categories</option>
+                {ALL_CATEGORIES.map(cat => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="admin-list-header">
+              <span className="admin-list-count">
+                {sortedLocations.length} location{sortedLocations.length !== 1 ? 's' : ''}
+                {(searchQuery || filterCategory !== 'all') && ` (filtered)`}
+              </span>
+            </div>
+
+            <div className="admin-list">
+              {sortedLocations.map((loc) => (
                 <div
                   key={loc.id}
                   className="admin-list-item"
                   style={{ '--item-color': CATEGORY_COLORS[loc.category] } as React.CSSProperties}
                 >
+                  <div className="admin-list-item-icon">
+                    <CategoryIcon category={loc.category} size={18} color={CATEGORY_COLORS[loc.category]} />
+                  </div>
                   <div className="admin-list-item-info">
                     <div className="admin-list-item-name">{loc.name}</div>
                     <div className="admin-list-item-meta">
-                      {loc.category} ({loc.x}, {loc.y})
+                      <span className="admin-list-item-category">{loc.category}</span>
+                      <span className="admin-list-item-coords">({loc.x}, {loc.y})</span>
+                      {loc.images && loc.images.length > 0 && (
+                        <span className="admin-list-item-images">📷 {loc.images.length}</span>
+                      )}
                     </div>
                   </div>
                   <div className="admin-list-item-actions">
-                    <button onClick={() => handleStartEdit(loc)}>Edit</button>
-                    <button className="danger" onClick={() => handleDelete(loc.id)}>
-                      Del
+                    <button className="admin-item-btn edit" onClick={() => handleStartEdit(loc)} title="Edit">
+                      ✎
+                    </button>
+                    <button className="admin-item-btn delete" onClick={() => handleDelete(loc.id)} title="Delete">
+                      ×
                     </button>
                   </div>
                 </div>
               ))}
+              {sortedLocations.length === 0 && (
+                <div className="admin-list-empty">
+                  {searchQuery || filterCategory !== 'all' 
+                    ? 'No locations match your filters'
+                    : 'No locations yet. Click "Add Location" to create one.'}
+                </div>
+              )}
             </div>
-          </>
+          </div>
         )}
 
         {(mode === 'add' || mode === 'edit') && (
-          <form className="admin-form" onSubmit={handleSubmit}>
-            <div className="admin-form-title">
-              {mode === 'add' ? 'Add New Location' : 'Edit Location'}
-            </div>
-
-            <div className="admin-form-hint">
-              <CrosshairIcon size={14} /> Click on the map to set coordinates
-            </div>
-
-            <label className="admin-field">
-              <span>Name</span>
-              <input
-                type="text"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                required
-              />
-            </label>
-
-            <div className="admin-field-row">
-              <label className="admin-field">
-                <span>X</span>
-                <input
-                  type="number"
-                  value={formData.x}
-                  onChange={(e) => setFormData({ ...formData, x: Number(e.target.value) })}
-                  required
-                />
-              </label>
-              <label className="admin-field">
-                <span>Y</span>
-                <input
-                  type="number"
-                  value={formData.y}
-                  onChange={(e) => setFormData({ ...formData, y: Number(e.target.value) })}
-                  required
-                />
-              </label>
-            </div>
-
-            <label className="admin-field">
-              <span>Category</span>
-              <select
-                value={formData.category}
-                onChange={(e) =>
-                  setFormData({ ...formData, category: e.target.value as LocationCategory })
-                }
+          <div className="admin-editor">
+            <div className="admin-editor-tabs">
+              <button 
+                className={`admin-tab ${activeTab === 'basic' ? 'active' : ''}`}
+                onClick={() => setActiveTab('basic')}
               >
-                {ALL_CATEGORIES.map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat}
-                  </option>
-                ))}
-              </select>
-            </label>
+                Basic Info
+              </button>
+              <button 
+                className={`admin-tab ${activeTab === 'content' ? 'active' : ''}`}
+                onClick={() => setActiveTab('content')}
+              >
+                Description
+              </button>
+              <button 
+                className={`admin-tab ${activeTab === 'images' ? 'active' : ''}`}
+                onClick={() => setActiveTab('images')}
+              >
+                Images ({formData.images.length})
+              </button>
+            </div>
 
-            <label className="admin-field">
-              <span>Description</span>
-              <textarea
-                value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                rows={4}
-              />
-            </label>
+            <form className="admin-form" onSubmit={handleSubmit}>
+              {activeTab === 'basic' && (
+                <div className="admin-tab-content">
+                  <div className="admin-form-hint">
+                    <CrosshairIcon size={14} />
+                    <span>Click on the map to set coordinates</span>
+                  </div>
 
-            <div className="admin-field">
-              <span>Images</span>
-              <div className="admin-images-list">
-                {formData.images.map((img, index) => (
-                  <div key={index} className="admin-image-item">
+                  <div className="admin-field">
+                    <label>Name</label>
                     <input
                       type="text"
-                      value={img.url}
-                      onChange={(e) => handleUpdateImage(index, 'url', e.target.value)}
-                      placeholder="Image URL"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      placeholder="Location name"
+                      required
                     />
-                    <input
-                      type="text"
-                      value={img.description || ''}
-                      onChange={(e) => handleUpdateImage(index, 'description', e.target.value)}
-                      placeholder="Description (optional)"
-                    />
-                    <button
-                      type="button"
-                      className="admin-image-remove"
-                      onClick={() => handleRemoveImage(index)}
+                  </div>
+
+                  <div className="admin-field-row">
+                    <div className="admin-field">
+                      <label>X Coordinate</label>
+                      <input
+                        type="number"
+                        value={formData.x}
+                        onChange={(e) => setFormData({ ...formData, x: Number(e.target.value) })}
+                        required
+                      />
+                    </div>
+                    <div className="admin-field">
+                      <label>Y Coordinate</label>
+                      <input
+                        type="number"
+                        value={formData.y}
+                        onChange={(e) => setFormData({ ...formData, y: Number(e.target.value) })}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="admin-field">
+                    <label>Category</label>
+                    <select
+                      value={formData.category}
+                      onChange={(e) => setFormData({ ...formData, category: e.target.value as LocationCategory })}
                     >
-                      <CloseIcon size={14} />
+                      {ALL_CATEGORIES.map((cat) => (
+                        <option key={cat} value={cat}>{cat}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="admin-field">
+                    <label>
+                      Hover Preview Text
+                      <span className="admin-field-hint">(Shows when hovering over pin)</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.shortDescription}
+                      onChange={(e) => setFormData({ ...formData, shortDescription: e.target.value })}
+                      placeholder="Brief description for tooltip (optional)"
+                      maxLength={100}
+                    />
+                    <span className="admin-char-count">{formData.shortDescription.length}/100</span>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'content' && (
+                <div className="admin-tab-content">
+                  <div className="admin-content-header">
+                    <div className="admin-content-toolbar">
+                      <button type="button" onClick={() => insertMarkdown('**', true)} title="Bold">
+                        <strong>B</strong>
+                      </button>
+                      <button type="button" onClick={() => insertMarkdown('*', true)} title="Italic">
+                        <em>I</em>
+                      </button>
+                      <button type="button" onClick={() => insertMarkdown('~~', true)} title="Strikethrough">
+                        <s>S</s>
+                      </button>
+                      <span className="toolbar-divider" />
+                      <button type="button" onClick={() => insertMarkdown('# ')} title="Heading 1">
+                        H1
+                      </button>
+                      <button type="button" onClick={() => insertMarkdown('## ')} title="Heading 2">
+                        H2
+                      </button>
+                      <button type="button" onClick={() => insertMarkdown('### ')} title="Heading 3">
+                        H3
+                      </button>
+                      <span className="toolbar-divider" />
+                      <button type="button" onClick={() => insertMarkdown('- ')} title="Bullet List">
+                        •
+                      </button>
+                      <button type="button" onClick={() => insertMarkdown('1. ')} title="Numbered List">
+                        1.
+                      </button>
+                      <button type="button" onClick={() => insertMarkdown('> ')} title="Quote">
+                        "
+                      </button>
+                      <span className="toolbar-divider" />
+                      <button type="button" onClick={() => insertMarkdown('\n---\n')} title="Divider">
+                        ─
+                      </button>
+                      <button type="button" onClick={() => insertMarkdown('[text](url)')} title="Link">
+                        🔗
+                      </button>
+                    </div>
+                    <button 
+                      type="button"
+                      className={`admin-preview-toggle ${showPreview ? 'active' : ''}`}
+                      onClick={() => setShowPreview(!showPreview)}
+                    >
+                      {showPreview ? '✎ Edit' : '👁 Preview'}
                     </button>
                   </div>
-                ))}
-                <button type="button" className="admin-btn" onClick={handleAddImage}>
-                  + Add Image
+
+                  <div className={`admin-content-editor ${showPreview ? 'preview-mode' : ''}`}>
+                    {!showPreview ? (
+                      <textarea
+                        ref={textareaRef}
+                        value={formData.description}
+                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                        placeholder="Enter description with Markdown formatting...
+
+Examples:
+# Main Heading
+## Sub Heading
+
+**Bold text** and *italic text*
+
+- Bullet point 1
+- Bullet point 2
+
+> Quote block
+
+---
+
+[Link text](https://example.com)"
+                        rows={isExpanded ? 20 : 10}
+                      />
+                    ) : (
+                      <div className="admin-preview-content">
+                        <Markdown remarkPlugins={[remarkGfm]}>
+                          {formData.description || '*No content yet*'}
+                        </Markdown>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="admin-markdown-help">
+                    <details>
+                      <summary>Markdown Help</summary>
+                      <div className="markdown-help-content">
+                        <div className="markdown-help-row">
+                          <code>**bold**</code>
+                          <span><strong>bold</strong></span>
+                        </div>
+                        <div className="markdown-help-row">
+                          <code>*italic*</code>
+                          <span><em>italic</em></span>
+                        </div>
+                        <div className="markdown-help-row">
+                          <code># Heading</code>
+                          <span>Large heading</span>
+                        </div>
+                        <div className="markdown-help-row">
+                          <code>- item</code>
+                          <span>Bullet point</span>
+                        </div>
+                        <div className="markdown-help-row">
+                          <code>[text](url)</code>
+                          <span>Link</span>
+                        </div>
+                        <div className="markdown-help-row">
+                          <code>---</code>
+                          <span>Horizontal line</span>
+                        </div>
+                      </div>
+                    </details>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'images' && (
+                <div className="admin-tab-content">
+                  <div className="admin-images-header">
+                    <p>Add images to showcase the location. First image will be the main thumbnail.</p>
+                    <button type="button" className="admin-btn primary" onClick={handleAddImage}>
+                      <span className="btn-icon">+</span>
+                      Add Image
+                    </button>
+                  </div>
+
+                  <div className="admin-images-list">
+                    {formData.images.map((img, index) => (
+                      <div key={index} className="admin-image-card">
+                        <div className="admin-image-card-header">
+                          <span className="admin-image-number">Image {index + 1}</span>
+                          <div className="admin-image-card-actions">
+                            <button
+                              type="button"
+                              className="admin-image-move"
+                              onClick={() => handleMoveImage(index, 'up')}
+                              disabled={index === 0}
+                              title="Move up"
+                            >
+                              ↑
+                            </button>
+                            <button
+                              type="button"
+                              className="admin-image-move"
+                              onClick={() => handleMoveImage(index, 'down')}
+                              disabled={index === formData.images.length - 1}
+                              title="Move down"
+                            >
+                              ↓
+                            </button>
+                            <button
+                              type="button"
+                              className="admin-image-remove-btn"
+                              onClick={() => handleRemoveImage(index)}
+                              title="Remove image"
+                            >
+                              ×
+                            </button>
+                          </div>
+                        </div>
+                        <div className="admin-image-card-body">
+                          <div className="admin-image-preview">
+                            {img.url ? (
+                              <img src={img.url} alt={img.description || 'Preview'} />
+                            ) : (
+                              <div className="admin-image-placeholder">No image</div>
+                            )}
+                          </div>
+                          <div className="admin-image-fields">
+                            <input
+                              type="text"
+                              value={img.url}
+                              onChange={(e) => handleUpdateImage(index, 'url', e.target.value)}
+                              placeholder="Image URL"
+                            />
+                            <input
+                              type="text"
+                              value={img.description || ''}
+                              onChange={(e) => handleUpdateImage(index, 'description', e.target.value)}
+                              placeholder="Caption (optional)"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                    {formData.images.length === 0 && (
+                      <div className="admin-images-empty">
+                        No images added yet. Click "Add Image" to add one.
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              <div className="admin-form-footer">
+                <button type="button" className="admin-btn" onClick={handleCancel}>
+                  Cancel
+                </button>
+                <button type="submit" className="admin-btn primary">
+                  {mode === 'add' ? 'Create Location' : 'Save Changes'}
                 </button>
               </div>
-            </div>
-
-            <div className="admin-form-actions">
-              <button type="button" className="admin-btn" onClick={() => setMode('list')}>
-                Cancel
-              </button>
-              <button type="submit" className="admin-btn primary">
-                {mode === 'add' ? 'Add' : 'Save'}
-              </button>
-            </div>
-          </form>
+            </form>
+          </div>
         )}
       </div>
     </div>

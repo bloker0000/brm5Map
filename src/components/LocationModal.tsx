@@ -3,6 +3,8 @@ import type { MapLocation, LocationImage } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
 import { CategoryIcon, CloseIcon } from './Icons';
 import { ImageLightbox } from './ImageLightbox';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import './LocationModal.css';
 
 interface LocationModalProps {
@@ -125,7 +127,11 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
             </div>
           )}
 
-          <div className="modal-description">{location.description}</div>
+          <div className="modal-description">
+            <Markdown remarkPlugins={[remarkGfm]}>
+              {location.description}
+            </Markdown>
+          </div>
 
           <div className="modal-coords">
             <span className="modal-coords-label">Coordinates:</span>
