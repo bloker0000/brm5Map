@@ -170,7 +170,7 @@
     "name": "Extraction Point Pier",
     "x": 2653,
     "y": 744,
-    "description": "A rooftop extraction point on top of this building.\n\n### Access\nUse the **escalators** to reach the rooftop.\n\n### PvP Warning\nThis is a **high-traffic PvP area** — players frequently camp or loot here. Proceed with caution.",
+    "description": "A rooftop extraction point on top of this building.\n\n### Access\nUse the **escalators** to reach the rooftop.\n\n### PvP Warning\nThis is a **high-traffic PvP area** - players frequently camp or loot here. Proceed with caution.",
     "category": "Extraction Point",
     "id": "mjrsuqm7is7kgdoys7"
   },
@@ -192,7 +192,7 @@
     "name": "Cobble Fish",
     "x": 2444,
     "y": 977,
-    "description": "A small storage building. **Cannot be entered** — appears to be used for storage only.",
+    "description": "A small storage building. **Cannot be entered** - appears to be used for storage only.",
     "category": "Building",
     "id": "mjru2z86li39r26htj"
   },
@@ -246,7 +246,7 @@
     "name": "Water Treatment Plant (Site C)",
     "x": 2226,
     "y": 1782,
-    "description": "The **most dangerous zombie location** in the game, also known as *Site C*.\n\n### Threat Level: EXTREME\n- Most aggressive zombie spawns in the game\n- Highest zombie population density\n- Zombies can spawn directly in front of you\n\n### Location\nLocated under the bridge with an underground sewer system.\n\n### Recommended Strategy\n- **Bring a team** — solo runs are nearly impossible\n- Shoot zombies in the legs to immobilize and prevent respawns\n- Have one teammate lure zombies while another moves in\n\n*Do not attempt alone.*",
+    "description": "The **most dangerous zombie location** in the game, also known as *Site C*.\n\n### Threat Level: EXTREME\n- Most aggressive zombie spawns in the game\n- Highest zombie population density\n- Zombies can spawn directly in front of you\n\n### Location\nLocated under the bridge with an underground sewer system.\n\n### Recommended Strategy\n- **Bring a team** - solo runs are nearly impossible\n- Shoot zombies in the legs to immobilize and prevent respawns\n- Have one teammate lure zombies while another moves in\n\n*Do not attempt alone.*",
     "category": "Zombie Nest",
     "id": "mjrurjdgevrvm94t688",
     "images": [
@@ -264,7 +264,7 @@
     "name": "Metro New York Hospital",
     "x": 1368,
     "y": 474,
-    "description": "The **largest explorable building** in the game.\n\n### Features\n- Multiple floors with extensive loot\n- Rooftop extraction point\n- **Overwhelming zombie presence**\n\n### Warning\n*Come fully prepared* — ammunition, medical supplies, and a gas mask are essential.",
+    "description": "The **largest explorable building** in the game.\n\n### Features\n- Multiple floors with extensive loot\n- Rooftop extraction point\n- **Overwhelming zombie presence**\n\n### Warning\n*Come fully prepared* - ammunition, medical supplies, and a gas mask are essential.",
     "category": "Building",
     "id": "mjruy5f9grckcevy77f"
   },
