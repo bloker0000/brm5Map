@@ -14,6 +14,14 @@ interface ChangelogEntry {
 
 const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.4.4',
+    date: '2026-01-07',
+    changes: [
+      'more location updates',
+      'compass changed',
+    ],
+  },
+  {
     version: '1.4.3',
     date: '2026-01-07',
     changes: [
