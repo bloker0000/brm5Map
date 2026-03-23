@@ -21,6 +21,7 @@
   border-radius: 50%;
   opacity: 0.9;
   transition: transform 0.15s ease, opacity 0.15s ease;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.7);
 }
 
 .map-pin:hover .pin-dot,
