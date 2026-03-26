@@ -46,20 +46,25 @@
 
 .modal-header {
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
+  flex-direction: column;
+  gap: 6px;
   padding: 24px 60px 16px 24px;
   border-bottom: 1px solid var(--brm-border);
 }
 
-.modal-icon {
-  font-size: 2.5rem;
-  flex-shrink: 0;
+.modal-header-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
-.modal-title-group {
-  flex: 1;
-  min-width: 0;
+.modal-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-title {
@@ -78,7 +83,7 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  margin-top: 4px;
+  padding-left: 44px;
 }
 
 .modal-gallery {

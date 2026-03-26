@@ -127,22 +127,24 @@
 
 .admin-toolbar {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 20px;
+  padding: 12px 20px;
   border-bottom: 1px solid var(--brm-border);
-  gap: 12px;
+  gap: 8px;
 }
 
 .admin-toolbar-group {
   display: flex;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .admin-btn {
-  padding: 10px 16px;
+  padding: 8px 12px;
   font-family: var(--font-display);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -171,6 +173,46 @@
 .admin-btn.primary:hover {
   background: var(--brm-accent-hover);
   border-color: var(--brm-accent-hover);
+}
+
+.admin-btn.active {
+  background: rgba(255, 180, 50, 0.15);
+  border-color: var(--brm-accent);
+  color: var(--brm-accent);
+}
+
+.admin-btn.active:hover {
+  background: rgba(255, 180, 50, 0.25);
+}
+
+.admin-btn.save {
+  position: relative;
+}
+
+.save-indicator {
+  margin-left: 4px;
+  font-size: 0.75rem;
+}
+
+.save-indicator.saving {
+  color: var(--brm-text-dim);
+}
+
+.save-indicator.saved {
+  color: var(--brm-success, #44cc88);
+}
+
+.save-indicator.error {
+  color: var(--brm-danger, #cc4444);
+}
+
+.admin-autosave-info {
+  padding: 6px 20px;
+  font-size: 0.7rem;
+  color: var(--brm-text-dim);
+  background: var(--brm-bg-dark);
+  border-bottom: 1px solid var(--brm-border);
+  letter-spacing: 0.03em;
 }
 
 .btn-icon {
@@ -289,6 +331,11 @@
 
 .admin-list-item-icon {
   flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .admin-list-item-info {

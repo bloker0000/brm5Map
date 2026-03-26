@@ -1,7 +1,8 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { MapPin } from './MapPin';
-import { PlusIcon, MinusIcon, ResetPositionIcon, ResetRotationIcon } from './Icons';
-import type { MapLocation } from '../types/location';
+import { PlusIcon, MinusIcon, ResetPositionIcon, ResetRotationIcon, CategoryIcon } from './Icons';
+import type { MapLocation, LocationCategory } from '../types/location';
+import { CATEGORY_COLORS } from '../types/location';
 import './InteractiveMap.css';
 
 interface InteractiveMapProps {
@@ -17,6 +18,9 @@ interface InteractiveMapProps {
   showCompass?: boolean;
   onBgChange?: (index: number) => void;
   focusedLocations?: MapLocation[];
+  onPinDrag?: (locationId: string, x: number, y: number) => void;
+  placeholderPin?: { x: number; y: number; category: LocationCategory } | null;
+  isDragMode?: boolean;
 }
 
 interface Transform {
@@ -62,6 +66,9 @@ export function InteractiveMap({
   showCompass = true,
   onBgChange,
   focusedLocations = [],
+  onPinDrag,
+  placeholderPin,
+  isDragMode = false,
 }: InteractiveMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -77,9 +84,39 @@ export function InteractiveMap({
   const [isCompassDragging, setIsCompassDragging] = useState(false);
   const [bgIndex] = useState(() => Math.floor(Math.random() * BG_IMAGES.length));
   const [isAnimating, setIsAnimating] = useState(false);
-  const [mouseCoords, setMouseCoords] = useState({ x: 0, y: 0 });
+  const coordsRef = useRef<HTMLSpanElement>(null);
   
   const compassRotation = -MAP_NORTH_OFFSET + mapRotation;
+
+  const screenToMapCoords = useCallback((clientX: number, clientY: number): { x: number; y: number } => {
+    const container = containerRef.current;
+    if (!container) return { x: 0, y: 0 };
+
+    const rect = container.getBoundingClientRect();
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const t = transformRef.current;
+    const rot = mapRotationRef.current;
+    const rotRad = rot * Math.PI / 180;
+    const cos = Math.cos(rotRad);
+    const sin = Math.sin(rotRad);
+
+    // Click relative to container
+    const clickX = clientX - rect.left;
+    const clickY = clientY - rect.top;
+
+    // Invert CSS transform: translate(cx,cy) rotate(rot) translate(-cx,-cy) translate(tx,ty)
+    const p3x = clickX - cx;
+    const p3y = clickY - cy;
+    const p2x = p3x * cos + p3y * sin;
+    const p2y = -p3x * sin + p3y * cos;
+    const p1x = p2x + cx;
+    const p1y = p2y + cy;
+    const p0x = p1x - t.x;
+    const p0y = p1y - t.y;
+
+    return { x: Math.round(p0x / t.scale), y: Math.round(p0y / t.scale) };
+  }, []);
   
   const dragStartRef = useRef({ x: 0, y: 0 });
   const rotationStartRef = useRef({ angle: 0, startX: 0 });
@@ -91,7 +128,9 @@ export function InteractiveMap({
     onBgChange?.(bgIndex);
   }, [bgIndex, onBgChange]);
   
-  transformRef.current = transform;
+  if (!isDragging) {
+    transformRef.current = transform;
+  }
   mapRotationRef.current = mapRotation;
 
   const clampTransform = useCallback((t: Transform, rotation: number = 0): Transform => {
@@ -123,6 +162,15 @@ export function InteractiveMap({
     return { x, y, scale };
   }, []);
 
+  const getTransformCSS = useCallback((t: Transform, rotation: number): string => {
+    const container = containerRef.current;
+    if (!container) return `translate(${t.x}px, ${t.y}px)`;
+    const rect = container.getBoundingClientRect();
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    return `translate(${cx}px, ${cy}px) rotate(${rotation}deg) translate(${-cx}px, ${-cy}px) translate(${t.x}px, ${t.y}px)`;
+  }, []);
+
   const centerMap = useCallback(() => {
     const container = containerRef.current;
     const image = imageRef.current;
@@ -137,7 +185,9 @@ export function InteractiveMap({
     const x = (containerRect.width - image.naturalWidth * scale) / 2;
     const y = (containerRect.height - image.naturalHeight * scale) / 2;
 
-    setTransform({ x, y, scale });
+    const newTransform = { x, y, scale };
+    transformRef.current = newTransform;
+    setTransform(newTransform);
   }, []);
 
   const resetRotation = useCallback(() => {
@@ -174,16 +224,17 @@ export function InteractiveMap({
       const rotatedMouseX = rotatedRelX + centerX;
       const rotatedMouseY = rotatedRelY + centerY;
 
-      setTransform(prev => {
-        const zoomFactor = 1 - e.deltaY * ZOOM_SENSITIVITY;
-        const newScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, prev.scale * zoomFactor));
-        
-        const scaleRatio = newScale / prev.scale;
-        const newX = rotatedMouseX - (rotatedMouseX - prev.x) * scaleRatio;
-        const newY = rotatedMouseY - (rotatedMouseY - prev.y) * scaleRatio;
+      const prev = transformRef.current;
+      const zoomFactor = 1 - e.deltaY * ZOOM_SENSITIVITY;
+      const newScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, prev.scale * zoomFactor));
+      
+      const scaleRatio = newScale / prev.scale;
+      const newX = rotatedMouseX - (rotatedMouseX - prev.x) * scaleRatio;
+      const newY = rotatedMouseY - (rotatedMouseY - prev.y) * scaleRatio;
 
-        return clampTransform({ x: newX, y: newY, scale: newScale }, currentRotation);
-      });
+      const newTransform = clampTransform({ x: newX, y: newY, scale: newScale }, currentRotation);
+      transformRef.current = newTransform;
+      setTransform(newTransform);
     };
 
     container.addEventListener('wheel', handleWheel, { passive: false });
@@ -229,15 +280,21 @@ export function InteractiveMap({
       
       dragStartRef.current = { x: e.clientX, y: e.clientY };
 
-      setTransform(prev => clampTransform({ 
-        ...prev, 
-        x: prev.x + rotatedDeltaX, 
-        y: prev.y + rotatedDeltaY 
-      }, currentRotation));
+      const newTransform = clampTransform({ 
+        ...transformRef.current, 
+        x: transformRef.current.x + rotatedDeltaX, 
+        y: transformRef.current.y + rotatedDeltaY 
+      }, currentRotation);
+      transformRef.current = newTransform;
+
+      if (contentRef.current) {
+        contentRef.current.style.transform = getTransformCSS(newTransform, currentRotation);
+      }
     };
 
     const handleMouseUp = () => {
       setIsDragging(false);
+      setTransform({ ...transformRef.current });
     };
 
     document.addEventListener('mousemove', handleMouseMove);
@@ -249,7 +306,7 @@ export function InteractiveMap({
       document.removeEventListener('mouseup', handleMouseUp);
       document.body.style.userSelect = '';
     };
-  }, [isDragging, clampTransform]);
+  }, [isDragging, clampTransform, getTransformCSS]);
 
   useEffect(() => {
     if (!isRotating) return;
@@ -331,51 +388,46 @@ export function InteractiveMap({
 
   const handleContentClick = useCallback((e: React.MouseEvent) => {
     if (hasDragged) return;
-    
-    const content = contentRef.current;
-    if (!content) return;
-
-    const rect = content.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / transform.scale;
-    const y = (e.clientY - rect.top) / transform.scale;
-
-    onMapClick(Math.round(x), Math.round(y));
-  }, [hasDragged, transform.scale, onMapClick]);
+    const coords = screenToMapCoords(e.clientX, e.clientY);
+    onMapClick(coords.x, coords.y);
+  }, [hasDragged, onMapClick, screenToMapCoords]);
 
   const handleZoomIn = useCallback(() => {
-    setTransform(prev => {
-      const container = containerRef.current;
-      if (!container) return prev;
-      
-      const rect = container.getBoundingClientRect();
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      const newScale = Math.min(MAX_SCALE, prev.scale * 1.3);
-      const scaleRatio = newScale / prev.scale;
-      const newX = centerX - (centerX - prev.x) * scaleRatio;
-      const newY = centerY - (centerY - prev.y) * scaleRatio;
+    const container = containerRef.current;
+    if (!container) return;
+    
+    const rect = container.getBoundingClientRect();
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const prev = transformRef.current;
+    const newScale = Math.min(MAX_SCALE, prev.scale * 1.3);
+    const scaleRatio = newScale / prev.scale;
+    const newX = centerX - (centerX - prev.x) * scaleRatio;
+    const newY = centerY - (centerY - prev.y) * scaleRatio;
 
-      return clampTransform({ x: newX, y: newY, scale: newScale });
-    });
+    const newTransform = clampTransform({ x: newX, y: newY, scale: newScale });
+    transformRef.current = newTransform;
+    setTransform(newTransform);
   }, [clampTransform]);
 
   const handleZoomOut = useCallback(() => {
-    setTransform(prev => {
-      const container = containerRef.current;
-      if (!container) return prev;
-      
-      const rect = container.getBoundingClientRect();
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      const newScale = Math.max(MIN_SCALE, prev.scale / 1.3);
-      const scaleRatio = newScale / prev.scale;
-      const newX = centerX - (centerX - prev.x) * scaleRatio;
-      const newY = centerY - (centerY - prev.y) * scaleRatio;
+    const container = containerRef.current;
+    if (!container) return;
+    
+    const rect = container.getBoundingClientRect();
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const prev = transformRef.current;
+    const newScale = Math.max(MIN_SCALE, prev.scale / 1.3);
+    const scaleRatio = newScale / prev.scale;
+    const newX = centerX - (centerX - prev.x) * scaleRatio;
+    const newY = centerY - (centerY - prev.y) * scaleRatio;
 
-      return clampTransform({ x: newX, y: newY, scale: newScale });
-    });
+    const newTransform = clampTransform({ x: newX, y: newY, scale: newScale });
+    transformRef.current = newTransform;
+    setTransform(newTransform);
   }, [clampTransform]);
 
   const centerOnLocations = useCallback((locs: MapLocation[]) => {
@@ -408,8 +460,10 @@ export function InteractiveMap({
       const x = rect.width / 2 - rotated.x;
       const y = rect.height / 2 - rotated.y;
       
+      const newT = clampTransform({ x, y, scale: newScale });
+      transformRef.current = newT;
       setIsAnimating(true);
-      setTransform(clampTransform({ x, y, scale: newScale }));
+      setTransform(newT);
       setTimeout(() => setIsAnimating(false), 500);
       return;
     }
@@ -433,8 +487,10 @@ export function InteractiveMap({
     const x = rect.width / 2 - rotated.x;
     const y = rect.height / 2 - rotated.y;
     
+    const newT = clampTransform({ x, y, scale: newScale });
+    transformRef.current = newT;
     setIsAnimating(true);
-    setTransform(clampTransform({ x, y, scale: newScale }));
+    setTransform(newT);
     setTimeout(() => setIsAnimating(false), 500);
   }, [clampTransform, mapRotation]);
 
@@ -452,16 +508,11 @@ export function InteractiveMap({
   }, [focusedLocations, centerOnLocations]);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    const container = containerRef.current;
-    const content = contentRef.current;
-    if (!container || !content) return;
-
-    const rect = content.getBoundingClientRect();
-    const x = Math.round((e.clientX - rect.left) / transform.scale);
-    const y = Math.round((e.clientY - rect.top) / transform.scale);
-    
-    setMouseCoords({ x, y });
-  }, [transform.scale]);
+    const coords = screenToMapCoords(e.clientX, e.clientY);
+    if (coordsRef.current) {
+      coordsRef.current.textContent = `${coords.x}, ${coords.y}`;
+    }
+  }, [screenToMapCoords]);
 
   return (
     <div 
@@ -481,14 +532,7 @@ export function InteractiveMap({
         className={`map-content ${isAnimating ? 'animating' : ''}`}
         ref={contentRef}
         style={{
-          transform: (() => {
-            const container = containerRef.current;
-            if (!container) return `translate(${transform.x}px, ${transform.y}px)`;
-            const containerRect = container.getBoundingClientRect();
-            const cx = containerRect.width / 2;
-            const cy = containerRect.height / 2;
-            return `translate(${cx}px, ${cy}px) rotate(${mapRotation}deg) translate(${-cx}px, ${-cy}px) translate(${transform.x}px, ${transform.y}px)`;
-          })(),
+          transform: getTransformCSS(transform, mapRotation),
           transformOrigin: '0 0',
         }}
         onClick={handleContentClick}
@@ -506,6 +550,25 @@ export function InteractiveMap({
           onDragStart={(e) => e.preventDefault()}
           onLoad={() => setImageLoaded(true)}
         />
+        {showPins && placeholderPin && (
+          <div
+            className="map-pin placeholder"
+            style={{
+              left: placeholderPin.x * transform.scale,
+              top: placeholderPin.y * transform.scale,
+              '--pin-color': CATEGORY_COLORS[placeholderPin.category],
+            } as React.CSSProperties}
+          >
+            <div className="placeholder-rings">
+              <span className="placeholder-ring" />
+              <span className="placeholder-ring" />
+              <span className="placeholder-ring" />
+            </div>
+            <div className="pin-icon" style={{ transform: `rotate(${-mapRotation}deg)` }}>
+              <CategoryIcon category={placeholderPin.category} size={20} color={CATEGORY_COLORS[placeholderPin.category]} />
+            </div>
+          </div>
+        )}
         {showPins && locations.map((location) => (
           <MapPin
             key={location.id}
@@ -515,6 +578,9 @@ export function InteractiveMap({
             onHover={onHover}
             onClick={onClick}
             scale={transform.scale}
+            rotation={mapRotation}
+            isDraggable={isDragMode}
+            onDrag={onPinDrag}
           />
         ))}
       </div>
@@ -558,7 +624,7 @@ export function InteractiveMap({
 
       <div className="coords-display">
         <span className="coords-label">Coords:</span>
-        <span className="coords-value">{mouseCoords.x}, {mouseCoords.y}</span>
+        <span className="coords-value" ref={coordsRef}>0, 0</span>
       </div>
     </div>
   );

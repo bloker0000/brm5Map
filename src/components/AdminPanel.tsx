@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import type { MapLocation, LocationCategory, LocationImage } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
-import { CloseIcon, CrosshairIcon, CategoryIcon } from './Icons';
+import { CloseIcon, CrosshairIcon, CategoryIcon, SaveIcon } from './Icons';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import './AdminPanel.css';
@@ -10,15 +10,17 @@ const ALL_CATEGORIES: LocationCategory[] = [
   'Spawnpoint',
   'Building',
   'Extraction Point',
-  'Enemy Outpost',
+  'Enemy Location',
   'Zombie Nest',
   'Key Spawn Location',
-  'Key Use Location',
+  'Locked Doors',
   'Quarantine Zone',
   'Medical',
   'Shop',
   'Landmark',
   'Subway Station',
+  'Infiltration',
+  'Raid',
   'Other',
 ];
 
@@ -30,6 +32,11 @@ interface AdminPanelProps {
   onUpdate: (id: string, updates: Partial<MapLocation>) => void;
   onDelete: (id: string) => void;
   clickPosition: { x: number; y: number } | null;
+  saveStatus: 'idle' | 'saving' | 'saved' | 'error';
+  onManualSave: () => void;
+  onFormCategoryChange?: (category: LocationCategory) => void;
+  onModeChange?: (mode: 'list' | 'add' | 'edit') => void;
+  onDragModeChange?: (isDragMode: boolean) => void;
 }
 
 type ViewMode = 'list' | 'add' | 'edit';
@@ -43,10 +50,16 @@ export function AdminPanel({
   onUpdate,
   onDelete,
   clickPosition,
+  saveStatus,
+  onManualSave,
+  onFormCategoryChange,
+  onModeChange,
+  onDragModeChange,
 }: AdminPanelProps) {
   const [mode, setMode] = useState<ViewMode>('list');
   const [editingLocation, setEditingLocation] = useState<MapLocation | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isDragMode, setIsDragMode] = useState(false);
   const [activeTab, setActiveTab] = useState<EditorTab>('basic');
   const [showPreview, setShowPreview] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -63,7 +76,7 @@ export function AdminPanel({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    if (clickPosition && (mode === 'add' || mode === 'edit')) {
+    if (clickPosition && mode === 'add') {
       setFormData((prev) => ({
         ...prev,
         x: Math.round(clickPosition.x),
@@ -72,11 +85,36 @@ export function AdminPanel({
     }
   }, [clickPosition, mode]);
 
+  // Sync form coordinates when the edited pin is dragged on the map
+  useEffect(() => {
+    if (mode === 'edit' && editingLocation) {
+      const current = locations.find(l => l.id === editingLocation.id);
+      if (current && (current.x !== formData.x || current.y !== formData.y)) {
+        setFormData(prev => ({ ...prev, x: current.x, y: current.y }));
+      }
+    }
+  }, [mode, editingLocation, locations]);
+
   useEffect(() => {
     if (mode === 'add' || mode === 'edit') {
       setIsExpanded(true);
     }
   }, [mode]);
+
+  useEffect(() => {
+    onFormCategoryChange?.(formData.category);
+  }, [formData.category, onFormCategoryChange]);
+
+  useEffect(() => {
+    onModeChange?.(mode);
+    if (mode !== 'list') {
+      setIsDragMode(false);
+    }
+  }, [mode, onModeChange]);
+
+  useEffect(() => {
+    onDragModeChange?.(isDragMode);
+  }, [isDragMode, onDragModeChange]);
 
   const resetForm = () => {
     setFormData({
@@ -311,8 +349,19 @@ export function AdminPanel({
                 <span className="btn-icon">+</span>
                 Add Location
               </button>
+              <button className={`admin-btn${isDragMode ? ' active' : ''}`} onClick={() => setIsDragMode(!isDragMode)} title="Toggle drag mode to reposition pins">
+                <span className="btn-icon">✥</span>
+                {isDragMode ? 'Drag: ON' : 'Drag: OFF'}
+              </button>
               <div className="admin-toolbar-group">
-                <button className="admin-btn" onClick={handleExport} title="Export locations">
+                <button className="admin-btn save" onClick={onManualSave} title="Save to file">
+                  <SaveIcon size={14} />
+                  Save
+                  {saveStatus === 'saving' && <span className="save-indicator saving">...</span>}
+                  {saveStatus === 'saved' && <span className="save-indicator saved">✓</span>}
+                  {saveStatus === 'error' && <span className="save-indicator error">✗</span>}
+                </button>
+                <button className="admin-btn" onClick={handleExport} title="Export as JSON file">
                   <span className="btn-icon">↓</span>
                   Export
                 </button>
@@ -327,6 +376,13 @@ export function AdminPanel({
                   />
                 </label>
               </div>
+            </div>
+
+            <div className="admin-autosave-info">
+              {saveStatus === 'saving' ? 'Auto-saving...' : 
+               saveStatus === 'saved' ? 'Saved to brm5-locations.json' :
+               saveStatus === 'error' ? 'Auto-save failed — use Export' :
+               'Changes auto-save to file'}
             </div>
 
             {clickPosition && (

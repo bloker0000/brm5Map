@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+svg {
+  display: block;
+  vertical-align: middle;
+}
+
 :root {
   --brm-bg-dark: #0a0a0a;
   --brm-bg-panel: #111111;

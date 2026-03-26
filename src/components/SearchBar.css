@@ -98,8 +98,12 @@
 }
 
 .search-result-icon {
-  font-size: 1.3rem;
   flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .search-result-info {

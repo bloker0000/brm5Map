@@ -14,6 +14,22 @@ interface ChangelogEntry {
 
 const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.5.0',
+    date: '2026-03-26',
+    changes: [
+      'Added category icons on map pins, each category now displays its own SVG icon instead of a colored dot',
+      'Icons stay upright when rotating the map',
+      'Renamed "Enemy Outpost" category to "Enemy Location"',
+      'Renamed "Key Use Location" category to "Locked Doors"',
+      'Added new "Infiltration" category with eye icon',
+      'Added new "Raid" category with shield icon',
+      'Improved map pan/zoom performance significantly.. GPU-accelerated rendering, pins no longer re-render during drag',
+      'Admin panel now auto-saves changes directly to the locations file on localhost',
+      'Admin panel: added manual Save button alongside existing Export',
+      'Fixed location detail modal icon alignment',
+    ],
+  },
+  {
     version: '1.4.4',
     date: '2026-01-07',
     changes: [

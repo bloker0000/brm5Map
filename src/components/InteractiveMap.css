@@ -40,6 +40,7 @@
   position: absolute;
   z-index: 2;
   transform-origin: 0 0;
+  will-change: transform;
 }
 
 .map-content.animating {

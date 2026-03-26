@@ -64,8 +64,20 @@
   padding: 12px 16px 0 16px;
 }
 
+.tooltip-header svg {
+  flex-shrink: 0;
+  min-width: 16px;
+  min-height: 16px;
+}
+
 .tooltip-icon {
   font-size: 1.3rem;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .tooltip-name {

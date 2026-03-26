@@ -11,7 +11,7 @@ import {
   AdminPanel,
 } from './components';
 import { useLocations } from './hooks/useLocations';
-import type { MapLocation } from './types/location';
+import type { MapLocation, LocationCategory } from './types/location';
 import './App.css';
 
 const IS_DEV = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
@@ -52,6 +52,9 @@ function App() {
   const [focusedLocations, setFocusedLocations] = useState<MapLocation[]>([]);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [adminClickPosition, setAdminClickPosition] = useState<{ x: number; y: number } | null>(null);
+  const [adminFormCategory, setAdminFormCategory] = useState<LocationCategory>('Other');
+  const [adminViewMode, setAdminViewMode] = useState<'list' | 'add' | 'edit'>('list');
+  const [adminDragMode, setAdminDragMode] = useState(false);
 
   const {
     locations,
@@ -67,6 +70,8 @@ function App() {
     addLocation,
     updateLocation,
     deleteLocation,
+    saveStatus,
+    manualSave,
   } = useLocations();
 
   useEffect(() => {
@@ -123,10 +128,19 @@ function App() {
   );
 
   const handleMapClick = useCallback((x: number, y: number) => {
-    if (IS_DEV && isAdminOpen) {
+    if (IS_DEV && isAdminOpen && (adminViewMode === 'add' || adminViewMode === 'edit')) {
       setAdminClickPosition({ x, y });
     }
-  }, [isAdminOpen]);
+  }, [isAdminOpen, adminViewMode]);
+
+  const handlePinDrag = useCallback((locationId: string, x: number, y: number) => {
+    updateLocation(locationId, { x, y });
+  }, [updateLocation]);
+
+  const handleAddLocation = useCallback((location: Omit<MapLocation, 'id'>) => {
+    addLocation(location);
+    setAdminClickPosition(null);
+  }, [addLocation]);
 
   const handleToggleLocation = useCallback(
     (location: MapLocation, multiSelect: boolean) => {
@@ -293,6 +307,9 @@ function App() {
           showCompass={showCompass}
           onBgChange={setCurrentBgIndex}
           focusedLocations={focusedLocations}
+          onPinDrag={handlePinDrag}
+          placeholderPin={IS_DEV && isAdminOpen && (adminViewMode === 'add' || adminViewMode === 'edit') && adminClickPosition ? { x: adminClickPosition.x, y: adminClickPosition.y, category: adminFormCategory } : null}
+          isDragMode={IS_DEV && isAdminOpen && adminDragMode}
         />
       </div>
 
@@ -310,10 +327,15 @@ function App() {
           isOpen={isAdminOpen}
           onClose={() => setIsAdminOpen(false)}
           locations={locations}
-          onAdd={addLocation}
+          onAdd={handleAddLocation}
           onUpdate={updateLocation}
           onDelete={deleteLocation}
           clickPosition={adminClickPosition}
+          saveStatus={saveStatus}
+          onManualSave={manualSave}
+          onFormCategoryChange={setAdminFormCategory}
+          onModeChange={setAdminViewMode}
+          onDragModeChange={setAdminDragMode}
         />
       )}
     </div>

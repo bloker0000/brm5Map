@@ -8,13 +8,9 @@ interface IconProps {
 
 export function SpawnpointIcon({ size = 16, color = 'currentColor', className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
-      <circle cx="12" cy="12" r="10" />
-      <circle cx="12" cy="12" r="3" fill={color} />
-      <line x1="12" y1="2" x2="12" y2="6" />
-      <line x1="12" y1="18" x2="12" y2="22" />
-      <line x1="2" y1="12" x2="6" y2="12" />
-      <line x1="18" y1="12" x2="22" y2="12" />
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className} strokeLinecap="round" strokeLinejoin="round">
+      <line x1="5" y1="3" x2="5" y2="22" />
+      <path d="M5 3h12l-3 4.5L17 12H5" fill={color} fillOpacity="0.25" />
     </svg>
   );
 }
@@ -33,9 +29,9 @@ export function BuildingIcon({ size = 16, color = 'currentColor', className }: I
 
 export function SubwayStationIcon({ size = 16, color = 'currentColor', className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
-      <rect x="3" y="3" width="18" height="18" rx="3" />
-      <path d="M7 16V8l5 5 5-5v8" strokeLinecap="round" strokeLinejoin="round" />
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" className={className} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="3" stroke={color} strokeWidth="2" />
+      <path d="M7 16V8l5 5 5-5v8" />
     </svg>
   );
 }
@@ -50,12 +46,12 @@ export function ExtractionPointIcon({ size = 16, color = 'currentColor', classNa
   );
 }
 
-export function EnemyOutpostIcon({ size = 16, color = 'currentColor', className }: IconProps) {
+export function EnemyLocationIcon({ size = 16, color = 'currentColor', className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
-      <path d="M12 2L2 19h20L12 2z" />
-      <line x1="12" y1="8" x2="12" y2="13" />
-      <circle cx="12" cy="16" r="0.5" fill={color} />
+      <path d="M12 2L2 20h20L12 2z" />
+      <line x1="12" y1="9" x2="12" y2="14" strokeLinecap="round" />
+      <circle cx="12" cy="17" r="1" fill={color} stroke="none" />
     </svg>
   );
 }
@@ -63,10 +59,13 @@ export function EnemyOutpostIcon({ size = 16, color = 'currentColor', className 
 export function ZombieNestIcon({ size = 16, color = 'currentColor', className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
-      <path d="M12 2C7.5 2 4 5.5 4 10c0 3 1.5 5.5 4 7h8c2.5-1.5 4-4 4-7 0-4.5-3.5-8-8-8z" />
-      <circle cx="9" cy="10" r="2" fill={color} />
-      <circle cx="15" cy="10" r="2" fill={color} />
-      <path d="M8 17v4M10.5 17v5M13.5 17v5M16 17v4" />
+      <path d="M8 2C4.5 2 2 5 2 8.5c0 2 .8 3.5 2 4.5H8" />
+      <path d="M16 2c3.5 0 6 3 6 6.5 0 2-.8 3.5-2 4.5H16" />
+      <rect x="5" y="4" width="14" height="12" rx="5" />
+      <circle cx="9" cy="10" r="1.5" fill={color} stroke="none" />
+      <circle cx="15" cy="10" r="1.5" fill={color} stroke="none" />
+      <path d="M9 16v2M12 16v3M15 16v2" strokeLinecap="round" />
+      <line x1="8" y1="22" x2="16" y2="22" />
     </svg>
   );
 }
@@ -79,7 +78,7 @@ export function KeySpawnLocationIcon({ size = 16, color = 'currentColor', classN
   );
 }
 
-export function KeyUseLocationIcon({ size = 16, color = 'currentColor', className }: IconProps) {
+export function LockedDoorsIcon({ size = 16, color = 'currentColor', className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
       <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
@@ -93,7 +92,6 @@ export function QuarantineZoneIcon({ size = 16, color = 'currentColor', classNam
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
       <path d="M12 2L2 7l10 5 10-5-10-5z" />
       <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
-      <line x1="12" y1="22" x2="12" y2="17" />
     </svg>
   );
 }
@@ -123,6 +121,26 @@ export function LandmarkIcon({ size = 16, color = 'currentColor', className }: I
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
       <circle cx="12" cy="10" r="3" />
+    </svg>
+  );
+}
+
+export function InfiltrationIcon({ size = 16, color = 'currentColor', className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
+      <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z" />
+      <circle cx="12" cy="12" r="3" />
+      <circle cx="12" cy="12" r="1" fill={color} stroke="none" />
+    </svg>
+  );
+}
+
+export function RaidIcon({ size = 16, color = 'currentColor', className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22s-8-4.5-8-11V5l8-3 8 3v6c0 6.5-8 11-8 11z" />
+      <line x1="12" y1="7" x2="12" y2="12" />
+      <circle cx="12" cy="15" r="1" fill={color} stroke="none" />
     </svg>
   );
 }
@@ -191,19 +209,31 @@ export function CrosshairIcon({ size = 16, color = 'currentColor', className }: 
   );
 }
 
+export function SaveIcon({ size = 16, color = 'currentColor', className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+      <polyline points="17 21 17 13 7 13 7 21" />
+      <polyline points="7 3 7 8 15 8" />
+    </svg>
+  );
+}
+
 const iconComponents: Record<LocationCategory, React.FC<IconProps>> = {
   'Spawnpoint': SpawnpointIcon,
   'Building': BuildingIcon,
   'Extraction Point': ExtractionPointIcon,
-  'Enemy Outpost': EnemyOutpostIcon,
+  'Enemy Location': EnemyLocationIcon,
   'Zombie Nest': ZombieNestIcon,
   'Key Spawn Location': KeySpawnLocationIcon,
-  'Key Use Location': KeyUseLocationIcon,
+  'Locked Doors': LockedDoorsIcon,
   'Quarantine Zone': QuarantineZoneIcon,
   'Medical': MedicalIcon,
   'Shop': ShopIcon,
   'Landmark': LandmarkIcon,
   'Subway Station': SubwayStationIcon,
+  'Infiltration': InfiltrationIcon,
+  'Raid': RaidIcon,
   'Other': OtherIcon,
 };
 

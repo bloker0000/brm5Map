@@ -84,13 +84,13 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
           </button>
 
           <div className="modal-header">
-            <div className="modal-icon">
-              <CategoryIcon category={location.category} size={28} color={color} />
-            </div>
-            <div className="modal-title-group">
+            <div className="modal-header-top">
+              <div className="modal-icon">
+                <CategoryIcon category={location.category} size={28} color={color} />
+              </div>
               <h2 className="modal-title">{location.name}</h2>
-              <div className="modal-category">{location.category}</div>
             </div>
+            <div className="modal-category">{location.category}</div>
           </div>
 
           {hasImages && currentImage && (
