@@ -30,7 +30,7 @@ export function useLocations() {
   const [hoveredLocation, setHoveredLocation] = useState<MapLocation | null>(null);
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
   const initialLoadDone = useRef(false);
-  const saveTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => {
     setLocations(loadLocations());
