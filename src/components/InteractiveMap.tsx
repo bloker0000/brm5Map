@@ -557,6 +557,7 @@ export function InteractiveMap({
               left: placeholderPin.x * transform.scale,
               top: placeholderPin.y * transform.scale,
               '--pin-color': CATEGORY_COLORS[placeholderPin.category],
+              '--pin-rotation': `${-mapRotation}deg`,
             } as React.CSSProperties}
           >
             <div className="placeholder-rings">
@@ -564,7 +565,7 @@ export function InteractiveMap({
               <span className="placeholder-ring" />
               <span className="placeholder-ring" />
             </div>
-            <div className="pin-icon" style={{ transform: `rotate(${-mapRotation}deg)` }}>
+            <div className="pin-icon">
               <CategoryIcon category={placeholderPin.category} size={20} color={CATEGORY_COLORS[placeholderPin.category]} />
             </div>
           </div>

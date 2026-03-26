@@ -37,6 +37,7 @@ interface AdminPanelProps {
   onFormCategoryChange?: (category: LocationCategory) => void;
   onModeChange?: (mode: 'list' | 'add' | 'edit') => void;
   onDragModeChange?: (isDragMode: boolean) => void;
+  onImport?: (locations: MapLocation[], replace?: boolean) => number;
 }
 
 type ViewMode = 'list' | 'add' | 'edit';
@@ -55,6 +56,7 @@ export function AdminPanel({
   onFormCategoryChange,
   onModeChange,
   onDragModeChange,
+  onImport,
 }: AdminPanelProps) {
   const [mode, setMode] = useState<ViewMode>('list');
   const [editingLocation, setEditingLocation] = useState<MapLocation | null>(null);
@@ -74,14 +76,22 @@ export function AdminPanel({
     images: [] as LocationImage[],
   });
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const formCoordsRef = useRef({ x: 0, y: 0 });
+  formCoordsRef.current = { x: formData.x, y: formData.y };
 
   useEffect(() => {
-    if (clickPosition && mode === 'add') {
+    if (!clickPosition) return;
+    if (mode === 'add') {
       setFormData((prev) => ({
         ...prev,
         x: Math.round(clickPosition.x),
         y: Math.round(clickPosition.y),
       }));
+    } else if (mode === 'edit' && editingLocation) {
+      const newX = Math.round(clickPosition.x);
+      const newY = Math.round(clickPosition.y);
+      setFormData((prev) => ({ ...prev, x: newX, y: newY }));
+      onUpdate(editingLocation.id, { x: newX, y: newY });
     }
   }, [clickPosition, mode]);
 
@@ -89,7 +99,7 @@ export function AdminPanel({
   useEffect(() => {
     if (mode === 'edit' && editingLocation) {
       const current = locations.find(l => l.id === editingLocation.id);
-      if (current && (current.x !== formData.x || current.y !== formData.y)) {
+      if (current && (current.x !== formCoordsRef.current.x || current.y !== formCoordsRef.current.y)) {
         setFormData(prev => ({ ...prev, x: current.x, y: current.y }));
       }
     }
@@ -251,22 +261,20 @@ export function AdminPanel({
     const reader = new FileReader();
     reader.onload = (event) => {
       try {
-        const imported = JSON.parse(event.target?.result as string);
-        if (Array.isArray(imported)) {
-          imported.forEach((loc: MapLocation) => {
-            onAdd({
-              name: loc.name,
-              x: loc.x,
-              y: loc.y,
-              description: loc.description,
-              shortDescription: loc.shortDescription,
-              category: loc.category,
-              images: loc.images,
-            });
-          });
+        const raw = JSON.parse(event.target?.result as string);
+        const arr: MapLocation[] = Array.isArray(raw)
+          ? raw
+          : Array.isArray(raw?.locations)
+            ? raw.locations
+            : null;
+        if (!arr) {
+          alert('Import failed: expected a JSON array or { locations: [...] }');
+          return;
         }
+        const count = onImport ? onImport(arr, true) : 0;
+        alert(`Imported ${count} location${count !== 1 ? 's' : ''} successfully.`);
       } catch {
-        alert('Failed to import locations. Invalid JSON format.');
+        alert('Import failed: invalid JSON file.');
       }
     };
     reader.readAsText(file);

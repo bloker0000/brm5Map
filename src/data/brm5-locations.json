@@ -272,7 +272,8 @@
     "y": 641,
     "description": "An enemy outpost positioned near Pier 17. Watch for hostiles when approaching the pier area.",
     "category": "Enemy Location",
-    "id": "mjrugla1my8fmhkkaw"
+    "id": "mjrugla1my8fmhkkaw",
+    "images": []
   },
   {
     "name": "Tin Building Market Flood Hall",
@@ -294,7 +295,8 @@
     "y": 503,
     "description": "**Damaged section** of the bridge. Navigation may be limited.",
     "category": "Landmark",
-    "id": "mjrumdh97nqjpqv32an"
+    "id": "mjrumdh97nqjpqv32an",
+    "images": []
   },
   {
     "name": "Damaged Bridge2",
@@ -302,7 +304,8 @@
     "y": 1365,
     "description": "**Damaged section** of the bridge. Navigation may be limited.",
     "category": "Landmark",
-    "id": "mjrumoor2ejyp50h2h9"
+    "id": "mjrumoor2ejyp50h2h9",
+    "images": []
   },
   {
     "name": "Water Treatment Plant (Site C)",
@@ -542,7 +545,8 @@
     "y": 381,
     "description": "Helicopter extraction point for the hospital quarantine zone.\n\n### Usage\nActivate via **CSEL extraction radio**. The helicopter lands on the highest accessible floor of the helipad.\n\n*Exact activation conditions are still being documented.*",
     "category": "Extraction Point",
-    "id": "mjrv19m6j8i15ykkmf"
+    "id": "mjrv19m6j8i15ykkmf",
+    "images": []
   },
   {
     "name": "Crashed Helicopter",
@@ -564,7 +568,8 @@
     "y": 226,
     "description": "*TBA*",
     "category": "Building",
-    "id": "mjrv2vig3klf2lnqy9d"
+    "id": "mjrv2vig3klf2lnqy9d",
+    "images": []
   },
   {
     "name": "Southbridge Towers",
@@ -572,7 +577,8 @@
     "y": 300,
     "description": "Two towers of **varying heights** that provide access to the hospital quarantine zone from the southeast.",
     "category": "Building",
-    "id": "mjrv4bp27lq8yth8pz6"
+    "id": "mjrv4bp27lq8yth8pz6",
+    "images": []
   },
   {
     "name": "Peck Slip Plaza",
@@ -580,7 +586,8 @@
     "y": 467,
     "description": "*TBA*",
     "category": "Landmark",
-    "id": "mjrv576jhfopdf83x5i"
+    "id": "mjrv576jhfopdf83x5i",
+    "images": []
   },
   {
     "name": "Substation",
@@ -602,7 +609,8 @@
     "y": 378,
     "description": "Enemy spawn location near Peck Slip. **Watch for hostiles** when passing through.",
     "category": "Enemy Location",
-    "id": "mjrv6sqgvldq0vwu2rs"
+    "id": "mjrv6sqgvldq0vwu2rs",
+    "images": []
   },
   {
     "name": "Euro Deli",
@@ -638,7 +646,8 @@
     "y": 1243,
     "description": "*TBA*",
     "category": "Building",
-    "id": "mjrvbvm2xw7dk78r5yb"
+    "id": "mjrvbvm2xw7dk78r5yb",
+    "images": []
   },
   {
     "name": "Enemy Outpost Water/Pine",
@@ -646,7 +655,8 @@
     "y": 881,
     "description": "*TBA*",
     "category": "Enemy Location",
-    "id": "mjrvcgr8zcifyxvmm3"
+    "id": "mjrvcgr8zcifyxvmm3",
+    "images": []
   },
   {
     "name": "Bandit camp under the bridge",
@@ -668,7 +678,8 @@
     "y": 1133,
     "description": "*TBA*",
     "category": "Building",
-    "id": "mjrvegrhkx3df85yxgm"
+    "id": "mjrvegrhkx3df85yxgm",
+    "images": []
   },
   {
     "name": "One Seaport Plaza",
@@ -676,7 +687,8 @@
     "y": 1304,
     "description": "*TBA*",
     "category": "Building",
-    "id": "mjrvernx7yndcvyogsu"
+    "id": "mjrvernx7yndcvyogsu",
+    "images": []
   },
   {
     "name": "Imagination Playground",
@@ -684,7 +696,8 @@
     "y": 1344,
     "description": "*TBA*",
     "category": "Landmark",
-    "id": "mjrvfb5runy7yuzeu5c"
+    "id": "mjrvfb5runy7yuzeu5c",
+    "images": []
   },
   {
     "name": "Enemy Outpost",
@@ -692,7 +705,8 @@
     "y": 1468,
     "description": "Enemy outpost near a **PVE drop-off location**.\n\n\n### Warning\nYou may get shot at immediately upon drop-off. *Be ready to engage.*",
     "category": "Enemy Location",
-    "id": "mjrvg2yu12fqri0iple"
+    "id": "mjrvg2yu12fqri0iple",
+    "images": []
   },
   {
     "name": "Parking Lot",
@@ -700,7 +714,8 @@
     "y": 1470,
     "description": "*TBA*",
     "category": "Landmark",
-    "id": "mjrvgrtswnpdlpuclgf"
+    "id": "mjrvgrtswnpdlpuclgf",
+    "images": []
   },
   {
     "name": "Fairfield Inn & Suites",
@@ -708,7 +723,8 @@
     "y": 1649,
     "description": "*TBA*",
     "category": "Building",
-    "id": "mjrvh8tdvgr30i8ck1"
+    "id": "mjrvh8tdvgr30i8ck1",
+    "images": []
   },
   {
     "name": "32 Slip Old Plaza",
@@ -716,7 +732,8 @@
     "y": 1771,
     "description": "*TBA*",
     "category": "Building",
-    "id": "mjrvi2oysnybmrvr28"
+    "id": "mjrvi2oysnybmrvr28",
+    "images": []
   },
   {
     "name": "85 Broad Street Goldman Sachs",
@@ -950,7 +967,8 @@
     "y": 1833,
     "description": "*TBA*",
     "category": "Building",
-    "id": "mjrvqwzr30168dstyr8"
+    "id": "mjrvqwzr30168dstyr8",
+    "images": []
   },
   {
     "name": "Maintance Key",
@@ -958,7 +976,8 @@
     "y": 1885,
     "description": "*TBA*",
     "category": "Locked Doors",
-    "id": "mjrvr8dbyfizchv9dae"
+    "id": "mjrvr8dbyfizchv9dae",
+    "images": []
   },
   {
     "name": "Enemy Location",
@@ -966,7 +985,8 @@
     "y": 1925,
     "description": "*TBA*",
     "category": "Enemy Location",
-    "id": "mjrvrqkf557nhfupfur"
+    "id": "mjrvrqkf557nhfupfur",
+    "images": []
   },
   {
     "name": "Quill",
@@ -988,7 +1008,8 @@
     "y": 2239,
     "description": "Player spawn point in the building next to NYPlug.\n\nPlayers typically spawn on the **upper floors**, usually inside a room.",
     "category": "Spawnpoint",
-    "id": "mjrvseahe6vji28wobj"
+    "id": "mjrvseahe6vji28wobj",
+    "images": []
   },
   {
     "name": "S William spawnpoint",
@@ -1096,7 +1117,8 @@
     "y": 1327,
     "description": "*TBA*",
     "category": "Building",
-    "id": "mjrvwm09mz9or34hjtp"
+    "id": "mjrvwm09mz9or34hjtp",
+    "images": []
   },
   {
     "name": "Quill Jewerly",
@@ -1104,7 +1126,8 @@
     "y": 1004,
     "description": "A ransacked jewelry store with a **locked back room**.\n\n\n### Access\nCan only be entered through the **windows**.\n\n*(Contributed by Nintendoboi2)*",
     "category": "Locked Doors",
-    "id": "mjrvxkgr2pbael5wj9q"
+    "id": "mjrvxkgr2pbael5wj9q",
+    "images": []
   },
   {
     "name": "Spawn Location",
@@ -1112,7 +1135,8 @@
     "y": 885,
     "description": "*TBA*",
     "category": "Spawnpoint",
-    "id": "mjrvy7p30pd1dveub0i"
+    "id": "mjrvy7p30pd1dveub0i",
+    "images": []
   },
   {
     "name": "Ground Zero Bandit Camp",
@@ -1212,7 +1236,8 @@
     "y": 1126,
     "description": "*TBA*",
     "category": "Building",
-    "id": "mjrw10kjfs3ptbcfmuh"
+    "id": "mjrw10kjfs3ptbcfmuh",
+    "images": []
   },
   {
     "name": "Spawn Location",
@@ -1220,7 +1245,8 @@
     "y": 1130,
     "description": "*TBA*",
     "category": "Spawnpoint",
-    "id": "mjrw1c2nj7fo9rackf"
+    "id": "mjrw1c2nj7fo9rackf",
+    "images": []
   },
   {
     "name": "Enemy Location",
@@ -1228,7 +1254,8 @@
     "y": 1150,
     "description": "*TBA*",
     "category": "Enemy Location",
-    "id": "mjrw1r1ewvq9wl4885c"
+    "id": "mjrw1r1ewvq9wl4885c",
+    "images": []
   },
   {
     "name": "Spawnpoint broadway 646",
@@ -1510,7 +1537,8 @@
     "y": 971,
     "description": "A **small cafe** located on William Street.\n\n\n### Features\n\n- **No zombies** inside\n\n- Small back room for cover\n\n*(Contributed by Nintendoboi2)*",
     "category": "Building",
-    "id": "mk31ns977xd9nnm7cpx"
+    "id": "mk31ns977xd9nnm7cpx",
+    "images": []
   },
   {
     "name": "Watson and Stone Hotel Safehouse",
@@ -1532,7 +1560,8 @@
     "y": 1981,
     "description": "A **player spawn location** near Stone 8.",
     "category": "Spawnpoint",
-    "id": "mk31yzwbcqgg8iwal6c"
+    "id": "mk31yzwbcqgg8iwal6c",
+    "images": []
   },
   {
     "name": "Maiden Alleyway Bandit Camp",

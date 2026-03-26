@@ -89,13 +89,14 @@ export const MapPin = memo(function MapPin({ location, isHovered, isSelected, on
         top: location.y * scale,
         '--pin-color': color,
         '--pin-size': `${pinSize}px`,
+        '--pin-rotation': `${-rotation}deg`,
       } as React.CSSProperties}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
       onMouseDown={handleMouseDown}
     >
-      <div className="pin-icon" style={{ transform: `rotate(${-rotation}deg)` }}>
+      <div className="pin-icon">
         <CategoryIcon category={location.category} size={pinSize} color={color} />
       </div>
     </div>

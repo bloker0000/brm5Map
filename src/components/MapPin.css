@@ -79,18 +79,19 @@
   width: var(--pin-size);
   height: var(--pin-size);
   opacity: 0.9;
+  transform: rotate(var(--pin-rotation, 0deg)) scale(1);
   transition: transform 0.15s ease, opacity 0.15s ease;
   filter: drop-shadow(0 0 1.5px rgba(0, 0, 0, 0.9));
 }
 
 .map-pin:hover .pin-icon,
 .map-pin.hovered .pin-icon {
-  transform: scale(1.4);
+  transform: rotate(var(--pin-rotation, 0deg)) scale(1.4);
   opacity: 1;
 }
 
 .map-pin.selected .pin-icon {
-  transform: scale(1.6);
+  transform: rotate(var(--pin-rotation, 0deg)) scale(1.6);
   opacity: 1;
 }
 

@@ -70,6 +70,7 @@ function App() {
     addLocation,
     updateLocation,
     deleteLocation,
+    importLocations,
     saveStatus,
     manualSave,
   } = useLocations();
@@ -308,7 +309,7 @@ function App() {
           onBgChange={setCurrentBgIndex}
           focusedLocations={focusedLocations}
           onPinDrag={handlePinDrag}
-          placeholderPin={IS_DEV && isAdminOpen && (adminViewMode === 'add' || adminViewMode === 'edit') && adminClickPosition ? { x: adminClickPosition.x, y: adminClickPosition.y, category: adminFormCategory } : null}
+          placeholderPin={IS_DEV && isAdminOpen && adminViewMode === 'add' && adminClickPosition ? { x: adminClickPosition.x, y: adminClickPosition.y, category: adminFormCategory } : null}
           isDragMode={IS_DEV && isAdminOpen && adminDragMode}
         />
       </div>
@@ -336,6 +337,7 @@ function App() {
           onFormCategoryChange={setAdminFormCategory}
           onModeChange={setAdminViewMode}
           onDragModeChange={setAdminDragMode}
+          onImport={importLocations}
         />
       )}
     </div>

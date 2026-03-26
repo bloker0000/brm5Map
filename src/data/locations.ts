@@ -4,7 +4,7 @@ import locationsData from './brm5-locations.json';
 export const defaultLocations: MapLocation[] = locationsData as MapLocation[];
 
 export function loadLocations(): MapLocation[] {
-  return defaultLocations;
+  return [...defaultLocations];
 }
 
 export function generateId(): string {

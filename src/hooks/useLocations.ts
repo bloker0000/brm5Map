@@ -103,6 +103,23 @@ export function useLocations() {
     return newLocation;
   };
 
+  const importLocations = (incoming: MapLocation[], replace: boolean = false) => {
+    const withIds = incoming.map(loc => ({
+      ...loc,
+      id: loc.id || generateId(),
+      images: loc.images ?? (loc.image ? [{ url: loc.image }] : []),
+    }));
+    if (replace) {
+      setLocations(withIds);
+    } else {
+      setLocations(prev => [
+        ...prev.filter(p => !withIds.some(n => n.id === p.id)),
+        ...withIds,
+      ]);
+    }
+    return withIds.length;
+  };
+
   const updateLocation = (id: string, updates: Partial<MapLocation>) => {
     setLocations(prev =>
       prev.map(loc => (loc.id === id ? { ...loc, ...updates } : loc))
@@ -149,6 +166,7 @@ export function useLocations() {
     addLocation,
     updateLocation,
     deleteLocation,
+    importLocations,
     saveStatus,
     manualSave,
   };
