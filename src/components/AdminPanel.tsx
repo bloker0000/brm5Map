@@ -13,7 +13,7 @@ const ALL_CATEGORIES: LocationCategory[] = [
   'Enemy Location',
   'Zombie Nest',
   'Key Spawn Location',
-  'Locked Doors',
+  'Locked Door',
   'Quarantine Zone',
   'Medical',
   'Shop',

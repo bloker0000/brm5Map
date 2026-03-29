@@ -59,8 +59,6 @@ export function EnemyLocationIcon({ size = 16, color = 'currentColor', className
 export function ZombieNestIcon({ size = 16, color = 'currentColor', className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
-      <path d="M8 2C4.5 2 2 5 2 8.5c0 2 .8 3.5 2 4.5H8" />
-      <path d="M16 2c3.5 0 6 3 6 6.5 0 2-.8 3.5-2 4.5H16" />
       <rect x="5" y="4" width="14" height="12" rx="5" />
       <circle cx="9" cy="10" r="1.5" fill={color} stroke="none" />
       <circle cx="15" cy="10" r="1.5" fill={color} stroke="none" />
@@ -78,7 +76,7 @@ export function KeySpawnLocationIcon({ size = 16, color = 'currentColor', classN
   );
 }
 
-export function LockedDoorsIcon({ size = 16, color = 'currentColor', className }: IconProps) {
+export function LockedDoorIcon({ size = 16, color = 'currentColor', className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
       <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
@@ -226,7 +224,7 @@ const iconComponents: Record<LocationCategory, React.FC<IconProps>> = {
   'Enemy Location': EnemyLocationIcon,
   'Zombie Nest': ZombieNestIcon,
   'Key Spawn Location': KeySpawnLocationIcon,
-  'Locked Doors': LockedDoorsIcon,
+  'Locked Door': LockedDoorIcon,
   'Quarantine Zone': QuarantineZoneIcon,
   'Medical': MedicalIcon,
   'Shop': ShopIcon,

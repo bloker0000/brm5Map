@@ -18,7 +18,7 @@ interface MapPinProps {
 
 export const MapPin = memo(function MapPin({ location, isHovered, isSelected, onHover, onClick, scale, rotation, isDraggable, onDrag }: MapPinProps) {
   const color = CATEGORY_COLORS[location.category];
-  const pinSize = 20;
+  const pinSize = 25;
   const isDraggingRef = useRef(false);
   const dragStartRef = useRef({ x: 0, y: 0, locX: 0, locY: 0 });
   const pinRef = useRef<HTMLDivElement>(null);

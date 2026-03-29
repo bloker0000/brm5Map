@@ -5,7 +5,7 @@ export type LocationCategory =
   | 'Enemy Location'
   | 'Zombie Nest'
   | 'Key Spawn Location'
-  | 'Locked Doors'
+  | 'Locked Door'
   | 'Quarantine Zone'
   | 'Medical'
   | 'Shop'
@@ -42,20 +42,20 @@ export interface MapLocation {
 }
 
 export const CATEGORY_COLORS: Record<LocationCategory, string> = {
-  'Spawnpoint': '#44cc88',
-  'Building': '#6699cc',
-  'Extraction Point': '#ff6b9d',
-  'Enemy Location': '#cc4444',
-  'Zombie Nest': '#cc4444',
+  'Spawnpoint': '#35d497',
+  'Building': '#2d80d3',
+  'Extraction Point': '#fa3073',
+  'Enemy Location': '#eb3a3a',
+  'Zombie Nest': '#759c1a',
   'Key Spawn Location': '#d4a544',
-  'Locked Doors': '#d4a544',
-  'Quarantine Zone': '#cc8844',
+  'Locked Door': '#cc812b',
+  'Quarantine Zone': '#d2df60',
   'Medical': '#44aacc',
   'Shop': '#aa88cc',
-  'Landmark': '#cccc44',
+  'Landmark': '#d8d8b1',
   'Subway Station': '#9966cc',
-  'Infiltration': '#5599dd',
-  'Raid': '#dd5555',
+  'Infiltration': '#6ac9e0',
+  'Raid': '#e74818',
   'Other': '#888888',
 };
 
