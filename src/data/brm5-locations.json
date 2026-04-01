@@ -155,9 +155,9 @@
   {
     "id": "5",
     "name": "Extraction Point Whitehall",
-    "x": 755,
-    "y": 2041,
-    "description": "An extraction point accessible via ladder.\n\n### Enemy Presence\n**2 enemies** may spawn at the ladder leading up to the extraction point. Clear them before extracting.",
+    "x": 754,
+    "y": 2039,
+    "description": "An extraction point accessible via ladder.\n\n### Enemy Presence\n**2 enemies** may spawn at the ladder leading up to the extraction point. Clear them before extracting.\n\n#PVE MODE ONLY",
     "category": "Extraction Point",
     "images": [
       {
@@ -537,7 +537,7 @@
     ]
   },
   {
-    "name": "Extraction point hospital",
+    "name": "Hospital Helipad Extraction",
     "x": 1471,
     "y": 381,
     "description": "Helicopter extraction point for the hospital quarantine zone.\n\n### Usage\nActivate via **CSEL extraction radio**. The helicopter lands on the highest accessible floor of the helipad.\n\n*Exact activation conditions are still being documented.*",
@@ -647,7 +647,7 @@
     "id": "mjrvbvm2xw7dk78r5yb"
   },
   {
-    "name": "Sheepdog Camp",
+    "name": "Bandit Camp",
     "x": 2031,
     "y": 959,
     "description": "**Large enemy group** occupying both buildings at **Front** street. They are spread out between apartment building and camp on the roof of opposite building.\n\n### Possible Loot\n- Food and water\n- Medical items\n- Ammo and weapons\n- Military equipment\n- Some valuable junk\n- Keys",
@@ -666,9 +666,9 @@
   },
   {
     "name": "Bridge Bandit Camp",
-    "x": 2243,
-    "y": 816,
-    "description": "**Small enemy group** located under the bridge. Location has nothing much of value.\n### Threat\nEnemy sniper may spawn on top of bridge. Be careful in the open spaces.",
+    "x": 2242,
+    "y": 841,
+    "description": "**Small enemy group** located under the bridge. Not much loot here.\n### Threat\nEnemy sniper may spawn on top of bridge. Be careful in the open spaces.",
     "category": "Enemy Location",
     "id": "mjrvdg92ey7j6v936t9",
     "images": [
@@ -696,9 +696,9 @@
   },
   {
     "name": "Abrams Square Bandit Outpost",
-    "x": 2103,
-    "y": 1469,
-    "description": "**Small enemy group** near the **Abrams Square** infiltration point. Location has nothing much of value.\n\n### Threat\nYou may get shot at immediately upon drop-off. Be ready to engage.",
+    "x": 2099,
+    "y": 1471,
+    "description": "**Small enemy group** near the **Abrams Square** infiltration point. Not much loot here.\n\n### Warning\nYou may get shot at immediately upon drop-off. Be ready to engage.",
     "category": "Enemy Location",
     "id": "mjrvg2yu12fqri0iple",
     "images": [
@@ -734,9 +734,9 @@
   },
   {
     "name": "Carl's Cars Sheepdog Outpost",
-    "x": 1858,
-    "y": 2011,
-    "description": "**Large enemy group** outside and inside **Carl's Cars** dealership.\n\n### Threat\nBe careful when entering the building as enemy can start shooting you from second floor. Some will also hide behind cover/corners.\n\nFor more details, view **Carl's Cars** marker.",
+    "x": 1880,
+    "y": 2024,
+    "description": "**Large enemy group** outside and inside **Carl's Cars** dealership.\n\n### Warning\nBe careful when entering the building as enemy can start shooting you from second floor. Some will also hide behind cover/corners.\n\nFor more details, view **Carl's Cars** marker.",
     "category": "Enemy Location",
     "id": "mjrvj0bwpto8itfovkp",
     "images": [
@@ -761,10 +761,10 @@
     ]
   },
   {
-    "name": "Extraction Point South",
-    "x": 2001,
-    "y": 2180,
-    "description": "Southern extraction point with **two access routes**.\n\n\n### Access\n\n- Southeast staircase\n\n- Northwest staircase",
+    "name": "Raised Park Extraction",
+    "x": 1999,
+    "y": 2181,
+    "description": "Southern extraction point with **two access routes**.\n\n### Access\n- Southeast staircase\n- Northwest staircase",
     "category": "Extraction Point",
     "id": "mjrvk7yp6ewdm0dtggd",
     "images": [
@@ -1029,8 +1029,8 @@
   {
     "name": "Whitehall Sheepdog Outpost",
     "x": 724,
-    "y": 1995,
-    "description": "**Small enemy group** guarding the ladder leading to extraction point. Location has nothing much of value.\n\n### Threat\nEnemies may alert zombies from the Quill clothing store. Keep that in mind when clearing.\n\n### Mission\nThere is a garage door leading to underground parking lot, which opens only during \"name\".",
+    "y": 1993,
+    "description": "**Small enemy group** guarding the ladder leading to extraction point. Not much loot here.\n\n### Warning\nEnemies may alert zombies from the Quill clothing store. Keep that in mind when clearing.\n\n### Mission\nThere is a garage door leading to underground parking lot, which opens only during \"name\".",
     "category": "Enemy Location",
     "id": "mjrvtq3vt1itadzeuss",
     "images": [
@@ -1142,13 +1142,7 @@
     "y": 839,
     "description": "**Small enemy group** guarding a gate leading to **Ground Zero**. Location has nothing much of value.\n\n### Mission Relevance\n**Stash spot** for the distraction device in *\"Wetwork, pt. 4\"*.\n\n---\n\n*Contributed by Nintendoboi2*",
     "category": "Enemy Location",
-    "id": "mjrvyhprb84kvtssp2a",
-    "images": [
-      {
-        "url": "https://i.imgur.com/KuEvYOA.png",
-        "description": "(photographer:Nintendoboi2)"
-      }
-    ]
+    "id": "mjrvyhprb84kvtssp2a"
   },
   {
     "name": "Ground Zero Gate",
@@ -1945,5 +1939,13 @@
     "description": "",
     "category": "Locked Door",
     "id": "mnc93y2zacdgll7hos"
+  },
+  {
+    "name": "Semi Truck Extraction",
+    "x": 1122,
+    "y": 1073,
+    "description": "# PVP Mode Only",
+    "category": "Extraction Point",
+    "id": "mnfrd2wbgzf3khypdqo"
   }
 ]
