@@ -20,7 +20,7 @@ const CHANGELOG: ChangelogEntry[] = [
       'Added category icons on map pins, each category now displays its own SVG icon instead of a colored dot',
       'Icons stay upright when rotating the map',
       'Renamed "Enemy Outpost" category to "Enemy Location"',
-      'Renamed "Key Use Location" category to "Locked Doors"',
+      'Renamed "Key Use Location" category to "Locked Door"',
       'Added new "Infiltration" category with eye icon',
       'Added new "Raid" category with shield icon',
       'Improved map pan/zoom performance significantly.. GPU-accelerated rendering, pins no longer re-render during drag',
