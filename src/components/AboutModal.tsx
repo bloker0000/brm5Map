@@ -107,6 +107,8 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
             <p>Map and website made by Multyply, a good ammount of location images by <a href="https://roblox-blackhawk-rescue-mission-5.fandom.com/wiki/User:Nintendoboi2" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brm-accent)', textDecoration: 'underline' }}>Nintendoboi2</a></p>
             <p>Background artwork by many talented artists. See footer for current artist.</p>
             <p>Help is always welcome, send me a DM on discord if you want to.</p>
+            <h3>Contributors</h3>
+            <p><a href="https://github.com/T0TR0X" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brm-accent)', textDecoration: 'underline' }}>TotroX</a>: Location data, descriptions, images, and icon improvements <span style={{ opacity: 0.5, fontSize: '0.8rem' }}>(Discord: .totrox)</span></p>
           </section>
 
           <section className="about-visits">

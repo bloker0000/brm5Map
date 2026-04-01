@@ -14,6 +14,20 @@ interface ChangelogEntry {
 
 const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.6.0',
+    date: '2026-04-01',
+    changes: [
+      'Large location update: 26 new locations added, many existing ones updated with better descriptions and images',
+      'Renamed "Locked Doors" category to "Locked Door"',
+      'Updated category colors for better visibility and distinction between types',
+      'Zombie Nest and Enemy Location no longer share the same color',
+      'Cleaned up Zombie Nest icon',
+      'Slightly reduced icon drop-shadow for cleaner look on light backgrounds',
+      'Increased pin size for improved visibility',
+      'Removed leftover test markers',
+    ],
+  },
+  {
     version: '1.5.0',
     date: '2026-03-26',
     changes: [
