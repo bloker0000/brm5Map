@@ -364,6 +364,9 @@ export function InteractiveMap({
       
       if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) {
         setHasDragged(true);
+        if (pinsOverlayRef.current) {
+          pinsOverlayRef.current.style.pointerEvents = 'none';
+        }
       }
       
       dragStartRef.current = { x: e.clientX, y: e.clientY };
@@ -385,6 +388,12 @@ export function InteractiveMap({
       isGesturingRef.current = false;
       setIsDragging(false);
       setTransform({ ...transformRef.current });
+      // Re-enable pin clicks after the pending click event fires
+      setTimeout(() => {
+        if (pinsOverlayRef.current) {
+          pinsOverlayRef.current.style.pointerEvents = '';
+        }
+      }, 0);
     };
 
     document.addEventListener('mousemove', handleMouseMove);
