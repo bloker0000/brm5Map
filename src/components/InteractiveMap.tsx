@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useRef, useCallback, useEffect, useLayoutEffect } from 'react';
 import { MapPin } from './MapPin';
 import { PlusIcon, MinusIcon, ResetPositionIcon, ResetRotationIcon, CategoryIcon } from './Icons';
 import type { MapLocation, LocationCategory } from '../types/location';
@@ -74,6 +74,8 @@ export function InteractiveMap({
   const contentRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const compassRef = useRef<HTMLDivElement>(null);
+  const compassImageRef = useRef<HTMLImageElement>(null);
+  const rotationDisplayRef = useRef<HTMLSpanElement>(null);
   
   const [transform, setTransform] = useState<Transform>({ x: 0, y: 0, scale: 0.5 });
   const [isDragging, setIsDragging] = useState(false);
@@ -85,8 +87,7 @@ export function InteractiveMap({
   const [bgIndex] = useState(() => Math.floor(Math.random() * BG_IMAGES.length));
   const [isAnimating, setIsAnimating] = useState(false);
   const coordsRef = useRef<HTMLSpanElement>(null);
-  
-  const compassRotation = -MAP_NORTH_OFFSET + mapRotation;
+  const pinsOverlayRef = useRef<HTMLDivElement>(null);
 
   const screenToMapCoords = useCallback((clientX: number, clientY: number): { x: number; y: number } => {
     const container = containerRef.current;
@@ -123,15 +124,19 @@ export function InteractiveMap({
   const compassDragStartRef = useRef({ startAngle: 0, startRotation: 0 });
   const transformRef = useRef(transform);
   const mapRotationRef = useRef(mapRotation);
+  const scaleRef = useRef(transform.scale);
+  const isGesturingRef = useRef(false);
   
   useEffect(() => {
     onBgChange?.(bgIndex);
   }, [bgIndex, onBgChange]);
   
-  if (!isDragging) {
+  // Sync refs from state only when no gesture is active
+  if (!isGesturingRef.current) {
     transformRef.current = transform;
+    scaleRef.current = transform.scale;
+    mapRotationRef.current = mapRotation;
   }
-  mapRotationRef.current = mapRotation;
 
   const clampTransform = useCallback((t: Transform, rotation: number = 0): Transform => {
     const container = containerRef.current;
@@ -168,8 +173,79 @@ export function InteractiveMap({
     const rect = container.getBoundingClientRect();
     const cx = rect.width / 2;
     const cy = rect.height / 2;
-    return `translate(${cx}px, ${cy}px) rotate(${rotation}deg) translate(${-cx}px, ${-cy}px) translate(${t.x}px, ${t.y}px)`;
+    return `translate(${cx}px, ${cy}px) rotate(${rotation}deg) translate(${-cx}px, ${-cy}px) translate(${t.x}px, ${t.y}px) scale(${t.scale})`;
   }, []);
+
+  // Update all pin screen positions from current transform/rotation refs
+  const updatePinPositions = useCallback(() => {
+    const overlay = pinsOverlayRef.current;
+    const container = containerRef.current;
+    if (!overlay || !container) return;
+    const rect = container.getBoundingClientRect();
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const t = transformRef.current;
+    const rot = mapRotationRef.current;
+    const rad = rot * Math.PI / 180;
+    const cos = Math.cos(rad);
+    const sin = Math.sin(rad);
+    const children = overlay.children;
+    for (let i = 0; i < children.length; i++) {
+      const el = children[i] as HTMLElement;
+      if ('dragging' in el.dataset) continue;
+      const mx = el.dataset.x;
+      const my = el.dataset.y;
+      if (mx == null || my == null) continue;
+      const sx = +mx * t.scale + t.x;
+      const sy = +my * t.scale + t.y;
+      const dx = sx - cx;
+      const dy = sy - cy;
+      el.style.transform = `translate(${cx + dx * cos - dy * sin}px, ${cy + dx * sin + dy * cos}px) translate(-50%, -50%)`;
+    }
+  }, []);
+
+  // Direct DOM update for rotation — bypasses React
+  const applyRotationToDOM = useCallback((newRotation: number) => {
+    mapRotationRef.current = newRotation;
+    if (contentRef.current) {
+      contentRef.current.style.transform = getTransformCSS(transformRef.current, newRotation);
+    }
+    if (compassImageRef.current) {
+      compassImageRef.current.style.transform = `rotate(${-MAP_NORTH_OFFSET + newRotation}deg)`;
+    }
+    if (rotationDisplayRef.current) {
+      const heading = ((-newRotation + 40) % 360 + 360) % 360;
+      rotationDisplayRef.current.textContent = heading.toFixed(0);
+    }
+    updatePinPositions();
+  }, [getTransformCSS, updatePinPositions]);
+
+  // Direct DOM update for transform — bypasses React
+  const applyTransformToDOM = useCallback((t: Transform) => {
+    transformRef.current = t;
+    scaleRef.current = t.scale;
+    if (contentRef.current) {
+      contentRef.current.style.transform = getTransformCSS(t, mapRotationRef.current);
+    }
+    updatePinPositions();
+  }, [getTransformCSS, updatePinPositions]);
+
+  // Sync DOM whenever React state changes (animations, reset, center-on-location)
+  // Skip during active gestures — they write to DOM directly
+  useLayoutEffect(() => {
+    if (isGesturingRef.current) return;
+    if (contentRef.current) {
+      contentRef.current.style.transform = getTransformCSS(transform, mapRotation);
+    }
+    if (compassImageRef.current) {
+      compassImageRef.current.style.transform = `rotate(${-MAP_NORTH_OFFSET + mapRotation}deg)`;
+    }
+    if (rotationDisplayRef.current) {
+      const heading = ((-mapRotation + 40) % 360 + 360) % 360;
+      rotationDisplayRef.current.textContent = heading.toFixed(0);
+    }
+    updatePinPositions();
+  }, [transform, mapRotation, getTransformCSS, updatePinPositions]);
 
   const centerMap = useCallback(() => {
     const container = containerRef.current;
@@ -205,8 +281,11 @@ export function InteractiveMap({
     const container = containerRef.current;
     if (!container) return;
 
+    let wheelSyncTimeout: ReturnType<typeof setTimeout>;
+
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
+      isGesturingRef.current = true;
       const rect = container.getBoundingClientRect();
       const mouseX = e.clientX - rect.left;
       const mouseY = e.clientY - rect.top;
@@ -233,17 +312,25 @@ export function InteractiveMap({
       const newY = rotatedMouseY - (rotatedMouseY - prev.y) * scaleRatio;
 
       const newTransform = clampTransform({ x: newX, y: newY, scale: newScale }, currentRotation);
-      transformRef.current = newTransform;
-      setTransform(newTransform);
+      applyTransformToDOM(newTransform);
+      clearTimeout(wheelSyncTimeout);
+      wheelSyncTimeout = setTimeout(() => {
+        isGesturingRef.current = false;
+        setTransform({ ...transformRef.current });
+      }, 150);
     };
 
     container.addEventListener('wheel', handleWheel, { passive: false });
-    return () => container.removeEventListener('wheel', handleWheel);
-  }, [clampTransform]);
+    return () => {
+      container.removeEventListener('wheel', handleWheel);
+      clearTimeout(wheelSyncTimeout);
+    };
+  }, [clampTransform, applyTransformToDOM]);
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
     if (e.button === 2) {
       e.preventDefault();
+      isGesturingRef.current = true;
       setIsRotating(true);
       rotationStartRef.current = { 
         angle: mapRotation, 
@@ -253,6 +340,7 @@ export function InteractiveMap({
     }
     if (e.button !== 0) return;
     e.preventDefault();
+    isGesturingRef.current = true;
     setIsDragging(true);
     setHasDragged(false);
     dragStartRef.current = { 
@@ -290,9 +378,11 @@ export function InteractiveMap({
       if (contentRef.current) {
         contentRef.current.style.transform = getTransformCSS(newTransform, currentRotation);
       }
+      updatePinPositions();
     };
 
     const handleMouseUp = () => {
+      isGesturingRef.current = false;
       setIsDragging(false);
       setTransform({ ...transformRef.current });
     };
@@ -306,7 +396,7 @@ export function InteractiveMap({
       document.removeEventListener('mouseup', handleMouseUp);
       document.body.style.userSelect = '';
     };
-  }, [isDragging, clampTransform, getTransformCSS]);
+  }, [isDragging, clampTransform, getTransformCSS, updatePinPositions]);
 
   useEffect(() => {
     if (!isRotating) return;
@@ -315,10 +405,12 @@ export function InteractiveMap({
       e.preventDefault();
       const deltaX = e.clientX - rotationStartRef.current.startX;
       const newRotation = rotationStartRef.current.angle + deltaX * 0.15;
-      setMapRotation(newRotation);
+      applyRotationToDOM(newRotation);
     };
 
     const handleMouseUp = () => {
+      isGesturingRef.current = false;
+      setMapRotation(mapRotationRef.current);
       setIsRotating(false);
     };
 
@@ -331,7 +423,7 @@ export function InteractiveMap({
       document.removeEventListener('mouseup', handleMouseUp);
       document.body.style.userSelect = '';
     };
-  }, [isRotating]);
+  }, [isRotating, applyRotationToDOM]);
 
   useEffect(() => {
     if (!isCompassDragging) return;
@@ -347,10 +439,12 @@ export function InteractiveMap({
       
       const currentAngle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI);
       const angleDelta = currentAngle - compassDragStartRef.current.startAngle;
-      setMapRotation(compassDragStartRef.current.startRotation + angleDelta);
+      applyRotationToDOM(compassDragStartRef.current.startRotation + angleDelta);
     };
 
     const handleMouseUp = () => {
+      isGesturingRef.current = false;
+      setMapRotation(mapRotationRef.current);
       setIsCompassDragging(false);
     };
 
@@ -363,7 +457,7 @@ export function InteractiveMap({
       document.removeEventListener('mouseup', handleMouseUp);
       document.body.style.userSelect = '';
     };
-  }, [isCompassDragging]);
+  }, [isCompassDragging, applyRotationToDOM]);
 
   const handleCompassMouseDown = useCallback((e: React.MouseEvent) => {
     if (e.button !== 0) return;
@@ -379,6 +473,7 @@ export function InteractiveMap({
     const startAngle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI);
     
     compassDragStartRef.current = { startAngle, startRotation: mapRotation };
+    isGesturingRef.current = true;
     setIsCompassDragging(true);
   }, [mapRotation]);
 
@@ -516,7 +611,7 @@ export function InteractiveMap({
 
   return (
     <div 
-      className={`interactive-map ${isAdminMode ? 'admin-mode' : ''} ${isDragging ? 'dragging' : ''} ${isRotating ? 'rotating' : ''}`} 
+      className={`interactive-map ${isAdminMode ? 'admin-mode' : ''} ${isDragging ? 'dragging' : ''} ${isRotating || isCompassDragging ? 'rotating' : ''}`} 
       ref={containerRef}
       onMouseDown={handleMouseDown}
       onContextMenu={handleContextMenu}
@@ -531,10 +626,7 @@ export function InteractiveMap({
       <div 
         className={`map-content ${isAnimating ? 'animating' : ''}`}
         ref={contentRef}
-        style={{
-          transform: getTransformCSS(transform, mapRotation),
-          transformOrigin: '0 0',
-        }}
+        style={{ transformOrigin: '0 0' }}
         onClick={handleContentClick}
       >
         <img
@@ -542,23 +634,21 @@ export function InteractiveMap({
           src="/Brm5Map.svg"
           alt="BRM5 Map"
           className="map-image"
-          style={{
-            width: imageRef.current ? `${imageRef.current.naturalWidth * transform.scale}px` : undefined,
-            height: imageRef.current ? `${imageRef.current.naturalHeight * transform.scale}px` : undefined,
-          }}
+          width={3524}
+          height={2500}
           draggable={false}
           onDragStart={(e) => e.preventDefault()}
           onLoad={() => setImageLoaded(true)}
         />
+      </div>
+
+      <div className="pins-overlay" ref={pinsOverlayRef}>
         {showPins && placeholderPin && (
           <div
             className="map-pin placeholder"
-            style={{
-              left: placeholderPin.x * transform.scale,
-              top: placeholderPin.y * transform.scale,
-              '--pin-color': CATEGORY_COLORS[placeholderPin.category],
-              '--pin-rotation': `${-mapRotation}deg`,
-            } as React.CSSProperties}
+            data-x={placeholderPin.x}
+            data-y={placeholderPin.y}
+            style={{ '--pin-color': CATEGORY_COLORS[placeholderPin.category] } as React.CSSProperties}
           >
             <div className="placeholder-rings">
               <span className="placeholder-ring" />
@@ -578,8 +668,8 @@ export function InteractiveMap({
             isSelected={selectedLocation?.id === location.id}
             onHover={onHover}
             onClick={onClick}
-            scale={transform.scale}
-            rotation={mapRotation}
+            scaleRef={scaleRef}
+            rotationRef={mapRotationRef}
             isDraggable={isDragMode}
             onDrag={onPinDrag}
           />
@@ -607,20 +697,17 @@ export function InteractiveMap({
         onMouseDown={handleCompassMouseDown}
       >
         <img
+          ref={compassImageRef}
           src="/compass.svg"
           alt="Compass"
           className="compass-image"
-          style={{ transform: `rotate(${compassRotation}deg)` }}
           draggable={false}
         />
       </div>
 
       <div className="rotation-display">
         <span className="rotation-label">Rotation:</span>
-        <span className="rotation-value">{(() => {
-          let heading = ((-mapRotation + 40) % 360 + 360) % 360;
-          return heading.toFixed(0);
-        })()}</span>
+        <span className="rotation-value" ref={rotationDisplayRef}>0</span>
       </div>
 
       <div className="coords-display">

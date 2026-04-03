@@ -14,6 +14,27 @@ interface ChangelogEntry {
 
 const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.6.2',
+    date: '2026-04-04',
+    changes: [
+      'Major performance overhaul: moved pins to screen-space overlay, eliminating GPU re-rasterization during pan/zoom/rotate',
+      'Map layer now contains only the map image for fast compositing',
+      'Pin icons are always crisp at any zoom level — no more pixelation',
+      'Reduced DOM nodes per pin from ~15 to 3',
+      'Prevented accidental pin clicks while dragging or rotating the map',
+    ],
+  },
+  {
+    version: '1.6.1',
+    date: '2026-04-01',
+    changes: [
+      'Significantly improved map rotation performance - rotation gesture no longer triggers React re-renders',
+      'Replaced inline SVG pin icons with cached data URI images, reducing DOM node count from ~600 to 102',
+      'Increased icon render resolution (4×) to eliminate pixelation at higher zoom levels',
+      'Pin icons are now promoted to GPU compositor layers for smoother hover animations',
+    ],
+  },
+  {
     version: '1.6.0',
     date: '2026-04-01',
     changes: [

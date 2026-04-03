@@ -1,7 +1,7 @@
 import { memo, useCallback, useRef } from 'react';
 import type { MapLocation } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
-import { CategoryIcon } from './Icons';
+import { getCategoryIconUri } from './Icons';
 import './MapPin.css';
 
 interface MapPinProps {
@@ -10,17 +10,28 @@ interface MapPinProps {
   isSelected: boolean;
   onHover: (location: MapLocation | null) => void;
   onClick: (location: MapLocation) => void;
-  scale: number;
-  rotation: number;
+  scaleRef: React.RefObject<number>;
+  rotationRef: React.RefObject<number>;
   isDraggable?: boolean;
   onDrag?: (locationId: string, x: number, y: number) => void;
 }
 
-export const MapPin = memo(function MapPin({ location, isHovered, isSelected, onHover, onClick, scale, rotation, isDraggable, onDrag }: MapPinProps) {
+function pinPropsAreEqual(prev: MapPinProps, next: MapPinProps) {
+  return prev.location === next.location
+    && prev.isHovered === next.isHovered
+    && prev.isSelected === next.isSelected
+    && prev.onHover === next.onHover
+    && prev.onClick === next.onClick
+    && prev.isDraggable === next.isDraggable
+    && prev.onDrag === next.onDrag;
+}
+
+const PIN_SIZE = 25;
+
+export const MapPin = memo(function MapPin({ location, isHovered, isSelected, onHover, onClick, scaleRef, rotationRef, isDraggable, onDrag }: MapPinProps) {
   const color = CATEGORY_COLORS[location.category];
-  const pinSize = 25;
+  const iconSrc = getCategoryIconUri(location.category, color);
   const isDraggingRef = useRef(false);
-  const dragStartRef = useRef({ x: 0, y: 0, locX: 0, locY: 0 });
   const pinRef = useRef<HTMLDivElement>(null);
   const finalPosRef = useRef({ x: 0, y: 0 });
 
@@ -37,38 +48,46 @@ export const MapPin = memo(function MapPin({ location, isHovered, isSelected, on
     e.stopPropagation();
     e.preventDefault();
     isDraggingRef.current = false;
-    dragStartRef.current = { x: e.clientX, y: e.clientY, locX: location.x, locY: location.y };
     finalPosRef.current = { x: location.x, y: location.y };
 
+    const scale = scaleRef.current;
+    const rotation = rotationRef.current;
     const rotationRad = -rotation * Math.PI / 180;
     const cos = Math.cos(rotationRad);
     const sin = Math.sin(rotationRad);
+    const startMouseX = e.clientX;
+    const startMouseY = e.clientY;
+
+    const pinEl = pinRef.current!;
+    const pinRect = pinEl.getBoundingClientRect();
+    const overlayRect = pinEl.parentElement!.getBoundingClientRect();
+    const baseX = pinRect.left + pinRect.width / 2 - overlayRect.left;
+    const baseY = pinRect.top + pinRect.height / 2 - overlayRect.top;
+    pinEl.dataset.dragging = '';
 
     const handleMouseMove = (ev: MouseEvent) => {
-      const dx = ev.clientX - dragStartRef.current.x;
-      const dy = ev.clientY - dragStartRef.current.y;
+      const dx = ev.clientX - startMouseX;
+      const dy = ev.clientY - startMouseY;
       if (!isDraggingRef.current && (Math.abs(dx) > 3 || Math.abs(dy) > 3)) {
         isDraggingRef.current = true;
       }
       if (!isDraggingRef.current) return;
 
+      pinEl.style.transform = `translate(${baseX + dx}px, ${baseY + dy}px) translate(-50%, -50%)`;
+
       const rotatedDx = (dx * cos - dy * sin) / scale;
       const rotatedDy = (dx * sin + dy * cos) / scale;
-      const newX = Math.round(dragStartRef.current.locX + rotatedDx);
-      const newY = Math.round(dragStartRef.current.locY + rotatedDy);
-      finalPosRef.current = { x: newX, y: newY };
-
-      // Update DOM directly — only commit to state on mouseup
-      if (pinRef.current) {
-        pinRef.current.style.left = `${newX * scale}px`;
-        pinRef.current.style.top = `${newY * scale}px`;
-      }
+      finalPosRef.current = {
+        x: Math.round(location.x + rotatedDx),
+        y: Math.round(location.y + rotatedDy),
+      };
     };
 
     const handleMouseUp = () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
       document.body.style.userSelect = '';
+      delete pinEl.dataset.dragging;
       if (isDraggingRef.current) {
         onDrag(location.id, finalPosRef.current.x, finalPosRef.current.y);
       }
@@ -78,27 +97,23 @@ export const MapPin = memo(function MapPin({ location, isHovered, isSelected, on
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
     document.body.style.userSelect = 'none';
-  }, [isDraggable, onDrag, location.id, location.x, location.y, scale, rotation]);
+  }, [isDraggable, onDrag, location.id, location.x, location.y, scaleRef, rotationRef]);
 
   return (
     <div
       ref={pinRef}
       className={`map-pin ${isHovered ? 'hovered' : ''} ${isSelected ? 'selected' : ''} ${isDraggable ? 'draggable' : ''}`}
-      style={{
-        left: location.x * scale,
-        top: location.y * scale,
-        '--pin-color': color,
-        '--pin-size': `${pinSize}px`,
-        '--pin-rotation': `${-rotation}deg`,
-      } as React.CSSProperties}
+      data-x={location.x}
+      data-y={location.y}
+      style={{ '--pin-color': color } as React.CSSProperties}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
       onMouseDown={handleMouseDown}
     >
       <div className="pin-icon">
-        <CategoryIcon category={location.category} size={pinSize} color={color} />
+        <img src={iconSrc} alt="" width={PIN_SIZE} height={PIN_SIZE} draggable={false} />
       </div>
     </div>
   );
-});
+}, pinPropsAreEqual);

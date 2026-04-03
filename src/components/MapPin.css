@@ -1,9 +1,10 @@
 .map-pin {
   position: absolute;
-  transform: translate(-50%, -50%);
+  left: 0;
+  top: 0;
   cursor: pointer;
   z-index: 10;
-  contain: layout style;
+  pointer-events: auto;
 }
 
 .map-pin:hover {
@@ -76,22 +77,22 @@
 }
 
 .pin-icon {
-  width: var(--pin-size);
-  height: var(--pin-size);
   opacity: 0.9;
-  transform: rotate(var(--pin-rotation, 0deg)) scale(1);
-  transition: transform 0.15s ease, opacity 0.15s ease;
-  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.5));
+}
+
+.pin-icon img {
+  display: block;
 }
 
 .map-pin:hover .pin-icon,
 .map-pin.hovered .pin-icon {
-  transform: rotate(var(--pin-rotation, 0deg)) scale(1.4);
+  transform: scale(1.4);
   opacity: 1;
+  transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
 .map-pin.selected .pin-icon {
-  transform: rotate(var(--pin-rotation, 0deg)) scale(1.6);
+  transform: scale(1.6);
   opacity: 1;
 }
 
