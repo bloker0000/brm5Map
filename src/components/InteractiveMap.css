@@ -32,7 +32,6 @@
   cursor: grabbing;
 }
 
-.interactive-map.dragging .map-pin,
 .interactive-map.rotating .map-pin {
   pointer-events: none;
 }
