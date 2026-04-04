@@ -126,10 +126,25 @@ export function InteractiveMap({
   const mapRotationRef = useRef(mapRotation);
   const scaleRef = useRef(transform.scale);
   const isGesturingRef = useRef(false);
+  const hasDraggedRef = useRef(false);
   
   useEffect(() => {
     onBgChange?.(bgIndex);
   }, [bgIndex, onBgChange]);
+
+  // Block pin clicks after a drag — capture phase fires before the pin's handler
+  useEffect(() => {
+    const overlay = pinsOverlayRef.current;
+    if (!overlay) return;
+    const blockClick = (e: MouseEvent) => {
+      if (hasDraggedRef.current) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
+    };
+    overlay.addEventListener('click', blockClick, true);
+    return () => overlay.removeEventListener('click', blockClick, true);
+  }, []);
   
   // Sync refs from state only when no gesture is active
   if (!isGesturingRef.current) {
@@ -364,9 +379,7 @@ export function InteractiveMap({
       
       if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) {
         setHasDragged(true);
-        if (pinsOverlayRef.current) {
-          pinsOverlayRef.current.style.pointerEvents = 'none';
-        }
+        hasDraggedRef.current = true;
       }
       
       dragStartRef.current = { x: e.clientX, y: e.clientY };
@@ -388,12 +401,8 @@ export function InteractiveMap({
       isGesturingRef.current = false;
       setIsDragging(false);
       setTransform({ ...transformRef.current });
-      // Re-enable pin clicks after the pending click event fires
-      setTimeout(() => {
-        if (pinsOverlayRef.current) {
-          pinsOverlayRef.current.style.pointerEvents = '';
-        }
-      }, 0);
+      // Reset drag ref after click event fires
+      setTimeout(() => { hasDraggedRef.current = false; }, 0);
     };
 
     document.addEventListener('mousemove', handleMouseMove);
