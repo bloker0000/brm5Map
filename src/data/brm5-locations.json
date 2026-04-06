@@ -23,7 +23,7 @@
   },
   {
     "id": "2",
-    "name": "Stone 6 (Saul & Co)",
+    "name": "Saul & Co",
     "x": 1224,
     "y": 2102,
     "description": "A **three-story office building** with valuable loot.\n\n### Access\n- Floors 1-2 are freely accessible\n- **Third floor requires a key** to enter\n\nThe locked office on the third floor often contains ammunition and supplies.",
@@ -49,7 +49,7 @@
   },
   {
     "id": "3",
-    "name": "Activity-Full Sphere Solutions",
+    "name": "Activity-Full & Sphere Solutions",
     "x": 1025,
     "y": 1962,
     "description": "A **large multi-story office building** with a hidden safe.\n\n### Building Layout\n- Multiple entrances including a side entrance\n- Two staircases throughout the building\n- Storage space on lower floors\n\n### Safe Location\nThe **safe is located on the second-to-last floor**. When using the front staircase (southwest), go left upon reaching that floor.\n\n### Navigation Tips\n- Front staircase (SW) continues to the rooftop\n- Rear staircase terminates at the penultimate floor",
@@ -270,14 +270,20 @@
     "name": "Pier Sheepdog Camp",
     "x": 2610,
     "y": 633,
-    "description": "**Medium enemy group** located near the **Pier 17 Mall**.\n\n### Possible Loot\n- Food and water\n- Medical items\n- Ammo and weapons\n- Military equipment\n- Some valuable junk\n\nFor more info, check **Pier 17 Mall** marker.",
+    "description": "**Medium enemy group** located near the **Pier 17 Mall**.\n\n### Possible Loot\n- Medicine\n- Consumables\n- Ammo & Weapons\n- Military equipment\n- Some valuable junk\n\nFor more info, check **Pier 17 Mall** marker.",
     "category": "Enemy Location",
-    "id": "mjrugla1my8fmhkkaw"
+    "id": "mjrugla1my8fmhkkaw",
+    "images": [
+      {
+        "url": "https://imgur.com/CiSybnY.png",
+        "description": "Enemies"
+      }
+    ]
   },
   {
     "name": "Tin Building Market Flood Hall",
     "x": 2326,
-    "y": 742,
+    "y": 743,
     "description": "A **non-entrable** building. Nothing much to say.",
     "category": "Building",
     "id": "mjruiv7hrbxfyt6d6cc",
@@ -546,8 +552,8 @@
   },
   {
     "name": "Crashed Helicopter",
-    "x": 1362,
-    "y": 332,
+    "x": 1374,
+    "y": 322,
     "description": "A **crashed helicopter** adjacent to the hospital building. Serves as a notable landmark.",
     "category": "Landmark",
     "id": "mjrv23gm29chalazqa",
@@ -560,16 +566,16 @@
   },
   {
     "name": "Saul Mart",
-    "x": 1654,
-    "y": 226,
+    "x": 1667,
+    "y": 222,
     "description": "*TBA*",
     "category": "Building",
     "id": "mjrv2vig3klf2lnqy9d"
   },
   {
     "name": "Southbridge Towers",
-    "x": 1701,
-    "y": 300,
+    "x": 1689,
+    "y": 294,
     "description": "Two towers of **varying heights** that provide access to the hospital quarantine zone from the southeast.",
     "category": "Building",
     "id": "mjrv4bp27lq8yth8pz6"
@@ -584,8 +590,8 @@
   },
   {
     "name": "Substation",
-    "x": 2104,
-    "y": 294,
+    "x": 2095,
+    "y": 295,
     "description": "A power plant substation. **Used in a PVE mission** objective.",
     "category": "Building",
     "id": "mjrv5xcwy1hj2ugofn",
@@ -600,7 +606,7 @@
     "name": "Peck Slip Bandit Camp",
     "x": 1964,
     "y": 342,
-    "description": "**Medium enemy group** occupying the fenced area and 3 story building. Location has nothing much of value.",
+    "description": "**Medium enemy group** occupying the fenced area and 3 story building. Not much loot here.",
     "category": "Enemy Location",
     "id": "mjrv6sqgvldq0vwu2rs",
     "images": [
@@ -628,7 +634,7 @@
     "name": "Garage Sheepdog Camp",
     "x": 1770,
     "y": 657,
-    "description": "**Medium enemy group** occupying a secluded garage at **Water** street.\n\n### Possible Loot\n- Medical items\n- Ammo and weapons",
+    "description": "**Medium enemy group** occupying a secluded garage at **Water** street.\n\n### Possible Loot\n- Medicine\n- Ammo & Weapons",
     "category": "Enemy Location",
     "id": "mjrv9gckk0fdmss301l",
     "images": [
@@ -650,7 +656,7 @@
     "name": "Bandit Camp",
     "x": 2031,
     "y": 959,
-    "description": "**Large enemy group** occupying both buildings at **Front** street. They are spread out between apartment building and camp on the roof of opposite building.\n\n### Possible Loot\n- Food and water\n- Medical items\n- Ammo and weapons\n- Military equipment\n- Some valuable junk\n- Keys",
+    "description": "**Large enemy group** occupying both buildings at **Front** street. They are spread out between apartment building and camp on the roof of opposite building.\n\n### Possible Loot\n- Medicine\n- Consumables\n- Ammo & Weapons\n- Military equipment\n- Some valuable junk\n- Keys",
     "category": "Enemy Location",
     "id": "mjrvcgr8zcifyxvmm3",
     "images": [
@@ -668,7 +674,7 @@
     "name": "Bridge Bandit Camp",
     "x": 2242,
     "y": 841,
-    "description": "**Small enemy group** located under the bridge. Not much loot here.\n### Threat\nEnemy sniper may spawn on top of bridge. Be careful in the open spaces.",
+    "description": "**Small enemy group** located under the bridge. Not much loot here.\n### Warning\nEnemy sniper may spawn on top of bridge. Be careful in the open spaces.",
     "category": "Enemy Location",
     "id": "mjrvdg92ey7j6v936t9",
     "images": [
@@ -680,16 +686,16 @@
   },
   {
     "name": "199 water street",
-    "x": 1777,
-    "y": 1133,
+    "x": 1770,
+    "y": 1127,
     "description": "*TBA*",
     "category": "Building",
     "id": "mjrvegrhkx3df85yxgm"
   },
   {
     "name": "One Seaport Plaza",
-    "x": 1774,
-    "y": 1304,
+    "x": 1771,
+    "y": 1325,
     "description": "*TBA*",
     "category": "Building",
     "id": "mjrvernx7yndcvyogsu"
@@ -786,7 +792,7 @@
     "name": "Triple R Diner",
     "x": 1532,
     "y": 1972,
-    "description": "An apartment building with the **Triple R Diner** on the ground floor.\n\n### Building Layout\n- **Ground Floor**: Diner (kitchen, restaurant), hallway, stairs\n- **Second Floor**: Locked apartment (more info in dedicated marker)\n- **Third Floor**: Additional accessible area\n\n### Possible Loot\n- Food and water\n- Valuable junk",
+    "description": "An apartment building with the **Triple R Diner** on the ground floor.\n\n### Building Layout\n- **Ground Floor**: Diner (kitchen, restaurant), hallway, stairs\n- **Second Floor**: Locked apartment (more info in dedicated marker)\n- **Third Floor**: Additional accessible area\n\n### Possible Loot\n- Food and water\n- Ammo and weapons\n- Some valuable junk",
     "category": "Building",
     "id": "mjrvn6gujqbuynmtqz",
     "images": [
@@ -812,13 +818,13 @@
     "name": "Triple R Diner Bandit Camp",
     "x": 1549,
     "y": 1956,
-    "description": "**Medium enemy group** inside and at the entrance of **Triple R Diner** restaurant.\n\nFor more details, view **Triple R Diner** marker.",
+    "description": "**Medium enemy group** inside and at the entrance of **Triple R Diner**.\n\nFor more details, view **Triple R Diner** marker.",
     "category": "Enemy Location",
     "id": "mjrvnhy0kng3cvc4i2q",
     "images": [
       {
         "url": "https://i.imgur.com/VRaQpIn.png",
-        "description": "enemy camp"
+        "description": "Enemies"
       }
     ]
   },
@@ -841,10 +847,10 @@
     ]
   },
   {
-    "name": "Stone 8",
-    "x": 1245,
-    "y": 1973,
-    "description": "A former militant's apartment building.\n\n\n### Key Location (Second Floor)\n**Requires key** to access the second-floor apartment.\n\n\n### Loot\n\n- Gas masks\n\n- Camouflage gear\n\n- Ammunition\n\n**Tip**: The best loot is immediately to the right upon entering.\n\n*More details TBA*",
+    "name": "Apartment (Stone 8)",
+    "x": 648,
+    "y": 1571,
+    "description": "A former militant's apartment building on 1st? floor, accessible with **(Yellow) Apartment Key**.\n\n### Possible Loot\n- Medicine\n- Consumables\n- Ammo & Weapons\n- Military equipment\n- Lots of valuable junk\n- Keys",
     "category": "Locked Door",
     "id": "mjrvol1mdop1ngywhtc",
     "images": [
@@ -880,9 +886,9 @@
   },
   {
     "name": "Safe at Activity-Full",
-    "x": 984,
-    "y": 1950,
-    "description": "A **locked safe** on the second-to-last floor of Activity-Full Sphere Solutions.\n\n\n### Directions\n1. Take the first staircase\n2. Go **left** on the second-to-last floor\n3. Safe is on that side of the building",
+    "x": 648,
+    "y": 1571,
+    "description": "A **locked safe** on the second-to-last floor of **Activity-Full & Sphere Solutions** building. Requires **Safe Key** to open.\n\n### Directions\n1. Take the first staircase\n2. Go **left** on the second-to-last floor\n3. Safe is on that side of the building\n\n### Possible Loot\n- Ammo & Weapons\n- Military equipment\n- Some valuable junk\n- Rare & Unique keys",
     "category": "Locked Door",
     "id": "mjrvoz6urfycx8xq8q",
     "images": [
@@ -914,7 +920,7 @@
     "name": "05 Room Door",
     "x": 1069,
     "y": 1544,
-    "description": "Office room that's accessible with the **05 Room Key**.\n\n### Possible Loot\n- 7.62 & 5.56 ammo and weapons\n- Clothing and gas masks\n- Valuable junk\n- Keys (red ones in safe)\n\n### Threat\nYou can get shot through a window from the roof of a building on other side of the road.",
+    "description": "Locked office room that's accessible with the **05 Room Key**.\n\n### Possible Loot\n- Ammo\n- Weapons (7.62, 5.56)\n- Military equipment\n- Some valuable junk\n- Rare & Unique keys\n\n### Warning\nYou can get shot through a window from the roof of a building on other side of the road.",
     "category": "Locked Door",
     "id": "mjrvq6fklicvyaavd9o",
     "images": [
@@ -929,7 +935,7 @@
     ]
   },
   {
-    "name": "Dorisa",
+    "name": "Dorsia",
     "x": 806,
     "y": 1847,
     "description": "A dining place that is connected to **Quill** clothing store.\n\n### Possible Loot\n- Food and water\n- Medical items\n\n### Threat\nBack area of this place is occupied by bandits.\n\n### Mission\nChef recipe, that's needed for \"name\" mission, spawns in the backroom.",
@@ -956,9 +962,9 @@
   },
   {
     "name": "Utility Gate",
-    "x": 887,
-    "y": 1881,
-    "description": "A locked room in the utility area of **Dorsia** and **Quill** clothing store. Requires **Utility Gate Key** to be opened. Has decent stuff inside.\n\n### Possible Loot\n- Food and water\n- Medical items\n- Ammo and weapons",
+    "x": 648,
+    "y": 1571,
+    "description": "A locked room in the utility area of **Dorsia** and **Quill** clothing store. Requires **Utility Gate Key** to be opened. Has decent stuff inside.\n\n### Possible Loot\n- Food and water\n- Medical items\n- Ammo and weapons\n- Military equipment\n- Some valuable junk\n- Keys (Locker key most common)",
     "category": "Locked Door",
     "id": "mjrvr8dbyfizchv9dae",
     "images": [
@@ -972,7 +978,7 @@
     "name": "Dorsia Bandit Camp",
     "x": 891,
     "y": 1805,
-    "description": "**Medium enemy group** occupying **Dorisa** restaurant.\n\nTo view more details, check **Dorisa** marker.",
+    "description": "**Medium enemy group** occupying **Dorsia** restaurant.\n\nTo view more details, check **Dorsia** marker.",
     "category": "Enemy Location",
     "id": "mjrvrqkf557nhfupfur",
     "images": [
@@ -1030,7 +1036,7 @@
     "name": "Whitehall Sheepdog Outpost",
     "x": 724,
     "y": 1993,
-    "description": "**Small enemy group** guarding the ladder leading to extraction point. Not much loot here.\n\n### Warning\nEnemies may alert zombies from the Quill clothing store. Keep that in mind when clearing.\n\n### Mission\nThere is a garage door leading to underground parking lot, which opens only during \"name\".",
+    "description": "**Small enemy group** guarding the ladder leading to extraction point. Not much loot here.\n\n### Warning\nEnemies may alert zombies from the Quill clothing store. Keep that in mind when clearing.\n\n### Mission Relevance\nThere is a garage door leading to underground parking lot, which opens only during \"name\".",
     "category": "Enemy Location",
     "id": "mjrvtq3vt1itadzeuss",
     "images": [
@@ -1041,10 +1047,10 @@
     ]
   },
   {
-    "name": "Office key",
-    "x": 1202,
-    "y": 2112,
-    "description": "Key location for the **third-floor office in Stone 6**.\n\n\n### Common Loot\n\n- Large ammunition boxes\n\n- 5.56 weapons\n\n- Food and water supplies",
+    "name": "Meeting Room (Stone 6)",
+    "x": 648,
+    "y": 1571,
+    "description": "Key location for the **third-floor office in Stone 6**.\n\n\n### Possible Loot\n- Food and water\n- Medical items\n- Ammo (large ammunition boxes)\n- Weapons (5.56, 12g)\n- Some valuable junk\n- Keys",
     "category": "Locked Door",
     "id": "mjrvuh1xeb2sx6scjg",
     "images": [
@@ -1060,8 +1066,8 @@
   },
   {
     "name": "Zombie Nest Ground Zero 2 Garage",
-    "x": 685,
-    "y": 1561,
+    "x": 692,
+    "y": 1573,
     "description": "An **underground garage system** filled with zombies.\n\n### Layout\n- **Top Level**: Improvised meeting room (key required)\n- **Lower Levels**: Two garage floors with cars and tight spaces\n\n### Strategy\nClear zombies in larger open areas before moving down. *Stealth is not viable unless zombie numbers are low.*",
     "category": "Zombie Nest",
     "id": "mjrvv68b48b96iwqjdc",
@@ -1092,9 +1098,9 @@
   },
   {
     "name": "Improvised Meeting Room",
-    "x": 647,
-    "y": 1569,
-    "description": "A key-locked meeting room on the **top floor** of the Ground Zero 2 garage.\n\n### Best Approach\n1. Use the **west entrance**\n2. Go straight to the garage\n3. Silently eliminate zombies in front\n4. Loot without being spotted\n\n### Common Loot\n- Ammo\n- Medical supplies\n\n**Warning**: Getting spotted will aggro the horde below.",
+    "x": 648,
+    "y": 1571,
+    "description": "A key-locked meeting room on the **top floor** of the Ground Zero 2 garage.\n\n### Best Approach\n1. Use the **west entrance**\n2. Go straight to the garage\n3. Silently eliminate zombies in front\n4. Loot without being spotted\n\n### Possible Loot\n- Medicine\n- Ammo\n\n### Warning\nGetting spotted will alert the horde in the nest below.",
     "category": "Locked Door",
     "id": "mjrvw2jf49vtrwja4gr",
     "images": [
@@ -1113,18 +1119,10 @@
     ]
   },
   {
-    "name": "Federal Reserve Bank of New York",
-    "x": 775,
-    "y": 1327,
-    "description": "*TBA*",
-    "category": "Building",
-    "id": "mjrvwm09mz9or34hjtp"
-  },
-  {
-    "name": "Quill Jewerly",
-    "x": 779,
-    "y": 987,
-    "description": "A ransacked jewelry store with a **locked back room**.\n\n\n### Access\nCan only be entered through the **windows**.\n\n*(Contributed by Nintendoboi2)*",
+    "name": "Quill Jewelry Backroom",
+    "x": 648,
+    "y": 1571,
+    "description": "Locked backroom of Quill jewelry store, opened with **Jewelry Key**.\n\n### Possible Loot\n- Ammo & Weapons\n- Lots of valuable junk (including silver and gold bars)\n- Rare & Unique keys",
     "category": "Locked Door",
     "id": "mjrvxkgr2pbael5wj9q"
   },
@@ -1140,15 +1138,21 @@
     "name": "Gate Bandit Camp",
     "x": 1016,
     "y": 839,
-    "description": "**Small enemy group** guarding a gate leading to **Ground Zero**. Location has nothing much of value.\n\n### Mission Relevance\n**Stash spot** for the distraction device in *\"Wetwork, pt. 4\"*.\n\n---\n\n*Contributed by Nintendoboi2*",
+    "description": "**Small enemy group** guarding a gate leading to **Ground Zero**. Not much loot here.\n\n### Mission Relevance\n**Stash spot** for the distraction device in *\"Wetwork, pt. 4\"*.\n\n---\n\n*Contributed by Nintendoboi2*",
     "category": "Enemy Location",
-    "id": "mjrvyhprb84kvtssp2a"
+    "id": "mjrvyhprb84kvtssp2a",
+    "images": [
+      {
+        "url": "https://imgur.com/X5H8X95.png",
+        "description": "Enemies"
+      }
+    ]
   },
   {
     "name": "Ground Zero Gate",
-    "x": 1034,
-    "y": 817,
-    "description": "The main gate leading into **Ground Zero Quarantine Zone**.\n\n### Security\n- Protected by **3 bandits**\n- Requires a **key** to open",
+    "x": 1530,
+    "y": 1484,
+    "description": "Locked gate leading into **Ground Zero Quarantine Zone** and opened with **Gate Key**.",
     "category": "Locked Door",
     "id": "mjrvypk5pxrrb4sh73",
     "images": [
@@ -1160,8 +1164,8 @@
   },
   {
     "name": "Armory",
-    "x": 1504,
-    "y": 1356,
+    "x": 648,
+    "y": 1571,
     "description": "The **armory** is located on the **lowest floor**. Requires the armory key to access.",
     "category": "Locked Door",
     "id": "mjrvzhe8153uoqgvi28",
@@ -1242,7 +1246,7 @@
     "name": "William x Wall Bandit Camp",
     "x": 961,
     "y": 1164,
-    "description": "**Medium enemy group** located outside and inside the building with opened garage near **William x Wall** intersection.\n\n### Possible Loot\n- Medical items\n- Ammo and weapons",
+    "description": "**Medium enemy group** located outside and inside the building with opened garage near **William x Wall** intersection.\n\n### Possible Loot\n- Medicine\n- Ammo & Weapons\n- Military equipment",
     "category": "Enemy Location",
     "id": "mjrw1r1ewvq9wl4885c",
     "images": [
@@ -1304,7 +1308,7 @@
     "name": "Fortified Sheepdog Camp",
     "x": 1365,
     "y": 1891,
-    "description": "**Large enemy group** occupying fortified position on **Pearl** street.\n\n### Possible Loot\n- Food and water\n- Medical items\n- Ammo and weapons\n- Military equipment\n- Some valuable junk",
+    "description": "**Large enemy group** occupying fortified position on **Pearl** street.\n\n### Possible Loot\n- Medicine\n- Consumables\n- Ammo & Weapons\n- Military equipment\n- Some valuable junk",
     "category": "Enemy Location",
     "id": "mjt40ao50mx9h7pcc3j",
     "images": [
@@ -1509,10 +1513,10 @@
     ]
   },
   {
-    "name": "Emergency Exit 646 Broadway",
-    "x": 1533,
-    "y": 1487,
-    "description": "Key location for the **emergency exit** at the top floor of 646 Broadway.\n\n\n### Access\nCan only be reached using the **outside stairs**.",
+    "name": "Emergency Exit (646 Broadway)",
+    "x": 648,
+    "y": 1571,
+    "description": "Locked emergency exit at the top floor, accessible with **Emergency Exit Key**. When opened leads to an apartment far back.\n\n### Possible Loot\n- Medicine\n- Consumables\n- Ammo & Weapons (5.56)\n- Military equipment\n- Some valuable junk\n- Keys",
     "category": "Locked Door",
     "images": [
       {
@@ -1564,8 +1568,8 @@
   },
   {
     "name": "Lucia & Proxy's Midnight Cafe Safehouse",
-    "x": 867,
-    "y": 973,
+    "x": 871,
+    "y": 971,
     "description": "A **small cafe** located on William Street.\n\n\n### Features\n\n- **No zombies** inside\n\n- Small back room for cover\n\n*(Contributed by Nintendoboi2)*",
     "category": "Building",
     "id": "mk31ns977xd9nnm7cpx"
@@ -1596,7 +1600,7 @@
     "name": "Alleyway Bandit Camp",
     "x": 978,
     "y": 1522,
-    "description": "**Small enemy group** located in the alleyway connecting **Maiden** and **Old Slip** streets. Location has nothing much of value.",
+    "description": "**Small enemy group** located in the alleyway connecting **Maiden** and **Old Slip** streets. Not much loot here.",
     "category": "Enemy Location",
     "id": "mk321525s3r8tei5w5o",
     "images": [
@@ -1608,8 +1612,8 @@
   },
   {
     "name": "Gym Panda",
-    "x": 1067,
-    "y": 1642,
+    "x": 1064,
+    "y": 1638,
     "description": "*TBA*",
     "category": "Building",
     "images": [
@@ -1622,8 +1626,8 @@
   },
   {
     "name": "Plant Office",
-    "x": 2210,
-    "y": 1772,
+    "x": 648,
+    "y": 1571,
     "description": "A secured office inside the *Water Treatment Plant* that requires the **Plant Office Key** to access.\n\n### Access\n\n* Requires the **Plant Office Key**\n* Key description: *Key to the raised office in the Water Treatment Plant.*\n\n### Loot\n\n* Large amounts of ammo\n* Medical supplies\n* Possible weapon spawns *(not yet confirmed)*\n\n### Notes\n\n* A hole in the back wall provides an **alternate exit**\n* Useful escape route if the area becomes overrun",
     "category": "Locked Door",
     "images": [
@@ -1656,8 +1660,8 @@
   },
   {
     "name": "Pier 17 Warehouse",
-    "x": 2350,
-    "y": 500,
+    "x": 2344,
+    "y": 503,
     "description": "**Non-enterable**, nothing else to add.",
     "category": "Building",
     "images": [
@@ -1687,10 +1691,10 @@
     "id": "mk3xixs4jq4o0c2do9"
   },
   {
-    "name": "Apartment at stone 16",
+    "name": "Apartment (stone 16)",
     "x": 1554,
     "y": 1990,
-    "description": "",
+    "description": "Locked small apartment on second floor of **Triple R Diner** building, accessible with **(White) Apartment Key**.\n\n### Possible Loot\n- Consumables\n- Ammo & Weapons\n- Valuable junk\n- Keys",
     "category": "Locked Door",
     "id": "mn5zc2g8gkoa91dylma",
     "images": [
@@ -1714,9 +1718,9 @@
   },
   {
     "name": "Liberty Bank Vault",
-    "x": 1291,
-    "y": 1957,
-    "description": "",
+    "x": 648,
+    "y": 1571,
+    "description": "Locked **Liberty Bank** vault, accessible with **Bank Vault Keycard**.\n\n### Possible Loot\n- Medicine\n- Ammo & Weapons (5.56)\n- Military equipment\n- Lots of valuable junk (includes silver and gold bars)\n- Rare & Unique Keys",
     "category": "Locked Door",
     "id": "mn61mwlnfejyvbralv"
   },
@@ -1738,7 +1742,7 @@
     "name": "Bandit Outpost",
     "x": 1129,
     "y": 1559,
-    "description": "**Medium enemy group** located on the **Broad** street. Some of the bandits are watching over from the windows of the nearby building.\n\n### Possible Loot\n- Food and water\n- Medical items\n- Ammo",
+    "description": "**Medium enemy group** located on the **Broad** street. Some of the bandits are watching over from the windows of the nearby building.\n\n### Possible Loot\n- Medicine\n- Consumables\n- Ammo",
     "category": "Enemy Location",
     "id": "mn73lhins8wxl3qfugm",
     "images": [
@@ -1870,16 +1874,16 @@
   },
   {
     "name": "Kismet HQ Raid",
-    "x": 1018,
-    "y": 1660,
+    "x": 1019,
+    "y": 1654,
     "description": "",
     "category": "Raid",
     "id": "mnc8hljtke7a8qwdteb"
   },
   {
     "name": "Federal Reserve Bank Raid",
-    "x": 729,
-    "y": 1233,
+    "x": 726,
+    "y": 1236,
     "description": "",
     "category": "Raid",
     "id": "mnc8iejy54bz2ds97x"
@@ -1902,7 +1906,7 @@
   },
   {
     "name": "Ground Zero Drop-Off",
-    "x": 1069,
+    "x": 1071,
     "y": 881,
     "description": "",
     "category": "Infiltration",
@@ -1927,15 +1931,15 @@
   {
     "name": "Fulton & Broad Emergency Exit",
     "x": 1052,
-    "y": 633,
+    "y": 629,
     "description": "",
     "category": "Locked Door",
     "id": "mnc93ghe7slyzwvhlc"
   },
   {
     "name": "Fulton & William Archive Key",
-    "x": 1053,
-    "y": 552,
+    "x": 1050,
+    "y": 550,
     "description": "",
     "category": "Locked Door",
     "id": "mnc93y2zacdgll7hos"
@@ -1947,5 +1951,13 @@
     "description": "# PVP Mode Only",
     "category": "Extraction Point",
     "id": "mnfrd2wbgzf3khypdqo"
+  },
+  {
+    "name": "Vault Locker",
+    "x": 776,
+    "y": 1325,
+    "description": "",
+    "category": "Locked Door",
+    "id": "mnmv6ti5vly2mg513ns"
   }
 ]
