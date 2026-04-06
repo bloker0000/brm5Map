@@ -14,6 +14,14 @@ interface ChangelogEntry {
 
 const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.6.3',
+    date: '2026-04-06',
+    changes: [
+      'Updated most locked room markers with accurate positions',
+      'Added new location markers across the map',
+    ],
+  },
+  {
     version: '1.6.2',
     date: '2026-04-04',
     changes: [
