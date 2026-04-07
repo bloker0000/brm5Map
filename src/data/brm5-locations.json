@@ -24,8 +24,8 @@
   {
     "id": "2",
     "name": "Saul & Co",
-    "x": 1224,
-    "y": 2102,
+    "x": 1210,
+    "y": 2097,
     "description": "A **three-story office building** with valuable loot.\n\n### Access\n- Floors 1-2 are freely accessible\n- **Third floor requires a key** to enter\n\nThe locked office on the third floor often contains ammunition and supplies.",
     "category": "Building",
     "images": [
@@ -50,8 +50,8 @@
   {
     "id": "3",
     "name": "Activity-Full & Sphere Solutions",
-    "x": 1025,
-    "y": 1962,
+    "x": 1041,
+    "y": 1969,
     "description": "A **large multi-story office building** with a hidden safe.\n\n### Building Layout\n- Multiple entrances including a side entrance\n- Two staircases throughout the building\n- Storage space on lower floors\n\n### Safe Location\nThe **safe is located on the second-to-last floor**. When using the front staircase (southwest), go left upon reaching that floor.\n\n### Navigation Tips\n- Front staircase (SW) continues to the rooftop\n- Rear staircase terminates at the penultimate floor",
     "category": "Building",
     "images": [
@@ -154,10 +154,10 @@
   },
   {
     "id": "5",
-    "name": "Extraction Point Whitehall",
-    "x": 754,
+    "name": "Whitehall Extraction",
+    "x": 755,
     "y": 2039,
-    "description": "An extraction point accessible via ladder.\n\n### Enemy Presence\n**2 enemies** may spawn at the ladder leading up to the extraction point. Clear them before extracting.\n\n#PVE MODE ONLY",
+    "description": "# PVE MODE ONLY\nAn extraction point accessible via ladder.\n\n### Enemy Presence\n**2 enemies** may spawn at the ladder leading up to the extraction point. Clear them before extracting.",
     "category": "Extraction Point",
     "images": [
       {
@@ -544,9 +544,9 @@
   },
   {
     "name": "Hospital Helipad Extraction",
-    "x": 1471,
-    "y": 381,
-    "description": "Helicopter extraction point for the hospital quarantine zone.\n\n### Usage\nActivate via **CSEL extraction radio**. The helicopter lands on the highest accessible floor of the helipad.\n\n*Exact activation conditions are still being documented.*",
+    "x": 756,
+    "y": 2048,
+    "description": "# PVE MODE ONLY\nHelicopter extraction point for the hospital quarantine zone.\n\n### Usage\nActivate via **CSEL extraction radio**. The helicopter lands on the highest accessible floor of the helipad. It will only get called there, if you are close enough to the helipad.",
     "category": "Extraction Point",
     "id": "mjrv19m6j8i15ykkmf"
   },
@@ -816,8 +816,8 @@
   },
   {
     "name": "Triple R Diner Bandit Camp",
-    "x": 1549,
-    "y": 1956,
+    "x": 1553,
+    "y": 1957,
     "description": "**Medium enemy group** inside and at the entrance of **Triple R Diner**.\n\nFor more details, view **Triple R Diner** marker.",
     "category": "Enemy Location",
     "id": "mjrvnhy0kng3cvc4i2q",
@@ -830,8 +830,8 @@
   },
   {
     "name": "Liberty Bank",
-    "x": 1311,
-    "y": 1991,
+    "x": 1314,
+    "y": 1992,
     "description": "A small bank with a secured vault and office desks. The location is visited during an **Asset Reappropriation** mission.\n### Loot\n- Medical supplies\n- Some rare keys and valuable junk",
     "category": "Building",
     "id": "mjrvob8nmok6jfgzced",
@@ -848,8 +848,8 @@
   },
   {
     "name": "Apartment (Stone 8)",
-    "x": 648,
-    "y": 1571,
+    "x": 1246,
+    "y": 1976,
     "description": "A former militant's apartment building on 1st? floor, accessible with **(Yellow) Apartment Key**.\n\n### Possible Loot\n- Medicine\n- Consumables\n- Ammo & Weapons\n- Military equipment\n- Lots of valuable junk\n- Keys",
     "category": "Locked Door",
     "id": "mjrvol1mdop1ngywhtc",
@@ -886,8 +886,8 @@
   },
   {
     "name": "Safe at Activity-Full",
-    "x": 648,
-    "y": 1571,
+    "x": 981,
+    "y": 1936,
     "description": "A **locked safe** on the second-to-last floor of **Activity-Full & Sphere Solutions** building. Requires **Safe Key** to open.\n\n### Directions\n1. Take the first staircase\n2. Go **left** on the second-to-last floor\n3. Safe is on that side of the building\n\n### Possible Loot\n- Ammo & Weapons\n- Military equipment\n- Some valuable junk\n- Rare & Unique keys",
     "category": "Locked Door",
     "id": "mjrvoz6urfycx8xq8q",
@@ -962,8 +962,8 @@
   },
   {
     "name": "Utility Gate",
-    "x": 648,
-    "y": 1571,
+    "x": 883,
+    "y": 1863,
     "description": "A locked room in the utility area of **Dorsia** and **Quill** clothing store. Requires **Utility Gate Key** to be opened. Has decent stuff inside.\n\n### Possible Loot\n- Food and water\n- Medical items\n- Ammo and weapons\n- Military equipment\n- Some valuable junk\n- Keys (Locker key most common)",
     "category": "Locked Door",
     "id": "mjrvr8dbyfizchv9dae",
@@ -1048,8 +1048,8 @@
   },
   {
     "name": "Meeting Room (Stone 6)",
-    "x": 648,
-    "y": 1571,
+    "x": 1202,
+    "y": 2113,
     "description": "Key location for the **third-floor office in Stone 6**.\n\n\n### Possible Loot\n- Food and water\n- Medical items\n- Ammo (large ammunition boxes)\n- Weapons (5.56, 12g)\n- Some valuable junk\n- Keys",
     "category": "Locked Door",
     "id": "mjrvuh1xeb2sx6scjg",
@@ -1065,7 +1065,7 @@
     ]
   },
   {
-    "name": "Zombie Nest Ground Zero 2 Garage",
+    "name": "Ground Zero 2 Garage",
     "x": 692,
     "y": 1573,
     "description": "An **underground garage system** filled with zombies.\n\n### Layout\n- **Top Level**: Improvised meeting room (key required)\n- **Lower Levels**: Two garage floors with cars and tight spaces\n\n### Strategy\nClear zombies in larger open areas before moving down. *Stealth is not viable unless zombie numbers are low.*",
@@ -1079,7 +1079,7 @@
     ]
   },
   {
-    "name": "Ground Zero 2 Quarantine Zone",
+    "name": "Ground Zero 2",
     "x": 784,
     "y": 1460,
     "description": "A quarantine zone featuring an **underground garage**.\n\n\n### Layout\n\n- **Top Level**: Improvised meeting room (key required)\n\n- **Lower Levels**: Two floors with cars, tight corners, and zombies\n\nExpect heavy zombie presence throughout.",
@@ -1099,7 +1099,7 @@
   {
     "name": "Improvised Meeting Room",
     "x": 648,
-    "y": 1571,
+    "y": 1568,
     "description": "A key-locked meeting room on the **top floor** of the Ground Zero 2 garage.\n\n### Best Approach\n1. Use the **west entrance**\n2. Go straight to the garage\n3. Silently eliminate zombies in front\n4. Loot without being spotted\n\n### Possible Loot\n- Medicine\n- Ammo\n\n### Warning\nGetting spotted will alert the horde in the nest below.",
     "category": "Locked Door",
     "id": "mjrvw2jf49vtrwja4gr",
@@ -1120,8 +1120,8 @@
   },
   {
     "name": "Quill Jewelry Backroom",
-    "x": 648,
-    "y": 1571,
+    "x": 780,
+    "y": 983,
     "description": "Locked backroom of Quill jewelry store, opened with **Jewelry Key**.\n\n### Possible Loot\n- Ammo & Weapons\n- Lots of valuable junk (including silver and gold bars)\n- Rare & Unique keys",
     "category": "Locked Door",
     "id": "mjrvxkgr2pbael5wj9q"
@@ -1150,8 +1150,8 @@
   },
   {
     "name": "Ground Zero Gate",
-    "x": 1530,
-    "y": 1484,
+    "x": 1034,
+    "y": 816,
     "description": "Locked gate leading into **Ground Zero Quarantine Zone** and opened with **Gate Key**.",
     "category": "Locked Door",
     "id": "mjrvypk5pxrrb4sh73",
@@ -1164,8 +1164,8 @@
   },
   {
     "name": "Armory",
-    "x": 648,
-    "y": 1571,
+    "x": 1503,
+    "y": 1378,
     "description": "The **armory** is located on the **lowest floor**. Requires the armory key to access.",
     "category": "Locked Door",
     "id": "mjrvzhe8153uoqgvi28",
@@ -1177,8 +1177,8 @@
     ]
   },
   {
-    "name": "Zombie Nest",
-    "x": 1504,
+    "name": "Military Checkpoint Garage",
+    "x": 1501,
     "y": 1321,
     "description": "A zombie nest located **in and beneath a garage**.\n\n### Spawn Info\nLarge numbers of zombies spawn here. *Enter during daytime for best results.*\n\n### Access Points\n- Southeast entrance\n- Northwest entrance\n\n**Heavy zombie activity.**",
     "category": "Zombie Nest",
@@ -1195,7 +1195,7 @@
     ]
   },
   {
-    "name": "Quarantine Zone Military Checkpoint",
+    "name": "Military Checkpoint",
     "x": 1612,
     "y": 1311,
     "description": "A quarantine zone with a **military checkpoint**.\n\n\n### Enemies\nMany **militant zombies** spawn here.\n\n\n### Armory Location\nUnderground garage on the lowest floor. **M249** usually spawns nearby, along with other valuable items.\n\n\n### Recommended Entry\nUse the **back entrance** next to the basketball field.\n\n*More details TBA*",
@@ -1306,8 +1306,8 @@
   },
   {
     "name": "Fortified Sheepdog Camp",
-    "x": 1365,
-    "y": 1891,
+    "x": 1370,
+    "y": 1899,
     "description": "**Large enemy group** occupying fortified position on **Pearl** street.\n\n### Possible Loot\n- Medicine\n- Consumables\n- Ammo & Weapons\n- Military equipment\n- Some valuable junk",
     "category": "Enemy Location",
     "id": "mjt40ao50mx9h7pcc3j",
@@ -1398,8 +1398,8 @@
   },
   {
     "name": "Spawnpoint Acitivity Full",
-    "x": 974,
-    "y": 1982,
+    "x": 983,
+    "y": 1970,
     "description": "*TBA*",
     "category": "Spawnpoint",
     "images": [
@@ -1411,10 +1411,10 @@
     "id": "mjvl38frqesnehb57hm"
   },
   {
-    "name": "metro station Southwest",
+    "name": "South-West Metro Station",
     "x": 1609,
     "y": 2132,
-    "description": "An **underground metro station** with valuable loot.\n\n\n### Common Loot\n\n- Medical items\n\n- Ammunition\n\n- Rare loot\n\n\n### Requirements\n**Gas mask required**\n\n\n### Warning\nHigh zombie spawn rate. *Come prepared.*",
+    "description": "An **underground metro station** with valuable loot.\n\n\n### Common Loot\n- Medical items\n- Ammunition\n- Rare loot\n\n### Requirements\n**Gas mask required**\n\n### Warning\nHigh zombie spawn rate. *Come prepared.*",
     "category": "Subway Station",
     "images": [
       {
@@ -1439,9 +1439,9 @@
     "id": "mjyvz0g2h8f6f6itq8s"
   },
   {
-    "name": "Subway Station Outside Ground Zero/Hospital",
-    "x": 1823,
-    "y": 780,
+    "name": "Metro Station Outside Ground Zero",
+    "x": 1534,
+    "y": 736,
     "description": "## Subway Station (Outside Ground Zero / Hospital)\n\n- **Location:** Outside the Ground Zero quarantine zone  \n- **Purpose:** Serves as the entrance to the subway leading into the quarantine area  \n\n### Details:\n- **Enemies:** Few zombies in the surrounding area; however, **you must pass 2 zombie nests** at both the entrance and exit to traverse the subway safely  \n- **Points of Interest:**  \n  - Entrance leads directly toward the subway tunnels  \n  - Nearby streets provide limited cover and scavenging opportunities",
     "category": "Subway Station",
     "id": "mjz2g22gnhk3y5uk0yb",
@@ -1469,9 +1469,9 @@
     ]
   },
   {
-    "name": "Subway Station Inside Ground Zero/Hospital",
-    "x": 1535,
-    "y": 734,
+    "name": "Ground Zero Metro Station",
+    "x": 1534,
+    "y": 736,
     "description": "## Subway Station (Inside Ground Zero / Hospital)\n\n- **Location:** Entrance outside the quarantine zone at the intersection of Pine & Water Street  \n- **Purpose:** Provides access to the Ground Zero quarantine zone  \n\n### Details:\n- **Enemies:** Low zombie spawn inside the subway, but you must pass **2 zombie nests** to traverse it fully  \n- **Points of Interest:**  \n  - Small operating room containing what appears to be **power controls** and related equipment",
     "category": "Subway Station",
     "id": "mjz2gox8a8bupwe6f0n",
@@ -1514,8 +1514,8 @@
   },
   {
     "name": "Emergency Exit (646 Broadway)",
-    "x": 648,
-    "y": 1571,
+    "x": 1533,
+    "y": 1479,
     "description": "Locked emergency exit at the top floor, accessible with **Emergency Exit Key**. When opened leads to an apartment far back.\n\n### Possible Loot\n- Medicine\n- Consumables\n- Ammo & Weapons (5.56)\n- Military equipment\n- Some valuable junk\n- Keys",
     "category": "Locked Door",
     "images": [
@@ -1531,7 +1531,7 @@
     "id": "mjzuncmdpvmuxzfohv"
   },
   {
-    "name": "Ground Zero Quarantine Zone",
+    "name": "Ground Zero",
     "x": 1507,
     "y": 587,
     "description": "The **largest quarantine zone** containing the biggest explorable building: **Metro New York Hospital**.\n\n\n### Access Points\n\n- **Southeast**: Via Southbridge Towers\n\n- **Northwest**: Key-required gate\n\n- **Southeast**: Subway station at Pine/Water Street intersection",
@@ -1590,8 +1590,8 @@
   },
   {
     "name": "Stone 8 Spawnpoint",
-    "x": 1264,
-    "y": 1981,
+    "x": 1268,
+    "y": 1977,
     "description": "A **player spawn location** near Stone 8.",
     "category": "Spawnpoint",
     "id": "mk31yzwbcqgg8iwal6c"
@@ -1626,8 +1626,8 @@
   },
   {
     "name": "Plant Office",
-    "x": 648,
-    "y": 1571,
+    "x": 2212,
+    "y": 1766,
     "description": "A secured office inside the *Water Treatment Plant* that requires the **Plant Office Key** to access.\n\n### Access\n\n* Requires the **Plant Office Key**\n* Key description: *Key to the raised office in the Water Treatment Plant.*\n\n### Loot\n\n* Large amounts of ammo\n* Medical supplies\n* Possible weapon spawns *(not yet confirmed)*\n\n### Notes\n\n* A hole in the back wall provides an **alternate exit**\n* Useful escape route if the area becomes overrun",
     "category": "Locked Door",
     "images": [
@@ -1718,8 +1718,8 @@
   },
   {
     "name": "Liberty Bank Vault",
-    "x": 648,
-    "y": 1571,
+    "x": 1292,
+    "y": 1956,
     "description": "Locked **Liberty Bank** vault, accessible with **Bank Vault Keycard**.\n\n### Possible Loot\n- Medicine\n- Ammo & Weapons (5.56)\n- Military equipment\n- Lots of valuable junk (includes silver and gold bars)\n- Rare & Unique Keys",
     "category": "Locked Door",
     "id": "mn61mwlnfejyvbralv"
@@ -1793,7 +1793,7 @@
     "id": "mnc8ob1rtl2zh7dph5l"
   },
   {
-    "name": "Ground Zero Two Drop-Off",
+    "name": "Ground Zero 2 Drop-Off",
     "x": 1125,
     "y": 1724,
     "description": "",
@@ -1810,8 +1810,8 @@
   },
   {
     "name": "Fulton & Broad Emergency Exit",
-    "x": 1052,
-    "y": 629,
+    "x": 1054,
+    "y": 622,
     "description": "",
     "category": "Locked Door",
     "id": "mnc93ghe7slyzwvhlc"
