@@ -73,6 +73,10 @@ function App() {
     importLocations,
     saveStatus,
     manualSave,
+    undo,
+    redo,
+    canUndo,
+    canRedo,
   } = useLocations();
 
   useEffect(() => {
@@ -105,10 +109,21 @@ function App() {
         e.preventDefault();
         setIsAdminOpen(prev => !prev);
       }
+      // Undo/redo (only when admin panel is open and not typing in an input)
+      if (IS_DEV && isAdminOpen && (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
+        const tag = (e.target as HTMLElement)?.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+        e.preventDefault();
+        if (e.shiftKey) {
+          redo();
+        } else {
+          undo();
+        }
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedLocation, setSelectedLocation, isAboutOpen, isAdminOpen]);
+  }, [selectedLocation, setSelectedLocation, isAboutOpen, isAdminOpen, undo, redo]);
 
   const handleLoaded = useCallback(() => {
     setIsLoading(false);
@@ -338,6 +353,10 @@ function App() {
           onModeChange={setAdminViewMode}
           onDragModeChange={setAdminDragMode}
           onImport={importLocations}
+          onUndo={undo}
+          onRedo={redo}
+          canUndo={canUndo}
+          canRedo={canRedo}
         />
       )}
     </div>

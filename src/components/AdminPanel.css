@@ -164,6 +164,12 @@
   border-color: var(--brm-border-accent);
 }
 
+.admin-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .admin-btn.primary {
   background: var(--brm-accent);
   border-color: var(--brm-accent);

@@ -22,8 +22,10 @@ async function saveToFile(locations: MapLocation[]): Promise<{ ok: boolean; erro
   }
 }
 
+const MAX_UNDO = 50;
+
 export function useLocations() {
-  const [locations, setLocations] = useState<MapLocation[]>([]);
+  const [locations, setLocationsRaw] = useState<MapLocation[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<Set<LocationCategory>>(new Set());
   const [selectedLocation, setSelectedLocation] = useState<MapLocation | null>(null);
@@ -32,8 +34,49 @@ export function useLocations() {
   const initialLoadDone = useRef(false);
   const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
+  // Undo/redo stacks
+  const undoStack = useRef<MapLocation[][]>([]);
+  const redoStack = useRef<MapLocation[][]>([]);
+  const skipHistoryRef = useRef(false);
+  const locationsRef = useRef(locations);
+  locationsRef.current = locations;
+
+  // Wrap setLocations to automatically push to undo stack
+  const setLocations = useCallback((action: MapLocation[] | ((prev: MapLocation[]) => MapLocation[])) => {
+    if (!skipHistoryRef.current && initialLoadDone.current) {
+      undoStack.current = [...undoStack.current.slice(-(MAX_UNDO - 1)), locationsRef.current];
+      redoStack.current = [];
+    }
+    setLocationsRaw(action);
+  }, []);
+
+  const canUndo = undoStack.current.length > 0;
+  const canRedo = redoStack.current.length > 0;
+
+  const undo = useCallback(() => {
+    if (undoStack.current.length === 0) return;
+    const prev = undoStack.current[undoStack.current.length - 1];
+    undoStack.current = undoStack.current.slice(0, -1);
+    redoStack.current = [...redoStack.current, locationsRef.current];
+    skipHistoryRef.current = true;
+    setLocationsRaw(prev);
+    skipHistoryRef.current = false;
+  }, []);
+
+  const redo = useCallback(() => {
+    if (redoStack.current.length === 0) return;
+    const next = redoStack.current[redoStack.current.length - 1];
+    redoStack.current = redoStack.current.slice(0, -1);
+    undoStack.current = [...undoStack.current, locationsRef.current];
+    skipHistoryRef.current = true;
+    setLocationsRaw(next);
+    skipHistoryRef.current = false;
+  }, []);
+
   useEffect(() => {
-    setLocations(loadLocations());
+    skipHistoryRef.current = true;
+    setLocationsRaw(loadLocations());
+    skipHistoryRef.current = false;
     initialLoadDone.current = true;
   }, []);
 
@@ -169,5 +212,9 @@ export function useLocations() {
     importLocations,
     saveStatus,
     manualSave,
+    undo,
+    redo,
+    canUndo,
+    canRedo,
   };
 }

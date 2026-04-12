@@ -204,6 +204,7 @@ export function InteractiveMap({
     const rad = rot * Math.PI / 180;
     const cos = Math.cos(rad);
     const sin = Math.sin(rad);
+
     const children = overlay.children;
     for (let i = 0; i < children.length; i++) {
       const el = children[i] as HTMLElement;
@@ -211,8 +212,10 @@ export function InteractiveMap({
       const mx = el.dataset.x;
       const my = el.dataset.y;
       if (mx == null || my == null) continue;
+
       const sx = +mx * t.scale + t.x;
       const sy = +my * t.scale + t.y;
+
       const dx = sx - cx;
       const dy = sy - cy;
       el.style.transform = `translate(${cx + dx * cos - dy * sin}px, ${cy + dx * sin + dy * cos}px) translate(-50%, -50%)`;
@@ -261,6 +264,11 @@ export function InteractiveMap({
     }
     updatePinPositions();
   }, [transform, mapRotation, getTransformCSS, updatePinPositions]);
+
+  // Position pins when the locations list changes (filter, clear, search)
+  useLayoutEffect(() => {
+    updatePinPositions();
+  }, [locations, showPins, updatePinPositions]);
 
   const centerMap = useCallback(() => {
     const container = containerRef.current;
