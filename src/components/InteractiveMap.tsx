@@ -268,7 +268,7 @@ export function InteractiveMap({
   // Position pins when the locations list changes (filter, clear, search)
   useLayoutEffect(() => {
     updatePinPositions();
-  }, [locations, showPins, updatePinPositions]);
+  }, [locations, showPins, placeholderPin, updatePinPositions]);
 
   const centerMap = useCallback(() => {
     const container = containerRef.current;
