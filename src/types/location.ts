@@ -13,6 +13,7 @@ export type LocationCategory =
   | 'Subway Station'
   | 'Infiltration'
   | 'Raid'
+  | 'Safe'
   | 'Other';
 
 export interface LocationImage {
@@ -56,6 +57,7 @@ export const CATEGORY_COLORS: Record<LocationCategory, string> = {
   'Subway Station': '#9966cc',
   'Infiltration': '#6ac9e0',
   'Raid': '#e74818',
+  'Safe': '#c8a84b',
   'Other': '#888888',
 };
 

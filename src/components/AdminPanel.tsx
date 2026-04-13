@@ -21,6 +21,7 @@ const ALL_CATEGORIES: LocationCategory[] = [
   'Subway Station',
   'Infiltration',
   'Raid',
+  'Safe',
   'Other',
 ];
 
@@ -38,6 +39,10 @@ interface AdminPanelProps {
   onModeChange?: (mode: 'list' | 'add' | 'edit') => void;
   onDragModeChange?: (isDragMode: boolean) => void;
   onImport?: (locations: MapLocation[], replace?: boolean) => number;
+  onUndo?: () => void;
+  onRedo?: () => void;
+  canUndo?: boolean;
+  canRedo?: boolean;
 }
 
 type ViewMode = 'list' | 'add' | 'edit';
@@ -57,9 +62,14 @@ export function AdminPanel({
   onModeChange,
   onDragModeChange,
   onImport,
+  onUndo,
+  onRedo,
+  canUndo,
+  canRedo,
 }: AdminPanelProps) {
   const [mode, setMode] = useState<ViewMode>('list');
   const [editingLocation, setEditingLocation] = useState<MapLocation | null>(null);
+  const [originalLocation, setOriginalLocation] = useState<MapLocation | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isDragMode, setIsDragMode] = useState(false);
   const [activeTab, setActiveTab] = useState<EditorTab>('basic');
@@ -78,18 +88,151 @@ export function AdminPanel({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const formCoordsRef = useRef({ x: 0, y: 0 });
   formCoordsRef.current = { x: formData.x, y: formData.y };
+  const prevClickPositionRef = useRef(clickPosition);
+
+  // --- Form-level undo/redo ---
+  const formDataRef = useRef(formData);
+  formDataRef.current = formData;
+  const formHistoryRef = useRef<typeof formData[]>([]);
+  const formFutureRef = useRef<typeof formData[]>([]);
+  const typingTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const isInTypingGroupRef = useRef(false);
+  const editingLocationRef = useRef(editingLocation);
+  editingLocationRef.current = editingLocation;
+  const modeRef = useRef(mode);
+  modeRef.current = mode;
+
+  const pushFormSnapshot = () => {
+    const current = formDataRef.current;
+    const stack = formHistoryRef.current;
+    const last = stack[stack.length - 1];
+    if (last && JSON.stringify(last) === JSON.stringify(current)) return;
+    stack.push(structuredClone(current));
+    if (stack.length > 50) stack.shift();
+    formFutureRef.current = [];
+  };
+
+  const currentTypingFieldRef = useRef<string | null>(null);
+
+  const clearFormHistory = () => {
+    formHistoryRef.current = [];
+    formFutureRef.current = [];
+    isInTypingGroupRef.current = false;
+    currentTypingFieldRef.current = null;
+    clearTimeout(typingTimerRef.current);
+  };
+
+  const trackTextEdit = (field: string, prevValue: string, newValue: string) => {
+    if (currentTypingFieldRef.current !== field) {
+      // Switched to a different field — end previous group
+      isInTypingGroupRef.current = false;
+      currentTypingFieldRef.current = field;
+    }
+    if (!isInTypingGroupRef.current) {
+      pushFormSnapshot();
+      isInTypingGroupRef.current = true;
+    }
+    if (newValue.length >= prevValue.length && newValue.length > 0) {
+      const newChar = newValue[newValue.length - 1];
+      if (newChar === ' ' || newChar === '\n') {
+        isInTypingGroupRef.current = false;
+      }
+    }
+    if (newValue.length < prevValue.length - 1) {
+      pushFormSnapshot();
+      isInTypingGroupRef.current = false;
+    }
+    clearTimeout(typingTimerRef.current);
+    typingTimerRef.current = setTimeout(() => {
+      isInTypingGroupRef.current = false;
+    }, 1000);
+  };
+
+  const onTextFieldChange = (field: 'name' | 'description' | 'shortDescription', value: string) => {
+    trackTextEdit(field, formDataRef.current[field], value);
+    formDataRef.current = { ...formDataRef.current, [field]: value };
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const onDiscreteChange = (updates: Partial<typeof formData>) => {
+    isInTypingGroupRef.current = false;
+    clearTimeout(typingTimerRef.current);
+    pushFormSnapshot();
+    const newData = { ...formDataRef.current, ...updates };
+    formDataRef.current = newData;
+    setFormData(newData);
+  };
+
+  const formUndo = () => {
+    const stack = formHistoryRef.current;
+    if (stack.length === 0) return;
+    clearTimeout(typingTimerRef.current);
+    isInTypingGroupRef.current = false;
+    formFutureRef.current.push(structuredClone(formDataRef.current));
+    const prev = stack.pop()!;
+    if (modeRef.current === 'edit' && editingLocationRef.current &&
+        (prev.x !== formDataRef.current.x || prev.y !== formDataRef.current.y)) {
+      onUpdate(editingLocationRef.current.id, { x: prev.x, y: prev.y });
+    }
+    formDataRef.current = prev;
+    setFormData(prev);
+  };
+
+  const formRedo = () => {
+    const future = formFutureRef.current;
+    if (future.length === 0) return;
+    clearTimeout(typingTimerRef.current);
+    isInTypingGroupRef.current = false;
+    formHistoryRef.current.push(structuredClone(formDataRef.current));
+    const next = future.pop()!;
+    if (modeRef.current === 'edit' && editingLocationRef.current &&
+        (next.x !== formDataRef.current.x || next.y !== formDataRef.current.y)) {
+      onUpdate(editingLocationRef.current.id, { x: next.x, y: next.y });
+    }
+    formDataRef.current = next;
+    setFormData(next);
+  };
+
+  const formUndoRef = useRef(formUndo);
+  formUndoRef.current = formUndo;
+  const formRedoRef = useRef(formRedo);
+  formRedoRef.current = formRedo;
+
+  // Form-level Ctrl+Z/Ctrl+Shift+Z (capture phase, takes priority over App handler)
+  useEffect(() => {
+    if (mode === 'list') return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        if (e.shiftKey) {
+          formRedoRef.current();
+        } else {
+          formUndoRef.current();
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown, true);
+    return () => window.removeEventListener('keydown', handleKeyDown, true);
+  }, [mode]);
 
   useEffect(() => {
-    if (!clickPosition) return;
+    // Only react to actual new clicks, not mode changes with a stale clickPosition
+    if (!clickPosition || clickPosition === prevClickPositionRef.current) return;
+    prevClickPositionRef.current = clickPosition;
     if (mode === 'add') {
-      setFormData((prev) => ({
-        ...prev,
-        x: Math.round(clickPosition.x),
-        y: Math.round(clickPosition.y),
-      }));
-    } else if (mode === 'edit' && editingLocation) {
+      pushFormSnapshot();
+      isInTypingGroupRef.current = false;
       const newX = Math.round(clickPosition.x);
       const newY = Math.round(clickPosition.y);
+      formDataRef.current = { ...formDataRef.current, x: newX, y: newY };
+      setFormData((prev) => ({ ...prev, x: newX, y: newY }));
+    } else if (mode === 'edit' && editingLocation) {
+      pushFormSnapshot();
+      isInTypingGroupRef.current = false;
+      const newX = Math.round(clickPosition.x);
+      const newY = Math.round(clickPosition.y);
+      formDataRef.current = { ...formDataRef.current, x: newX, y: newY };
       setFormData((prev) => ({ ...prev, x: newX, y: newY }));
       onUpdate(editingLocation.id, { x: newX, y: newY });
     }
@@ -137,12 +280,36 @@ export function AdminPanel({
       images: [],
     });
     setEditingLocation(null);
+    setOriginalLocation(null);
     setActiveTab('basic');
     setShowPreview(false);
+    clearFormHistory();
+  };
+
+  const hasUnsavedChanges = (): boolean => {
+    if (mode === 'add') {
+      return formData.name.trim() !== '' || formData.description.trim() !== '' || formData.images.length > 0;
+    }
+    if (mode === 'edit' && originalLocation) {
+      return formData.name !== originalLocation.name
+        || formData.x !== originalLocation.x
+        || formData.y !== originalLocation.y
+        || formData.description !== originalLocation.description
+        || formData.shortDescription !== (originalLocation.shortDescription || '')
+        || formData.category !== originalLocation.category
+        || JSON.stringify(formData.images) !== JSON.stringify(originalLocation.images || []);
+    }
+    return false;
+  };
+
+  const confirmDiscard = (): boolean => {
+    if (!hasUnsavedChanges()) return true;
+    return confirm('You have unsaved changes. Discard them?');
   };
 
   const handleStartAdd = () => {
-    resetForm();
+    if (mode !== 'list' && !confirmDiscard()) return;
+    revertAndReset();
     if (clickPosition) {
       setFormData((prev) => ({
         ...prev,
@@ -152,10 +319,14 @@ export function AdminPanel({
     }
     setMode('add');
     setIsExpanded(true);
+    clearFormHistory();
   };
 
   const handleStartEdit = (location: MapLocation) => {
+    if (mode !== 'list' && !confirmDiscard()) return;
+    revertAndReset();
     setEditingLocation(location);
+    setOriginalLocation({ ...location });
     const images: LocationImage[] = location.images && location.images.length > 0
       ? location.images
       : location.image
@@ -172,6 +343,7 @@ export function AdminPanel({
     });
     setMode('edit');
     setIsExpanded(true);
+    clearFormHistory();
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -200,13 +372,38 @@ export function AdminPanel({
     setIsExpanded(false);
   };
 
-  const handleCancel = () => {
+  // Revert position and clear form without prompting
+  const revertAndReset = () => {
+    if (mode === 'edit' && originalLocation) {
+      onUpdate(originalLocation.id, { x: originalLocation.x, y: originalLocation.y });
+    }
     resetForm();
+  };
+
+  const handleCancel = () => {
+    if (!confirmDiscard()) return;
+    revertAndReset();
     setMode('list');
     setIsExpanded(false);
   };
 
+  // Escape key to cancel editing
+  const handleCancelRef = useRef(handleCancel);
+  handleCancelRef.current = handleCancel;
+  useEffect(() => {
+    if (mode === 'list') return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleCancelRef.current();
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [mode]);
+
   const handleAddImage = () => {
+    pushFormSnapshot();
+    isInTypingGroupRef.current = false;
     setFormData(prev => ({
       ...prev,
       images: [...prev.images, { url: '', description: '' }],
@@ -214,6 +411,12 @@ export function AdminPanel({
   };
 
   const handleUpdateImage = (index: number, field: 'url' | 'description', value: string) => {
+    const prevValue = formDataRef.current.images[index]?.[field] || '';
+    trackTextEdit(`image-${index}-${field}`, prevValue, value);
+    const newImages = formDataRef.current.images.map((img, i) =>
+      i === index ? { ...img, [field]: value } : img
+    );
+    formDataRef.current = { ...formDataRef.current, images: newImages };
     setFormData(prev => ({
       ...prev,
       images: prev.images.map((img, i) => 
@@ -223,6 +426,8 @@ export function AdminPanel({
   };
 
   const handleRemoveImage = (index: number) => {
+    pushFormSnapshot();
+    isInTypingGroupRef.current = false;
     setFormData(prev => ({
       ...prev,
       images: prev.images.filter((_, i) => i !== index),
@@ -233,6 +438,8 @@ export function AdminPanel({
     const newImages = [...formData.images];
     const newIndex = direction === 'up' ? index - 1 : index + 1;
     if (newIndex < 0 || newIndex >= newImages.length) return;
+    pushFormSnapshot();
+    isInTypingGroupRef.current = false;
     [newImages[index], newImages[newIndex]] = [newImages[newIndex], newImages[index]];
     setFormData(prev => ({ ...prev, images: newImages }));
   };
@@ -301,6 +508,8 @@ export function AdminPanel({
       newCursorPos = start + syntax.length;
     }
 
+    pushFormSnapshot();
+    isInTypingGroupRef.current = false;
     setFormData(prev => ({ ...prev, description: newText }));
     setTimeout(() => {
       textarea.focus();
@@ -344,7 +553,15 @@ export function AdminPanel({
                 {isExpanded ? '◀' : '▶'}
               </button>
             )}
-            <button className="admin-close" onClick={onClose}>
+            <button className="admin-close" onClick={() => {
+              if (mode !== 'list') {
+                if (!confirmDiscard()) return;
+                revertAndReset();
+                setMode('list');
+                setIsExpanded(false);
+              }
+              onClose();
+            }}>
               <CloseIcon size={20} />
             </button>
           </div>
@@ -361,6 +578,16 @@ export function AdminPanel({
                 <span className="btn-icon">✥</span>
                 {isDragMode ? 'Drag: ON' : 'Drag: OFF'}
               </button>
+              <div className="admin-toolbar-group">
+                <button className="admin-btn" onClick={onUndo} disabled={!canUndo} title="Undo (Ctrl+Z)">
+                  <span className="btn-icon">↩</span>
+                  Undo
+                </button>
+                <button className="admin-btn" onClick={onRedo} disabled={!canRedo} title="Redo (Ctrl+Shift+Z)">
+                  <span className="btn-icon">↪</span>
+                  Redo
+                </button>
+              </div>
               <div className="admin-toolbar-group">
                 <button className="admin-btn save" onClick={onManualSave} title="Save to file">
                   <SaveIcon size={14} />
@@ -508,7 +735,7 @@ export function AdminPanel({
                     <input
                       type="text"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) => onTextFieldChange('name', e.target.value)}
                       placeholder="Location name"
                       required
                     />
@@ -520,7 +747,7 @@ export function AdminPanel({
                       <input
                         type="number"
                         value={formData.x}
-                        onChange={(e) => setFormData({ ...formData, x: Number(e.target.value) })}
+                        onChange={(e) => onDiscreteChange({ x: Number(e.target.value) })}
                         required
                       />
                     </div>
@@ -529,7 +756,7 @@ export function AdminPanel({
                       <input
                         type="number"
                         value={formData.y}
-                        onChange={(e) => setFormData({ ...formData, y: Number(e.target.value) })}
+                        onChange={(e) => onDiscreteChange({ y: Number(e.target.value) })}
                         required
                       />
                     </div>
@@ -539,7 +766,7 @@ export function AdminPanel({
                     <label>Category</label>
                     <select
                       value={formData.category}
-                      onChange={(e) => setFormData({ ...formData, category: e.target.value as LocationCategory })}
+                      onChange={(e) => onDiscreteChange({ category: e.target.value as LocationCategory })}
                     >
                       {ALL_CATEGORIES.map((cat) => (
                         <option key={cat} value={cat}>{cat}</option>
@@ -555,7 +782,7 @@ export function AdminPanel({
                     <input
                       type="text"
                       value={formData.shortDescription}
-                      onChange={(e) => setFormData({ ...formData, shortDescription: e.target.value })}
+                      onChange={(e) => onTextFieldChange('shortDescription', e.target.value)}
                       placeholder="Brief description for tooltip (optional)"
                       maxLength={100}
                     />
@@ -619,7 +846,7 @@ export function AdminPanel({
                       <textarea
                         ref={textareaRef}
                         value={formData.description}
-                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                        onChange={(e) => onTextFieldChange('description', e.target.value)}
                         placeholder="Enter description with Markdown formatting...
 
 Examples:

@@ -14,21 +14,33 @@ interface ChangelogEntry {
 
 const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.7.0',
+    date: '2026-04-12',
+    changes: [
+      'Updated map to latest game version',
+      'Added Safe category',
+      'Updated Building icon to a single wide window',
+      'Admin panel: undo/redo support (Ctrl+Z / Ctrl+Shift+Z), per-field grouping',
+      'Admin panel: cancel now reverts position changes',
+      'Admin panel: confirm prompts when discarding unsaved edits',
+      'Fixed pin positions not updating after filtering',
+      'Fixed editing one marker incorrectly moving another marker to the same position',
+    ],
+  },
+  {
     version: '1.6.3',
     date: '2026-04-06',
     changes: [
-      'Updated most locked room markers with accurate positions',
-      'Added new location markers across the map',
+      'Updated most locked room markers with accurate positions (TotroX)',
+      'Added new location markers across the map (TotroX)',
     ],
   },
   {
     version: '1.6.2',
     date: '2026-04-04',
     changes: [
-      'Major performance overhaul: moved pins to screen-space overlay, eliminating GPU re-rasterization during pan/zoom/rotate',
-      'Map layer now contains only the map image for fast compositing',
-      'Pin icons are always crisp at any zoom level — no more pixelation',
-      'Reduced DOM nodes per pin from ~15 to 3',
+      'Major performance overhaul: moved pins to screen-space overlay, eliminating lag during pan/zoom/rotate',
+      'Pin icons are always crisp at any zoom level',
       'Prevented accidental pin clicks while dragging or rotating the map',
     ],
   },
