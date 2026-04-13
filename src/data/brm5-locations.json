@@ -540,8 +540,8 @@
   },
   {
     "name": "Hospital Helipad",
-    "x": 1476,
-    "y": 381,
+    "x": 1469,
+    "y": 382,
     "description": "# RESCUE MODE ONLY\nHelicopter extraction point for the hospital quarantine zone.\n\n### Usage\nActivate via **CSEL extraction radio**. The helicopter lands on the highest accessible floor of the helipad. It will only get called there, if you are close enough to the helipad.",
     "category": "Extraction Point",
     "id": "mjrv19m6j8i15ykkmf"
@@ -562,16 +562,16 @@
   },
   {
     "name": "Saul Mart",
-    "x": 1667,
-    "y": 222,
+    "x": 1661,
+    "y": 221,
     "description": "*TBA*",
     "category": "Building",
     "id": "mjrv2vig3klf2lnqy9d"
   },
   {
     "name": "Southbridge Towers",
-    "x": 1689,
-    "y": 294,
+    "x": 1694,
+    "y": 299,
     "description": "Two towers of **varying heights** that provide access to the hospital quarantine zone from the southeast.",
     "category": "Building",
     "id": "mjrv4bp27lq8yth8pz6"
@@ -600,8 +600,8 @@
   },
   {
     "name": "Peck Slip Bandit Camp",
-    "x": 1964,
-    "y": 342,
+    "x": 1966,
+    "y": 338,
     "description": "**Medium enemy group** occupying the fenced area and 3 story building. Not much loot here.",
     "category": "Enemy Location",
     "id": "mjrv6sqgvldq0vwu2rs",
@@ -614,8 +614,8 @@
   },
   {
     "name": "Euro Deli",
-    "x": 2125,
-    "y": 635,
+    "x": 2123,
+    "y": 636,
     "description": "A small multi-story building **excellent for scouting**.\n\n\n### Vantage Point\n\n- Near-complete view of the entire bridge\n\n- Top floor offers a **360-degree view**\n\nIdeal for reconnaissance before crossing the bridge.",
     "category": "Building",
     "id": "mjrv8r38qirhjh5858k",
@@ -698,8 +698,8 @@
   },
   {
     "name": "Abrams Square Bandit Outpost",
-    "x": 2099,
-    "y": 1471,
+    "x": 2101,
+    "y": 1467,
     "description": "**Small enemy group** near the **Abrams Square** infiltration point. Not much loot here.\n\n### Warning\nYou may get shot at immediately upon drop-off. Be ready to engage.",
     "category": "Enemy Location",
     "id": "mjrvg2yu12fqri0iple",
@@ -720,16 +720,16 @@
   },
   {
     "name": "Fairfield Inn & Suites",
-    "x": 1946,
-    "y": 1649,
+    "x": 1945,
+    "y": 1654,
     "description": "*TBA*",
     "category": "Building",
     "id": "mjrvh8tdvgr30i8ck1"
   },
   {
     "name": "32 Slip Old Plaza",
-    "x": 2001,
-    "y": 1771,
+    "x": 2008,
+    "y": 1768,
     "description": "*TBA*",
     "category": "Building",
     "id": "mjrvi2oysnybmrvr28"
@@ -997,7 +997,7 @@
     ]
   },
   {
-    "name": "Quill Clothing Store",
+    "name": "Quill Clothing Outlet",
     "x": 854,
     "y": 1953,
     "description": "A clothing store that is connected to the **Dorsia**.",
@@ -1099,7 +1099,7 @@
     ]
   },
   {
-    "name": "Ground Zero 2",
+    "name": "Ground Zero 2 (Site A)",
     "x": 784,
     "y": 1460,
     "description": "A quarantine zone featuring an **underground garage**.\n\n\n### Layout\n\n- **Top Level**: Improvised meeting room (key required)\n\n- **Lower Levels**: Two floors with cars, tight corners, and zombies\n\nExpect heavy zombie presence throughout.",
@@ -1222,8 +1222,8 @@
   },
   {
     "name": "Military Checkpoint",
-    "x": 1612,
-    "y": 1311,
+    "x": 1660,
+    "y": 1234,
     "description": "A quarantine zone with a **military checkpoint**.\n\n\n### Enemies\nMany **militant zombies** spawn here.\n\n\n### Armory Location\nUnderground garage on the lowest floor. **M249** usually spawns nearby, along with other valuable items.\n\n\n### Recommended Entry\nUse the **back entrance** next to the basketball field.\n\n*More details TBA*",
     "category": "Quarantine Zone",
     "id": "mjrw01k5pt8lvq0z0c",
@@ -1304,8 +1304,8 @@
   },
   {
     "name": "Spawnpoint broadway 646",
-    "x": 1557,
-    "y": 1590,
+    "x": 1552,
+    "y": 1648,
     "description": "Player spawn location with **multiple spawn points** inside the building.",
     "category": "Spawnpoint",
     "images": [
@@ -1322,8 +1322,8 @@
   },
   {
     "name": "646 Broadway",
-    "x": 1539,
-    "y": 1570,
+    "x": 1543,
+    "y": 1577,
     "description": "A large apartment building with **rooftop access**.\n\n\n### Building Layout\n\n- Second-to-last floor has a long hallway leading to **outside stairs**\n\n- Top floor requires a **key** to access\n\n\n### Warning\nA **zombie nest** is right next to the building. Zombies may spawn in large numbers and can spot you from the stairs.",
     "category": "Building",
     "images": [
@@ -1484,8 +1484,8 @@
   },
   {
     "name": "Residence Front/Dover",
-    "x": 2000,
-    "y": 183,
+    "x": 2002,
+    "y": 175,
     "description": "*TBA*",
     "category": "Building",
     "images": [
@@ -1498,8 +1498,8 @@
   },
   {
     "name": "Metro Station Outside Ground Zero",
-    "x": 1824,
-    "y": 779,
+    "x": 1822,
+    "y": 778,
     "description": "## Subway Station (Outside Ground Zero / Hospital)\n\n- **Location:** Outside the Ground Zero quarantine zone  \n- **Purpose:** Serves as the entrance to the subway leading into the quarantine area  \n\n### Details:\n- **Enemies:** Few zombies in the surrounding area; however, **you must pass 2 zombie nests** at both the entrance and exit to traverse the subway safely  \n- **Points of Interest:**  \n  - Entrance leads directly toward the subway tunnels  \n  - Nearby streets provide limited cover and scavenging opportunities",
     "category": "Subway Station",
     "id": "mjz2g22gnhk3y5uk0yb",
@@ -1529,7 +1529,7 @@
   {
     "name": "Ground Zero Metro Station",
     "x": 1534,
-    "y": 738,
+    "y": 737,
     "description": "## Subway Station (Inside Ground Zero / Hospital)\n\n- **Location:** Entrance outside the quarantine zone at the intersection of Pine & Water Street  \n- **Purpose:** Provides access to the Ground Zero quarantine zone  \n\n### Details:\n- **Enemies:** Low zombie spawn inside the subway, but you must pass **2 zombie nests** to traverse it fully  \n- **Points of Interest:**  \n  - Small operating room containing what appears to be **power controls** and related equipment",
     "category": "Subway Station",
     "id": "mjz2gox8a8bupwe6f0n",
@@ -1572,8 +1572,8 @@
   },
   {
     "name": "Emergency Exit (646 Broadway)",
-    "x": 1533,
-    "y": 1479,
+    "x": 1532,
+    "y": 1489,
     "description": "Locked emergency exit at the top floor, accessible with **Emergency Exit Key**. When opened leads to an apartment far back.\n\n### Possible Loot\n- Medicine\n- Consumables\n- Ammo & Weapons (5.56)\n- Military equipment\n- Some valuable junk\n- Keys",
     "category": "Locked Door",
     "images": [
@@ -1790,8 +1790,8 @@
   },
   {
     "name": "Hot Mug Cafe",
-    "x": 2133,
-    "y": 1018,
+    "x": 2120,
+    "y": 1017,
     "description": "",
     "category": "Building",
     "id": "mn6czme0s96dde5vgyf",
@@ -1818,8 +1818,8 @@
   },
   {
     "name": "Kismet HQ Raid",
-    "x": 1019,
-    "y": 1654,
+    "x": 1018,
+    "y": 1652,
     "description": "",
     "category": "Raid",
     "id": "mnc8hljtke7a8qwdteb"
@@ -1865,28 +1865,50 @@
     "id": "mnc8qam2dp31rank2xg"
   },
   {
-    "name": "Quill Jewelry",
+    "name": "Quill Jewellery Outlet",
     "x": 779,
     "y": 1021,
     "description": "",
     "category": "Building",
-    "id": "mnc8tvt4fxoocgsky3o"
+    "id": "mnc8tvt4fxoocgsky3o",
+    "images": [
+      {
+        "url": "https://imgur.com/JsSDy0G.png",
+        "description": "The jewellery"
+      }
+    ]
   },
   {
     "name": "Fulton & Broad Emergency Exit",
-    "x": 1051,
-    "y": 617,
-    "description": "",
+    "x": 1049,
+    "y": 631,
+    "description": "Currently no key in game that can open it.",
     "category": "Locked Door",
-    "id": "mnc93ghe7slyzwvhlc"
+    "id": "mnc93ghe7slyzwvhlc",
+    "images": [
+      {
+        "url": "https://imgur.com/2eKfAOS.png",
+        "description": ""
+      }
+    ]
   },
   {
-    "name": "Fulton & William Archive Key",
-    "x": 1051,
-    "y": 548,
-    "description": "",
+    "name": "Conference Room",
+    "x": 1064,
+    "y": 556,
+    "description": "Locked room at the first floor of **Fulton Centre**, opened with **Conference Room Key**. Has not much in terms of loot and currently considered the worst locked loot location.",
     "category": "Locked Door",
-    "id": "mnc93y2zacdgll7hos"
+    "id": "mnc93y2zacdgll7hos",
+    "images": [
+      {
+        "url": "https://imgur.com/MNLldES.png",
+        "description": ""
+      },
+      {
+        "url": "https://imgur.com/7O3jtXG.png",
+        "description": ""
+      }
+    ]
   },
   {
     "name": "Semi Truck",
@@ -1906,16 +1928,16 @@
   },
   {
     "name": "Trashed Basketball Court",
-    "x": 1504,
-    "y": 1438,
+    "x": 1505,
+    "y": 1431,
     "description": "",
     "category": "Landmark",
     "id": "mnrin662uivi64wlm2f"
   },
   {
     "name": "Small Police Outpost",
-    "x": 1063,
-    "y": 1715,
+    "x": 1081,
+    "y": 1709,
     "description": "",
     "category": "Landmark",
     "images": [
@@ -1925,5 +1947,73 @@
       }
     ],
     "id": "mnvjyyg6hlprhtdbc4u"
+  },
+  {
+    "name": "Book Store",
+    "x": 975,
+    "y": 378,
+    "description": "",
+    "category": "Building",
+    "images": [
+      {
+        "url": "https://imgur.com/VEF2jOo.png",
+        "description": ""
+      },
+      {
+        "url": "https://imgur.com/3vky2uH.png",
+        "description": ""
+      },
+      {
+        "url": "https://imgur.com/f5g8EwB.png",
+        "description": ""
+      },
+      {
+        "url": "https://imgur.com/smNa4Cr.png",
+        "description": ""
+      },
+      {
+        "url": "https://imgur.com/AWYk5UA.png",
+        "description": ""
+      },
+      {
+        "url": "https://imgur.com/R2UBHhB.png",
+        "description": ""
+      },
+      {
+        "url": "https://imgur.com/IyjC6cD.png",
+        "description": ""
+      }
+    ],
+    "id": "mnx912fq4249rle1c7v"
+  },
+  {
+    "name": "Fulton Centre",
+    "x": 1036,
+    "y": 556,
+    "description": "",
+    "category": "Building",
+    "images": [
+      {
+        "url": "https://imgur.com/SkUZoKl.png",
+        "description": "The building"
+      },
+      {
+        "url": "https://imgur.com/CN7Efet.png",
+        "description": "First floor"
+      },
+      {
+        "url": "https://imgur.com/Q1YFRvS.png",
+        "description": "Second floor (1)"
+      },
+      {
+        "url": "https://imgur.com/1OsPGzy.png",
+        "description": "Second floor (2)"
+      },
+      {
+        "url": "https://imgur.com/45k4SDp.png",
+        "description": "Second floor (3)"
+      }
+    ],
+    "id": "mnx960iwxpikfixs5l"
   }
 ]
