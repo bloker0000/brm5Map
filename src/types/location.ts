@@ -1,7 +1,7 @@
 export type LocationCategory =
-  | 'Spawnpoint'
-  | 'Building'
-  | 'Extraction Point'
+  | 'Player Spawn'
+  | 'Explorable Area'
+  | 'Exfil Point'
   | 'Enemy Location'
   | 'Zombie Nest'
   | 'Key Spawn Location'
@@ -11,7 +11,7 @@ export type LocationCategory =
   | 'Shop'
   | 'Landmark'
   | 'Subway Station'
-  | 'Infiltration'
+  | 'Drop-Off Point'
   | 'Raid'
   | 'Safe'
   | 'Other';
@@ -43,9 +43,9 @@ export interface MapLocation {
 }
 
 export const CATEGORY_COLORS: Record<LocationCategory, string> = {
-  'Spawnpoint': '#35d497',
-  'Building': '#2d80d3',
-  'Extraction Point': '#fa3073',
+  'Player Spawn': '#35d497',
+  'Explorable Area': '#2d80d3',
+  'Exfil Point': '#fa3073',
   'Enemy Location': '#eb3a3a',
   'Zombie Nest': '#759c1a',
   'Key Spawn Location': '#d4a544',
@@ -55,7 +55,7 @@ export const CATEGORY_COLORS: Record<LocationCategory, string> = {
   'Shop': '#aa88cc',
   'Landmark': '#d8d8b1',
   'Subway Station': '#9966cc',
-  'Infiltration': '#6ac9e0',
+  'Drop-Off Point': '#6ac9e0',
   'Raid': '#e74818',
   'Safe': '#c8a84b',
   'Other': '#888888',
