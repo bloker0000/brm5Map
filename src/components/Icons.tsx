@@ -162,10 +162,11 @@ export function SearchIcon({ size = 16, color = 'currentColor', className }: Ico
 export function SafeIcon({ size = 16, color = 'currentColor', className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <rect x="2" y="4" width="20" height="16" rx="2" />
-      <circle cx="12" cy="12" r="3" />
-      <line x1="12" y1="9" x2="12" y2="7" />
-      <line x1="20" y1="8" x2="20" y2="8" strokeWidth="3" />
+      <rect x="2" y="3" width="17" height="18" rx="2" />
+      <rect x="19" y="8" width="2" height="3" rx="1" />
+      <rect x="19" y="14" width="2" height="3" rx="1" />
+      <circle cx="11" cy="12" r="4" />
+      <circle cx="11" cy="12" r="1.5" fill={color} stroke="none" />
     </svg>
   );
 }
@@ -268,7 +269,7 @@ const iconSvgBuilders: Record<LocationCategory, (c: string) => string> = {
   'Subway Station': (c) => `<rect x="3" y="3" width="18" height="18" rx="3" stroke="${c}" stroke-width="2"/><path d="M7 16V8l5 5 5-5v8"/>`,
   'Infiltration': (c) => `<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="1" fill="${c}" stroke="none"/>`,
   'Raid': (c) => `<path d="M12 22s-8-4.5-8-11V5l8-3 8 3v6c0 6.5-8 11-8 11z"/><line x1="12" y1="7" x2="12" y2="12"/><circle cx="12" cy="15" r="1" fill="${c}" stroke="none"/>`,
-  'Safe': (c) => `<rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="9" x2="12" y2="7"/><circle cx="12" cy="12" r="1" fill="${c}" stroke="none"/>`,
+  'Safe': (c) => `<rect x="2" y="3" width="17" height="18" rx="2"/><rect x="19" y="8" width="2" height="3" rx="1"/><rect x="19" y="14" width="2" height="3" rx="1"/><circle cx="11" cy="12" r="4"/><circle cx="11" cy="12" r="1.5" fill="${c}" stroke="none"/>`,
   'Other': () => `<circle cx="12" cy="12" r="4"/>`,
 };
 
