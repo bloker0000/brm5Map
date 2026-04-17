@@ -19,7 +19,7 @@ const CHANGELOG: ChangelogEntry[] = [
     changes: [
       'Updated map to latest game version',
       'Added Safe category',
-      'Updated Building icon to a single wide window',
+      'Updated Explorable Area icon to a single wide window',
       'Admin panel: undo/redo support (Ctrl+Z / Ctrl+Shift+Z), per-field grouping',
       'Admin panel: cancel now reverts position changes',
       'Admin panel: confirm prompts when discarding unsaved edits',
@@ -76,7 +76,7 @@ const CHANGELOG: ChangelogEntry[] = [
       'Icons stay upright when rotating the map',
       'Renamed "Enemy Outpost" category to "Enemy Location"',
       'Renamed "Key Use Location" category to "Locked Door"',
-      'Added new "Infiltration" category with eye icon',
+      'Added new "Drop-Off Point" category with eye icon',
       'Added new "Raid" category with shield icon',
       'Improved map pan/zoom performance significantly.. GPU-accelerated rendering, pins no longer re-render during drag',
       'Admin panel now auto-saves changes directly to the locations file on localhost',
@@ -184,7 +184,7 @@ const CHANGELOG: ChangelogEntry[] = [
     changes: [
       'Rebranded to BRMap5 (Blackhawk Rescue Map 5)',
       'Added Subway Station category',
-      'Consolidated building categories (Residence, Office Building Small/Large) into Building',
+      'Consolidated Explorable Area categories (Residence, Office Explorable Area Small/Large) into Explorable Area',
       'Added clear button for location selection',
       'Simplified location unselect - no longer need Ctrl+click for last selected item',
       'Added Changelog modal',

@@ -5,7 +5,7 @@
     "x": 1056,
     "y": 2168,
     "description": "A multi-story power company building with **multiple entry points**.\n\n### Key Features\n- Main entrance at the front\n- Additional entrance at the rear\n- **Player spawn point** nearby\n- Connected to the adjacent apartment building via hallways",
-    "category": "Building",
+    "category": "Explorable Area",
     "images": [
       {
         "url": "https://i.imgur.com/3htCIUM.png",
@@ -27,7 +27,7 @@
     "x": 1220,
     "y": 2098,
     "description": "A **three-story office building** with valuable loot.\n\n### Access\n- Floors 1-2 are freely accessible\n- **Third floor requires a key** to enter\n\nThe locked office on the third floor often contains ammunition and supplies.",
-    "category": "Building",
+    "category": "Explorable Area",
     "images": [
       {
         "url": "https://imgur.com/FZtJayZ.png",
@@ -46,10 +46,10 @@
   {
     "id": "3",
     "name": "Activity-Full & Sphere Solutions",
-    "x": 1041,
-    "y": 1969,
+    "x": 1051,
+    "y": 1974,
     "description": "A **large multi-story office building** with a hidden safe.\n\n### Building Layout\n- Multiple entrances including a side entrance\n- Two staircases throughout the building\n- Storage space on lower floors\n\n### Safe Location\nThe **safe is located on the second-to-last floor**. When using the front staircase (southwest), go left upon reaching that floor.\n\n### Navigation Tips\n- Front staircase (SW) continues to the rooftop\n- Rear staircase terminates at the penultimate floor",
-    "category": "Building",
+    "category": "Explorable Area",
     "images": [
       {
         "url": "https://i.imgur.com/eHStlTT.png",
@@ -119,7 +119,7 @@
     "x": 947,
     "y": 2249,
     "description": "A **four-story apartment building** connected to NYPlug.\n\n### Connection to NYPlug\nFollow the hallways on the first floor to reach the NYPlug building.\n\n### Threats\n- **Player spawn location** on upper floor\n- Medium to large zombie spawns at night\n\nThis building serves as both a spawn point and a connector between the apartment complex and NYPlug.",
-    "category": "Building",
+    "category": "Explorable Area",
     "image": "https://i.imgur.com/wAt3i6f.png",
     "images": [
       {
@@ -154,7 +154,7 @@
     "x": 755,
     "y": 2039,
     "description": "# RESCUE MODE ONLY\nAn extraction point accessible via ladder.\n\n### Enemy Presence\n**2 enemies** may spawn at the ladder leading up to the extraction point. Clear them before extracting.",
-    "category": "Extraction Point",
+    "category": "Exfil Point",
     "images": [
       {
         "url": "https://i.imgur.com/0oSFLBJ.png",
@@ -167,7 +167,7 @@
     "x": 2654,
     "y": 743,
     "description": "A rooftop extraction point on top of this building.\n\n### Access\nUse the **escalators** to reach the rooftop.\n\n### PvP Warning\nThis is a **high-traffic PvP area** - players frequently camp or loot here. Proceed with caution.",
-    "category": "Extraction Point",
+    "category": "Exfil Point",
     "id": "mjrsuqm7is7kgdoys7",
     "images": [
       {
@@ -181,7 +181,7 @@
     "x": 2324,
     "y": 999,
     "description": "A small booth that can be entered. Limited space but provides cover.",
-    "category": "Building",
+    "category": "Landmark",
     "id": "mjru18uyt94j1yss0i",
     "images": [
       {
@@ -195,7 +195,7 @@
     "x": 2443,
     "y": 983,
     "description": "A small storage building. **Cannot be entered** - probably used for small storage.",
-    "category": "Building",
+    "category": "Landmark",
     "id": "mjru2z86li39r26htj",
     "images": [
       {
@@ -209,7 +209,7 @@
     "x": 2533,
     "y": 743,
     "description": "A **former multi-story shopping mall** that offers several points of interest and tactical considerations.\n\n### Key Features\n* Escalators connecting the upper floors\n* **Extraction point** located on the rooftop\n* Sheepdog camp positioned on the NE side\n* Mounted **M240B machine gun** located on the second floor on the SE side\n\n### Threats\n- A large number of zombies can spawn inside and around the mall, with their numbers increasing significantly at night.\n- In PVE, be aware that the Sheepdogs may aggro the zombies, causing every zombie in the area to swarm towards the mall.",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mjrufsit5s55teg03a",
     "images": [
       {
@@ -281,7 +281,7 @@
     "x": 2326,
     "y": 743,
     "description": "A **non-entrable** building. Nothing much to say.",
-    "category": "Building",
+    "category": "Landmark",
     "id": "mjruiv7hrbxfyt6d6cc",
     "images": [
       {
@@ -393,7 +393,7 @@
     "x": 1369,
     "y": 466,
     "description": "The **largest** explorable building on the map.\n### Features\n\n* Multiple floors with **extensive loot throughout**\n* Rooftop extraction point on the 15th floor\n* **Overwhelming zombie presence**\n\n### Entrances\n\n* Northeastern (staircase to the 2nd floor)\n* Eastern\n* Southeast\n* South\n* Southwest\n\n### Loot Highlights\n\n* **Abundant loot on every floor except the top**: ammunition, medical supplies, and other essentials\n* 15th floor contains **the extraction landing pad** and an enterable room called **15A2**, which mostly has office furniture (chairs, desks, etc.) and **little to no valuable loot**\n* Food is limited, but water supplies can be found in the northeastern entrance building\n* Gas masks are common, so gas damage is usually not a concern\n\n### Tactics\n\n* Multiple enemy locations around the hospital mean zombies can hear gunfire and rush toward the sound\n* **Stealth tips:**\n\n  * Avoid being seen when zombies start running\n  * Be patient and use zombie spawn/despawn mechanics to move safely\n  * It’s possible to loot the hospital **without killing a single zombie** using careful stealth\n\n### Warning\n\n*Come fully prepared*: ammunition, medical supplies, and a gas mask are essential.*",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mjruy5f9grckcevy77f",
     "images": [
       {
@@ -543,7 +543,7 @@
     "x": 1469,
     "y": 382,
     "description": "# RESCUE MODE ONLY\nHelicopter extraction point for the hospital quarantine zone.\n\n### Usage\nActivate via **CSEL extraction radio**. The helicopter lands on the highest accessible floor of the helipad. It will only get called there, if you are close enough to the helipad.",
-    "category": "Extraction Point",
+    "category": "Exfil Point",
     "id": "mjrv19m6j8i15ykkmf"
   },
   {
@@ -561,20 +561,64 @@
     ]
   },
   {
-    "name": "Saul Mart",
-    "x": 1661,
-    "y": 221,
+    "name": "Fresh Stop Supermarket",
+    "x": 1670,
+    "y": 318,
     "description": "*TBA*",
-    "category": "Building",
-    "id": "mjrv2vig3klf2lnqy9d"
+    "category": "Explorable Area",
+    "id": "mjrv2vig3klf2lnqy9d",
+    "images": [
+      {
+        "url": "https://imgur.com/znDA0MP.png",
+        "description": "Outside"
+      },
+      {
+        "url": "https://imgur.com/lTuKQ0I.png",
+        "description": "Inside (1)"
+      },
+      {
+        "url": "https://imgur.com/stcrJr6.png",
+        "description": "Inside (2)"
+      },
+      {
+        "url": "https://imgur.com/ra7QtlH.png",
+        "description": "Inside (3)"
+      },
+      {
+        "url": "https://imgur.com/0zvbCL7.png",
+        "description": "Inside (4)"
+      }
+    ]
   },
   {
     "name": "Southbridge Towers",
-    "x": 1694,
-    "y": 299,
+    "x": 1733,
+    "y": 300,
     "description": "Two towers of **varying heights** that provide access to the hospital quarantine zone from the southeast.",
-    "category": "Building",
-    "id": "mjrv4bp27lq8yth8pz6"
+    "category": "Explorable Area",
+    "id": "mjrv4bp27lq8yth8pz6",
+    "images": [
+      {
+        "url": "https://imgur.com/v0tYArH.png",
+        "description": ""
+      },
+      {
+        "url": "https://imgur.com/9tYptWH.png",
+        "description": ""
+      },
+      {
+        "url": "https://imgur.com/okKToF6.png",
+        "description": ""
+      },
+      {
+        "url": "https://imgur.com/6Isfx27.png",
+        "description": ""
+      },
+      {
+        "url": "https://imgur.com/93ZrzAH.png",
+        "description": ""
+      }
+    ]
   },
   {
     "name": "Peck Slip Plaza",
@@ -589,7 +633,7 @@
     "x": 2095,
     "y": 295,
     "description": "A power plant substation. **Used in a PVE mission** objective.",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mjrv5xcwy1hj2ugofn",
     "images": [
       {
@@ -615,14 +659,42 @@
   {
     "name": "Euro Deli",
     "x": 2123,
-    "y": 636,
+    "y": 643,
     "description": "A small multi-story building **excellent for scouting**.\n\n\n### Vantage Point\n\n- Near-complete view of the entire bridge\n\n- Top floor offers a **360-degree view**\n\nIdeal for reconnaissance before crossing the bridge.",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mjrv8r38qirhjh5858k",
     "images": [
       {
         "url": "https://i.imgur.com/zdRLhEV.png",
-        "description": "Outside (photographer:Nintendoboi2)"
+        "description": "View on the building (photographer:Nintendoboi2)"
+      },
+      {
+        "url": "https://imgur.com/gtsV0de.png",
+        "description": "Convinience store"
+      },
+      {
+        "url": "https://imgur.com/9755Lby.png",
+        "description": "Store staff area"
+      },
+      {
+        "url": "https://imgur.com/LyOGcp6.png",
+        "description": "Exit to alleyway"
+      },
+      {
+        "url": "https://imgur.com/JzMPDpf.png",
+        "description": "Second floor gym"
+      },
+      {
+        "url": "https://imgur.com/jxn3QbJ.png",
+        "description": "Fourth floor apartment"
+      },
+      {
+        "url": "https://imgur.com/Rf48SHY.png",
+        "description": "Rooftop (1)"
+      },
+      {
+        "url": "https://imgur.com/6YupJFa.png",
+        "description": "Rooftop (2)"
       }
     ]
   },
@@ -645,7 +717,7 @@
     "x": 2072,
     "y": 1243,
     "description": "*TBA*",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mjrvbvm2xw7dk78r5yb"
   },
   {
@@ -659,6 +731,34 @@
       {
         "url": "https://imgur.com/1iAwrYT.png",
         "description": "Apartment occupied by majority of enemies"
+      },
+      {
+        "url": "https://imgur.com/wzbODL7.png",
+        "description": "Small Quill clothing store"
+      },
+      {
+        "url": "https://imgur.com/teaUjqU.png",
+        "description": "Second floor apartment"
+      },
+      {
+        "url": "https://imgur.com/vRWHHq7.png",
+        "description": "Second floor bedroom"
+      },
+      {
+        "url": "https://imgur.com/Q7J92ZU.png",
+        "description": "Third floor apartment"
+      },
+      {
+        "url": "https://imgur.com/NAoxPWc.png",
+        "description": "Third floor bedroom"
+      },
+      {
+        "url": "https://imgur.com/1Ijm9U6.png",
+        "description": "Fourth floor apartment"
+      },
+      {
+        "url": "https://imgur.com/9hAPEr8.png",
+        "description": "Fourth floor bedroom"
       },
       {
         "url": "https://imgur.com/LgryClp.png",
@@ -685,7 +785,7 @@
     "x": 1770,
     "y": 1127,
     "description": "*TBA*",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mjrvegrhkx3df85yxgm"
   },
   {
@@ -693,7 +793,7 @@
     "x": 1771,
     "y": 1325,
     "description": "*TBA*",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mjrvernx7yndcvyogsu"
   },
   {
@@ -723,7 +823,7 @@
     "x": 1945,
     "y": 1654,
     "description": "*TBA*",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mjrvh8tdvgr30i8ck1"
   },
   {
@@ -731,7 +831,7 @@
     "x": 2008,
     "y": 1768,
     "description": "*TBA*",
-    "category": "Building",
+    "category": "Landmark",
     "id": "mjrvi2oysnybmrvr28"
   },
   {
@@ -753,7 +853,7 @@
     "x": 2016,
     "y": 2024,
     "description": "*TBA*",
-    "category": "Building",
+    "category": "Landmark",
     "id": "mjrvjqdpw63iztfj1v9",
     "images": [
       {
@@ -767,7 +867,7 @@
     "x": 1999,
     "y": 2181,
     "description": "Southern extraction point with **two access routes**.\n\n### Access\n- Southeast staircase\n- Northwest staircase",
-    "category": "Extraction Point",
+    "category": "Exfil Point",
     "id": "mjrvk7yp6ewdm0dtggd",
     "images": [
       {
@@ -789,7 +889,7 @@
     "x": 1532,
     "y": 1972,
     "description": "An apartment building with the **Triple R Diner** on the ground floor.\n\n### Building Layout\n- **Ground Floor**: Diner (kitchen, restaurant), hallway, stairs\n- **Second Floor**: Locked apartment (more info in dedicated marker)\n- **Third Floor**: Additional accessible area\n\n### Possible Loot\n- Food and water\n- Some valuable junk",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mjrvn6gujqbuynmtqz",
     "images": [
       {
@@ -833,7 +933,7 @@
     "x": 1316,
     "y": 1993,
     "description": "A small bank with a secured vault and office desks.\n### Possible Loot\n- Medical supplies\n- Some valuable junk\n- Keys",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mjrvob8nmok6jfgzced",
     "images": [
       {
@@ -886,8 +986,8 @@
   },
   {
     "name": "Safe at Activity-Full",
-    "x": 981,
-    "y": 1936,
+    "x": 980,
+    "y": 1921,
     "description": "A **locked safe** on the second-to-last floor of **Activity-Full & Sphere Solutions** building. Requires **Safe Key** to open.\n\n### Directions\n1. Take the first staircase\n2. Go **left** on the second-to-last floor\n3. Safe is on that side of the building\n\n### Possible Loot\n- Ammo & Weapons\n- Military equipment\n- Some valuable junk\n- Rare & Unique keys",
     "category": "Locked Door",
     "id": "mjrvoz6urfycx8xq8q",
@@ -904,10 +1004,10 @@
   },
   {
     "name": "Westbridge Partners Office",
-    "x": 1291,
-    "y": 1952,
+    "x": 1045,
+    "y": 1579,
     "description": "A large office building with **two staircases**.\n\n### Access Points\n- Front-left (southwest) staircase\n- Left side (northwest) staircase\n\n### Zombie Threat\n**3-5 zombies** typically spawn here, but spawning can be aggressive. Zombies may appear on the opposite side of the building.\n\n*Stay alert - they can spawn behind you.*",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mjrvpwtv3pnawe7s3dp",
     "images": [
       {
@@ -947,7 +1047,7 @@
     "x": 806,
     "y": 1847,
     "description": "A dining place that is connected to **Quill** clothing store.\n\n### Possible Loot\n- Food and water\n- Medical items\n\n### Threat\nBack area of this place is occupied by bandits.\n\n### Mission\nChef recipe, that's needed for \"name\" mission, spawns in the backroom.",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mjrvqwzr30168dstyr8",
     "images": [
       {
@@ -1001,7 +1101,7 @@
     "x": 854,
     "y": 1953,
     "description": "A clothing store that is connected to the **Dorsia**.",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mjrvrytly5lyzeir8k",
     "images": [
       {
@@ -1019,19 +1119,19 @@
     ]
   },
   {
-    "name": "Spawnpoint Near NYPlug",
+    "name": "Player Spawn Near NYPlug",
     "x": 973,
     "y": 2250,
     "description": "Player spawn point in the building next to NYPlug.\n\nPlayers typically spawn on the **upper floors**, usually inside a room.",
-    "category": "Spawnpoint",
+    "category": "Player Spawn",
     "id": "mjrvseahe6vji28wobj"
   },
   {
-    "name": "S William spawnpoint",
-    "x": 675,
-    "y": 1925,
+    "name": "S William Player Spawn",
+    "x": 676,
+    "y": 1939,
     "description": "Player spawn point located **close to an extraction point**.",
-    "category": "Spawnpoint",
+    "category": "Player Spawn",
     "id": "mjrvt84rqomx0v3io8",
     "images": [
       {
@@ -1140,8 +1240,8 @@
   },
   {
     "name": "Quill Jewelry Backroom",
-    "x": 780,
-    "y": 983,
+    "x": 778,
+    "y": 984,
     "description": "Locked backroom of Quill jewelry store, opened with **Jewelry Key**.\n\n### Possible Loot\n- Ammo & Weapons\n- Lots of valuable junk (including silver and gold bars)\n- Rare & Unique keys",
     "category": "Locked Door",
     "id": "mjrvxkgr2pbael5wj9q",
@@ -1157,7 +1257,7 @@
     "x": 966,
     "y": 885,
     "description": "*TBA*",
-    "category": "Spawnpoint",
+    "category": "Player Spawn",
     "id": "mjrvy7p30pd1dveub0i"
   },
   {
@@ -1240,10 +1340,10 @@
   },
   {
     "name": "Cities service buildings",
-    "x": 1433,
-    "y": 1006,
+    "x": 1429,
+    "y": 1014,
     "description": "A hotel complex with multiple stores.\n\n\n### Shops Inside\n\n- Jewelry store (partially ransacked, some loot remains)\n\n- 2 cafes\n\n- Clothing store\n\n\n### Bug Note\nThe two stairs on the right side are buggy - players can partially clip inside when crouched.\n\n*(Contributed by Nintendoboi2)*",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mjrw0f5rf810z62ai7",
     "images": [
       {
@@ -1269,25 +1369,9 @@
     ]
   },
   {
-    "name": "RDII Mega Solution",
-    "x": 1315,
-    "y": 1126,
-    "description": "*TBA*",
-    "category": "Building",
-    "id": "mjrw10kjfs3ptbcfmuh"
-  },
-  {
-    "name": "Spawn Location",
-    "x": 1291,
-    "y": 1130,
-    "description": "*TBA*",
-    "category": "Spawnpoint",
-    "id": "mjrw1c2nj7fo9rackf"
-  },
-  {
     "name": "William x Wall Bandit Camp",
-    "x": 961,
-    "y": 1164,
+    "x": 960,
+    "y": 1176,
     "description": "**Medium enemy group** located outside and inside the building with opened garage near **William x Wall** intersection.\n\n### Possible Loot\n- Medicine\n- Ammo & Weapons\n- Military equipment",
     "category": "Enemy Location",
     "id": "mjrw1r1ewvq9wl4885c",
@@ -1303,11 +1387,11 @@
     ]
   },
   {
-    "name": "Spawnpoint broadway 646",
+    "name": "Player Spawn broadway 646",
     "x": 1552,
     "y": 1648,
     "description": "Player spawn location with **multiple spawn points** inside the building.",
-    "category": "Spawnpoint",
+    "category": "Player Spawn",
     "images": [
       {
         "url": "https://i.imgur.com/UYzopDx.png",
@@ -1325,7 +1409,7 @@
     "x": 1543,
     "y": 1577,
     "description": "A large apartment building with **rooftop access**.\n\n\n### Building Layout\n\n- Second-to-last floor has a long hallway leading to **outside stairs**\n\n- Top floor requires a **key** to access\n\n\n### Warning\nA **zombie nest** is right next to the building. Zombies may spawn in large numbers and can spot you from the stairs.",
-    "category": "Building",
+    "category": "Explorable Area",
     "images": [
       {
         "url": "https://i.imgur.com/Xf5D91H.png",
@@ -1373,7 +1457,7 @@
     "x": 1797,
     "y": 1954,
     "description": "A car dealership that's occupied by Sheepdogs. It is connected with a passage to **Soren Aurore** jewelry.\n### Loot\n- Food and water\n- Medical items\n- Some ammo and low-tier guns\n- Rare keys and other valuable junk",
-    "category": "Building",
+    "category": "Explorable Area",
     "images": [
       {
         "url": "https://i.imgur.com/ILAXWQ8.png",
@@ -1399,7 +1483,7 @@
     "x": 1730,
     "y": 1880,
     "description": "Jewelry that have been partially ransacked by Sheepdogs, but still **has a lot of valuable junk** left on displays. It is connected with a passage to **Carl's Cars** dealership which is occupied by Sheepdogs.",
-    "category": "Building",
+    "category": "Explorable Area",
     "images": [
       {
         "url": "https://imgur.com/GzO6fnZ.png",
@@ -1421,15 +1505,15 @@
     "id": "mjt4i7214ukvc6unyne"
   },
   {
-    "name": "Whitehall Spawnpoint",
+    "name": "Whitehall Player Spawn",
     "x": 527,
     "y": 1770,
     "description": "Player spawn location near Whitehall.",
-    "category": "Spawnpoint",
+    "category": "Player Spawn",
     "images": [
       {
         "url": "https://i.imgur.com/SUyuFG1.png",
-        "description": "spawnpoint"
+        "description": "Player Spawn"
       },
       {
         "url": "https://i.imgur.com/N48ePSP.png",
@@ -1439,15 +1523,15 @@
     "id": "mjt4x7f9x4jf66sh7ae"
   },
   {
-    "name": "Spawnpoint Acitivity Full",
-    "x": 983,
-    "y": 1970,
+    "name": "Player Spawn Acitivity Full",
+    "x": 979,
+    "y": 1973,
     "description": "*TBA*",
-    "category": "Spawnpoint",
+    "category": "Player Spawn",
     "images": [
       {
         "url": "https://i.imgur.com/WaxzINR.png",
-        "description": "spawnpoint"
+        "description": "Player Spawn"
       }
     ],
     "id": "mjvl38frqesnehb57hm"
@@ -1487,7 +1571,7 @@
     "x": 2002,
     "y": 175,
     "description": "*TBA*",
-    "category": "Building",
+    "category": "Explorable Area",
     "images": [
       {
         "url": "https://i.imgur.com/Kk30wFe.png",
@@ -1615,7 +1699,7 @@
     "x": 1070,
     "y": 920,
     "description": "A **5-floor apartment complex** with rooftop access.\n\n### Building Features\n- Exit NW onto William Street\n- Exit SE onto Broad Street\n- Emergency fire exit on NW side\n- Police checkpoint with SWAT van on NE side\n\n### Nearby Threats\n- Bandit camp outside (NW side)\n- Survivor spawn point\n- Infiltration point\n\n### Zombies\n**~4 zombies** inside.\n\n*(Contributed by Nintendoboi2)*",
-    "category": "Building",
+    "category": "Explorable Area",
     "images": [
       {
         "url": "https://i.imgur.com/avkwtL1.png",
@@ -1626,10 +1710,10 @@
   },
   {
     "name": "Lucia & Proxy's Midnight Cafe Safehouse",
-    "x": 871,
-    "y": 971,
+    "x": 864,
+    "y": 974,
     "description": "A **small cafe** located on William Street.\n\n\n### Features\n\n- **No zombies** inside\n\n- Small back room for cover\n\n*(Contributed by Nintendoboi2)*",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mk31ns977xd9nnm7cpx",
     "images": [
       {
@@ -1640,18 +1724,18 @@
   },
   {
     "name": "Watson and Stone Hotel Safehouse",
-    "x": 1215,
-    "y": 1012,
+    "x": 1223,
+    "y": 1013,
     "description": "A hotel located at **Wall and Broad**.\n\n\n### Building Layout\n\n- **3 floors** with zombies on every level\n\n- Second and third floors have only one room each\n\n\n### Oddity\nThe TVs are on in all rooms.\n\n*(Contributed by Nintendoboi2)*",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mk31pfnn4b3gmo55yj7"
   },
   {
-    "name": "Stone 8 Spawnpoint",
+    "name": "Stone 8 Player Spawn",
     "x": 1268,
     "y": 1977,
     "description": "A **player spawn location** near Stone 8.",
-    "category": "Spawnpoint",
+    "category": "Player Spawn",
     "id": "mk31yzwbcqgg8iwal6c"
   },
   {
@@ -1673,7 +1757,7 @@
     "x": 1064,
     "y": 1638,
     "description": "*TBA*",
-    "category": "Building",
+    "category": "Explorable Area",
     "images": [
       {
         "url": "https://imgur.com/KdEBfC7.png",
@@ -1721,7 +1805,7 @@
     "x": 2344,
     "y": 503,
     "description": "**Non-enterable**, nothing else to add.",
-    "category": "Building",
+    "category": "Landmark",
     "images": [
       {
         "url": "https://i.imgur.com/5Cjwssa.png",
@@ -1731,18 +1815,18 @@
     "id": "mk3sv96niawpi0szal"
   },
   {
-    "name": "Ship",
+    "name": "UNS New York",
     "x": 3383,
     "y": 1111,
     "description": "yezzir",
-    "category": "Other",
+    "category": "Explorable Area",
     "images": [
       {
-        "url": "https://i.imgur.com/WefVobH.png",
+        "url": "https://imgur.com/Vb3oJt0.png",
         "description": "Interior"
       },
       {
-        "url": "https://imgur.com/jnt6kgZ.png",
+        "url": "https://imgur.com/kmsbHKE.png",
         "description": "Helipads"
       }
     ],
@@ -1776,7 +1860,7 @@
   },
   {
     "name": "Liberty Bank Vault",
-    "x": 1291,
+    "x": 1306,
     "y": 1952,
     "description": "Locked **Liberty Bank** vault, accessible with **Bank Vault Keycard**.\n\n### Possible Loot\n- Medicine\n- Ammo & Good Weapons\n- Military equipment\n- Lots of valuable junk (includes silver and gold bars)\n- Rare & Unique Keys",
     "category": "Locked Door",
@@ -1793,7 +1877,7 @@
     "x": 2120,
     "y": 1017,
     "description": "",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mn6czme0s96dde5vgyf",
     "images": [
       {
@@ -1804,8 +1888,8 @@
   },
   {
     "name": "Bandit Outpost",
-    "x": 1129,
-    "y": 1559,
+    "x": 1191,
+    "y": 1557,
     "description": "**Medium enemy group** located on the **Broad** street. Some of the bandits are watching over from the windows of the nearby building.\n\n### Possible Loot\n- Medicine\n- Consumables\n- Ammo",
     "category": "Enemy Location",
     "id": "mn73lhins8wxl3qfugm",
@@ -1818,16 +1902,16 @@
   },
   {
     "name": "Kismet HQ Raid",
-    "x": 1018,
-    "y": 1652,
+    "x": 1019,
+    "y": 1651,
     "description": "",
     "category": "Raid",
     "id": "mnc8hljtke7a8qwdteb"
   },
   {
     "name": "Federal Reserve Bank Raid",
-    "x": 726,
-    "y": 1236,
+    "x": 765,
+    "y": 1237,
     "description": "",
     "category": "Raid",
     "id": "mnc8iejy54bz2ds97x"
@@ -1845,7 +1929,7 @@
     "x": 2022,
     "y": 1346,
     "description": "",
-    "category": "Infiltration",
+    "category": "Drop-Off Point",
     "id": "mnc8m2pzfgy2of36ma9"
   },
   {
@@ -1853,7 +1937,7 @@
     "x": 1071,
     "y": 881,
     "description": "",
-    "category": "Infiltration",
+    "category": "Drop-Off Point",
     "id": "mnc8ob1rtl2zh7dph5l"
   },
   {
@@ -1861,15 +1945,15 @@
     "x": 1140,
     "y": 1721,
     "description": "",
-    "category": "Infiltration",
+    "category": "Drop-Off Point",
     "id": "mnc8qam2dp31rank2xg"
   },
   {
     "name": "Quill Jewellery Outlet",
-    "x": 779,
-    "y": 1021,
+    "x": 777,
+    "y": 1019,
     "description": "",
-    "category": "Building",
+    "category": "Explorable Area",
     "id": "mnc8tvt4fxoocgsky3o",
     "images": [
       {
@@ -1915,21 +1999,21 @@
     "x": 1122,
     "y": 1073,
     "description": "# Survival Mode Only",
-    "category": "Extraction Point",
+    "category": "Exfil Point",
     "id": "mnfrd2wbgzf3khypdqo"
   },
   {
     "name": "Vault Locker",
-    "x": 776,
-    "y": 1325,
+    "x": 778,
+    "y": 1331,
     "description": "",
     "category": "Locked Door",
     "id": "mnmv6ti5vly2mg513ns"
   },
   {
     "name": "Trashed Basketball Court",
-    "x": 1505,
-    "y": 1431,
+    "x": 1506,
+    "y": 1439,
     "description": "",
     "category": "Landmark",
     "id": "mnrin662uivi64wlm2f"
@@ -1953,7 +2037,7 @@
     "x": 975,
     "y": 378,
     "description": "",
-    "category": "Building",
+    "category": "Explorable Area",
     "images": [
       {
         "url": "https://imgur.com/VEF2jOo.png",
@@ -1987,11 +2071,11 @@
     "id": "mnx912fq4249rle1c7v"
   },
   {
-    "name": "Fulton Centre",
+    "name": "Fulton x William Building",
     "x": 1036,
     "y": 556,
     "description": "",
-    "category": "Building",
+    "category": "Explorable Area",
     "images": [
       {
         "url": "https://imgur.com/SkUZoKl.png",
@@ -2015,5 +2099,79 @@
       }
     ],
     "id": "mnx960iwxpikfixs5l"
+  },
+  {
+    "name": "Medium Safe",
+    "x": 1020,
+    "y": 1580,
+    "description": "",
+    "category": "Safe",
+    "images": [
+      {
+        "url": "https://imgur.com/hXTJcVN.png",
+        "description": ""
+      }
+    ],
+    "id": "mo1jz5qjuupptgbeu0a"
+  },
+  {
+    "name": "Medium Safe",
+    "x": 1051,
+    "y": 1950,
+    "description": "",
+    "category": "Safe",
+    "images": [
+      {
+        "url": "https://imgur.com/6Vz2x3W.png",
+        "description": ""
+      }
+    ],
+    "id": "mo1k1146tu0ti5y36vc"
+  },
+  {
+    "name": "Small Safe",
+    "x": 2076,
+    "y": 1009,
+    "description": "Located in the second floor apartment bedroom.",
+    "category": "Safe",
+    "images": [
+      {
+        "url": "https://imgur.com/AGDXKMP.png",
+        "description": ""
+      }
+    ],
+    "id": "mo2jo3r5pbtclla6vxc"
+  },
+  {
+    "name": "Medium Safe",
+    "x": 1687,
+    "y": 211,
+    "description": "",
+    "category": "Safe",
+    "images": [
+      {
+        "url": "https://imgur.com/scNGfRS.png",
+        "description": ""
+      }
+    ],
+    "id": "mo2jqb49aj8ekho4zjh"
+  },
+  {
+    "name": "Unknown Office",
+    "x": 1659,
+    "y": 223,
+    "description": "*TBA*",
+    "category": "Explorable Area",
+    "images": [
+      {
+        "url": "https://imgur.com/lxohReV.png",
+        "description": ""
+      },
+      {
+        "url": "https://imgur.com/7lyhqiM.png",
+        "description": ""
+      }
+    ],
+    "id": "mo2k64rud0l6aww9xqb"
   }
 ]

@@ -7,9 +7,9 @@ import remarkGfm from 'remark-gfm';
 import './AdminPanel.css';
 
 const ALL_CATEGORIES: LocationCategory[] = [
-  'Spawnpoint',
-  'Building',
-  'Extraction Point',
+  'Player Spawn',
+  'Explorable Area',
+  'Exfil Point',
   'Enemy Location',
   'Zombie Nest',
   'Key Spawn Location',
@@ -19,7 +19,7 @@ const ALL_CATEGORIES: LocationCategory[] = [
   'Shop',
   'Landmark',
   'Subway Station',
-  'Infiltration',
+  'Drop-Off Point',
   'Raid',
   'Safe',
   'Other',
