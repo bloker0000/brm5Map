@@ -181,7 +181,7 @@
     "x": 2324,
     "y": 999,
     "description": "A small booth that can be entered. Limited space but provides cover.",
-    "category": "Explorable Area",
+    "category": "Landmark",
     "id": "mjru18uyt94j1yss0i",
     "images": [
       {
@@ -195,7 +195,7 @@
     "x": 2443,
     "y": 983,
     "description": "A small storage building. **Cannot be entered** - probably used for small storage.",
-    "category": "Explorable Area",
+    "category": "Landmark",
     "id": "mjru2z86li39r26htj",
     "images": [
       {
@@ -281,7 +281,7 @@
     "x": 2326,
     "y": 743,
     "description": "A **non-entrable** building. Nothing much to say.",
-    "category": "Explorable Area",
+    "category": "Landmark",
     "id": "mjruiv7hrbxfyt6d6cc",
     "images": [
       {
@@ -561,12 +561,34 @@
     ]
   },
   {
-    "name": "Saul Mart",
-    "x": 1661,
-    "y": 221,
+    "name": "Fresh Stop Supermarket",
+    "x": 1670,
+    "y": 318,
     "description": "*TBA*",
     "category": "Explorable Area",
-    "id": "mjrv2vig3klf2lnqy9d"
+    "id": "mjrv2vig3klf2lnqy9d",
+    "images": [
+      {
+        "url": "https://imgur.com/znDA0MP.png",
+        "description": "Outside"
+      },
+      {
+        "url": "https://imgur.com/lTuKQ0I.png",
+        "description": "Inside (1)"
+      },
+      {
+        "url": "https://imgur.com/stcrJr6.png",
+        "description": "Inside (2)"
+      },
+      {
+        "url": "https://imgur.com/ra7QtlH.png",
+        "description": "Inside (3)"
+      },
+      {
+        "url": "https://imgur.com/0zvbCL7.png",
+        "description": "Inside (4)"
+      }
+    ]
   },
   {
     "name": "Southbridge Towers",
@@ -809,7 +831,7 @@
     "x": 2008,
     "y": 1768,
     "description": "*TBA*",
-    "category": "Explorable Area",
+    "category": "Landmark",
     "id": "mjrvi2oysnybmrvr28"
   },
   {
@@ -831,7 +853,7 @@
     "x": 2016,
     "y": 2024,
     "description": "*TBA*",
-    "category": "Explorable Area",
+    "category": "Landmark",
     "id": "mjrvjqdpw63iztfj1v9",
     "images": [
       {
@@ -982,8 +1004,8 @@
   },
   {
     "name": "Westbridge Partners Office",
-    "x": 1046,
-    "y": 1576,
+    "x": 1045,
+    "y": 1579,
     "description": "A large office building with **two staircases**.\n\n### Access Points\n- Front-left (southwest) staircase\n- Left side (northwest) staircase\n\n### Zombie Threat\n**3-5 zombies** typically spawn here, but spawning can be aggressive. Zombies may appear on the opposite side of the building.\n\n*Stay alert - they can spawn behind you.*",
     "category": "Explorable Area",
     "id": "mjrvpwtv3pnawe7s3dp",
@@ -1218,8 +1240,8 @@
   },
   {
     "name": "Quill Jewelry Backroom",
-    "x": 780,
-    "y": 983,
+    "x": 778,
+    "y": 984,
     "description": "Locked backroom of Quill jewelry store, opened with **Jewelry Key**.\n\n### Possible Loot\n- Ammo & Weapons\n- Lots of valuable junk (including silver and gold bars)\n- Rare & Unique keys",
     "category": "Locked Door",
     "id": "mjrvxkgr2pbael5wj9q",
@@ -1318,8 +1340,8 @@
   },
   {
     "name": "Cities service buildings",
-    "x": 1433,
-    "y": 1006,
+    "x": 1429,
+    "y": 1014,
     "description": "A hotel complex with multiple stores.\n\n\n### Shops Inside\n\n- Jewelry store (partially ransacked, some loot remains)\n\n- 2 cafes\n\n- Clothing store\n\n\n### Bug Note\nThe two stairs on the right side are buggy - players can partially clip inside when crouched.\n\n*(Contributed by Nintendoboi2)*",
     "category": "Explorable Area",
     "id": "mjrw0f5rf810z62ai7",
@@ -1348,8 +1370,8 @@
   },
   {
     "name": "William x Wall Bandit Camp",
-    "x": 961,
-    "y": 1164,
+    "x": 960,
+    "y": 1176,
     "description": "**Medium enemy group** located outside and inside the building with opened garage near **William x Wall** intersection.\n\n### Possible Loot\n- Medicine\n- Ammo & Weapons\n- Military equipment",
     "category": "Enemy Location",
     "id": "mjrw1r1ewvq9wl4885c",
@@ -1688,8 +1710,8 @@
   },
   {
     "name": "Lucia & Proxy's Midnight Cafe Safehouse",
-    "x": 871,
-    "y": 971,
+    "x": 864,
+    "y": 974,
     "description": "A **small cafe** located on William Street.\n\n\n### Features\n\n- **No zombies** inside\n\n- Small back room for cover\n\n*(Contributed by Nintendoboi2)*",
     "category": "Explorable Area",
     "id": "mk31ns977xd9nnm7cpx",
@@ -1702,8 +1724,8 @@
   },
   {
     "name": "Watson and Stone Hotel Safehouse",
-    "x": 1215,
-    "y": 1012,
+    "x": 1223,
+    "y": 1013,
     "description": "A hotel located at **Wall and Broad**.\n\n\n### Building Layout\n\n- **3 floors** with zombies on every level\n\n- Second and third floors have only one room each\n\n\n### Oddity\nThe TVs are on in all rooms.\n\n*(Contributed by Nintendoboi2)*",
     "category": "Explorable Area",
     "id": "mk31pfnn4b3gmo55yj7"
@@ -1783,7 +1805,7 @@
     "x": 2344,
     "y": 503,
     "description": "**Non-enterable**, nothing else to add.",
-    "category": "Explorable Area",
+    "category": "Landmark",
     "images": [
       {
         "url": "https://i.imgur.com/5Cjwssa.png",
@@ -1793,18 +1815,18 @@
     "id": "mk3sv96niawpi0szal"
   },
   {
-    "name": "Ship",
+    "name": "UNS New York",
     "x": 3383,
     "y": 1111,
     "description": "yezzir",
     "category": "Explorable Area",
     "images": [
       {
-        "url": "https://i.imgur.com/WefVobH.png",
+        "url": "https://imgur.com/Vb3oJt0.png",
         "description": "Interior"
       },
       {
-        "url": "https://imgur.com/jnt6kgZ.png",
+        "url": "https://imgur.com/kmsbHKE.png",
         "description": "Helipads"
       }
     ],
@@ -1866,8 +1888,8 @@
   },
   {
     "name": "Bandit Outpost",
-    "x": 1129,
-    "y": 1559,
+    "x": 1191,
+    "y": 1557,
     "description": "**Medium enemy group** located on the **Broad** street. Some of the bandits are watching over from the windows of the nearby building.\n\n### Possible Loot\n- Medicine\n- Consumables\n- Ammo",
     "category": "Enemy Location",
     "id": "mn73lhins8wxl3qfugm",
@@ -1880,16 +1902,16 @@
   },
   {
     "name": "Kismet HQ Raid",
-    "x": 1018,
-    "y": 1652,
+    "x": 1019,
+    "y": 1651,
     "description": "",
     "category": "Raid",
     "id": "mnc8hljtke7a8qwdteb"
   },
   {
     "name": "Federal Reserve Bank Raid",
-    "x": 726,
-    "y": 1236,
+    "x": 765,
+    "y": 1237,
     "description": "",
     "category": "Raid",
     "id": "mnc8iejy54bz2ds97x"
@@ -1928,8 +1950,8 @@
   },
   {
     "name": "Quill Jewellery Outlet",
-    "x": 779,
-    "y": 1021,
+    "x": 777,
+    "y": 1019,
     "description": "",
     "category": "Explorable Area",
     "id": "mnc8tvt4fxoocgsky3o",
@@ -1982,8 +2004,8 @@
   },
   {
     "name": "Vault Locker",
-    "x": 776,
-    "y": 1325,
+    "x": 778,
+    "y": 1331,
     "description": "",
     "category": "Locked Door",
     "id": "mnmv6ti5vly2mg513ns"
@@ -2049,7 +2071,7 @@
     "id": "mnx912fq4249rle1c7v"
   },
   {
-    "name": "Fulton Centre",
+    "name": "Fulton x William Building",
     "x": 1036,
     "y": 556,
     "description": "",
@@ -2105,5 +2127,51 @@
       }
     ],
     "id": "mo1k1146tu0ti5y36vc"
+  },
+  {
+    "name": "Small Safe",
+    "x": 2076,
+    "y": 1009,
+    "description": "Located in the second floor apartment bedroom.",
+    "category": "Safe",
+    "images": [
+      {
+        "url": "https://imgur.com/AGDXKMP.png",
+        "description": ""
+      }
+    ],
+    "id": "mo2jo3r5pbtclla6vxc"
+  },
+  {
+    "name": "Medium Safe",
+    "x": 1687,
+    "y": 211,
+    "description": "",
+    "category": "Safe",
+    "images": [
+      {
+        "url": "https://imgur.com/scNGfRS.png",
+        "description": ""
+      }
+    ],
+    "id": "mo2jqb49aj8ekho4zjh"
+  },
+  {
+    "name": "Unknown Office",
+    "x": 1659,
+    "y": 223,
+    "description": "*TBA*",
+    "category": "Explorable Area",
+    "images": [
+      {
+        "url": "https://imgur.com/lxohReV.png",
+        "description": ""
+      },
+      {
+        "url": "https://imgur.com/7lyhqiM.png",
+        "description": ""
+      }
+    ],
+    "id": "mo2k64rud0l6aww9xqb"
   }
 ]
