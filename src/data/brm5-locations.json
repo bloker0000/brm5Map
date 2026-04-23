@@ -1181,6 +1181,14 @@
       {
         "url": "https://imgur.com/YO2CcHy.png",
         "description": "Locked backroom with silver bars visible on the ground"
+      },
+      {
+        "url": "https://i.imgur.com/RtKbNsm.png",
+        "description": "The locked backroom door"
+      },
+      {
+        "url": "https://i.imgur.com/cHXBBf7.png",
+        "description": "Inside the backroom"
       }
     ]
   },
@@ -1224,13 +1232,17 @@
     "name": "Armory",
     "x": 1503,
     "y": 1378,
-    "description": "The **armory** is located on the **lowest floor**. Requires the armory key to access.",
+    "description": "A locked room on the **lowest floor** of the Military Checkpoint parking garage. Requires the **Armory Key** to open — the key has been reported as **extremely rare or currently unobtainable**.\n\n### Possible Loot\n- Military cosmetic gear\n- End-game weapons (including silenced ARs)\n- Ammo of various types\n- Military equipment\n\n### Access\nDescend through the parking garage to the lowest floor. The armory is located in a dedicated room on that floor.",
     "category": "Locked Door",
     "id": "mjrvzhe8153uoqgvi28",
     "images": [
       {
-        "url": "https://i.imgur.com/P0sskeu.png",
-        "description": "armory"
+        "url": "https://i.imgur.com/SLMAZ9G.png",
+        "description": "Armory room entrance"
+      },
+      {
+        "url": "https://i.imgur.com/LWVL3iu.png",
+        "description": "Inside the armory"
       }
     ]
   },
@@ -1238,17 +1250,57 @@
     "name": "Military Checkpoint Garage",
     "x": 1501,
     "y": 1321,
-    "description": "A zombie nest located **in and beneath a garage**.\n\n### Spawn Info\nLarge numbers of zombies spawn here. *Enter during daytime for best results.*\n\n### Access Points\n- Southeast entrance\n- Northwest entrance\n\n**Heavy zombie activity.**",
+    "description": "A multi-floor parking garage and **zombie nest** inside the Military Checkpoint quarantine zone. Expect **20+ zombies per floor** — do not enter the nest at night.\n\n### Layout\n- **Top floor**: Main entrance, back office room with cabinets and folders\n- **First lower floor**: Civilian cars, regular loot (expired food, civilian tools)\n- **Lowest floor**: Military gear, ammo, weapons, cosmetics — and the **Armory** locked room\n\n### Access Points\n- Main entrance (top floor)\n- Alternative stairwell entrance\n- Large driveway ramp connecting floors\n\n### Warning\nZombie numbers are extreme, especially at night. *Daytime entry strongly recommended.*",
     "category": "Zombie Nest",
     "id": "mjrvzs8dbgpc1cacni",
     "images": [
       {
-        "url": "https://i.imgur.com/y1jxYen.png",
-        "description": "entrance"
+        "url": "https://i.imgur.com/omE0qOY.png",
+        "description": "Main entrance of the parking lot"
       },
       {
-        "url": "https://i.imgur.com/P0sskeu.png",
-        "description": "armory"
+        "url": "https://i.imgur.com/4YeF78P.jpeg",
+        "description": "Alternative entrance (stairwell)"
+      },
+      {
+        "url": "https://i.imgur.com/J4DMJDR.png",
+        "description": "Inside top floor"
+      },
+      {
+        "url": "https://i.imgur.com/7QRN7pB.png",
+        "description": "Office room on the top floor"
+      },
+      {
+        "url": "https://i.imgur.com/NxMUchr.png",
+        "description": "Driveway ramp going down"
+      },
+      {
+        "url": "https://i.imgur.com/sL93go0.png",
+        "description": "First lower floor (1)"
+      },
+      {
+        "url": "https://i.imgur.com/jwpXeJK.png",
+        "description": "First lower floor (2)"
+      },
+      {
+        "url": "https://i.imgur.com/WSh6k2H.png",
+        "description": "Lowest floor (1)"
+      },
+      {
+        "url": "https://i.imgur.com/BC4Cjcm.png",
+        "description": "Lowest floor (2)"
+      },
+      {
+        "url": "https://i.imgur.com/mpjbRGt.png",
+        "description": "Lowest floor room (1)"
+      },
+      {
+        "url": "https://i.imgur.com/UCaAlYr.png",
+        "description": "Lowest floor room (2)"
+      },
+      {
+        "url": "https://i.imgur.com/y1jxYen.png",
+        "description": "Entrance"
       }
     ]
   },
@@ -1256,17 +1308,21 @@
     "name": "Military Checkpoint",
     "x": 1660,
     "y": 1234,
-    "description": "A quarantine zone with a **military checkpoint**.\n\n\n### Enemies\nMany **militant zombies** spawn here.\n\n\n### Armory Location\nUnderground garage on the lowest floor. **M249** usually spawns nearby, along with other valuable items.\n\n\n### Recommended Entry\nUse the **back entrance** next to the basketball field.\n\n*More details TBA*",
+    "description": "One of the most **resource-rich quarantine zones** on the map, centered around a military checkpoint and a multi-floor parking garage zombie nest.\n\n### Loot Highlights\n- Medical items\n- **M249** and other high-tier weapons\n- Ammo of all types\n- Military cosmetic gear\n- The **Armory** (locked, key extremely rare) on the lowest garage floor\n\n### Threats\n- **High military zombie density** throughout the zone\n- The parking garage zombie nest can spawn **20+ zombies per floor**\n- Night time significantly increases spawn rates — avoid the nest after dark\n\n### Recommended Entry\nUse the **back entrance** next to the basketball field to avoid the main checkpoint concentration of zombies.",
     "category": "Quarantine Zone",
     "id": "mjrw01k5pt8lvq0z0c",
     "images": [
+      {
+        "url": "https://i.imgur.com/4BM5Khz.png",
+        "description": "Military checkpoint top view"
+      },
       {
         "url": "https://i.imgur.com/eaTiHLB.png",
         "description": "Outside"
       },
       {
         "url": "https://i.imgur.com/X0ZAqlA.png",
-        "description": "The back entrance, which is the recommended entry point, located right next to the basketball field."
+        "description": "Back entrance, recommended entry point next to the basketball field"
       }
     ]
   },
@@ -1822,13 +1878,29 @@
     "name": "Hot Mug Cafe",
     "x": 2120,
     "y": 1017,
-    "description": "",
+    "description": "A small multi-story cafe on **South Street**, located right next to the **Front Street Bandit Camp**.\n\n### Mission Relevance\nOne of three possible spawn locations for **Dr. Maison's yellow duffel bag** in *Research Fellow, pt. 3* (Rescue Mode). The bag spawns in a booth on the **first floor**.\n\n### Possible Loot\n- Food and water\n- Some consumables\n- Melee weapons",
     "category": "Explorable Area",
     "id": "mn6czme0s96dde5vgyf",
     "images": [
       {
-        "url": "https://imgur.com/J9p54lo.png",
-        "description": "Enterance"
+        "url": "https://i.imgur.com/FjHXrke.jpeg",
+        "description": "Entrance"
+      },
+      {
+        "url": "https://i.imgur.com/JoIDjBJ.jpeg",
+        "description": "First floor"
+      },
+      {
+        "url": "https://i.imgur.com/gx00Tfi.jpeg",
+        "description": "Second floor"
+      },
+      {
+        "url": "https://i.imgur.com/5yansLD.jpeg",
+        "description": "Third floor bedroom"
+      },
+      {
+        "url": "https://i.imgur.com/ZcazlnP.jpeg",
+        "description": "Third floor kitchen / living area"
       }
     ]
   },
@@ -1874,37 +1946,79 @@
     "name": "Abrams Square Drop-Off",
     "x": 2022,
     "y": 1346,
-    "description": "",
+    "description": "Drop-off point near **Abrams Square**.\n\n### Warning\nA **bandit camp with ~3 enemies** is right next to the landing zone, you may take fire the moment you touch down. Several active zombie spawn points are also close by.\n\n*Come in prepared to engage immediately.*",
     "category": "Drop-Off Point",
-    "id": "mnc8m2pzfgy2of36ma9"
+    "id": "mnc8m2pzfgy2of36ma9",
+    "images": [
+      {
+        "url": "https://i.imgur.com/BAohrJ8.png",
+        "description": ""
+      },
+      {
+        "url": "https://i.imgur.com/xwJm5av.png",
+        "description": ""
+      },
+      {
+        "url": "https://i.imgur.com/e9zBpzB.png",
+        "description": ""
+      },
+      {
+        "url": "https://i.imgur.com/bFguaaf.png",
+        "description": ""
+      }
+    ]
   },
   {
     "name": "Ground Zero Drop-Off",
     "x": 1071,
     "y": 881,
-    "description": "",
+    "description": "Drop-off point on top of an apartment building, making it the **closest drop-off to the hospital**.\n\n### Warning\nA **bandit camp with ~3 enemies** spawns directly below the platform. Because the drop-off sits on the rooftop, you have a height advantage, it's possible to **shoot down on the bandits** from the platform before descending.",
     "category": "Drop-Off Point",
-    "id": "mnc8ob1rtl2zh7dph5l"
+    "id": "mnc8ob1rtl2zh7dph5l",
+    "images": [
+      {
+        "url": "https://i.imgur.com/NGFwvBl.png",
+        "description": ""
+      },
+      {
+        "url": "https://i.imgur.com/HooiWQ7.png",
+        "description": ""
+      }
+    ]
   },
   {
     "name": "Ground Zero 2 Drop-Off",
     "x": 1140,
     "y": 1721,
-    "description": "",
+    "description": "Drop-off point closest to **Ground Zero 2 (Site A)**.\n\n### Warning\nThis area has a **high zombie spawn rate**. A medium-to-large **bandit outpost is in direct line of sight** of the drop-off platform — expect immediate contact upon landing.",
     "category": "Drop-Off Point",
-    "id": "mnc8qam2dp31rank2xg"
+    "id": "mnc8qam2dp31rank2xg",
+    "images": [
+      {
+        "url": "https://i.imgur.com/BSehhBg.jpeg",
+        "description": ""
+      }
+    ]
   },
   {
     "name": "Quill Jewellery Outlet",
     "x": 777,
     "y": 1019,
-    "description": "",
+    "description": "A jewelry store that has clearly been looted repeatedly, display cases are smashed and the place is beaten up. Despite this, **jewelry still spawns inside**, along with **Safe Keys** for the Medium Safe in *Activity-Full & Sphere Solutions*. The store also has a **locked backroom** (see *Quill Jewelry Backroom* marker).",
     "category": "Explorable Area",
     "id": "mnc8tvt4fxoocgsky3o",
     "images": [
       {
         "url": "https://imgur.com/JsSDy0G.png",
         "description": "The jewellery"
+      },
+      {
+        "url": "https://i.imgur.com/8KisrJs.jpeg",
+        "description": "Outside"
+      },
+      {
+        "url": "https://i.imgur.com/Fbo8EAw.jpeg",
+        "description": "Inside"
       }
     ]
   },
@@ -1960,9 +2074,15 @@
     "name": "Trashed Basketball Court",
     "x": 1506,
     "y": 1439,
-    "description": "",
+    "description": "A trashed basketball court inside a **quarantine zone** with a zombie nest right next to it. Expect high zombie activity in this area.\n\n### Mission Relevance\nOne of three possible spawn locations for **Dr. Maison's yellow duffel bag** in *Research Fellow, pt. 3* (Rescue gamemode). The bag spawns **in a pile of garbage on the court**.",
     "category": "Landmark",
-    "id": "mnrin662uivi64wlm2f"
+    "id": "mnrin662uivi64wlm2f",
+    "images": [
+      {
+        "url": "https://i.imgur.com/sxQPygu.jpeg",
+        "description": "The basketball court"
+      }
+    ]
   },
   {
     "name": "Small Police Outpost",

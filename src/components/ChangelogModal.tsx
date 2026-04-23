@@ -28,6 +28,18 @@ const CHANGELOG: ChangelogEntry[] = [
     ],
   },
   {
+    version: '1.6.4',
+    date: '2026-04-23',
+    changes: [
+      'Added full description and images to Hot Mug Cafe, including mission relevance for Research Fellow pt. 3',
+      'Added descriptions and images to all three Drop-Off Points (Abrams Square, Ground Zero, Ground Zero 2)',
+      'Added full description and images to Quill Jewellery Outlet',
+      'Added additional images to Quill Jewelry Backroom',
+      'Rewrote Military Checkpoint, Military Checkpoint Garage, and Armory with detailed descriptions and 14 new images',
+      'Added description and image to Trashed Basketball Court, including Research Fellow pt. 3 mission relevance',
+    ],
+  },
+  {
     version: '1.6.3',
     date: '2026-04-06',
     changes: [
