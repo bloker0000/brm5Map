@@ -1,3 +1,5 @@
+// title screen while everything loads
+
 import { useState, useEffect } from 'react';
 import './Preloader.css';
 
@@ -88,7 +90,7 @@ export function Preloader({ onLoaded, isFadingOut = false, onFadeComplete }: Pre
         await new Promise<void>((resolve, reject) => {
           logoImage.onload = () => resolve();
           logoImage.onerror = () => reject(new Error('Failed to load logo'));
-          logoImage.src = '/logos/logoyellow.svg';
+          logoImage.src = '/logos/logowhite.svg';
         });
         setProgress(80);
         await delay(getRandomDelay());
@@ -112,39 +114,48 @@ export function Preloader({ onLoaded, isFadingOut = false, onFadeComplete }: Pre
   }, [onLoaded]);
 
   return (
-    <div 
+    <div
       className={`preloader ${isFadingOut ? 'fade-out' : ''}`}
       onAnimationEnd={handleAnimationEnd}
     >
       {bgReady && (
         <>
-          <div 
+          <div
             className="preloader-bg current"
             style={{ backgroundImage: `url(${BG_IMAGES[currentBgIndex]})` }}
           />
-          <div 
+          <div
             className={`preloader-bg next ${isTransitioning ? 'visible' : ''}`}
             style={{ backgroundImage: `url(${BG_IMAGES[nextBgIndex]})` }}
           />
         </>
       )}
       <div className="preloader-overlay" />
-      
+
       <div className="preloader-content">
-        <div className="preloader-logo">
-          <img 
-            src="/logos/logoyellow.svg" 
-            alt="BRMap5" 
-            className="preloader-logo-image"
-          />
-        </div>
-        
-        <div className="preloader-bar-container">
+        <img
+          src="/logos/logowhite.svg"
+          alt="BRMap5"
+          className="preloader-logo-image"
+        />
+        <div className="preloader-subtitle">Operation CRYO Zombies</div>
+
+        <div className="preloader-status">{statusText}</div>
+        <div
+          className="preloader-bar-container"
+          role="progressbar"
+          aria-valuenow={progress}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label="Loading"
+        >
           <div className="preloader-bar" style={{ width: `${progress}%` }} />
         </div>
-        <div className="preloader-status">
-          {statusText}
-        </div>
+      </div>
+
+      <div className="preloader-footer">
+        <span>A community project by Multyply. Map data is fan-made.</span>
+        <span>Not affiliated with GameLoaded Entertainment or the PLATINUM FIVE team.</span>
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+// visitor counter
+
 import { useState, useEffect } from 'react';
 
 const STORAGE_KEY = 'brm5-real-visit-number';
@@ -20,9 +22,9 @@ export function useVisitorCount(): VisitorData {
   useEffect(() => {
     localStorage.removeItem(OLD_STORAGE_KEY);
     localStorage.removeItem(OLD_FIRST_VISIT_KEY);
-    
+
     const storedVisitNumber = localStorage.getItem(STORAGE_KEY);
-    
+
     if (storedVisitNumber) {
       setYourVisitNumber(parseInt(storedVisitNumber, 10));
       fetch('/api/visitor-count')

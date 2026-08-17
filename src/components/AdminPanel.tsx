@@ -1,3 +1,5 @@
+// dev-only panel for editing locations
+
 import { useState, useEffect, useRef } from 'react';
 import type { MapLocation, LocationCategory, LocationImage } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
@@ -90,7 +92,6 @@ export function AdminPanel({
   formCoordsRef.current = { x: formData.x, y: formData.y };
   const prevClickPositionRef = useRef(clickPosition);
 
-  // --- Form-level undo/redo ---
   const formDataRef = useRef(formData);
   formDataRef.current = formData;
   const formHistoryRef = useRef<typeof formData[]>([]);
@@ -124,7 +125,6 @@ export function AdminPanel({
 
   const trackTextEdit = (field: string, prevValue: string, newValue: string) => {
     if (currentTypingFieldRef.current !== field) {
-      // Switched to a different field — end previous group
       isInTypingGroupRef.current = false;
       currentTypingFieldRef.current = field;
     }
@@ -198,7 +198,6 @@ export function AdminPanel({
   const formRedoRef = useRef(formRedo);
   formRedoRef.current = formRedo;
 
-  // Form-level Ctrl+Z/Ctrl+Shift+Z (capture phase, takes priority over App handler)
   useEffect(() => {
     if (mode === 'list') return;
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -217,7 +216,6 @@ export function AdminPanel({
   }, [mode]);
 
   useEffect(() => {
-    // Only react to actual new clicks, not mode changes with a stale clickPosition
     if (!clickPosition || clickPosition === prevClickPositionRef.current) return;
     prevClickPositionRef.current = clickPosition;
     if (mode === 'add') {
@@ -238,7 +236,6 @@ export function AdminPanel({
     }
   }, [clickPosition, mode]);
 
-  // Sync form coordinates when the edited pin is dragged on the map
   useEffect(() => {
     if (mode === 'edit' && editingLocation) {
       const current = locations.find(l => l.id === editingLocation.id);
@@ -372,7 +369,6 @@ export function AdminPanel({
     setIsExpanded(false);
   };
 
-  // Revert position and clear form without prompting
   const revertAndReset = () => {
     if (mode === 'edit' && originalLocation) {
       onUpdate(originalLocation.id, { x: originalLocation.x, y: originalLocation.y });
@@ -387,7 +383,6 @@ export function AdminPanel({
     setIsExpanded(false);
   };
 
-  // Escape key to cancel editing
   const handleCancelRef = useRef(handleCancel);
   handleCancelRef.current = handleCancel;
   useEffect(() => {

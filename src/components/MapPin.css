@@ -1,3 +1,5 @@
+/* pin styles */
+
 .map-pin {
   position: absolute;
   left: 0;
@@ -78,6 +80,7 @@
 
 .pin-icon {
   opacity: 0.9;
+  transition: transform var(--t-med) var(--ease-out), opacity var(--t-fast) var(--ease);
 }
 
 .pin-icon img {
@@ -88,7 +91,6 @@
 .map-pin.hovered .pin-icon {
   transform: scale(1.4);
   opacity: 1;
-  transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
 .map-pin.selected .pin-icon {
@@ -96,20 +98,46 @@
   opacity: 1;
 }
 
+.map-pin.selected::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 2px solid var(--pin-color);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: pin-ping 1.8s var(--ease-out) infinite;
+}
+
+.interactive-map.dragging .map-pin.selected::after {
+  animation-play-state: paused;
+}
+
+@keyframes pin-ping {
+  0% { transform: scale(0.55); opacity: 0.85; }
+  70% { opacity: 0; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+
 .pin-label {
   position: absolute;
   left: 50%;
-  bottom: calc(100% + 8px);
+  bottom: calc(100% + 10px);
   transform: translateX(-50%);
-  background: var(--brm-bg-dark);
+  padding: 3px 9px 2px;
+  background: var(--brm-glass-deep);
+  border: 1px solid var(--brm-border);
+  border-bottom: 2px solid var(--pin-color);
   color: var(--brm-text);
-  padding: 4px 10px;
-  white-space: nowrap;
-  font-weight: 600;
-  font-size: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: var(--tr-label);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border: 1px solid var(--pin-color);
+  white-space: nowrap;
   pointer-events: none;
 }
 
@@ -118,7 +146,8 @@
   position: absolute;
   top: 100%;
   left: 50%;
+  width: 1px;
+  height: 8px;
   transform: translateX(-50%);
-  border: 6px solid transparent;
-  border-top-color: var(--brm-bg-dark);
+  background: var(--pin-color);
 }

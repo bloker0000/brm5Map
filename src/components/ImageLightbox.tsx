@@ -1,3 +1,5 @@
+// fullscreen image viewer
+
 import { useState, useEffect, useCallback, useRef } from 'react';
 import type { LocationImage } from '../types/location';
 import './ImageLightbox.css';
@@ -11,6 +13,7 @@ interface ImageLightboxProps {
 
 export function ImageLightbox({ images, initialIndex, onClose, locationName }: ImageLightboxProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const [isClosing, setIsClosing] = useState(false);
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -22,6 +25,11 @@ export function ImageLightbox({ images, initialIndex, onClose, locationName }: I
 
   const currentImage = images[currentIndex];
   const hasMultiple = images.length > 1;
+
+  const requestClose = useCallback(() => {
+    setIsClosing(true);
+    window.setTimeout(onClose, 170);
+  }, [onClose]);
 
   const resetView = useCallback(() => {
     setZoom(1);
@@ -103,7 +111,7 @@ export function ImageLightbox({ images, initialIndex, onClose, locationName }: I
     const handleKeyDown = (e: KeyboardEvent) => {
       switch (e.key) {
         case 'Escape':
-          onClose();
+          requestClose();
           break;
         case 'ArrowLeft':
           if (hasMultiple) goToPrev();
@@ -126,7 +134,7 @@ export function ImageLightbox({ images, initialIndex, onClose, locationName }: I
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [onClose, hasMultiple, goToPrev, goToNext, handleZoomIn, handleZoomOut, resetView]);
+  }, [requestClose, hasMultiple, goToPrev, goToNext, handleZoomIn, handleZoomOut, resetView]);
 
   useEffect(() => {
     const thumbnail = thumbnailRefs.current[currentIndex];
@@ -148,8 +156,8 @@ export function ImageLightbox({ images, initialIndex, onClose, locationName }: I
   }, [zoom, resetView]);
 
   return (
-    <div className="lightbox-overlay" onClick={onClose}>
-      <div className="lightbox-container" onClick={(e) => e.stopPropagation()}>
+    <div className={`lightbox-overlay brm-scrim${isClosing ? ' closing' : ''}`} onClick={requestClose}>
+      <div className="lightbox-container brm-panel-anim" onClick={(e) => e.stopPropagation()}>
         <div className="lightbox-header">
           <div className="lightbox-title">
             {locationName && <span className="lightbox-location">{locationName}</span>}
@@ -162,14 +170,15 @@ export function ImageLightbox({ images, initialIndex, onClose, locationName }: I
           </div>
         </div>
 
-        <div 
+        <div
           className={`lightbox-image-container ${isDragging ? 'dragging' : ''} ${zoom > 1 ? 'zoomed' : ''}`}
           onWheel={handleWheel}
         >
           {isLoading && (
-            <div className="lightbox-loader">
-              <div className="lightbox-spinner" />
-            </div>
+          <div className="lightbox-loader brm-loader">
+            <span className="brm-loader-label">Loading</span>
+            <span className="brm-loader-track" />
+          </div>
           )}
           <img
             ref={imageRef}
@@ -232,7 +241,7 @@ export function ImageLightbox({ images, initialIndex, onClose, locationName }: I
           )}
         </div>
 
-        <button className="lightbox-close" onClick={onClose} title="Close (Esc)">
+        <button className="lightbox-close" onClick={requestClose} title="Close (Esc)">
           <CloseIcon />
         </button>
       </div>

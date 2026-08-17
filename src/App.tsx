@@ -1,12 +1,16 @@
-import { useState, useEffect, useCallback } from 'react';
+// main app, holds most of the state
+
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import {
   Preloader,
   InteractiveMap,
   Tooltip,
   LocationModal,
   CategoryFilter,
-  WelcomeModal,
   AboutModal,
+  ChangelogModal,
+  hasUnseenChangelog,
+  markChangelogSeen,
   LocationsList,
   AdminPanel,
 } from './components';
@@ -39,11 +43,11 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isPreloaderVisible, setIsPreloaderVisible] = useState(true);
   const [isFadingOut, setIsFadingOut] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [highlightedLocation, setHighlightedLocation] = useState<MapLocation | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [activeTab, setActiveTab] = useState<'categories' | 'locations'>('categories');
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isChangelogOpen, setIsChangelogOpen] = useState(false);
   const [showPins, setShowPins] = useState(true);
   const [showSidebar, setShowSidebar] = useState(true);
   const [showCompass, setShowCompass] = useState(true);
@@ -80,6 +84,10 @@ function App() {
   } = useLocations();
 
   useEffect(() => {
+    if (hasUnseenChangelog()) setIsChangelogOpen(true);
+  }, []);
+
+  useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
@@ -87,17 +95,12 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        if (isAdminOpen) {
+        if (isChangelogOpen) {
+          markChangelogSeen();
+          setIsChangelogOpen(false);
+        } else if (isAdminOpen) {
           setIsAdminOpen(false);
         } else if (isAboutOpen) {
           setIsAboutOpen(false);
@@ -109,7 +112,6 @@ function App() {
         e.preventDefault();
         setIsAdminOpen(prev => !prev);
       }
-      // Undo/redo (only when admin panel is open and not typing in an input)
       if (IS_DEV && isAdminOpen && (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
         const tag = (e.target as HTMLElement)?.tagName;
         if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
@@ -123,7 +125,7 @@ function App() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedLocation, setSelectedLocation, isAboutOpen, isAdminOpen, undo, redo]);
+  }, [selectedLocation, setSelectedLocation, isAboutOpen, isAdminOpen, isChangelogOpen, undo, redo]);
 
   const handleLoaded = useCallback(() => {
     setIsLoading(false);
@@ -167,13 +169,13 @@ function App() {
         } else {
           next.add(location.id);
         }
-        
+
         const locsToFocus = filteredLocations.filter(loc => next.has(loc.id));
         if (locsToFocus.length > 0) {
           setFocusedLocations([...locsToFocus]);
           setTimeout(() => setFocusedLocations([]), 100);
         }
-        
+
         return next;
       });
     },
@@ -193,121 +195,135 @@ function App() {
     setSelectedLocations(new Set());
   }, []);
 
-  const displayedLocations = selectedLocations.size > 0
-    ? filteredLocations.filter(loc => selectedLocations.has(loc.id))
-    : filteredLocations;
+  const handleCloseChangelog = useCallback(() => {
+    markChangelogSeen();
+    setIsChangelogOpen(false);
+  }, []);
+
+  const displayedLocations = useMemo(
+    () => (selectedLocations.size > 0
+      ? filteredLocations.filter(loc => selectedLocations.has(loc.id))
+      : filteredLocations),
+    [filteredLocations, selectedLocations]
+  );
 
   const currentCredit = BG_CREDITS[currentBgIndex];
 
   return (
     <>
       {isPreloaderVisible && (
-        <Preloader 
-          onLoaded={handleLoaded} 
+        <Preloader
+          onLoaded={handleLoaded}
           isFadingOut={isFadingOut}
           onFadeComplete={handleFadeComplete}
         />
       )}
       <div className={`app ${isLoading ? 'app-hidden' : 'app-visible'}`}>
-        <WelcomeModal />
-        <AboutModal isOpen={isAboutOpen} onClose={() => setIsAboutOpen(false)} />
-        
-        <button 
+        <AboutModal
+          isOpen={isAboutOpen}
+          onClose={() => setIsAboutOpen(false)}
+          onOpenChangelog={() => setIsChangelogOpen(true)}
+        />
+        <ChangelogModal isOpen={isChangelogOpen} onClose={handleCloseChangelog} />
+
+        <button
           className={`sidebar-toggle-btn${showSidebar ? '' : ' sidebar-hidden'}`}
           onClick={() => setShowSidebar(!showSidebar)}
           title={showSidebar ? 'Hide Sidebar' : 'Show Sidebar'}
         >
-          {showSidebar ? '◀' : '▶'}
+          <span className="sidebar-toggle-glyph">{showSidebar ? '◀' : '▶'}</span>
         </button>
 
         <div className={`sidebar${showSidebar ? '' : ' hidden'}`}>
           <div className="sidebar-header">
-          <h1 className="sidebar-title">BRMAP5</h1>
-          <div className="sidebar-subtitle">Operation CRYO Zombies</div>
-        </div>
-
-        <div className="sidebar-actions">
-          <button 
-            className={`sidebar-action-btn ${showPins ? 'active' : ''}`}
-            onClick={() => setShowPins(!showPins)}
-          >
-            {showPins ? 'HIDE PINS' : 'SHOW PINS'}
-          </button>
-          <button 
-            className={`sidebar-action-btn ${showCompass ? 'active' : ''}`}
-            onClick={() => setShowCompass(!showCompass)}
-          >
-            {showCompass ? 'HIDE COMPASS' : 'SHOW COMPASS'}
-          </button>
-          <button 
-            className="sidebar-action-btn"
-            onClick={() => setIsAboutOpen(true)}
-          >
-            ABOUT
-          </button>
-        </div>
-
-        <div className="sidebar-tabs">
-          <button 
-            className={`sidebar-tab ${activeTab === 'categories' ? 'active' : ''}`}
-            onClick={() => setActiveTab('categories')}
-          >
-            Categories
-          </button>
-          <button 
-            className={`sidebar-tab ${activeTab === 'locations' ? 'active' : ''}`}
-            onClick={() => setActiveTab('locations')}
-          >
-            Locations
-          </button>
-        </div>
-
-        <div className="sidebar-content">
-          {activeTab === 'categories' && !isMobile && (
-            <CategoryFilter
-              categories={allCategories}
-              selectedCategories={selectedCategories}
-              onToggle={toggleCategory}
-              onClear={clearFilters}
-            />
-          )}
-
-          {activeTab === 'locations' && (
-            <LocationsList
-              locations={filteredLocations}
-              selectedLocations={selectedLocations}
-              onToggleLocation={handleToggleLocation}
-              onSelectLocation={handleLocationSelect}
-              onClearSelection={handleClearSelection}
-            />
-          )}
-
-          <div className="sidebar-stats">
-            <div className="stat">
-              <span className="stat-value">{locations.length}</span>
-              <span className="stat-label">Total</span>
+            <div className="sidebar-lockup">
+              <img src="/logos/logowhite.svg" alt="BRMap5" className="sidebar-logo" />
+              <span className="sidebar-lockup-secondary">Operation CRYO Zombies</span>
             </div>
-            <div className="stat">
-              <span className="stat-value">{displayedLocations.length}</span>
-              <span className="stat-label">Showing</span>
+            <div className="sidebar-readout">
+              <div className="readout-row">
+                <span className="readout-value tabular">{locations.length}</span>
+                <span className="readout-label">Markers</span>
+              </div>
+              <div className="readout-row">
+                <span className="readout-value tabular">{displayedLocations.length}</span>
+                <span className="readout-label">Shown</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="sidebar-footer">
-          <div className="sidebar-footer-info">
-            <span className="footer-credit">
-              Current Art By: {currentCredit?.url ? (
+          <div className="sidebar-tabs">
+            <button
+              className={`brm-tab ${activeTab === 'categories' ? 'active' : ''}`}
+              onClick={() => setActiveTab('categories')}
+            >
+              Categories
+            </button>
+            <button
+              className={`brm-tab ${activeTab === 'locations' ? 'active' : ''}`}
+              onClick={() => setActiveTab('locations')}
+            >
+              Locations
+            </button>
+          </div>
+
+          <div className="sidebar-content">
+            <div className="sidebar-panel" key={activeTab}>
+              {activeTab === 'categories' && (
+                <CategoryFilter
+                  categories={allCategories}
+                  selectedCategories={selectedCategories}
+                  onToggle={toggleCategory}
+                  onClear={clearFilters}
+                />
+              )}
+
+              {activeTab === 'locations' && (
+                <LocationsList
+                  locations={filteredLocations}
+                  selectedLocations={selectedLocations}
+                  onToggleLocation={handleToggleLocation}
+                  onSelectLocation={handleLocationSelect}
+                  onClearSelection={handleClearSelection}
+                />
+              )}
+            </div>
+          </div>
+
+          <div className="sidebar-display">
+            <h2 className="brm-section-title">Display</h2>
+            <div className="option-row">
+              <span className="option-label">Map pins</span>
+              <div className="brm-segment">
+                <button aria-pressed={showPins} onClick={() => setShowPins(true)}>On</button>
+                <button aria-pressed={!showPins} onClick={() => setShowPins(false)}>Off</button>
+              </div>
+            </div>
+            <div className="option-row">
+              <span className="option-label">Compass</span>
+              <div className="brm-segment">
+                <button aria-pressed={showCompass} onClick={() => setShowCompass(true)}>On</button>
+                <button aria-pressed={!showCompass} onClick={() => setShowCompass(false)}>Off</button>
+              </div>
+            </div>
+          </div>
+
+          <div className="sidebar-footer">
+            <button className="brm-btn sidebar-about" onClick={() => setIsAboutOpen(true)}>
+              About
+            </button>
+            <div className="footer-credit">
+              <span className="footer-credit-label">Art</span>
+              {currentCredit?.url ? (
                 <a href={currentCredit.url} target="_blank" rel="noopener noreferrer">
                   {currentCredit.name}
                 </a>
               ) : (
-                currentCredit?.name
+                <span>{currentCredit?.name}</span>
               )}
-            </span>
+            </div>
           </div>
         </div>
-      </div>
 
       <div className="map-container">
         <InteractiveMap
@@ -329,9 +345,7 @@ function App() {
         />
       </div>
 
-      {!isMobile && (
-        <Tooltip location={hoveredLocation} mousePosition={mousePosition} />
-      )}
+      {!isMobile && <Tooltip location={hoveredLocation} />}
 
       <LocationModal
         location={selectedLocation}

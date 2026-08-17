@@ -1,11 +1,11 @@
+/* title screen styles */
+
 .preloader {
   position: fixed;
   inset: 0;
-  background: var(--brm-bg-dark);
   z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: var(--brm-void);
+  overflow: hidden;
 }
 
 .preloader.fade-out {
@@ -13,13 +13,8 @@
 }
 
 @keyframes preloaderFadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
+  from { opacity: 1; }
+  to { opacity: 0; visibility: hidden; }
 }
 
 .preloader-bg {
@@ -38,12 +33,8 @@
 }
 
 @keyframes bgFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .preloader-bg.next {
@@ -57,79 +48,108 @@
 .preloader-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background:
+    linear-gradient(95deg, rgba(3, 3, 4, 0.95) 0%, rgba(3, 3, 4, 0.76) 22%, rgba(3, 3, 4, 0.26) 48%, rgba(3, 3, 4, 0.16) 76%, rgba(3, 3, 4, 0.46) 100%),
+    linear-gradient(0deg, rgba(3, 3, 4, 0.86) 0%, rgba(3, 3, 4, 0.26) 26%, transparent 50%),
+    radial-gradient(ellipse 90% 85% at 50% 45%, transparent 35%, rgba(3, 3, 4, 0.55) 100%);
 }
 
 .preloader-content {
-  position: relative;
+  position: absolute;
+  left: clamp(28px, 8vw, 130px);
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 10;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 32px;
-}
-
-.preloader-logo {
-  text-align: center;
+  align-items: flex-start;
+  max-width: min(560px, 78vw);
 }
 
 .preloader-logo-image {
-  max-width: 400px;
-  width: 90vw;
+  width: min(420px, 72vw);
   height: auto;
-}
-
-.preloader-title {
-  font-family: var(--font-display);
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: var(--brm-text);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  opacity: 0.94;
+  filter: drop-shadow(0 2px 14px rgba(0, 0, 0, 0.95));
 }
 
 .preloader-subtitle {
+  margin-top: 12px;
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: clamp(0.72rem, 1.5vw, 0.92rem);
   font-weight: 600;
-  color: var(--brm-accent);
-  letter-spacing: 0.25em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  margin-top: 4px;
+  color: var(--brm-text-dim);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.95);
+}
+
+.preloader-status {
+  margin-top: 42px;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: var(--tr-micro);
+  text-transform: uppercase;
+  color: var(--brm-text-dim);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.95);
+  transition: opacity var(--t-fast) var(--ease);
 }
 
 .preloader-bar-container {
-  width: 300px;
-  height: 4px;
-  background: var(--brm-border);
   position: relative;
+  width: min(300px, 70vw);
+  height: 2px;
+  margin-top: 12px;
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .preloader-bar {
   height: 100%;
   background: var(--brm-accent);
-  transition: width 0.4s ease-out;
+  transition: width 0.4s var(--ease);
 }
 
-.preloader-status {
-  font-size: 0.75rem;
-  color: var(--brm-text-muted);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  transition: opacity 0.2s ease;
+.preloader-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 22px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 0 20px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: var(--tr-tight);
+  color: rgba(255, 255, 255, 0.46);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
 }
 
-@media (max-width: 600px) {
-  .preloader-title {
-    font-size: 2rem;
-    letter-spacing: 0.1em;
+@media (max-width: 768px) {
+  .preloader-content {
+    left: 0;
+    right: 0;
+    padding: 0 24px;
+    max-width: none;
+    align-items: center;
+    text-align: center;
   }
-  
+
+  .preloader-status {
+    margin-top: 32px;
+  }
+
   .preloader-subtitle {
-    font-size: 1rem;
+    letter-spacing: 0.14em;
   }
-  
-  .preloader-bar-container {
-    width: 200px;
+
+  .preloader-footer {
+    bottom: 16px;
+    font-size: 0.6rem;
   }
 }

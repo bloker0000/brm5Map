@@ -1,3 +1,5 @@
+// search box, not used at the moment
+
 import { useState, useRef, useEffect } from 'react';
 import type { MapLocation } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';

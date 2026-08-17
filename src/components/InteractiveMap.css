@@ -1,8 +1,10 @@
+/* map + the hud stuff on top of it */
+
 .interactive-map {
   position: relative;
   width: 100%;
   height: 100%;
-  background: var(--brm-bg-dark);
+  background: var(--brm-void);
   overflow: hidden;
   cursor: grab;
 }
@@ -26,6 +28,15 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
   z-index: 1;
+}
+
+.interactive-map::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background: radial-gradient(ellipse 80% 75% at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.42) 100%);
 }
 
 .interactive-map.dragging {
@@ -59,23 +70,10 @@
   height: 100%;
   z-index: 3;
   pointer-events: none;
-  overflow: hidden;
 }
 
-.admin-mode-indicator {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: var(--brm-bg-dark);
-  border: 1px solid var(--brm-accent);
-  color: var(--brm-accent);
-  padding: 8px 16px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  z-index: 100;
-  pointer-events: none;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+.interactive-map.dragging .pins-overlay {
+  will-change: transform;
 }
 
 .map-image {
@@ -86,43 +84,61 @@
   pointer-events: none;
 }
 
+.admin-mode-indicator {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 100;
+  padding: 6px 14px;
+  background-color: rgba(242, 169, 59, 0.06);
+  border: 1px solid var(--brm-accent);
+  color: var(--brm-accent);
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
 .zoom-controls {
   position: absolute;
   bottom: 20px;
   right: 20px;
+  z-index: 100;
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  z-index: 100;
+  gap: 4px;
 }
 
 .zoom-controls button {
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--brm-border);
-  background: rgba(10, 10, 10, 0.9);
-  color: var(--brm-text-dim);
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.15s ease;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.zoom-controls button:not(:first-child) {
-  border-top: none;
+  background-color: var(--brm-glass-deep);
+  border: 1px solid var(--brm-border);
+  color: var(--brm-text-dim);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color var(--t-fast) var(--ease),
+              border-color var(--t-fast) var(--ease),
+              background-color var(--t-fast) var(--ease);
 }
 
 .zoom-controls button:hover {
-  background: var(--brm-bg-element);
   color: var(--brm-accent);
+  border-color: var(--brm-accent);
 }
 
 .zoom-controls button:active {
-  background: var(--brm-accent);
-  color: var(--brm-bg-dark);
+  background-color: var(--brm-accent);
+  background-image: none;
+  border-color: var(--brm-accent);
+  color: #140d02;
 }
 
 .compass {
@@ -133,7 +149,7 @@
   height: 300px;
   z-index: 100;
   cursor: grab;
-  transition: transform 0.2s ease, opacity 0.3s ease;
+  transition: transform var(--t-med) var(--ease), opacity var(--t-med) var(--ease);
   transform-origin: top right;
 }
 
@@ -158,60 +174,46 @@
   pointer-events: none;
 }
 
-.rotation-display {
+.rotation-display,
+.coords-display {
   position: absolute;
-  bottom: 70px;
   left: 20px;
-  background: rgba(10, 10, 10, 0.9);
-  border: 1px solid var(--brm-border);
-  padding: 10px 16px;
   z-index: 100;
   display: flex;
-  gap: 8px;
-  align-items: center;
+  align-items: baseline;
+  gap: 10px;
+  padding: 7px 13px;
+  background: var(--brm-glass-deep);
+  border: 1px solid var(--brm-border);
   pointer-events: none;
 }
 
-.rotation-label {
-  color: var(--brm-text-dim);
-  font-size: 0.85rem;
-  font-weight: 600;
-  font-family: var(--font-display);
-}
-
-.rotation-value {
-  color: var(--brm-accent);
-  font-size: 0.9rem;
-  font-weight: 600;
-  font-family: 'Courier New', monospace;
+.rotation-display {
+  bottom: 66px;
 }
 
 .coords-display {
-  position: absolute;
   bottom: 20px;
-  left: 20px;
-  background: rgba(10, 10, 10, 0.9);
-  border: 1px solid var(--brm-border);
-  padding: 10px 16px;
-  z-index: 100;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  pointer-events: none;
 }
 
+.rotation-label,
 .coords-label {
-  color: var(--brm-text-dim);
-  font-size: 0.85rem;
-  font-weight: 600;
   font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: var(--tr-micro);
+  text-transform: uppercase;
+  color: var(--brm-text-muted);
 }
 
+.rotation-value,
 .coords-value {
-  color: var(--brm-accent);
+  font-family: var(--font-display);
   font-size: 0.9rem;
-  font-weight: 600;
-  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tr-tight);
+  color: var(--brm-accent);
 }
 
 @media (max-width: 768px) {
@@ -221,46 +223,43 @@
   }
 
   .zoom-controls button {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
+    width: 38px;
+    height: 38px;
+    font-size: 0.95rem;
   }
-  
+
   .compass {
     top: 10px;
     right: 10px;
     width: 150px;
     height: 150px;
   }
-  
+
   .compass:hover {
     transform: scale(1.2);
   }
 
-  .rotation-display {
-    bottom: 60px;
+  .rotation-display,
+  .coords-display {
     left: 10px;
-    padding: 8px 12px;
+    padding: 5px 10px;
+    gap: 8px;
   }
 
-  .rotation-label {
-    font-size: 0.75rem;
-  }
-
-  .rotation-value {
-    font-size: 0.8rem;
+  .rotation-display {
+    bottom: 56px;
   }
 
   .coords-display {
     bottom: 10px;
-    left: 10px;
-    padding: 8px 12px;
   }
 
+  .rotation-label,
   .coords-label {
-    font-size: 0.75rem;
+    font-size: 0.66rem;
   }
 
+  .rotation-value,
   .coords-value {
     font-size: 0.8rem;
   }

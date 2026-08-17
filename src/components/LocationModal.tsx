@@ -1,8 +1,11 @@
+// the big location popup
+
 import { useState, useEffect, useRef } from 'react';
 import type { MapLocation, LocationImage } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
 import { CategoryIcon, CloseIcon } from './Icons';
 import { ImageLightbox } from './ImageLightbox';
+import { useExitTransition } from '../hooks/useExitTransition';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import './LocationModal.css';
@@ -14,13 +17,13 @@ interface LocationModalProps {
 
 function getAllImages(location: MapLocation): LocationImage[] {
   const images: LocationImage[] = [];
-  
+
   if (location.images && location.images.length > 0) {
     images.push(...location.images);
   } else if (location.image) {
     images.push({ url: location.image });
   }
-  
+
   return images;
 }
 
@@ -29,11 +32,15 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [imageLoadStates, setImageLoadStates] = useState<Record<number, boolean>>({});
   const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  
-  useEffect(() => {
+
+  const { rendered: shown, isClosing } = useExitTransition(location, 170);
+
+  const [trackedId, setTrackedId] = useState(shown?.id);
+  if (shown?.id !== trackedId) {
+    setTrackedId(shown?.id);
     setCurrentImageIndex(0);
     setImageLoadStates({});
-  }, [location?.id]);
+  }
 
   useEffect(() => {
     const thumbnail = thumbnailRefs.current[currentImageIndex];
@@ -45,11 +52,11 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
       });
     }
   }, [currentImageIndex]);
-  
-  if (!location) return null;
 
-  const color = CATEGORY_COLORS[location.category];
-  const images = getAllImages(location);
+  if (!shown) return null;
+
+  const color = CATEGORY_COLORS[shown.category];
+  const images = getAllImages(shown);
   const hasImages = images.length > 0;
   const hasMultipleImages = images.length > 1;
   const safeIndex = Math.min(currentImageIndex, images.length - 1);
@@ -64,7 +71,7 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
   };
 
   const handleImageLoad = (index: number) => {
-    setImageLoadStates(prev => ({ ...prev, [index]: true }));
+    setImageLoadStates(prev => (prev[index] ? prev : { ...prev, [index]: true }));
   };
 
   const openLightbox = () => {
@@ -73,9 +80,12 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
 
   return (
     <>
-      <div className="modal-overlay" onClick={onClose}>
+      <div
+        className={`modal-overlay brm-scrim${isClosing ? ' closing' : ''}`}
+        onClick={onClose}
+      >
         <div
-          className="modal"
+          className="modal brm-panel-anim"
           style={{ '--modal-color': color } as React.CSSProperties}
           onClick={(e) => e.stopPropagation()}
         >
@@ -86,22 +96,25 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
           <div className="modal-header">
             <div className="modal-header-top">
               <div className="modal-icon">
-                <CategoryIcon category={location.category} size={28} color={color} />
+                <CategoryIcon category={shown.category} size={28} color={color} />
               </div>
-              <h2 className="modal-title">{location.name}</h2>
+              <h2 className="modal-title">{shown.name}</h2>
             </div>
-            <div className="modal-category">{location.category}</div>
+            <div className="modal-category">{shown.category}</div>
           </div>
 
           {hasImages && currentImage && (
             <div className="modal-gallery">
               <div className="modal-image" onClick={openLightbox}>
-                <div className={`modal-image-loader ${imageLoadStates[safeIndex] ? 'hidden' : ''}`}>
-                  <div className="modal-image-spinner" />
+                <div className={`modal-image-loader brm-loader ${imageLoadStates[safeIndex] ? 'hidden' : ''}`}>
+                  <span className="brm-loader-label">Loading</span>
+                  <span className="brm-loader-track" />
                 </div>
-                <img 
-                  src={currentImage.url} 
-                  alt={location.name}
+                <img
+                  key={currentImage.url}
+                  src={currentImage.url}
+                  alt={shown.name}
+                  ref={(el) => { if (el?.complete) handleImageLoad(safeIndex); }}
                   onLoad={() => handleImageLoad(safeIndex)}
                   style={{ opacity: imageLoadStates[safeIndex] ? 1 : 0 }}
                 />
@@ -142,14 +155,14 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
 
           <div className="modal-description">
             <Markdown remarkPlugins={[remarkGfm]}>
-              {location.description}
+              {shown.description}
             </Markdown>
           </div>
 
           <div className="modal-coords">
-            <span className="modal-coords-label">Coordinates:</span>
+            <span className="modal-coords-label">Coordinates</span>
             <span className="modal-coords-value">
-              X: {location.x} | Y: {location.y}
+              X: {shown.x} | Y: {shown.y}
             </span>
           </div>
         </div>
@@ -160,7 +173,7 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
           images={images}
           initialIndex={safeIndex}
           onClose={() => setLightboxOpen(false)}
-          locationName={location.name}
+          locationName={shown.name}
         />
       )}
     </>

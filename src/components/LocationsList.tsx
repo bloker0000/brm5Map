@@ -1,3 +1,5 @@
+// sidebar list of locations, grouped by category
+
 import { useState, useMemo } from 'react';
 import type { MapLocation } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
@@ -25,7 +27,7 @@ export function LocationsList({
   const filteredLocations = useMemo(() => {
     if (!searchQuery.trim()) return locations;
     const query = searchQuery.toLowerCase();
-    return locations.filter(loc => 
+    return locations.filter(loc =>
       loc.name.toLowerCase().includes(query) ||
       loc.category.toLowerCase().includes(query) ||
       loc.description?.toLowerCase().includes(query)
@@ -59,7 +61,7 @@ export function LocationsList({
     const multiSelect = e.ctrlKey || e.metaKey;
     const isSelected = selectedLocations.has(location.id);
     const isOnlyOneSelected = selectedLocations.size === 1 && isSelected;
-    
+
     if (isOnlyOneSelected) {
       onClearSelection();
     } else {
@@ -82,7 +84,7 @@ export function LocationsList({
           onChange={e => setSearchQuery(e.target.value)}
         />
         {searchQuery && (
-          <button 
+          <button
             className="locations-list-clear"
             onClick={() => setSearchQuery('')}
           >
@@ -97,7 +99,7 @@ export function LocationsList({
             <span className="locations-selected-count">
               {selectedLocations.size} selected
             </span>
-            <button 
+            <button
               className="locations-list-clear-selection"
               onClick={onClearSelection}
             >
@@ -118,9 +120,10 @@ export function LocationsList({
 
           return (
             <div key={category} className="locations-category">
-              <button 
+              <button
                 className="locations-category-header"
                 onClick={() => toggleCategory(category)}
+                aria-expanded={isExpanded}
                 style={{ '--cat-color': color } as React.CSSProperties}
               >
                 <span className="locations-category-icon">
@@ -138,26 +141,29 @@ export function LocationsList({
                 </span>
               </button>
 
-              {isExpanded && (
-                <div className="locations-category-items">
-                  {locs.map(location => (
-                    <div
-                      key={location.id}
-                      className={`locations-item ${selectedLocations.has(location.id) ? 'selected' : ''}`}
-                      onClick={e => handleItemClick(e, location)}
-                    >
-                      <span className="locations-item-name">{location.name}</span>
-                      <button 
-                        className="locations-item-view"
-                        onClick={e => handleViewClick(e, location)}
-                        title="View on map"
+              <div className={`locations-group-body${isExpanded ? ' open' : ''}`}>
+                <div className="locations-group-clip">
+                  <div className="locations-category-items">
+                    {locs.map(location => (
+                      <div
+                        key={location.id}
+                        className={`locations-item ${selectedLocations.has(location.id) ? 'selected' : ''}`}
+                        onClick={e => handleItemClick(e, location)}
                       >
-                        VIEW
-                      </button>
-                    </div>
-                  ))}
+                        <span className="locations-item-name">{location.name}</span>
+                        <button
+                          className="locations-item-view"
+                          onClick={e => handleViewClick(e, location)}
+                          tabIndex={isExpanded ? 0 : -1}
+                          title="View on map"
+                        >
+                          VIEW
+                        </button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              )}
+              </div>
             </div>
           );
         })}

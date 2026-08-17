@@ -1,3 +1,5 @@
+// location data
+
 ﻿import type { MapLocation } from '../types/location';
 import locationsData from './brm5-locations.json';
 

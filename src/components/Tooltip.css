@@ -1,19 +1,27 @@
+/* hover card styles */
+
 .tooltip {
   position: fixed;
-  background: var(--brm-bg-dark);
+  left: 0;
+  top: 0;
+  will-change: transform;
+  z-index: 1000;
+  width: 250px;
+  max-width: 250px;
+  overflow: hidden;
+  background: var(--brm-glass-deep);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border: 1px solid var(--brm-border);
   border-top: 2px solid var(--tooltip-color);
-  padding: 0;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.6);
   pointer-events: none;
-  z-index: 1000;
-  max-width: 260px;
-  overflow: hidden;
 }
 
 .tooltip-image-container {
   position: relative;
   width: 100%;
-  height: 120px;
+  height: 116px;
   overflow: hidden;
   border-bottom: 1px solid var(--brm-border);
 }
@@ -21,11 +29,11 @@
 .tooltip-image {
   width: 100%;
   height: 100%;
-  transition: opacity 0.3s ease;
+  transition: opacity var(--t-med) var(--ease);
 }
 
 .tooltip-image.transitioning {
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .tooltip-image img {
@@ -36,32 +44,30 @@
 
 .tooltip-slideshow-indicator {
   position: absolute;
-  bottom: 8px;
+  bottom: 7px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 4px;
+  gap: 3px;
 }
 
 .tooltip-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  transition: all 0.2s ease;
+  width: 12px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.35);
+  transition: background-color var(--t-fast) var(--ease);
 }
 
 .tooltip-dot.active {
   background: var(--brm-accent);
-  transform: scale(1.2);
 }
 
 .tooltip-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 6px;
-  padding: 12px 16px 0 16px;
+  gap: 9px;
+  padding: 11px 14px 0;
+  margin-bottom: 3px;
 }
 
 .tooltip-header svg {
@@ -71,7 +77,6 @@
 }
 
 .tooltip-icon {
-  font-size: 1.3rem;
   flex-shrink: 0;
   width: 16px;
   height: 16px;
@@ -82,46 +87,49 @@
 
 .tooltip-name {
   font-family: var(--font-display);
+  font-size: 1.02rem;
   font-weight: 700;
-  color: var(--brm-text);
-  font-size: 1rem;
+  line-height: 1.15;
+  letter-spacing: var(--tr-tight);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  color: var(--brm-text);
 }
 
 .tooltip-category {
-  color: var(--tooltip-color);
-  font-size: 0.7rem;
+  padding: 0 14px 10px;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: var(--tr-micro);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 4px;
-  padding: 0 16px;
+  color: var(--tooltip-color);
 }
 
 .tooltip-preview {
-  color: var(--brm-text-dim);
-  font-size: 0.75rem;
-  line-height: 1.4;
-  padding: 8px 16px;
-  margin: 4px 0;
+  padding: 9px 14px;
   background: rgba(255, 255, 255, 0.03);
-  border-top: 1px solid var(--brm-border);
-  border-bottom: 1px solid var(--brm-border);
+  border-top: 1px solid var(--brm-rule-soft);
+  border-bottom: 1px solid var(--brm-rule-soft);
+  color: var(--brm-text-dim);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.tooltip-image-count,
+.tooltip-hint {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: var(--tr-micro);
+  text-transform: uppercase;
+  color: var(--brm-text-muted);
 }
 
 .tooltip-image-count {
-  color: var(--brm-text-muted);
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0 16px;
-  margin-bottom: 4px;
+  padding: 9px 14px 0;
 }
 
 .tooltip-hint {
-  color: var(--brm-text-muted);
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 8px 16px 12px 16px;
+  padding: 9px 14px 11px;
+  color: var(--brm-accent);
 }

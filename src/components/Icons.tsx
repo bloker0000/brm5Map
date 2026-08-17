@@ -1,3 +1,5 @@
+// all the svg icons
+
 import type { LocationCategory } from '../types/location';
 
 interface IconProps {
@@ -252,8 +254,6 @@ export function CategoryIcon({ category, size = 16, color = 'currentColor', clas
   return <IconComponent size={size} color={color} className={className} />;
 }
 
-// --- Static SVG data URI icons for map pins (no inline SVG DOM nodes) ---
-
 const iconSvgBuilders: Record<LocationCategory, (c: string) => string> = {
   'Player Spawn': (c) => `<line x1="5" y1="3" x2="5" y2="22"/><path d="M5 3h12l-3 4.5L17 12H5" fill="${c}" fill-opacity="0.25"/>`,
   'Explorable Area': (c) => `<path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/><rect x="9" y="9" width="6" height="3" fill="${c}"/>`,
@@ -288,7 +288,6 @@ export function getCategoryIconUri(category: LocationCategory, color: string): s
   return uri;
 }
 
-// Inline SVG with outline for map pins — always crisp at any zoom
 export function CategoryIconOutlined({ category, size = 25, color = 'currentColor' }: { category: LocationCategory; size?: number; color?: string }) {
   const builder = iconSvgBuilders[category] || iconSvgBuilders['Other'];
   const inner = builder(color);

@@ -1,3 +1,5 @@
+// loads and filters the location data
+
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import Fuse from 'fuse.js';
 import type { MapLocation, LocationCategory } from '../types/location';
@@ -34,14 +36,12 @@ export function useLocations() {
   const initialLoadDone = useRef(false);
   const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
-  // Undo/redo stacks
   const undoStack = useRef<MapLocation[][]>([]);
   const redoStack = useRef<MapLocation[][]>([]);
   const skipHistoryRef = useRef(false);
   const locationsRef = useRef(locations);
   locationsRef.current = locations;
 
-  // Wrap setLocations to automatically push to undo stack
   const setLocations = useCallback((action: MapLocation[] | ((prev: MapLocation[]) => MapLocation[])) => {
     if (!skipHistoryRef.current && initialLoadDone.current) {
       undoStack.current = [...undoStack.current.slice(-(MAX_UNDO - 1)), locationsRef.current];
@@ -80,7 +80,6 @@ export function useLocations() {
     initialLoadDone.current = true;
   }, []);
 
-  // Auto-save to file in dev mode when locations change
   useEffect(() => {
     if (!IS_DEV || !initialLoadDone.current || locations.length === 0) return;
 

@@ -1,16 +1,17 @@
+// about / help popup
+
 import { useState, useEffect } from 'react';
 import { useVisitorCount } from '../hooks/useVisitorCount';
-import { ChangelogModal } from './ChangelogModal';
 import './AboutModal.css';
 
 interface AboutModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onOpenChangelog: () => void;
 }
 
-export function AboutModal({ isOpen, onClose }: AboutModalProps) {
+export function AboutModal({ isOpen, onClose, onOpenChangelog }: AboutModalProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const [isChangelogOpen, setIsChangelogOpen] = useState(false);
   const { totalVisits, yourVisitNumber, isLoading } = useVisitorCount();
 
   useEffect(() => {
@@ -29,11 +30,11 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
 
   return (
     <div
-      className={`about-modal-overlay ${isOpen ? 'open' : 'closing'}`}
+      className={`about-modal-overlay brm-scrim ${isOpen ? 'open' : 'closing'}`}
       onClick={onClose}
       onAnimationEnd={handleAnimationEnd}
     >
-      <div className="about-modal" onClick={e => e.stopPropagation()}>
+      <div className="about-modal brm-panel-anim" onClick={e => e.stopPropagation()}>
         <div className="about-modal-header">
           <h2>About BRMap5</h2>
           <button className="about-modal-close" onClick={onClose}>X</button>
@@ -106,7 +107,7 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
             <h3>Credits</h3>
             <p>Map and website made by Multyply, a good ammount of location images by <a href="https://roblox-blackhawk-rescue-mission-5.fandom.com/wiki/User:Nintendoboi2" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brm-accent)', textDecoration: 'underline' }}>Nintendoboi2</a></p>
             <p>Background artwork by many talented artists. See footer for current artist.</p>
-            <p>Help is always welcome, send me a DM on discord if you want to.</p>
+            <p>Help is always welcome. Send me a DM on Discord at <span className="brm-handle">.multyply</span> if you want to contribute.</p>
             <h3>Contributors</h3>
             <p><a href="https://github.com/T0TR0X" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brm-accent)', textDecoration: 'underline' }}>TotroX</a>: Location data, descriptions, images, and icon improvements <span style={{ opacity: 0.5, fontSize: '0.8rem' }}>(Discord: .totrox)</span></p>
           </section>
@@ -133,17 +134,13 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
             <p style={{ fontSize: '0.8rem' }}>Hosted on Vercel.</p>
             <button
               className="about-changelog-btn"
-              onClick={() => setIsChangelogOpen(true)}
+              onClick={onOpenChangelog}
             >
               View Changelog
             </button>
           </section>
         </div>
       </div>
-      <ChangelogModal
-        isOpen={isChangelogOpen}
-        onClose={() => setIsChangelogOpen(false)}
-      />
     </div>
   );
 }

@@ -1,4 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+// hover card that follows the cursor
+
+import { useState, useEffect, useLayoutEffect, useCallback, useRef } from 'react';
 import type { MapLocation, LocationImage } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
 import { CategoryIcon } from './Icons';
@@ -6,7 +8,6 @@ import './Tooltip.css';
 
 interface TooltipProps {
   location: MapLocation | null;
-  mousePosition: { x: number; y: number };
 }
 
 function getAllImages(location: MapLocation): LocationImage[] {
@@ -21,11 +22,45 @@ function getAllImages(location: MapLocation): LocationImage[] {
 
 const SLIDESHOW_INTERVAL = 2000;
 
-export function Tooltip({ location, mousePosition }: TooltipProps) {
+export function Tooltip({ location }: TooltipProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const intervalRef = useRef<number | null>(null);
   const prevLocationId = useRef<string | null>(null);
+  const elRef = useRef<HTMLDivElement>(null);
+  const pointerRef = useRef({ x: 0, y: 0 });
+  const frameRef = useRef<number | null>(null);
+
+  const place = useCallback(() => {
+    frameRef.current = null;
+    const el = elRef.current;
+    if (!el) return;
+    const { x, y } = pointerRef.current;
+    const w = el.offsetWidth;
+    const h = el.offsetHeight;
+    const left = x + 16 + w > window.innerWidth ? x - 16 - w : x + 16;
+    const top = Math.min(y + 16, window.innerHeight - h - 8);
+    el.style.transform = `translate(${Math.max(8, left)}px, ${Math.max(8, top)}px)`;
+  }, []);
+
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      pointerRef.current.x = e.clientX;
+      pointerRef.current.y = e.clientY;
+      if (frameRef.current === null) {
+        frameRef.current = requestAnimationFrame(place);
+      }
+    };
+    window.addEventListener('mousemove', onMove, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+    };
+  }, [place]);
+
+  useLayoutEffect(() => {
+    place();
+  });
 
   const images = location ? getAllImages(location) : [];
   const hasMultipleImages = images.length > 1;
@@ -66,7 +101,7 @@ export function Tooltip({ location, mousePosition }: TooltipProps) {
 
   const color = CATEGORY_COLORS[location.category];
   const currentImage = images[currentImageIndex];
-  
+
   const getPreviewText = () => {
     if (location.shortDescription) {
       return location.shortDescription;
@@ -84,7 +119,7 @@ export function Tooltip({ location, mousePosition }: TooltipProps) {
       .replace(/-\s/g, '')
       .replace(/\n+/g, ' ')
       .trim();
-    
+
     if (plainText.length > 80) {
       return plainText.substring(0, 77) + '...';
     }
@@ -95,12 +130,9 @@ export function Tooltip({ location, mousePosition }: TooltipProps) {
 
   return (
     <div
+      ref={elRef}
       className="tooltip"
-      style={{
-        left: mousePosition.x + 15,
-        top: mousePosition.y + 15,
-        '--tooltip-color': color,
-      } as React.CSSProperties}
+      style={{ '--tooltip-color': color } as React.CSSProperties}
     >
       {images.length > 0 && currentImage && (
         <div className="tooltip-image-container">
@@ -110,9 +142,9 @@ export function Tooltip({ location, mousePosition }: TooltipProps) {
           {hasMultipleImages && (
             <div className="tooltip-slideshow-indicator">
               {images.map((_, index) => (
-                <span 
-                  key={index} 
-                  className={`tooltip-dot ${index === currentImageIndex ? 'active' : ''}`} 
+                <span
+                  key={index}
+                  className={`tooltip-dot ${index === currentImageIndex ? 'active' : ''}`}
                 />
               ))}
             </div>

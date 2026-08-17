@@ -1,3 +1,5 @@
+// sidebar category toggles
+
 import type { LocationCategory } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
 import { CategoryIcon } from './Icons';
@@ -28,7 +30,7 @@ export function CategoryFilter({
           </button>
         )}
       </div>
-      <div className="category-filter-list">
+      <div className={`category-filter-list${hasFilters ? ' has-filters' : ''}`}>
         {categories.map((category) => {
           const isActive = selectedCategories.size === 0 || selectedCategories.has(category);
           const color = CATEGORY_COLORS[category];
