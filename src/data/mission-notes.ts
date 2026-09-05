@@ -28,7 +28,7 @@ export const SPOT_NOTES: Record<string, Record<string, string>> = {
     '1': 'Inside the main southwest entrance, off to the right.',
     '2': 'Just inside the main southwest entrance.',
     '3': 'Outside the main southwest entrance.',
-    '4': 'Wing C. near the Northeast entrance.',
+    '4': 'Wing C. near the northeast entrance.',
     '5': 'Wing A, by the entrance to the northeast stairs.',
     '6': 'Second floor, O.R. 3, up the northeast stairs.',
     '7': 'Floor 15, by the southwest stairs next to the heli platform.',
