@@ -540,7 +540,7 @@ export function MissionsPage({ missionId, onSelectMission, onExit }: MissionsPag
           <div className="missions-placeholder">
             <p className="missions-placeholder-title">Select a mission</p>
             <p className="missions-placeholder-text">
-              Every zombies mission pulled from the game's quest configs: briefings, step by
+              Every zombies mission: briefings, step by
               step objectives, rewards, and the objective positions.
             </p>
           </div>
