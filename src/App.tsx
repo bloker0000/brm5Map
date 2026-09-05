@@ -1,5 +1,3 @@
-// main app, holds most of the state
-
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import {
   Preloader,
@@ -100,7 +98,8 @@ function App() {
         if (isChangelogOpen) {
           markChangelogSeen();
           setIsChangelogOpen(false);
-        } else if (isAdminOpen) {
+        } else if (isAdminOpen && adminViewMode === 'list') {
+          // in add/edit the panel handles escape itself, backing out to the list
           setIsAdminOpen(false);
         } else if (isAboutOpen) {
           setIsAboutOpen(false);
@@ -125,7 +124,7 @@ function App() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedLocation, setSelectedLocation, isAboutOpen, isAdminOpen, isChangelogOpen, undo, redo]);
+  }, [selectedLocation, setSelectedLocation, isAboutOpen, isAdminOpen, adminViewMode, isChangelogOpen, undo, redo]);
 
   const handleLoaded = useCallback(() => {
     setIsLoading(false);

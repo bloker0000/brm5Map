@@ -120,7 +120,6 @@
     "y": 2249,
     "description": "A **four-story apartment building** connected to NYPlug.\n\n### Connection to NYPlug\nFollow the hallways on the first floor to reach the NYPlug building.\n\n### Threats\n- **Player spawn location** on upper floor\n- Medium to large zombie spawns at night\n\nThis building serves as both a spawn point and a connector between the apartment complex and NYPlug.",
     "category": "Explorable Area",
-    "image": "https://i.imgur.com/wAt3i6f.png",
     "images": [
       {
         "url": "https://i.imgur.com/wAt3i6f.png",

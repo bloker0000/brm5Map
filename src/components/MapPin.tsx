@@ -1,5 +1,3 @@
-// one pin on the map
-
 import { memo, useCallback, useRef } from 'react';
 import type { MapLocation } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';

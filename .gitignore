@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 info/
+
+# editor local history
+.history/

@@ -1,5 +1,3 @@
-// re-exports
-
 export { Preloader } from './Preloader';
 export { InteractiveMap } from './InteractiveMap';
 export { MapPin } from './MapPin';

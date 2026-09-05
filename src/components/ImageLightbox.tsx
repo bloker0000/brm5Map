@@ -1,5 +1,3 @@
-// fullscreen image viewer
-
 import { useState, useEffect, useCallback, useRef } from 'react';
 import type { LocationImage } from '../types/location';
 import './ImageLightbox.css';

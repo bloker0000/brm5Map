@@ -1,5 +1,3 @@
-// visitor counter
-
 import { useState, useEffect } from 'react';
 
 const STORAGE_KEY = 'brm5-real-visit-number';

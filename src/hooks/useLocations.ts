@@ -1,21 +1,19 @@
-// loads and filters the location data
-
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import Fuse from 'fuse.js';
 import type { MapLocation, LocationCategory } from '../types/location';
-import { loadLocations, generateId } from '../data/locations';
+import { loadLocations, generateId, sanitizeLocation } from '../data/locations';
 
 const IS_DEV = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
-async function saveToFile(locations: MapLocation[]): Promise<{ ok: boolean; error?: string }> {
+async function saveToFile(payload: string): Promise<{ ok: boolean; error?: string }> {
   try {
     const res = await fetch('/api/save-locations', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(locations, null, 2),
+      body: payload,
     });
     if (!res.ok) {
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       return { ok: false, error: data.error || 'Save failed' };
     }
     return { ok: true };
@@ -26,15 +24,24 @@ async function saveToFile(locations: MapLocation[]): Promise<{ ok: boolean; erro
 
 const MAX_UNDO = 50;
 
+// matches what the dev server writes, so we can tell a real change from a no-op
+function serialize(locations: MapLocation[]): string {
+  return JSON.stringify(locations, null, 2);
+}
+
 export function useLocations() {
   const [locations, setLocationsRaw] = useState<MapLocation[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<Set<LocationCategory>>(new Set());
-  const [selectedLocation, setSelectedLocation] = useState<MapLocation | null>(null);
-  const [hoveredLocation, setHoveredLocation] = useState<MapLocation | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [canUndo, setCanUndo] = useState(false);
+  const [canRedo, setCanRedo] = useState(false);
   const initialLoadDone = useRef(false);
   const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const statusTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const lastSavedRef = useRef<string | null>(null);
 
   const undoStack = useRef<MapLocation[][]>([]);
   const redoStack = useRef<MapLocation[][]>([]);
@@ -42,16 +49,19 @@ export function useLocations() {
   const locationsRef = useRef(locations);
   locationsRef.current = locations;
 
+  const syncHistoryFlags = useCallback(() => {
+    setCanUndo(undoStack.current.length > 0);
+    setCanRedo(redoStack.current.length > 0);
+  }, []);
+
   const setLocations = useCallback((action: MapLocation[] | ((prev: MapLocation[]) => MapLocation[])) => {
     if (!skipHistoryRef.current && initialLoadDone.current) {
       undoStack.current = [...undoStack.current.slice(-(MAX_UNDO - 1)), locationsRef.current];
       redoStack.current = [];
+      syncHistoryFlags();
     }
     setLocationsRaw(action);
-  }, []);
-
-  const canUndo = undoStack.current.length > 0;
-  const canRedo = redoStack.current.length > 0;
+  }, [syncHistoryFlags]);
 
   const undo = useCallback(() => {
     if (undoStack.current.length === 0) return;
@@ -61,7 +71,8 @@ export function useLocations() {
     skipHistoryRef.current = true;
     setLocationsRaw(prev);
     skipHistoryRef.current = false;
-  }, []);
+    syncHistoryFlags();
+  }, [syncHistoryFlags]);
 
   const redo = useCallback(() => {
     if (redoStack.current.length === 0) return;
@@ -71,41 +82,54 @@ export function useLocations() {
     skipHistoryRef.current = true;
     setLocationsRaw(next);
     skipHistoryRef.current = false;
-  }, []);
+    syncHistoryFlags();
+  }, [syncHistoryFlags]);
 
   useEffect(() => {
+    const initial = loadLocations();
+    lastSavedRef.current = serialize(initial);
     skipHistoryRef.current = true;
-    setLocationsRaw(loadLocations());
+    setLocationsRaw(initial);
     skipHistoryRef.current = false;
     initialLoadDone.current = true;
   }, []);
 
-  useEffect(() => {
-    if (!IS_DEV || !initialLoadDone.current || locations.length === 0) return;
+  const flashStatus = useCallback((status: 'saved' | 'error') => {
+    setSaveStatus(status);
+    clearTimeout(statusTimeoutRef.current);
+    statusTimeoutRef.current = setTimeout(() => setSaveStatus('idle'), 2000);
+  }, []);
 
-    if (saveTimeoutRef.current) {
-      clearTimeout(saveTimeoutRef.current);
-    }
-
-    saveTimeoutRef.current = setTimeout(async () => {
-      setSaveStatus('saving');
-      const result = await saveToFile(locations);
-      setSaveStatus(result.ok ? 'saved' : 'error');
-      setTimeout(() => setSaveStatus('idle'), 2000);
-    }, 500);
-
-    return () => {
-      if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
-    };
-  }, [locations]);
-
-  const manualSave = useCallback(async () => {
+  const persist = useCallback(async (payload: string) => {
     setSaveStatus('saving');
-    const result = await saveToFile(locations);
-    setSaveStatus(result.ok ? 'saved' : 'error');
-    setTimeout(() => setSaveStatus('idle'), 2000);
+    const result = await saveToFile(payload);
+    if (result.ok) lastSavedRef.current = payload;
+    flashStatus(result.ok ? 'saved' : 'error');
     return result;
-  }, [locations]);
+  }, [flashStatus]);
+
+  useEffect(() => {
+    if (!IS_DEV || !initialLoadDone.current) return;
+
+    const payload = serialize(locations);
+    // skip the write on initial load and on undo/redo back to a saved state
+    if (payload === lastSavedRef.current) return;
+
+    clearTimeout(saveTimeoutRef.current);
+    saveTimeoutRef.current = setTimeout(() => { void persist(payload); }, 500);
+
+    return () => clearTimeout(saveTimeoutRef.current);
+  }, [locations, persist]);
+
+  useEffect(() => () => {
+    clearTimeout(saveTimeoutRef.current);
+    clearTimeout(statusTimeoutRef.current);
+  }, []);
+
+  const manualSave = useCallback(() => {
+    clearTimeout(saveTimeoutRef.current);
+    return persist(serialize(locationsRef.current));
+  }, [persist]);
 
   const fuse = useMemo(() => {
     return new Fuse(locations, {
@@ -130,6 +154,24 @@ export function useLocations() {
     return result;
   }, [locations, searchQuery, selectedCategories, fuse]);
 
+  // held by id so an edit or delete is reflected without going stale
+  const selectedLocation = useMemo(
+    () => locations.find(loc => loc.id === selectedId) ?? null,
+    [locations, selectedId]
+  );
+  const hoveredLocation = useMemo(
+    () => locations.find(loc => loc.id === hoveredId) ?? null,
+    [locations, hoveredId]
+  );
+  const setSelectedLocation = useCallback(
+    (loc: MapLocation | null) => setSelectedId(loc?.id ?? null),
+    []
+  );
+  const setHoveredLocation = useCallback(
+    (loc: MapLocation | null) => setHoveredId(loc?.id ?? null),
+    []
+  );
+
   const allCategories = useMemo(() => {
     const cats = new Set<LocationCategory>();
     locations.forEach(loc => cats.add(loc.category));
@@ -145,21 +187,30 @@ export function useLocations() {
     return newLocation;
   };
 
-  const importLocations = (incoming: MapLocation[], replace: boolean = false) => {
-    const withIds = incoming.map(loc => ({
-      ...loc,
-      id: loc.id || generateId(),
-      images: loc.images ?? (loc.image ? [{ url: loc.image }] : []),
-    }));
-    if (replace) {
-      setLocations(withIds);
-    } else {
-      setLocations(prev => [
-        ...prev.filter(p => !withIds.some(n => n.id === p.id)),
-        ...withIds,
-      ]);
+  const importLocations = (incoming: unknown[], replace: boolean = false) => {
+    const seenIds = new Set<string>();
+    const cleaned: MapLocation[] = [];
+
+    for (const raw of incoming) {
+      const loc = sanitizeLocation(raw);
+      if (!loc) continue;
+      if (seenIds.has(loc.id)) loc.id = generateId();
+      seenIds.add(loc.id);
+      cleaned.push(loc);
     }
-    return withIds.length;
+
+    if (cleaned.length > 0) {
+      if (replace) {
+        setLocations(cleaned);
+      } else {
+        setLocations(prev => [
+          ...prev.filter(p => !seenIds.has(p.id)),
+          ...cleaned,
+        ]);
+      }
+    }
+
+    return { imported: cleaned.length, skipped: incoming.length - cleaned.length };
   };
 
   const updateLocation = (id: string, updates: Partial<MapLocation>) => {
@@ -170,9 +221,6 @@ export function useLocations() {
 
   const deleteLocation = (id: string) => {
     setLocations(prev => prev.filter(loc => loc.id !== id));
-    if (selectedLocation?.id === id) {
-      setSelectedLocation(null);
-    }
   };
 
   const toggleCategory = (category: LocationCategory) => {

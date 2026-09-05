@@ -2,30 +2,11 @@
 
 import { useState, useEffect, useRef } from 'react';
 import type { MapLocation, LocationCategory, LocationImage } from '../types/location';
-import { CATEGORY_COLORS } from '../types/location';
+import { CATEGORY_COLORS, ALL_CATEGORIES } from '../types/location';
 import { CloseIcon, CrosshairIcon, CategoryIcon, SaveIcon } from './Icons';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import './AdminPanel.css';
-
-const ALL_CATEGORIES: LocationCategory[] = [
-  'Player Spawn',
-  'Explorable Area',
-  'Exfil Point',
-  'Enemy Location',
-  'Zombie Nest',
-  'Key Spawn Location',
-  'Locked Door',
-  'Quarantine Zone',
-  'Medical',
-  'Shop',
-  'Landmark',
-  'Subway Station',
-  'Drop-Off Point',
-  'Raid',
-  'Safe',
-  'Other',
-];
 
 interface AdminPanelProps {
   isOpen: boolean;
@@ -40,7 +21,7 @@ interface AdminPanelProps {
   onFormCategoryChange?: (category: LocationCategory) => void;
   onModeChange?: (mode: 'list' | 'add' | 'edit') => void;
   onDragModeChange?: (isDragMode: boolean) => void;
-  onImport?: (locations: MapLocation[], replace?: boolean) => number;
+  onImport?: (locations: unknown[], replace?: boolean) => { imported: number; skipped: number };
   onUndo?: () => void;
   onRedo?: () => void;
   canUndo?: boolean;
@@ -78,6 +59,7 @@ export function AdminPanel({
   const [showPreview, setShowPreview] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [filterCategory, setFilterCategory] = useState<LocationCategory | 'all'>('all');
+  const [nameError, setNameError] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     x: 0,
@@ -91,6 +73,7 @@ export function AdminPanel({
   const formCoordsRef = useRef({ x: 0, y: 0 });
   formCoordsRef.current = { x: formData.x, y: formData.y };
   const prevClickPositionRef = useRef(clickPosition);
+  const externalCoordsRef = useRef({ x: 0, y: 0 });
 
   const formDataRef = useRef(formData);
   formDataRef.current = formData;
@@ -154,6 +137,14 @@ export function AdminPanel({
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  // an empty number input reads as "", which would otherwise snap the pin to 0
+  const onCoordChange = (axis: 'x' | 'y', raw: string) => {
+    if (raw.trim() === '') return;
+    const value = Number(raw);
+    if (!Number.isFinite(value)) return;
+    onDiscreteChange({ [axis]: Math.round(value) });
+  };
+
   const onDiscreteChange = (updates: Partial<typeof formData>) => {
     isInTypingGroupRef.current = false;
     clearTimeout(typingTimerRef.current);
@@ -172,6 +163,7 @@ export function AdminPanel({
     const prev = stack.pop()!;
     if (modeRef.current === 'edit' && editingLocationRef.current &&
         (prev.x !== formDataRef.current.x || prev.y !== formDataRef.current.y)) {
+      externalCoordsRef.current = { x: prev.x, y: prev.y };
       onUpdate(editingLocationRef.current.id, { x: prev.x, y: prev.y });
     }
     formDataRef.current = prev;
@@ -187,6 +179,7 @@ export function AdminPanel({
     const next = future.pop()!;
     if (modeRef.current === 'edit' && editingLocationRef.current &&
         (next.x !== formDataRef.current.x || next.y !== formDataRef.current.y)) {
+      externalCoordsRef.current = { x: next.x, y: next.y };
       onUpdate(editingLocationRef.current.id, { x: next.x, y: next.y });
     }
     formDataRef.current = next;
@@ -232,17 +225,22 @@ export function AdminPanel({
       const newY = Math.round(clickPosition.y);
       formDataRef.current = { ...formDataRef.current, x: newX, y: newY };
       setFormData((prev) => ({ ...prev, x: newX, y: newY }));
+      externalCoordsRef.current = { x: newX, y: newY };
       onUpdate(editingLocation.id, { x: newX, y: newY });
     }
   }, [clickPosition, mode]);
 
+  // take coords from a pin drag, but leave manually typed values alone
   useEffect(() => {
-    if (mode === 'edit' && editingLocation) {
-      const current = locations.find(l => l.id === editingLocation.id);
-      if (current && (current.x !== formCoordsRef.current.x || current.y !== formCoordsRef.current.y)) {
-        setFormData(prev => ({ ...prev, x: current.x, y: current.y }));
-      }
-    }
+    if (mode !== 'edit' || !editingLocation) return;
+    const current = locations.find(l => l.id === editingLocation.id);
+    if (!current) return;
+    const seen = externalCoordsRef.current;
+    if (current.x === seen.x && current.y === seen.y) return;
+    externalCoordsRef.current = { x: current.x, y: current.y };
+    if (current.x === formCoordsRef.current.x && current.y === formCoordsRef.current.y) return;
+    formDataRef.current = { ...formDataRef.current, x: current.x, y: current.y };
+    setFormData(prev => ({ ...prev, x: current.x, y: current.y }));
   }, [mode, editingLocation, locations]);
 
   useEffect(() => {
@@ -280,12 +278,16 @@ export function AdminPanel({
     setOriginalLocation(null);
     setActiveTab('basic');
     setShowPreview(false);
+    setNameError(false);
     clearFormHistory();
   };
 
   const hasUnsavedChanges = (): boolean => {
     if (mode === 'add') {
-      return formData.name.trim() !== '' || formData.description.trim() !== '' || formData.images.length > 0;
+      return formData.name.trim() !== ''
+        || formData.description.trim() !== ''
+        || formData.shortDescription.trim() !== ''
+        || formData.images.length > 0;
     }
     if (mode === 'edit' && originalLocation) {
       return formData.name !== originalLocation.name
@@ -324,6 +326,7 @@ export function AdminPanel({
     revertAndReset();
     setEditingLocation(location);
     setOriginalLocation({ ...location });
+    externalCoordsRef.current = { x: location.x, y: location.y };
     const images: LocationImage[] = location.images && location.images.length > 0
       ? location.images
       : location.image
@@ -345,9 +348,20 @@ export function AdminPanel({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name.trim()) return;
+    // browser validation cannot reach the name field while another tab is open
+    if (!formData.name.trim()) {
+      setActiveTab('basic');
+      setNameError(true);
+      return;
+    }
+    setNameError(false);
 
-    const validImages = formData.images.filter(img => img.url.trim() !== '');
+    const validImages = formData.images
+      .filter(img => img.url.trim() !== '')
+      .map(img => ({
+        url: img.url.trim(),
+        ...(img.description?.trim() ? { description: img.description.trim() } : {}),
+      }));
     const locationData = {
       name: formData.name.trim(),
       x: formData.x,
@@ -356,6 +370,7 @@ export function AdminPanel({
       shortDescription: formData.shortDescription.trim() || undefined,
       category: formData.category,
       images: validImages.length > 0 ? validImages : undefined,
+      image: undefined, // drop the legacy single-image field once images[] is written
     };
 
     if (mode === 'add') {
@@ -464,7 +479,7 @@ export function AdminPanel({
     reader.onload = (event) => {
       try {
         const raw = JSON.parse(event.target?.result as string);
-        const arr: MapLocation[] = Array.isArray(raw)
+        const arr: unknown[] | null = Array.isArray(raw)
           ? raw
           : Array.isArray(raw?.locations)
             ? raw.locations
@@ -473,8 +488,19 @@ export function AdminPanel({
           alert('Import failed: expected a JSON array or { locations: [...] }');
           return;
         }
-        const count = onImport ? onImport(arr, true) : 0;
-        alert(`Imported ${count} location${count !== 1 ? 's' : ''} successfully.`);
+        if (!onImport) return;
+
+        const replace = confirm(
+          `Import ${arr.length} entr${arr.length !== 1 ? 'ies' : 'y'} from "${file.name}".\n\n` +
+          `OK — replace all ${locations.length} current locations.\n` +
+          `Cancel — merge into the current locations instead.`
+        );
+        const { imported, skipped } = onImport(arr, replace);
+        alert(
+          `Imported ${imported} location${imported !== 1 ? 's' : ''}` +
+          (skipped > 0 ? `, skipped ${skipped} invalid entr${skipped !== 1 ? 'ies' : 'y'}.` : '.') +
+          (imported > 0 ? '\n\nUse Undo if this was a mistake.' : '')
+        );
       } catch {
         alert('Import failed: invalid JSON file.');
       }
@@ -512,9 +538,11 @@ export function AdminPanel({
     }, 0);
   };
 
+  const query = searchQuery.trim().toLowerCase();
   const filteredLocations = locations.filter(loc => {
-    const matchesSearch = loc.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         loc.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = !query
+      || (loc.name || '').toLowerCase().includes(query)
+      || (loc.description || '').toLowerCase().includes(query);
     const matchesCategory = filterCategory === 'all' || loc.category === filterCategory;
     return matchesSearch && matchesCategory;
   });
@@ -729,11 +757,16 @@ export function AdminPanel({
                     <label>Name</label>
                     <input
                       type="text"
+                      className={nameError ? 'invalid' : ''}
                       value={formData.name}
-                      onChange={(e) => onTextFieldChange('name', e.target.value)}
+                      onChange={(e) => {
+                        if (nameError) setNameError(false);
+                        onTextFieldChange('name', e.target.value);
+                      }}
                       placeholder="Location name"
                       required
                     />
+                    {nameError && <span className="admin-field-error">A name is required.</span>}
                   </div>
 
                   <div className="admin-field-row">
@@ -742,7 +775,7 @@ export function AdminPanel({
                       <input
                         type="number"
                         value={formData.x}
-                        onChange={(e) => onDiscreteChange({ x: Number(e.target.value) })}
+                        onChange={(e) => onCoordChange('x', e.target.value)}
                         required
                       />
                     </div>
@@ -751,7 +784,7 @@ export function AdminPanel({
                       <input
                         type="number"
                         value={formData.y}
-                        onChange={(e) => onDiscreteChange({ y: Number(e.target.value) })}
+                        onChange={(e) => onCoordChange('y', e.target.value)}
                         required
                       />
                     </div>

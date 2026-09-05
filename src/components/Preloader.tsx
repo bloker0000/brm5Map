@@ -1,5 +1,3 @@
-// title screen while everything loads
-
 import { useState, useEffect } from 'react';
 import './Preloader.css';
 

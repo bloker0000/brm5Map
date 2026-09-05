@@ -1,5 +1,3 @@
-// about / help popup
-
 import { useState, useEffect } from 'react';
 import { useVisitorCount } from '../hooks/useVisitorCount';
 import './AboutModal.css';

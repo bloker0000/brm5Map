@@ -1,5 +1,3 @@
-// sidebar category toggles
-
 import type { LocationCategory } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
 import { CategoryIcon } from './Icons';

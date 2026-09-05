@@ -1,5 +1,3 @@
-/* admin panel styles */
-
 .admin-overlay {
   position: fixed;
   top: 0;
@@ -529,6 +527,18 @@
 .admin-field input::placeholder,
 .admin-field textarea::placeholder {
   color: var(--brm-text-muted);
+}
+
+.admin-field input.invalid,
+.admin-field input.invalid:focus {
+  border-color: #eb3a3a;
+}
+
+.admin-field-error {
+  display: block;
+  color: #eb3a3a;
+  font-size: 0.7rem;
+  margin-top: 4px;
 }
 
 .admin-field textarea {

@@ -1,5 +1,3 @@
-// all the svg icons
-
 import type { LocationCategory } from '../types/location';
 
 interface IconProps {

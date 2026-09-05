@@ -1,5 +1,3 @@
-// the big location popup
-
 import { useState, useEffect, useRef } from 'react';
 import type { MapLocation, LocationImage } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';

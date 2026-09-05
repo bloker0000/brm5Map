@@ -1,5 +1,3 @@
-// location types and category colours
-
 export type LocationCategory =
   | 'Player Spawn'
   | 'Explorable Area'
@@ -62,3 +60,9 @@ export const CATEGORY_COLORS: Record<LocationCategory, string> = {
   'Safe': '#c8a84b',
   'Other': '#888888',
 };
+
+export const ALL_CATEGORIES = Object.keys(CATEGORY_COLORS) as LocationCategory[];
+
+export function isLocationCategory(value: unknown): value is LocationCategory {
+  return typeof value === 'string' && value in CATEGORY_COLORS;
+}
