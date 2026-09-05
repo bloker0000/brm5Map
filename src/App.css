@@ -267,7 +267,7 @@
 
 .sidebar-nav {
   flex-shrink: 0;
-  padding: 12px 14px 0;
+  padding: 12px 14px;
 }
 
 .sidebar-missions {
