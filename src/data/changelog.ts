@@ -8,6 +8,21 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.9.0',
+    date: '2026-09-05',
+    changes: [
+      'New Mission Library page with all 63 zombies missions, open it from the sidebar',
+      'Every mission shows its briefing and debriefing, step by step objectives, rewards, level and difficulty, and what unlocks it',
+      'Missions that roll a random spawn point list every possible variant',
+      'Objectives the game never puts a waypoint on are shown as in-game screenshots, click one to open it full size',
+      'Technical view on any mission for the raw task list out of the game files',
+      'Search and filter missions by giver, difficulty, gasmask, raids, and unmarked objectives',
+      'Missions have their own links, so a single mission can be shared directly',
+      'Mission search is fuzzy, so it still finds a mission when the name is misspelled',
+      'Mission Library shows a blurred piece of the background artwork, credited in the sidebar',
+    ],
+  },
+  {
     version: '1.8.0',
     date: '2026-08-17',
     changes: [

@@ -86,6 +86,19 @@ export function AboutModal({ isOpen, onClose, onOpenChangelog }: AboutModalProps
           </section>
 
           <section>
+            <h3>Mission Library</h3>
+            <ul>
+              <li><strong>Open:</strong> Click Mission Library in the sidebar</li>
+              <li><strong>Browse:</strong> Missions are grouped by who gives them</li>
+              <li><strong>Filter:</strong> Narrow by difficulty, gasmask, raids, or unmarked objectives</li>
+              <li><strong>Variants:</strong> Some missions roll a random spawn point, every candidate is listed</li>
+              <li><strong>Unmarked:</strong> Objectives the game gives no waypoint for are shown as in-game screenshots</li>
+              <li><strong>Technical:</strong> Switch any mission to the raw task list from the game files</li>
+              <li><strong>Share:</strong> Each mission has its own link</li>
+            </ul>
+          </section>
+
+          <section>
             <h3>FAQ</h3>
             <div className="faq-item">
               <p className="faq-question"><strong>Q: What are the green and yellow shapes on the map?</strong></p>
@@ -103,11 +116,12 @@ export function AboutModal({ isOpen, onClose, onOpenChangelog }: AboutModalProps
 
           <section className="about-credits">
             <h3>Credits</h3>
-            <p>Map and website made by Multyply, a good ammount of location images by <a href="https://roblox-blackhawk-rescue-mission-5.fandom.com/wiki/User:Nintendoboi2" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brm-accent)', textDecoration: 'underline' }}>Nintendoboi2</a></p>
+            <p>Map and website made by Multyply</p>
             <p>Background artwork by many talented artists. See footer for current artist.</p>
             <p>Help is always welcome. Send me a DM on Discord at <span className="brm-handle">.multyply</span> if you want to contribute.</p>
             <h3>Contributors</h3>
             <p><a href="https://github.com/T0TR0X" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brm-accent)', textDecoration: 'underline' }}>TotroX</a>: Location data, descriptions, images, and icon improvements <span style={{ opacity: 0.5, fontSize: '0.8rem' }}>(Discord: .totrox)</span></p>
+            <p><a href="https://roblox-blackhawk-rescue-mission-5.fandom.com/wiki/User:Nintendoboi2" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brm-accent)', textDecoration: 'underline' }}>Nintendoboi2</a>: Location images</p>
           </section>
 
           <section className="about-visits">

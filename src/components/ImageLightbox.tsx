@@ -109,6 +109,9 @@ export function ImageLightbox({ images, initialIndex, onClose, locationName }: I
     const handleKeyDown = (e: KeyboardEvent) => {
       switch (e.key) {
         case 'Escape':
+          // the lightbox is the topmost layer, so it eats escape rather than
+          // letting whatever opened it close at the same time
+          e.stopPropagation();
           requestClose();
           break;
         case 'ArrowLeft':
@@ -232,7 +235,7 @@ export function ImageLightbox({ images, initialIndex, onClose, locationName }: I
                     setIsLoading(true);
                   }}
                 >
-                  <img src={img.url} alt={img.description || `Thumbnail ${index + 1}`} />
+                  <img src={img.thumb ?? img.url} alt={img.description || `Thumbnail ${index + 1}`} />
                 </button>
               ))}
             </div>

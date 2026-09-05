@@ -19,6 +19,8 @@ export type LocationCategory =
 export interface LocationImage {
   url: string;
   description?: string;
+  /** optional smaller file for thumbnail strips, falls back to url */
+  thumb?: string;
 }
 
 export interface ContentBlock {

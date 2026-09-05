@@ -5,6 +5,7 @@ import { MapPin } from './MapPin';
 import { PlusIcon, MinusIcon, ResetPositionIcon, ResetRotationIcon, CategoryIcon } from './Icons';
 import type { MapLocation, LocationCategory } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
+import { BG_IMAGES, randomBgIndex } from '../data/backgrounds';
 import './InteractiveMap.css';
 
 interface InteractiveMapProps {
@@ -35,25 +36,6 @@ const MIN_SCALE = 0.15;
 const MAX_SCALE = 4;
 const ZOOM_SENSITIVITY = 0.002;
 const MAP_NORTH_OFFSET = 40;
-
-const BG_IMAGES = [
-  '/BG/BG1.jpeg',
-  '/BG/BG2.png',
-  '/BG/BG3.png',
-  '/BG/BG4.png',
-  '/BG/BG5.jpg',
-  '/BG/BG6.png',
-  '/BG/BG7.jpeg',
-  '/BG/BG8.png',
-  '/BG/BG9.png',
-  '/BG/BG10.png',
-  '/BG/BG11.png',
-  '/BG/BG12.png',
-  '/BG/BG13.png',
-  '/BG/BG14.png',
-  '/BG/BG15.png',
-  '/BG/BG16.png',
-];
 
 function InteractiveMapImpl({
   locations,
@@ -86,7 +68,7 @@ function InteractiveMapImpl({
   const [mapRotation, setMapRotation] = useState(0);
   const [isRotating, setIsRotating] = useState(false);
   const [isCompassDragging, setIsCompassDragging] = useState(false);
-  const [bgIndex] = useState(() => Math.floor(Math.random() * BG_IMAGES.length));
+  const [bgIndex] = useState(randomBgIndex);
   const [isAnimating, setIsAnimating] = useState(false);
   const coordsRef = useRef<HTMLSpanElement>(null);
   const pinsOverlayRef = useRef<HTMLDivElement>(null);

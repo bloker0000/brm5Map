@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, lazy, Suspense } from 'react';
 import {
   Preloader,
   InteractiveMap,
@@ -14,28 +14,17 @@ import {
 } from './components';
 import { useLocations } from './hooks/useLocations';
 import type { MapLocation, LocationCategory } from './types/location';
+import { BG_CREDITS } from './data/backgrounds';
 import './App.css';
+
+// the mission data is a third of the bundle, so it only loads on its own route
+const MissionsPage = lazy(() =>
+  import('./components/MissionsPage').then(m => ({ default: m.MissionsPage }))
+);
 
 const IS_DEV = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
-const BG_CREDITS = [
-  { name: 'Platinum Five', url: 'https://www.roblox.com/communities/4668709/PLATINUM-FIVE#!/about' },
-  { name: 'MentalShocked', url: 'https://www.reddit.com/user/MentalShocked/' },
-  { name: 'buymechickensalt', url: 'https://x.com/BuymetheWeeb' },
-  { name: 'buymechickensalt', url: 'https://x.com/BuymetheWeeb' },
-  { name: 'rinchantea', url: 'https://x.com/RinChanTea' },
-  { name: 'mister.roztov', url: 'https://sites.google.com/view/roztovportfolio?usp=sharing' },
-  { name: 'postal__pal', url: 'https://www.roblox.com/users/1538934843/profile?friendshipSourceType=PlayerSearch' },
-  { name: 'basically_gdg', url: null },
-  { name: 'a5t3r1k', url: 'https://www.roblox.com/users/1458471315/profile?friendshipSourceType=PlayerSearch' },
-  { name: 'buymechickensalt', url: 'https://x.com/BuymetheWeeb' },
-  { name: 'ryz_vik', url: null },
-  { name: 'docc_a', url: null },
-  { name: 'ala_koli', url: 'https://x.com/ala_koli' },
-  { name: 'kenemony', url: null },
-  { name: 'a5t3r1k', url: 'https://www.roblox.com/users/1458471315/profile?friendshipSourceType=PlayerSearch' },
-  { name: 'postal__pal', url: 'https://www.roblox.com/users/1538934843/profile?friendshipSourceType=PlayerSearch' },
-];
+const MISSIONS_ROUTE = /^#\/missions(?:\/([A-Za-z0-9_-]+))?$/;
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -57,6 +46,7 @@ function App() {
   const [adminFormCategory, setAdminFormCategory] = useState<LocationCategory>('Other');
   const [adminViewMode, setAdminViewMode] = useState<'list' | 'add' | 'edit'>('list');
   const [adminDragMode, setAdminDragMode] = useState(false);
+  const [route, setRoute] = useState(() => window.location.hash);
 
   const {
     locations,
@@ -93,9 +83,30 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const sync = () => setRoute(window.location.hash);
+    window.addEventListener('hashchange', sync);
+    window.addEventListener('popstate', sync);
+    return () => {
+      window.removeEventListener('hashchange', sync);
+      window.removeEventListener('popstate', sync);
+    };
+  }, []);
+
+  const navigate = useCallback((hash: string) => {
+    window.history.pushState(null, '', hash || window.location.pathname + window.location.search);
+    setRoute(hash);
+  }, []);
+
+  const missionRoute = route.match(MISSIONS_ROUTE);
+  const isMissionsRoute = missionRoute !== null;
+
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        if (isChangelogOpen) {
+        if (isMissionsRoute) {
+          // like the admin panel, back out of the mission first, then the page
+          navigate(missionRoute[1] ? '#/missions' : '');
+        } else if (isChangelogOpen) {
           markChangelogSeen();
           setIsChangelogOpen(false);
         } else if (isAdminOpen && adminViewMode === 'list') {
@@ -124,7 +135,7 @@ function App() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedLocation, setSelectedLocation, isAboutOpen, isAdminOpen, adminViewMode, isChangelogOpen, undo, redo]);
+  }, [selectedLocation, setSelectedLocation, isAboutOpen, isAdminOpen, adminViewMode, isChangelogOpen, undo, redo, isMissionsRoute, missionRoute, navigate]);
 
   const handleLoaded = useCallback(() => {
     setIsLoading(false);
@@ -208,6 +219,27 @@ function App() {
 
   const currentCredit = BG_CREDITS[currentBgIndex];
 
+  if (isMissionsRoute) {
+    return (
+      <Suspense
+        fallback={
+          <div className="missions-boot">
+            <div className="brm-loader">
+              <div className="brm-loader-track" />
+              <span className="brm-loader-label">Loading missions</span>
+            </div>
+          </div>
+        }
+      >
+        <MissionsPage
+          missionId={missionRoute[1] ?? null}
+          onSelectMission={id => navigate(id ? `#/missions/${id}` : '#/missions')}
+          onExit={() => navigate('')}
+        />
+      </Suspense>
+    );
+  }
+
   return (
     <>
       {isPreloaderVisible && (
@@ -287,6 +319,13 @@ function App() {
                 />
               )}
             </div>
+          </div>
+
+          <div className="sidebar-nav">
+            <button className="brm-btn sidebar-missions" onClick={() => navigate('#/missions')}>
+              Mission Library
+              <span className="sidebar-missions-glyph">▶</span>
+            </button>
           </div>
 
           <div className="sidebar-display">

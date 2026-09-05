@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { BG_IMAGES, randomBgIndex } from '../data/backgrounds';
 import './Preloader.css';
 
 interface PreloaderProps {
@@ -7,36 +8,15 @@ interface PreloaderProps {
   onFadeComplete?: () => void;
 }
 
-const BG_IMAGES = [
-  '/BG/BG1.jpeg',
-  '/BG/BG2.png',
-  '/BG/BG3.png',
-  '/BG/BG4.png',
-  '/BG/BG5.jpg',
-  '/BG/BG6.png',
-  '/BG/BG7.jpeg',
-  '/BG/BG8.png',
-  '/BG/BG9.png',
-  '/BG/BG10.png',
-  '/BG/BG11.png',
-  '/BG/BG12.png',
-  '/BG/BG13.png',
-  '/BG/BG14.png',
-  '/BG/BG15.png',
-  '/BG/BG16.png',
-];
-
 const getRandomDelay = () => Math.random() * (400 - 150) + 150;
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-const getRandomBgIndex = () => Math.floor(Math.random() * BG_IMAGES.length);
-
 export function Preloader({ onLoaded, isFadingOut = false, onFadeComplete }: PreloaderProps) {
   const [progress, setProgress] = useState(0);
   const [statusText, setStatusText] = useState('INITIALIZING...');
-  const [currentBgIndex] = useState(getRandomBgIndex);
-  const [nextBgIndex, setNextBgIndex] = useState(() => (getRandomBgIndex() + 1) % BG_IMAGES.length);
+  const [currentBgIndex] = useState(randomBgIndex);
+  const [nextBgIndex, setNextBgIndex] = useState(() => (randomBgIndex() + 1) % BG_IMAGES.length);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [bgReady, setBgReady] = useState(false);
 

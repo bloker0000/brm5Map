@@ -265,10 +265,41 @@
   border-bottom-color: var(--brm-accent);
 }
 
+.sidebar-nav {
+  flex-shrink: 0;
+  padding: 12px 14px 0;
+}
+
+.sidebar-missions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+.sidebar-missions-glyph {
+  font-size: 0.6rem;
+  color: var(--brm-text-muted);
+}
+
+.sidebar-missions:hover .sidebar-missions-glyph {
+  color: var(--brm-accent);
+}
+
 .map-container {
   flex: 1;
   position: relative;
   overflow: hidden;
+}
+
+.missions-boot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: var(--brm-bg-dark);
 }
 
 @media (max-width: 768px) {
