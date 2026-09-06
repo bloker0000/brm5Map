@@ -8,6 +8,15 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.11.0',
+    date: '2026-09-06',
+    changes: [
+      'Every location image is now served from this site instead of imgur, so the galleries work in countries where imgur is blocked',
+      'Location images are about a fifteenth of the size they were, so a gallery opens much faster on a slow connection',
+      'The background artwork loads about twenty times quicker, which is most of the wait before the map appears',
+    ],
+  },
+  {
     version: '1.10.0',
     date: '2026-09-06',
     changes: [
