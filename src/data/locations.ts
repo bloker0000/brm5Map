@@ -18,13 +18,14 @@ function sanitizeImages(raw: unknown): LocationImage[] {
     .map((img) => {
       if (typeof img === 'string') return { url: img.trim() };
       if (!img || typeof img !== 'object') return null;
-      const { url, description } = img as Partial<LocationImage>;
+      const { url, description, thumb } = img as Partial<LocationImage>;
       if (typeof url !== 'string' || !url.trim()) return null;
       return {
         url: url.trim(),
         ...(typeof description === 'string' && description.trim()
           ? { description: description.trim() }
           : {}),
+        ...(typeof thumb === 'string' && thumb.trim() ? { thumb: thumb.trim() } : {}),
       };
     })
     .filter((img): img is LocationImage => img !== null);

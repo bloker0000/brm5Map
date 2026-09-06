@@ -448,6 +448,70 @@
   border: 1px solid var(--brm-border);
 }
 
+.modal-missions {
+  padding: 16px 20px 18px;
+  border-top: 1px solid var(--brm-border);
+}
+
+.modal-missions-label {
+  margin-bottom: 10px;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: var(--tr-micro);
+  text-transform: uppercase;
+  color: var(--brm-text-muted);
+}
+
+.modal-mission {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 12px;
+  border: 1px solid var(--brm-border);
+  border-bottom: none;
+  color: var(--brm-text-dim);
+  text-decoration: none;
+  transition: border-color var(--t-fast) var(--ease),
+              background-color var(--t-fast) var(--ease),
+              color var(--t-fast) var(--ease);
+}
+
+.modal-mission:last-child {
+  border-bottom: 1px solid var(--brm-border);
+}
+
+.modal-mission:hover {
+  background: var(--brm-accent-wash);
+  border-color: var(--brm-accent);
+  color: var(--brm-accent);
+}
+
+/* the hovered row owns both its own top border and the next row's, so the
+   neighbour below does not draw a stale line over it */
+.modal-mission:hover + .modal-mission {
+  border-top-color: var(--brm-accent);
+}
+
+.modal-mission-name {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: var(--tr-label);
+}
+
+.modal-mission svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+}
+
+.modal-mission:hover svg {
+  opacity: 1;
+}
+
 .modal-coords {
   position: sticky;
   bottom: 0;

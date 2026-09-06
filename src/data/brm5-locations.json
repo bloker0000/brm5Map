@@ -179,7 +179,7 @@
     "name": "Pier 17 Mall",
     "x": 2533,
     "y": 743,
-    "description": "A **former multi-story shopping mall** that offers several points of interest and tactical considerations.\n\n### Key Features\n* Escalators connecting the upper floors\n* **Extraction point** located on the rooftop\n* Sheepdog camp positioned on the NE side\n* Mounted **M240B machine gun** located on the second floor on the SE side\n\n### Threats\n- A large number of zombies can spawn inside and around the mall, with their numbers increasing significantly at night.\n- In PVE, be aware that the Sheepdogs may aggro the zombies, causing every zombie in the area to swarm towards the mall.",
+    "description": "A **former multi-story shopping mall** that offers several points of interest and tactical considerations.\n\n### Key Features\n* Escalators connecting the upper floors\n* **Extraction point** located on the rooftop\n* Sheepdog camp positioned on the NE side\n* Mounted **M240B machine gun** located on the second floor on the SE side\n\n### Threats\n- A large number of zombies can spawn inside and around the mall, with their numbers increasing significantly at night.\n- In PVE, be aware that the Sheepdogs may aggro the zombies, causing every zombie in the area to swarm towards the mall.\n\n### Mission Relevance\nSeveral of the abandoned posts *Hammer Down, pt. 5* photographs are in and around the mall.",
     "category": "Explorable Area",
     "id": "mjrufsit5s55teg03a",
     "images": [
@@ -255,9 +255,15 @@
     "name": "Damage Bridge1",
     "x": 2207,
     "y": 503,
-    "description": "**Damaged section** of the bridge. Navigation may be limited.",
+    "description": "**Damaged section** of the bridge. Navigation may be limited.\n\n### Mission Relevance\nThe real information in *Defectors, pt. 2* is stashed out here, once the dead drop at Peck Slip Plaza turns out to be a decoy.",
     "category": "Landmark",
-    "id": "mjrumdh97nqjpqv32an"
+    "id": "mjrumdh97nqjpqv32an",
+    "images": [
+      {
+        "url": "/locations/bridge/DamagedBridge1.webp",
+        "thumb": "/locations/bridge/DamagedBridge1@thumb.webp"
+      }
+    ]
   },
   {
     "name": "Damaged Bridge2",
@@ -265,13 +271,19 @@
     "y": 1353,
     "description": "**Damaged section** of the bridge. Navigation may be limited.",
     "category": "Landmark",
-    "id": "mjrumoor2ejyp50h2h9"
+    "id": "mjrumoor2ejyp50h2h9",
+    "images": [
+      {
+        "url": "/locations/bridge/DamagedBridge2.webp",
+        "thumb": "/locations/bridge/DamagedBridge2@thumb.webp"
+      }
+    ]
   },
   {
     "name": "Water Treatment Plant (Site C)",
     "x": 2217,
     "y": 1813,
-    "description": "The **most dangerous zombie location** in the game, the *Water Treatment Plant*, also known as *Site C*.\n\n### Threat Level: EXTREME\n- Most aggressive zombie spawns in the game\n- Highest zombie population density\n- Zombies can spawn directly in front of you\n\n### Location\nLocated under the bridge with an underground sewer system.\n\n### Recommended Strategy\n- **Bring a team** - solo runs are nearly impossible\n- Shoot zombies in the legs to immobilize and prevent respawns\n- Have one teammate lure zombies while another moves in\n- Utilise the smaller sewage tunnels shown in the images\n\n*Do not attempt alone.*",
+    "description": "The **most dangerous zombie location** in the game, the *Water Treatment Plant*, also known as *Site C*.\n\n### Threat Level: EXTREME\n- Most aggressive zombie spawns in the game\n- Highest zombie population density\n- Zombies can spawn directly in front of you\n\n### Location\nLocated under the bridge with an underground sewer system.\n\n### Recommended Strategy\n- **Bring a team** - solo runs are nearly impossible\n- Shoot zombies in the legs to immobilize and prevent respawns\n- Have one teammate lure zombies while another moves in\n- Utilise the smaller sewage tunnels shown in the images\n\n*Do not attempt alone.*\n\n### Mission Relevance\nSite C, where Lakewell's team retreated to. *The Deep End, pt. 2* recovers the **weaponised virus samples** and the data on his whereabouts from in here.",
     "category": "Zombie Nest",
     "id": "mjrurjdgevrvm94t688",
     "images": [
@@ -505,7 +517,19 @@
     "y": 382,
     "description": "# RESCUE MODE ONLY\nHelicopter extraction point for the hospital quarantine zone.\n\n### Usage\nActivate via **CSEL extraction radio**. The helicopter lands on the highest accessible floor of the helipad. It will only get called there, if you are close enough to the helipad.",
     "category": "Exfil Point",
-    "id": "mjrv19m6j8i15ykkmf"
+    "id": "mjrv19m6j8i15ykkmf",
+    "images": [
+      {
+        "url": "/locations/hospitalheliplatform/HospitalHelipad1.webp",
+        "thumb": "/locations/hospitalheliplatform/HospitalHelipad1@thumb.webp",
+        "description": "Hospital Helipad 1"
+      },
+      {
+        "url": "/locations/hospitalheliplatform/HospitalHelipad2.webp",
+        "thumb": "/locations/hospitalheliplatform/HospitalHelipad2@thumb.webp",
+        "description": "Hospital Helipad 2"
+      }
+    ]
   },
   {
     "name": "Crashed Helicopter",
@@ -525,7 +549,7 @@
     "name": "Fresh Stop Supermarket",
     "x": 1672,
     "y": 319,
-    "description": "*TBA*",
+    "description": "A **supermarket** a short walk from the Metro Hospital.\n\n### Mission Relevance\nThe \"supermarket near the hospital\" in *A Bigger Kindness*. **Two coffee cans** spawn on the shelves here, out of the four the mission needs.",
     "category": "Explorable Area",
     "id": "mjrv2vig3klf2lnqy9d",
     "images": [
@@ -585,15 +609,21 @@
     "name": "Peck Slip Plaza",
     "x": 2029,
     "y": 467,
-    "description": "*TBA*",
+    "description": "An open **plaza** off Peck Slip.\n\n### Mission Relevance\nWhere the handover in *Defectors, pt. 2* is meant to happen. Pierrat's contacts are waiting, and the dead drop they came for is here - the real information is stashed further out, near the damaged bridge.",
     "category": "Landmark",
-    "id": "mjrv576jhfopdf83x5i"
+    "id": "mjrv576jhfopdf83x5i",
+    "images": [
+      {
+        "url": "/locations/PeckSlipPlaza.webp",
+        "thumb": "/locations/PeckSlipPlaza@thumb.webp"
+      }
+    ]
   },
   {
     "name": "Substation",
     "x": 2095,
     "y": 295,
-    "description": "A power plant substation. **Used in a PVE mission** objective.",
+    "description": "A **power transmission substation** near the Brooklyn Bridge, bringing power in from across the water. One of the two lynchpins of the street lighting grid that keeps the infected down in the subway tunnels.\n\n### Mission Relevance\n- *Just Keeping the Lights On* photographs the transformers here\n- *Keeping the Lights On, pt. 2* comes back to **replace two cooling fans** on the heatsinks\n- *Eyes Everywhere* ends at a CCTV listening post on this block",
     "category": "Explorable Area",
     "id": "mjrv5xcwy1hj2ugofn",
     "images": [
@@ -625,7 +655,7 @@
     "name": "Euro Deli",
     "x": 2123,
     "y": 643,
-    "description": "A small multi-story building **excellent for scouting**.\n\n\n### Vantage Point\n\n- Near-complete view of the entire bridge\n\n- Top floor offers a **360-degree view**\n\nIdeal for reconnaissance before crossing the bridge.",
+    "description": "A small multi-story building **excellent for scouting**.\n\n\n### Vantage Point\n\n- Near-complete view of the entire bridge\n\n- Top floor offers a **360-degree view**\n\nIdeal for reconnaissance before crossing the bridge.\n\n### Mission Relevance\n- Dr. Miller's home in *Defectors*, where his **cell phone** is recovered\n- One of the four coffee cans in *A Bigger Kindness* is in the deli\n- One of the businesses *Insurance Adjuster* photographs",
     "category": "Explorable Area",
     "id": "mjrv8r38qirhjh5858k",
     "images": [
@@ -667,7 +697,7 @@
     "name": "Garage Sheepdog Camp",
     "x": 1770,
     "y": 657,
-    "description": "**Medium enemy group** occupying a secluded garage at **Water** street.\n\n### Possible Loot\n- Medicine\n- Ammo & Weapons",
+    "description": "**Medium enemy group** occupying a secluded garage at **Water** street.\n\n### Possible Loot\n- Medicine\n- Ammo & Weapons\n\n### Mission Relevance\nOne of the three sewer gates closed off in *Wetwork, pt. 2* comes up under this garage.",
     "category": "Enemy Location",
     "id": "mjrv9gckk0fdmss301l",
     "images": [
@@ -681,9 +711,61 @@
     "name": "Fluton Market",
     "x": 2072,
     "y": 1243,
-    "description": "*TBA*",
+    "description": "A **multi-storey market building** with several shop units still standing inside, and an outpost on the top-floor balcony.\n\n### Inside\n- **EZ-Mart** convenience store\n- A **Quill** outlet\n- Open floors from the ground up to the roof balcony\n\n### Mission Relevance\nCoffee for *A Bigger Kindness* sits in the EZ-Mart. The luxury handbag for *A Small Kindness* is in the Quill outlet - this is the \"mall\" that briefing means.",
     "category": "Explorable Area",
-    "id": "mjrvbvm2xw7dk78r5yb"
+    "id": "mjrvbvm2xw7dk78r5yb",
+    "images": [
+      {
+        "url": "/locations/flutonMarket/FlutonMarket_Outside.webp",
+        "thumb": "/locations/flutonMarket/FlutonMarket_Outside@thumb.webp",
+        "description": "Outside"
+      },
+      {
+        "url": "/locations/flutonMarket/FlutonMarket_FirstFloor.webp",
+        "thumb": "/locations/flutonMarket/FlutonMarket_FirstFloor@thumb.webp",
+        "description": "First Floor"
+      },
+      {
+        "url": "/locations/flutonMarket/FlutonMarket_EZMart.webp",
+        "thumb": "/locations/flutonMarket/FlutonMarket_EZMart@thumb.webp",
+        "description": "EZMart"
+      },
+      {
+        "url": "/locations/flutonMarket/FlutonMarket_Quill1.webp",
+        "thumb": "/locations/flutonMarket/FlutonMarket_Quill1@thumb.webp",
+        "description": "Quill 1"
+      },
+      {
+        "url": "/locations/flutonMarket/FlutonMarket_Quill2.webp",
+        "thumb": "/locations/flutonMarket/FlutonMarket_Quill2@thumb.webp",
+        "description": "Quill 2"
+      },
+      {
+        "url": "/locations/flutonMarket/FlutonMarket_SecondFloor.webp",
+        "thumb": "/locations/flutonMarket/FlutonMarket_SecondFloor@thumb.webp",
+        "description": "Second Floor"
+      },
+      {
+        "url": "/locations/flutonMarket/FlutonMarket_ThirdFloor.webp",
+        "thumb": "/locations/flutonMarket/FlutonMarket_ThirdFloor@thumb.webp",
+        "description": "Third Floor"
+      },
+      {
+        "url": "/locations/flutonMarket/FlutonMarket_topFloor.webp",
+        "thumb": "/locations/flutonMarket/FlutonMarket_topFloor@thumb.webp",
+        "description": "Top Floor"
+      },
+      {
+        "url": "/locations/flutonMarket/FlutonMarket_TopFloorBalconyOutpost.webp",
+        "thumb": "/locations/flutonMarket/FlutonMarket_TopFloorBalconyOutpost@thumb.webp",
+        "description": "Top Floor Balcony Outpost"
+      },
+      {
+        "url": "/locations/flutonMarket/FlutonMarket_steakCavern.webp",
+        "thumb": "/locations/flutonMarket/FlutonMarket_steakCavern@thumb.webp",
+        "description": "Steak Cavern"
+      }
+    ]
   },
   {
     "name": "Bandit Camp",
@@ -749,7 +831,7 @@
     "name": "Abrams Square Bandit Outpost",
     "x": 2101,
     "y": 1467,
-    "description": "**Small enemy group** near the **Abrams Square** infiltration point. Not much loot here.\n\n### Warning\nYou may get shot at immediately upon drop-off. Be ready to engage.",
+    "description": "**Small enemy group** near the **Abrams Square** infiltration point. Not much loot here.\n\n### Warning\nYou may get shot at immediately upon drop-off. Be ready to engage.\n\n### Mission Relevance\nMunez' safehouse is the top-floor apartment in this block, on Gouverneur x South. *Apocalyptic Appraisal* clears and photographs it for her, and *Connecting the Dots* delivers the Manhattan Star's ledger back to her here.",
     "category": "Enemy Location",
     "id": "mjrvg2yu12fqri0iple",
     "images": [
@@ -763,23 +845,91 @@
     "name": "Parking Lot",
     "x": 1947,
     "y": 1468,
-    "description": "*TBA*",
+    "description": "An open **parking lot**, useful mostly as a landmark and a quiet place to meet someone.\n\n### Mission Relevance\nThe dead drop in *Unknown Caller* is left here. Picking the gift up springs a **mercenary ambush** - a friendly sniper covers the lot while you get clear.",
     "category": "Landmark",
-    "id": "mjrvgrtswnpdlpuclgf"
+    "id": "mjrvgrtswnpdlpuclgf",
+    "images": [
+      {
+        "url": "/locations/ParkingLot.webp",
+        "thumb": "/locations/ParkingLot@thumb.webp"
+      }
+    ]
   },
   {
     "name": "Fairfield Inn & Suites",
     "x": 1946,
     "y": 1652,
-    "description": "*TBA*",
+    "description": "A hotel with an entrance, lounge and storage room on the ground floor, and **apartments on the two floors above**.\n\n### Burned apartment\nThe apartment on the **third floor is gutted by fire**. A **fireproof safe** survived in it, which is what makes the building worth the climb.\n\n### Mission Relevance\n*Research Fellow* sends you up here for the dead researcher's documents and finds the safe locked. *Research Fellow, pt. 3* comes back with the key once the yellow duffel bag turns up, and the dissertation is inside.",
     "category": "Explorable Area",
-    "id": "mjrvh8tdvgr30i8ck1"
+    "id": "mjrvh8tdvgr30i8ck1",
+    "images": [
+      {
+        "url": "/locations/FairfieldInn/FairfieldInn_Outside1.webp",
+        "thumb": "/locations/FairfieldInn/FairfieldInn_Outside1@thumb.webp",
+        "description": "Outside 1"
+      },
+      {
+        "url": "/locations/FairfieldInn/FairfieldInn_Outside2.webp",
+        "thumb": "/locations/FairfieldInn/FairfieldInn_Outside2@thumb.webp",
+        "description": "Outside 2"
+      },
+      {
+        "url": "/locations/FairfieldInn/FairfieldInn_FisrtFloorEntrance.webp",
+        "thumb": "/locations/FairfieldInn/FairfieldInn_FisrtFloorEntrance@thumb.webp",
+        "description": "First Floor Entrance"
+      },
+      {
+        "url": "/locations/FairfieldInn/FairfieldInn_FirstFloorLounge.webp",
+        "thumb": "/locations/FairfieldInn/FairfieldInn_FirstFloorLounge@thumb.webp",
+        "description": "First Floor Lounge"
+      },
+      {
+        "url": "/locations/FairfieldInn/FairfieldInn_FirstFloorStorageRoom.webp",
+        "thumb": "/locations/FairfieldInn/FairfieldInn_FirstFloorStorageRoom@thumb.webp",
+        "description": "First Floor Storage Room"
+      },
+      {
+        "url": "/locations/FairfieldInn/FairfieldInn_SecondFloorStairs.webp",
+        "thumb": "/locations/FairfieldInn/FairfieldInn_SecondFloorStairs@thumb.webp",
+        "description": "Second Floor Stairs"
+      },
+      {
+        "url": "/locations/FairfieldInn/FairfieldInn_SecondFloorApartment1.webp",
+        "thumb": "/locations/FairfieldInn/FairfieldInn_SecondFloorApartment1@thumb.webp",
+        "description": "Second Floor Apartment 1"
+      },
+      {
+        "url": "/locations/FairfieldInn/FairfieldInn_SecondFloorApartment2.webp",
+        "thumb": "/locations/FairfieldInn/FairfieldInn_SecondFloorApartment2@thumb.webp",
+        "description": "Second Floor Apartment 2"
+      },
+      {
+        "url": "/locations/FairfieldInn/FairfieldInn_SecondFloorAparatment3.webp",
+        "thumb": "/locations/FairfieldInn/FairfieldInn_SecondFloorAparatment3@thumb.webp",
+        "description": "Second Floor Apartment 3"
+      },
+      {
+        "url": "/locations/FairfieldInn/FairfieldInn_ThirdFloorBurnedApartment1.webp",
+        "thumb": "/locations/FairfieldInn/FairfieldInn_ThirdFloorBurnedApartment1@thumb.webp",
+        "description": "Third Floor Burned Apartment 1"
+      },
+      {
+        "url": "/locations/FairfieldInn/FairfieldInn_ThirdFloorBurnedApartment2.webp",
+        "thumb": "/locations/FairfieldInn/FairfieldInn_ThirdFloorBurnedApartment2@thumb.webp",
+        "description": "Third Floor Burned Apartment 2"
+      },
+      {
+        "url": "/locations/FairfieldInn/FairfieldInn_ThirdFloorBurnedApartment_Safe.webp",
+        "thumb": "/locations/FairfieldInn/FairfieldInn_ThirdFloorBurnedApartment_Safe@thumb.webp",
+        "description": "Third Floor Burned Apartment Safe"
+      }
+    ]
   },
   {
     "name": "Carl's Cars Sheepdog Outpost",
     "x": 1871,
     "y": 2015,
-    "description": "**Large enemy group** outside and inside **Carl's Cars** dealership.\n\n### Warning\nBe careful when entering the building as enemy can start shooting you from second floor. Some will also hide behind cover/corners.\n\nFor more details, view **Carl's Cars** marker.",
+    "description": "**Large enemy group** outside and inside **Carl's Cars** dealership.\n\n### Warning\nBe careful when entering the building as enemy can start shooting you from second floor. Some will also hide behind cover/corners.\n\nFor more details, view **Carl's Cars** marker.\n\n### Mission Relevance\nOne of three places the lost repair truck in *Keeping the Lights On, pt. 2* can be parked. The **replacement fan blades** are in the back of it.",
     "category": "Enemy Location",
     "id": "mjrvj0bwpto8itfovkp",
     "images": [
@@ -793,7 +943,7 @@
     "name": "Top of Raised Park",
     "x": 2000,
     "y": 2179,
-    "description": "Southern extraction point with **two access routes**.\n\n### Access\n- Southeast staircase\n- Northwest staircase",
+    "description": "Southern extraction point with **two access routes**.\n\n### Access\n- Southeast staircase\n- Northwest staircase\n\n### Mission Relevance\nThe exfil the second Stryker in *Armored Patrol, pt. 2* is parked next to, on the highway by the shore.",
     "category": "Exfil Point",
     "id": "mjrvk7yp6ewdm0dtggd",
     "images": [
@@ -859,7 +1009,7 @@
     "name": "Liberty Bank",
     "x": 1303,
     "y": 1985,
-    "description": "A small bank with a secured vault and office desks.\n### Possible Loot\n- Medical supplies\n- Some valuable junk\n- Keys",
+    "description": "A small bank with a secured vault and office desks.\n### Possible Loot\n- Medical supplies\n- Some valuable junk\n- Keys\n\n### Mission Relevance\nThe branch on Stone x Pearl that *Asset Re-Appropriation* robs, and one of the five spots *Spreading the Word* pastes a newspaper over.",
     "category": "Explorable Area",
     "id": "mjrvob8nmok6jfgzced",
     "images": [
@@ -915,7 +1065,7 @@
     "name": "Locked Safe",
     "x": 980,
     "y": 1921,
-    "description": "A **locked safe** on the second-to-last floor of **Activity-Full & Sphere Solutions** building. Requires **Safe Key** to open.\n\n### Directions\n1. Take the first staircase\n2. Go **left** on the second-to-last floor\n3. Safe is on that side of the building\n\n### Possible Loot\n- Ammo & Weapons\n- Military equipment\n- Some valuable junk\n- Rare & Unique keys",
+    "description": "A **locked safe** on the second-to-last floor of **Activity-Full & Sphere Solutions** building. Requires **Safe Key** to open.\n\n### Directions\n1. Take the first staircase\n2. Go **left** on the second-to-last floor\n3. Safe is on that side of the building\n\n### Possible Loot\n- Ammo & Weapons\n- Military equipment\n- Some valuable junk\n- Rare & Unique keys\n\n### Mission Relevance\nThe hard copy of the project in *Up For Some Gaming?* is inside this safe.",
     "category": "Locked Door",
     "id": "mjrvoz6urfycx8xq8q",
     "images": [
@@ -977,7 +1127,7 @@
     "name": "Dorsia",
     "x": 806,
     "y": 1847,
-    "description": "A dining place that is connected to **Quill** clothing store.\n\n### Possible Loot\n- Food and water\n- Medical items\n\n### Threat\nBack area of this place is occupied by bandits.\n\n### Mission\nChef recipe, that's needed for \"name\" mission, spawns in the backroom.",
+    "description": "A dining place that is connected to **Quill** clothing store.\n\n### Possible Loot\n- Food and water\n- Medical items\n\n### Threat\nBack area of this place is occupied by bandits.\n\n### Mission Relevance\nThe recipe notepad for *Secret Recipe* spawns in the backroom, guarded by the **bandit chef in the red cap**.",
     "category": "Explorable Area",
     "id": "mjrvqwzr30168dstyr8",
     "images": [
@@ -1075,7 +1225,7 @@
     "name": "Whitehall Sheepdog Outpost",
     "x": 724,
     "y": 1993,
-    "description": "**Small enemy group** guarding the ladder leading to extraction point. Not much loot here.\n\n### Warning\nEnemies may alert zombies from the Quill clothing store. Keep that in mind when clearing.\n\n### Mission Relevance\nThere is a garage door leading to underground parking lot, which opens only during \"name\".",
+    "description": "**Small enemy group** guarding the ladder leading to extraction point. Not much loot here.\n\n### Warning\nEnemies may alert zombies from the Quill clothing store. Keep that in mind when clearing.\n\n### Mission Relevance\nThere is a garage door leading to underground parking lot, which opens only during \"name\".\n\n### Mission Relevance\nThe fortified camp in the underground parking lot that *Hammer Down, pt. 2* hits for the explosives, and one of the five *Spreading the Word* newspaper spots.",
     "category": "Enemy Location",
     "id": "mjrvtq3vt1itadzeuss",
     "images": [
@@ -1119,7 +1269,7 @@
     "name": "Ground Zero 2 Garage",
     "x": 692,
     "y": 1573,
-    "description": "An **underground garage system** filled with zombies.\n\n### Layout\n- **Top Level**: Improvised meeting room (key required)\n- **Lower Levels**: Two garage floors with cars and tight spaces\n\n### Strategy\nClear zombies in larger open areas before moving down. *Stealth is not viable unless zombie numbers are low.*",
+    "description": "An **underground garage system** filled with zombies.\n\n### Layout\n- **Top Level**: Improvised meeting room (key required)\n- **Lower Levels**: Two garage floors with cars and tight spaces\n\n### Strategy\nClear zombies in larger open areas before moving down. *Stealth is not viable unless zombie numbers are low.*\n\n### Mission Relevance\n- *The Deep End* hides the field lab key on the lowest floor, next to a red car\n- *Asset Re-Appropriation* looks for the bank manager's **white SUV** down here\n- One of the four presents in *Merry Rescue Mission* is in the nest",
     "category": "Zombie Nest",
     "id": "mjrvv68b48b96iwqjdc",
     "images": [
@@ -1133,7 +1283,7 @@
     "name": "Ground Zero 2 (Site A)",
     "x": 784,
     "y": 1460,
-    "description": "A quarantine zone featuring an **underground garage**.\n\n\n### Layout\n\n- **Top Level**: Improvised meeting room (key required)\n\n- **Lower Levels**: Two floors with cars, tight corners, and zombies\n\nExpect heavy zombie presence throughout.",
+    "description": "A quarantine zone featuring an **underground garage**.\n\n\n### Layout\n\n- **Top Level**: Improvised meeting room (key required)\n\n- **Lower Levels**: Two floors with cars, tight corners, and zombies\n\nExpect heavy zombie presence throughout.\n\n### Mission Relevance\nThe Mobile Quarantine unit *Safety Inspection* photographs from all sides stands in the zone, and Lakewell's field laboratory in *The Deep End* is in the garage below.",
     "category": "Quarantine Zone",
     "id": "mjrvvish6y9sad2bfmb",
     "images": [
@@ -1151,7 +1301,7 @@
     "name": "Improvised Meeting Room",
     "x": 648,
     "y": 1568,
-    "description": "A key-locked meeting room on the **top floor** of the Ground Zero 2 garage.\n\n### Best Approach\n1. Use the **west entrance**\n2. Go straight to the garage\n3. Silently eliminate zombies in front\n4. Loot without being spotted\n\n### Possible Loot\n- Medicine\n- Ammo\n\n### Warning\nGetting spotted will alert the horde in the nest below.",
+    "description": "A key-locked meeting room on the **top floor** of the Ground Zero 2 garage.\n\n### Best Approach\n1. Use the **west entrance**\n2. Go straight to the garage\n3. Silently eliminate zombies in front\n4. Loot without being spotted\n\n### Possible Loot\n- Medicine\n- Ammo\n\n### Warning\nGetting spotted will alert the horde in the nest below.\n\n### Mission Relevance\nLakewell's field laboratory in *The Deep End*. The **key is on the lowest floor of the garage, next to a red car**, and the whiteboard note to photograph is in here.",
     "category": "Locked Door",
     "id": "mjrvw2jf49vtrwja4gr",
     "images": [
@@ -1195,7 +1345,7 @@
     "name": "Spawn Location",
     "x": 966,
     "y": 885,
-    "description": "*TBA*",
+    "description": "A **player spawn location** a short way from the **Ground Zero gate**.",
     "category": "Player Spawn",
     "id": "mjrvy7p30pd1dveub0i"
   },
@@ -1307,7 +1457,7 @@
     "name": "Military Checkpoint",
     "x": 1660,
     "y": 1234,
-    "description": "One of the most **resource-rich quarantine zones** on the map, centered around a military checkpoint and a multi-floor parking garage zombie nest.\n\n### Loot Highlights\n- Medical items\n- **M249** and other high-tier weapons\n- Ammo of all types\n- Military cosmetic gear\n- The **Armory** (locked, key extremely rare) on the lowest garage floor\n\n### Threats\n- **High military zombie density** throughout the zone\n- The parking garage zombie nest can spawn **20+ zombies per floor**\n- Night time significantly increases spawn rates — avoid the nest after dark\n\n### Recommended Entry\nUse the **back entrance** next to the basketball field to avoid the main checkpoint concentration of zombies.",
+    "description": "One of the most **resource-rich quarantine zones** on the map, centered around a military checkpoint and a multi-floor parking garage zombie nest.\n\n### Loot Highlights\n- Medical items\n- **M249** and other high-tier weapons\n- Ammo of all types\n- Military cosmetic gear\n- The **Armory** (locked, key extremely rare) on the lowest garage floor\n\n### Threats\n- **High military zombie density** throughout the zone\n- The parking garage zombie nest can spawn **20+ zombies per floor**\n- Night time significantly increases spawn rates — avoid the nest after dark\n\n### Recommended Entry\nUse the **back entrance** next to the basketball field to avoid the main checkpoint concentration of zombies.\n\n### Mission Relevance\nOne of the abandoned National Guard posts *Hammer Down, pt. 5* documents. The third Stryker in *Armored Patrol, pt. 3* sits between here and the hospital.",
     "category": "Quarantine Zone",
     "id": "mjrw01k5pt8lvq0z0c",
     "images": [
@@ -1421,7 +1571,7 @@
     "name": "Fortified Sheepdog Camp",
     "x": 1370,
     "y": 1899,
-    "description": "**Large enemy group** occupying fortified position on **Pearl** street.\n\n### Possible Loot\n- Medicine\n- Consumables\n- Ammo & Weapons\n- Military equipment\n- Some valuable junk",
+    "description": "**Large enemy group** occupying fortified position on **Pearl** street.\n\n### Possible Loot\n- Medicine\n- Consumables\n- Ammo & Weapons\n- Military equipment\n- Some valuable junk\n\n### Mission Relevance\nThe outpost *Hammer Down* raids for the stolen explosives. The **laptop** with the clues about their plans is in here too.",
     "category": "Enemy Location",
     "id": "mjt40ao50mx9h7pcc3j",
     "images": [
@@ -1495,7 +1645,7 @@
     "name": "Whitehall Player Spawn",
     "x": 527,
     "y": 1770,
-    "description": "Player spawn location near Whitehall.",
+    "description": "Player spawn location near Whitehall.\n\n### Mission Relevance\nSergeant Pierrat's last known position in *Missing In Action*. His **CSEL, binoculars and a scrawled note** are in the building here.",
     "category": "Player Spawn",
     "images": [
       {
@@ -1513,7 +1663,7 @@
     "name": "Player Spawn Acitivity Full",
     "x": 979,
     "y": 1973,
-    "description": "*TBA*",
+    "description": "A **player spawn location** at the foot of the **Activity-Full & Sphere Solutions** building.\n\n### Mission Relevance\n*Up For Some Gaming?* starts on the doorstep - the hard copy of the project is in the locked safe upstairs, and mercenaries are already looking for it.",
     "category": "Player Spawn",
     "images": [
       {
@@ -1527,7 +1677,7 @@
     "name": "South-West Metro Station",
     "x": 1609,
     "y": 2132,
-    "description": "An **underground metro station** with valuable loot.\n\n\n### Common Loot\n- Medical items\n- Ammunition\n- Rare loot\n\n### Requirements\n**Gas mask required**\n\n### Warning\nHigh zombie spawn rate. *Come prepared.*",
+    "description": "An **underground metro station** with valuable loot.\n\n\n### Common Loot\n- Medical items\n- Ammunition\n- Rare loot\n\n### Requirements\n**Gas mask required**\n\n### Warning\nHigh zombie spawn rate. *Come prepared.*\n\n### Mission Relevance\nThe station at Stone and Broadway that *Wetwork* photographs. The nest entrances to shoot are down in the tunnels.",
     "category": "Subway Station",
     "images": [
       {
@@ -1655,7 +1805,7 @@
     "name": "Fallen Construction Crane",
     "x": 1614,
     "y": 1563,
-    "description": "A **fallen construction crane** blocking the road. *You can still pass through.*",
+    "description": "A **fallen construction crane** blocking the road. *You can still pass through.*\n\n### Mission Relevance\nThe crane *An Effective Shot* photographs for the front page. It came down on the construction site the Sheepdogs later made their HQ.",
     "category": "Landmark",
     "id": "mjztyhvdjwl1kgf5x9",
     "images": [
@@ -1771,7 +1921,7 @@
     "name": "Gym Panda",
     "x": 1064,
     "y": 1638,
-    "description": "*TBA*",
+    "description": "A **gym on Broad x Old Slip**.\n\n### Mission Relevance\n- One of three possible spawn locations for **Dr. Maison's yellow duffel bag** in *Research Fellow, pt. 3*\n- One of the businesses *Insurance Adjuster* photographs for the damage report\n- One of the five spots *Spreading the Word* pastes a newspaper over",
     "category": "Explorable Area",
     "images": [
       {
@@ -1815,7 +1965,7 @@
     "name": "UNS New York",
     "x": 3383,
     "y": 1111,
-    "description": "yezzir",
+    "description": "The **UNIDB command ship** anchored off Manhattan, and the hub you work out of. Every assignment that ends in an extraction ends here, and the shuttle into the QZ runs from here.\n\n### Aboard\n- **LCDR Hollis Bergher**, second in command of Operation CRYO\n- **Dr. Petra Weiss**, lead researcher for Mercury-2\n- **Nurse Ahmed Najjar**, medical team\n- **Chef Dakila Agbayani**\n- The **Armorer**\n\n### Mission Relevance\n*Tutorial* and *Introductions* are both run on board. *Shallow End* is the first trip out.",
     "category": "Explorable Area",
     "images": [
       {
@@ -1863,7 +2013,7 @@
     "name": "Bank Security Gate",
     "x": 1290,
     "y": 1960,
-    "description": "Locked **Liberty Bank** security gate leading to an opened vault, accessible with **Bank Security Keycard**.\n\n### Possible Loot\n- Medicine\n- Ammo & Weapons\n- Military equipment\n- Lots of valuable junk\n- 3 Unique loot spawns (gold/silver bars, unique keys, etc.)",
+    "description": "Locked **Liberty Bank** security gate leading to an opened vault, accessible with **Bank Security Keycard**.\n\n### Possible Loot\n- Medicine\n- Ammo & Weapons\n- Military equipment\n- Lots of valuable junk\n- 3 Unique loot spawns (gold/silver bars, unique keys, etc.)\n\n### Mission Relevance\n*Asset Re-Appropriation* is how the keycard is found - it is on or near the bank manager's **white SUV** in the Ground Zero 2 parking garage.",
     "category": "Locked Door",
     "id": "mn61mwlnfejyvbralv",
     "images": [
@@ -1921,7 +2071,7 @@
     "name": "Kismet HQ Raid",
     "x": 1019,
     "y": 1651,
-    "description": "",
+    "description": "# RAID\nA **level 10 raid** on Kismet's American headquarters, the top floors of the office block at **181 Slip**.\n\n### How it goes\n1. Take the elevator at 181 Slip up into the lobby\n2. Clear the building and reach the **penthouse**\n3. Kill the **VIPs** and their guards\n4. Reach the roof and **exfil by helicopter**\n\n### Loot\n**Servers** can be taken on the climb up and again on the way to the roof, both optional.",
     "category": "Raid",
     "id": "mnc8hljtke7a8qwdteb"
   },
@@ -1929,7 +2079,7 @@
     "name": "Federal Reserve Bank Raid",
     "x": 765,
     "y": 1237,
-    "description": "",
+    "description": "# RAID\nA **level 10 raid** on the Federal Reserve, held by Kismet.\n\n### How it goes\n1. Clear the lobby and kill the **Kismet commander**\n2. Fight to the elevator down to the vault\n3. Find the explosives in the vault and **breach the security gate**\n4. Photograph where Kismet broke in, then follow the tunnel into the metro\n5. Ride the elevator back up and **survive a Sheepdog ambush** outside\n\n### Loot\n**Gold bullion** can be picked up at almost any point once you are in the vault, and is optional throughout.",
     "category": "Raid",
     "id": "mnc8iejy54bz2ds97x"
   },
@@ -1937,7 +2087,7 @@
     "name": "Sheepdog Stronghold Raid",
     "x": 1635,
     "y": 1528,
-    "description": "",
+    "description": "# RAID\nA **level 10 raid** on the Sheepdogs' HQ in the abandoned construction site, and the end of the *Hammer Down* line.\n\n### How it goes\n1. Reach the compound and ride the elevator in\n2. Fight up through the HQ, one elevator at a time\n3. Eliminate the **Sheepdog leaders**\n4. Clear the roof and **exfil by helicopter**",
     "category": "Raid",
     "id": "mnc8l7rcg7dvxc7smrw"
   },
@@ -2025,7 +2175,7 @@
     "name": "Fulton & Broad Emergency Exit",
     "x": 1049,
     "y": 631,
-    "description": "Currently no key in game that can open it.",
+    "description": "An emergency exit out of the **Fulton Centre** block on William x Fulton.\n\nCurrently no key in game that can open it.",
     "category": "Locked Door",
     "id": "mnc93ghe7slyzwvhlc",
     "images": [
@@ -2039,7 +2189,7 @@
     "name": "Conference Room",
     "x": 1064,
     "y": 556,
-    "description": "Locked room at the first floor of **Fulton Centre**, opened with **Conference Room Key**. Has not much in terms of loot and currently considered the worst locked loot location.",
+    "description": "Locked room at the first floor of **Fulton Centre**, opened with **Conference Room Key**. Has not much in terms of loot and currently considered the worst locked loot location.\n\n### Mission Relevance\nThe tracked sample container in *The Deep End, pt. 3* is in this room.",
     "category": "Locked Door",
     "id": "mnc93y2zacdgll7hos",
     "images": [
@@ -2065,7 +2215,7 @@
     "name": "Vault Locker",
     "x": 778,
     "y": 1331,
-    "description": "",
+    "description": "A locker behind a **blue iron security door**, inside the **Federal Reserve** vault.\n\n### Possible Loot\n- Iron and gold bars\n\n### Mission Relevance\nSits in the vault the *Federal Reserve Raid* breaches on its way down.",
     "category": "Locked Door",
     "id": "mnmv6ti5vly2mg513ns"
   },
@@ -2139,7 +2289,7 @@
     "name": "Fulton x William Building",
     "x": 1036,
     "y": 556,
-    "description": "",
+    "description": "The **Fulton Centre** office block on the corner of William and Fulton. The ground-floor conference room and the Fulton & Broad emergency exit are both part of this building.\n\n### Mission Relevance\n*The Deep End, pt. 3* tracks the stolen sample container here. The container turns out to be empty, and John Doe's men ambush you on the way back out.",
     "category": "Explorable Area",
     "images": [
       {

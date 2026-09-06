@@ -361,6 +361,8 @@ export function AdminPanel({
       .map(img => ({
         url: img.url.trim(),
         ...(img.description?.trim() ? { description: img.description.trim() } : {}),
+        // no field for it in the form, but a generated shot's thumb has to survive an edit
+        ...(img.thumb ? { thumb: img.thumb } : {}),
       }));
     const locationData = {
       name: formData.name.trim(),

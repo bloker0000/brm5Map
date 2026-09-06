@@ -8,6 +8,19 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.10.0',
+    date: '2026-09-06',
+    changes: [
+      'Locations now list the missions that take place there, with a link straight to that mission in the library',
+      'Added 28 images to seven locations that had none: Fairfield Inn & Suites, Fluton Market, Hospital Helipad, Parking Lot, Peck Slip Plaza, and both damaged bridges',
+      'Wrote out all three raids, from the lobby through to the exfil, with what is worth picking up on the way',
+      'Filled in the blank descriptions on Fluton Market, Fairfield Inn & Suites, Fresh Stop Supermarket, Gym Panda, Parking Lot, Peck Slip Plaza, Fulton x William Building, Vault Locker, the UNS New York and two player spawns',
+      'Added mission relevance to 23 more locations, including where to find the Asset Re-Appropriation keycard, The Deep End lab key, and the Keeping the Lights On fan blades',
+      'Named the mission on markers that only said a mission used them, like Dorsia and the Substation',
+      'Image thumbnail strips load a smaller file, so opening a gallery is quicker',
+    ],
+  },
+  {
     version: '1.9.0',
     date: '2026-09-05',
     changes: [

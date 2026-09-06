@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import type { MapLocation, LocationImage } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
 import { CategoryIcon, CloseIcon } from './Icons';
+import { missionsAt } from '../data/location-missions';
 import { ImageLightbox } from './ImageLightbox';
 import { useExitTransition } from '../hooks/useExitTransition';
 import Markdown from 'react-markdown';
@@ -59,6 +60,7 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
   const hasMultipleImages = images.length > 1;
   const safeIndex = Math.min(currentImageIndex, images.length - 1);
   const currentImage = hasImages ? images[Math.max(0, safeIndex)] : null;
+  const missions = missionsAt(shown.id);
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
@@ -143,7 +145,7 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
                       className={`modal-thumbnail ${index === safeIndex ? 'active' : ''}`}
                       onClick={() => setCurrentImageIndex(index)}
                     >
-                      <img src={img.url} alt={img.description || `Image ${index + 1}`} />
+                      <img src={img.thumb ?? img.url} alt={img.description || `Image ${index + 1}`} />
                     </button>
                   ))}
                 </div>
@@ -156,6 +158,20 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
               {shown.description}
             </Markdown>
           </div>
+
+          {missions.length > 0 && (
+            <div className="modal-missions">
+              <div className="modal-missions-label">
+                {missions.length === 1 ? 'Mission here' : 'Missions here'}
+              </div>
+              {missions.map((mission) => (
+                <a key={mission.id} className="modal-mission" href={`#/missions/${mission.id}`}>
+                  <span className="modal-mission-name">{mission.name}</span>
+                  <ChevronIcon direction="right" />
+                </a>
+              ))}
+            </div>
+          )}
 
           <div className="modal-coords">
             <span className="modal-coords-label">Coordinates</span>
