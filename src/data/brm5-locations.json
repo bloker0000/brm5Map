@@ -8,16 +8,19 @@
     "category": "Explorable Area",
     "images": [
       {
-        "url": "https://i.imgur.com/3htCIUM.png",
-        "description": "NYPlug Inside"
+        "url": "/shots/3htCIUM.webp",
+        "description": "NYPlug Inside",
+        "thumb": "/shots/3htCIUM@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/RT9kTdG.png",
-        "description": "NYPlug Outside"
+        "url": "/shots/RT9kTdG.webp",
+        "description": "NYPlug Outside",
+        "thumb": "/shots/RT9kTdG@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/DseoK2g.png",
-        "description": "NYPlug Inside Break Room"
+        "url": "/shots/DseoK2g.webp",
+        "description": "NYPlug Inside Break Room",
+        "thumb": "/shots/DseoK2g@thumb.webp"
       }
     ]
   },
@@ -30,16 +33,19 @@
     "category": "Explorable Area",
     "images": [
       {
-        "url": "https://imgur.com/FZtJayZ.png",
-        "description": "Entrance"
+        "url": "/shots/FZtJayZ.webp",
+        "description": "Entrance",
+        "thumb": "/shots/FZtJayZ@thumb.webp"
       },
       {
-        "url": "https://imgur.com/Y5hb2Ip.png",
-        "description": "First floor"
+        "url": "/shots/Y5hb2Ip.webp",
+        "description": "First floor",
+        "thumb": "/shots/Y5hb2Ip@thumb.webp"
       },
       {
-        "url": "https://imgur.com/pIqdvxj.png",
-        "description": "Second floor"
+        "url": "/shots/pIqdvxj.webp",
+        "description": "Second floor",
+        "thumb": "/shots/pIqdvxj@thumb.webp"
       }
     ]
   },
@@ -52,64 +58,79 @@
     "category": "Explorable Area",
     "images": [
       {
-        "url": "https://i.imgur.com/eHStlTT.png",
-        "description": "Main entrance"
+        "url": "/shots/eHStlTT.webp",
+        "description": "Main entrance",
+        "thumb": "/shots/eHStlTT@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/974Jqhs.png",
-        "description": "Main entrance inside"
+        "url": "/shots/974Jqhs.webp",
+        "description": "Main entrance inside",
+        "thumb": "/shots/974Jqhs@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/iIjgYEt.png",
-        "description": "second entrance inside"
+        "url": "/shots/iIjgYEt.webp",
+        "description": "second entrance inside",
+        "thumb": "/shots/iIjgYEt@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/DtpzF5T.png",
-        "description": "third entrance inside"
+        "url": "/shots/DtpzF5T.webp",
+        "description": "third entrance inside",
+        "thumb": "/shots/DtpzF5T@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/gfx4Xua.png",
-        "description": "some kind of storage space"
+        "url": "/shots/gfx4Xua.webp",
+        "description": "some kind of storage space",
+        "thumb": "/shots/gfx4Xua@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/SmK8BGy.png",
-        "description": "fourth entrance"
+        "url": "/shots/SmK8BGy.webp",
+        "description": "fourth entrance",
+        "thumb": "/shots/SmK8BGy@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/J6mGw2C.png",
-        "description": "second floor"
+        "url": "/shots/J6mGw2C.webp",
+        "description": "second floor",
+        "thumb": "/shots/J6mGw2C@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/QHkPi6c.png",
-        "description": "first staircase"
+        "url": "/shots/QHkPi6c.webp",
+        "description": "first staircase",
+        "thumb": "/shots/QHkPi6c@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/LyBrUoh.png",
-        "description": "top floor"
+        "url": "/shots/LyBrUoh.webp",
+        "description": "top floor",
+        "thumb": "/shots/LyBrUoh@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/pl2VQuh.png",
-        "description": "top floor 2"
+        "url": "/shots/pl2VQuh.webp",
+        "description": "top floor 2",
+        "thumb": "/shots/pl2VQuh@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/X52Uc53.png",
-        "description": "poor guy"
+        "url": "/shots/X52Uc53.webp",
+        "description": "poor guy",
+        "thumb": "/shots/X52Uc53@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/NTXk5Ae.png",
-        "description": "second-to-last floor 1"
+        "url": "/shots/NTXk5Ae.webp",
+        "description": "second-to-last floor 1",
+        "thumb": "/shots/NTXk5Ae@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/2oW7XGV.png",
-        "description": "the safe on the second to last floor (1)"
+        "url": "/shots/2oW7XGV.webp",
+        "description": "the safe on the second to last floor (1)",
+        "thumb": "/shots/2oW7XGV@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/Gyh0a1d.png",
-        "description": "second to last floor 2"
+        "url": "/shots/Gyh0a1d.webp",
+        "description": "second to last floor 2",
+        "thumb": "/shots/Gyh0a1d@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/P8marhq.png",
-        "description": "another entrance located at the side of the building"
+        "url": "/shots/P8marhq.webp",
+        "description": "another entrance located at the side of the building",
+        "thumb": "/shots/P8marhq@thumb.webp"
       }
     ]
   },
@@ -122,28 +143,34 @@
     "category": "Explorable Area",
     "images": [
       {
-        "url": "https://i.imgur.com/wAt3i6f.png",
-        "description": "First Floor"
+        "url": "/shots/wAt3i6f.webp",
+        "description": "First Floor",
+        "thumb": "/shots/wAt3i6f@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/hQIGjjQ.png",
-        "description": "Second Floor"
+        "url": "/shots/hQIGjjQ.webp",
+        "description": "Second Floor",
+        "thumb": "/shots/hQIGjjQ@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/MNNUQeD.png",
-        "description": "Third Floor"
+        "url": "/shots/MNNUQeD.webp",
+        "description": "Third Floor",
+        "thumb": "/shots/MNNUQeD@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/nQAFnVJ.png",
-        "description": "Fourth Floor"
+        "url": "/shots/nQAFnVJ.webp",
+        "description": "Fourth Floor",
+        "thumb": "/shots/nQAFnVJ@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/VkJ3ppR.png",
-        "description": "First Floor Entrance and Hallway Entrance"
+        "url": "/shots/VkJ3ppR.webp",
+        "description": "First Floor Entrance and Hallway Entrance",
+        "thumb": "/shots/VkJ3ppR@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/bVb2mEK.png",
-        "description": "Hallway Leading to NYPlug"
+        "url": "/shots/bVb2mEK.webp",
+        "description": "Hallway Leading to NYPlug",
+        "thumb": "/shots/bVb2mEK@thumb.webp"
       }
     ]
   },
@@ -156,8 +183,9 @@
     "category": "Exfil Point",
     "images": [
       {
-        "url": "https://i.imgur.com/0oSFLBJ.png",
-        "description": "extraction point on top of the ladder (Photographer:Nintendoboi2)"
+        "url": "/shots/0oSFLBJ.webp",
+        "description": "extraction point on top of the ladder (Photographer:Nintendoboi2)",
+        "thumb": "/shots/0oSFLBJ@thumb.webp"
       }
     ]
   },
@@ -170,8 +198,9 @@
     "id": "mjrsuqm7is7kgdoys7",
     "images": [
       {
-        "url": "https://i.imgur.com/K4DdTc0.png",
-        "description": "The extraction point"
+        "url": "/shots/K4DdTc0.webp",
+        "description": "The extraction point",
+        "thumb": "/shots/K4DdTc0@thumb.webp"
       }
     ]
   },
@@ -184,56 +213,69 @@
     "id": "mjrufsit5s55teg03a",
     "images": [
       {
-        "url": "https://imgur.com/7BRYPAq.png",
-        "description": "The mall at night (1)"
+        "url": "/shots/7BRYPAq.webp",
+        "description": "The mall at night (1)",
+        "thumb": "/shots/7BRYPAq@thumb.webp"
       },
       {
-        "url": "https://imgur.com/f7bKEDI.png",
-        "description": "The mall at night (2)"
+        "url": "/shots/f7bKEDI.webp",
+        "description": "The mall at night (2)",
+        "thumb": "/shots/f7bKEDI@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/AkHlFTQ.png",
-        "description": "Southwestern entry point"
+        "url": "/shots/AkHlFTQ.webp",
+        "description": "Southwestern entry point",
+        "thumb": "/shots/AkHlFTQ@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/Sgy14Gs.png",
-        "description": "Sheepdog camp on the northeastern side"
+        "url": "/shots/Sgy14Gs.webp",
+        "description": "Sheepdog camp on the northeastern side",
+        "thumb": "/shots/Sgy14Gs@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/ZIMq8Az.png",
-        "description": "Sheepdog camp backside"
+        "url": "/shots/ZIMq8Az.webp",
+        "description": "Sheepdog camp backside",
+        "thumb": "/shots/ZIMq8Az@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/NBC3x6t.png",
-        "description": "Sheepdog camp backside"
+        "url": "/shots/NBC3x6t.webp",
+        "description": "Sheepdog camp backside",
+        "thumb": "/shots/NBC3x6t@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/eIe8Ano.png",
-        "description": "Sheepdog camp stash"
+        "url": "/shots/eIe8Ano.webp",
+        "description": "Sheepdog camp stash",
+        "thumb": "/shots/eIe8Ano@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/nnyv5QO.png",
-        "description": "Second floor room with mounted PKM"
+        "url": "/shots/nnyv5QO.webp",
+        "description": "Second floor room with mounted PKM",
+        "thumb": "/shots/nnyv5QO@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/h5j3gaD.png",
-        "description": "second floor"
+        "url": "/shots/h5j3gaD.webp",
+        "description": "second floor",
+        "thumb": "/shots/h5j3gaD@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/NDz3WEO.png",
-        "description": "third floor"
+        "url": "/shots/NDz3WEO.webp",
+        "description": "third floor",
+        "thumb": "/shots/NDz3WEO@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/bcWeb2e.png",
-        "description": "third floor medical baricade?"
+        "url": "/shots/bcWeb2e.webp",
+        "description": "third floor medical baricade?",
+        "thumb": "/shots/bcWeb2e@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/K4DdTc0.png",
-        "description": "Extraction point on the roof."
+        "url": "/shots/K4DdTc0.webp",
+        "description": "Extraction point on the roof.",
+        "thumb": "/shots/K4DdTc0@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/RnKnw0A.png",
-        "description": "Trash collection southeast"
+        "url": "/shots/RnKnw0A.webp",
+        "description": "Trash collection southeast",
+        "thumb": "/shots/RnKnw0A@thumb.webp"
       }
     ]
   },
@@ -246,8 +288,9 @@
     "id": "mjrugla1my8fmhkkaw",
     "images": [
       {
-        "url": "https://imgur.com/CiSybnY.png",
-        "description": "Enemies"
+        "url": "/shots/CiSybnY.webp",
+        "description": "Enemies",
+        "thumb": "/shots/CiSybnY@thumb.webp"
       }
     ]
   },
@@ -288,76 +331,94 @@
     "id": "mjrurjdgevrvm94t688",
     "images": [
       {
-        "url": "https://i.imgur.com/ExCR6ki.png",
-        "description": "Northwestern entrance"
+        "url": "/shots/ExCR6ki.webp",
+        "description": "Northwestern entrance",
+        "thumb": "/shots/ExCR6ki@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/Ci5vtFq.png",
-        "description": "Northeast entrance inside"
+        "url": "/shots/Ci5vtFq.webp",
+        "description": "Northeast entrance inside",
+        "thumb": "/shots/Ci5vtFq@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/qOLPQPe.png",
-        "description": "catwalks 1"
+        "url": "/shots/qOLPQPe.webp",
+        "description": "catwalks 1",
+        "thumb": "/shots/qOLPQPe@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/LgAg1bd.png",
-        "description": "catwalks 2"
+        "url": "/shots/LgAg1bd.webp",
+        "description": "catwalks 2",
+        "thumb": "/shots/LgAg1bd@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/wbo3Lwg.png",
-        "description": "sewer entrance"
+        "url": "/shots/wbo3Lwg.webp",
+        "description": "sewer entrance",
+        "thumb": "/shots/wbo3Lwg@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/Of1s6ZZ.png",
-        "description": "Southeastern entrance"
+        "url": "/shots/Of1s6ZZ.webp",
+        "description": "Southeastern entrance",
+        "thumb": "/shots/Of1s6ZZ@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/CogIFGz.png",
-        "description": "Northeastern entrance"
+        "url": "/shots/CogIFGz.webp",
+        "description": "Northeastern entrance",
+        "thumb": "/shots/CogIFGz@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/IL6PRq8.png",
-        "description": "The elevated office, accesible using a set of stairs from the norheastern side"
+        "url": "/shots/IL6PRq8.webp",
+        "description": "The elevated office, accesible using a set of stairs from the norheastern side",
+        "thumb": "/shots/IL6PRq8@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/xOtmNtI.png",
-        "description": "Catwalks lower/sewer entrance"
+        "url": "/shots/xOtmNtI.webp",
+        "description": "Catwalks lower/sewer entrance",
+        "thumb": "/shots/xOtmNtI@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/GgdjTCB.png",
-        "description": "Sewer celing entrance from outside"
+        "url": "/shots/GgdjTCB.webp",
+        "description": "Sewer celing entrance from outside",
+        "thumb": "/shots/GgdjTCB@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/780Ow5q.png",
-        "description": "Sewer ceiling entrance from inside"
+        "url": "/shots/780Ow5q.webp",
+        "description": "Sewer ceiling entrance from inside",
+        "thumb": "/shots/780Ow5q@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/PoRIRin.png",
-        "description": "Sewage pipes entrance (northeast)"
+        "url": "/shots/PoRIRin.webp",
+        "description": "Sewage pipes entrance (northeast)",
+        "thumb": "/shots/PoRIRin@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/haaOCx8.png",
-        "description": "Sewage pipes exit"
+        "url": "/shots/haaOCx8.webp",
+        "description": "Sewage pipes exit",
+        "thumb": "/shots/haaOCx8@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/jIYATdB.png",
-        "description": "Sewage pipes inside"
+        "url": "/shots/jIYATdB.webp",
+        "description": "Sewage pipes inside",
+        "thumb": "/shots/jIYATdB@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/jRUa0f3.png",
-        "description": "Sewer 1"
+        "url": "/shots/jRUa0f3.webp",
+        "description": "Sewer 1",
+        "thumb": "/shots/jRUa0f3@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/ETrQQ4H.png",
-        "description": "Sewer 2"
+        "url": "/shots/ETrQQ4H.webp",
+        "description": "Sewer 2",
+        "thumb": "/shots/ETrQQ4H@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/8mo0wD2.png",
-        "description": "Sewer 3 near exit"
+        "url": "/shots/8mo0wD2.webp",
+        "description": "Sewer 3 near exit",
+        "thumb": "/shots/8mo0wD2@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/D5Lz1iV.png",
-        "description": "The key you can use to open the Plant Office"
+        "url": "/shots/D5Lz1iV.webp",
+        "description": "The key you can use to open the Plant Office",
+        "thumb": "/shots/D5Lz1iV@thumb.webp"
       }
     ]
   },
@@ -370,144 +431,179 @@
     "id": "mjruy5f9grckcevy77f",
     "images": [
       {
-        "url": "https://i.imgur.com/9wfPrTV.png",
-        "description": "Southwest entrance outside"
+        "url": "/shots/9wfPrTV.webp",
+        "description": "Southwest entrance outside",
+        "thumb": "/shots/9wfPrTV@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/CDgIMvh.png",
-        "description": "Southwest entrance inside"
+        "url": "/shots/CDgIMvh.webp",
+        "description": "Southwest entrance inside",
+        "thumb": "/shots/CDgIMvh@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/eDL8sEu.png",
-        "description": "Southwest entrance inside 2"
+        "url": "/shots/eDL8sEu.webp",
+        "description": "Southwest entrance inside 2",
+        "thumb": "/shots/eDL8sEu@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/PcKbdc9.png",
-        "description": "Southeast entrance"
+        "url": "/shots/PcKbdc9.webp",
+        "description": "Southeast entrance",
+        "thumb": "/shots/PcKbdc9@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/6IbDMdF.png",
-        "description": "Center hallways 1"
+        "url": "/shots/6IbDMdF.webp",
+        "description": "Center hallways 1",
+        "thumb": "/shots/6IbDMdF@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/xuhm3ED.png",
-        "description": "Center hallways 2"
+        "url": "/shots/xuhm3ED.webp",
+        "description": "Center hallways 2",
+        "thumb": "/shots/xuhm3ED@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/19dkkca.png",
-        "description": "Center hallways 3"
+        "url": "/shots/19dkkca.webp",
+        "description": "Center hallways 3",
+        "thumb": "/shots/19dkkca@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/8Y22W2k.png",
-        "description": "Northeast entrance outside"
+        "url": "/shots/8Y22W2k.webp",
+        "description": "Northeast entrance outside",
+        "thumb": "/shots/8Y22W2k@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/KKvXjHT.png",
-        "description": "Northeast entrance inside"
+        "url": "/shots/KKvXjHT.webp",
+        "description": "Northeast entrance inside",
+        "thumb": "/shots/KKvXjHT@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/1f1AL2z.png",
-        "description": "Center hallways Southwest stairs"
+        "url": "/shots/1f1AL2z.webp",
+        "description": "Center hallways Southwest stairs",
+        "thumb": "/shots/1f1AL2z@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/YickafJ.png",
-        "description": "Northeast hallways 1"
+        "url": "/shots/YickafJ.webp",
+        "description": "Northeast hallways 1",
+        "thumb": "/shots/YickafJ@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/LLmkKKi.png",
-        "description": "Northeast hallways 2"
+        "url": "/shots/LLmkKKi.webp",
+        "description": "Northeast hallways 2",
+        "thumb": "/shots/LLmkKKi@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/bv7QI29.png",
-        "description": "Northeast/Southeast entrance"
+        "url": "/shots/bv7QI29.webp",
+        "description": "Northeast/Southeast entrance",
+        "thumb": "/shots/bv7QI29@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/n64SI94.png",
-        "description": "Crashed helicopter"
+        "url": "/shots/n64SI94.webp",
+        "description": "Crashed helicopter",
+        "thumb": "/shots/n64SI94@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/N17Xqqm.png",
-        "description": "OR hallway rooms second floor"
+        "url": "/shots/N17Xqqm.webp",
+        "description": "OR hallway rooms second floor",
+        "thumb": "/shots/N17Xqqm@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/5tUsmLT.png",
-        "description": "Inside of O.R 3 second floor"
+        "url": "/shots/5tUsmLT.webp",
+        "description": "Inside of O.R 3 second floor",
+        "thumb": "/shots/5tUsmLT@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/15e72Yc.png",
-        "description": "Northeast stairs second floor"
+        "url": "/shots/15e72Yc.webp",
+        "description": "Northeast stairs second floor",
+        "thumb": "/shots/15e72Yc@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/L0Mgqg1.png",
-        "description": "Northeast stairs first floor"
+        "url": "/shots/L0Mgqg1.webp",
+        "description": "Northeast stairs first floor",
+        "thumb": "/shots/L0Mgqg1@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/Mcvwmnl.png",
-        "description": "ICU rooms and labs second floor"
+        "url": "/shots/Mcvwmnl.webp",
+        "description": "ICU rooms and labs second floor",
+        "thumb": "/shots/Mcvwmnl@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/iyMdGnB.png",
-        "description": "center hallways near ICU second floor"
+        "url": "/shots/iyMdGnB.webp",
+        "description": "center hallways near ICU second floor",
+        "thumb": "/shots/iyMdGnB@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/MmhUucc.png",
-        "description": "ICU second floor"
+        "url": "/shots/MmhUucc.webp",
+        "description": "ICU second floor",
+        "thumb": "/shots/MmhUucc@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/PwtnLeB.png",
-        "description": "Southeast stairs second floor"
+        "url": "/shots/PwtnLeB.webp",
+        "description": "Southeast stairs second floor",
+        "thumb": "/shots/PwtnLeB@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/mqLvEGZ.png",
-        "description": "Open rooftop area Southeast"
+        "url": "/shots/mqLvEGZ.webp",
+        "description": "Open rooftop area Southeast",
+        "thumb": "/shots/mqLvEGZ@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/gnypfzy.png",
-        "description": "Second floor Wing A southeast stairs"
+        "url": "/shots/gnypfzy.webp",
+        "description": "Second floor Wing A southeast stairs",
+        "thumb": "/shots/gnypfzy@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/1ktNEZC.png",
-        "description": "Wing A Southeast stairs 11th floor"
+        "url": "/shots/1ktNEZC.webp",
+        "description": "Wing A Southeast stairs 11th floor",
+        "thumb": "/shots/1ktNEZC@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/IbjdIW7.png",
-        "description": "11th floor Wing A Southeast stairs hallway"
+        "url": "/shots/IbjdIW7.webp",
+        "description": "11th floor Wing A Southeast stairs hallway",
+        "thumb": "/shots/IbjdIW7@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/r0b0IJS.png",
-        "description": "13th floor wing A souteast stairs hallway"
+        "url": "/shots/r0b0IJS.webp",
+        "description": "13th floor wing A souteast stairs hallway",
+        "thumb": "/shots/r0b0IJS@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/U1jJYJr.png",
-        "description": "Wing A 13th floor southeast stairs"
+        "url": "/shots/U1jJYJr.webp",
+        "description": "Wing A 13th floor southeast stairs",
+        "thumb": "/shots/U1jJYJr@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/b1EP3ig.png",
-        "description": "15th floor wing a southeast stairs hallway"
+        "url": "/shots/b1EP3ig.webp",
+        "description": "15th floor wing a southeast stairs hallway",
+        "thumb": "/shots/b1EP3ig@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/mvNv3Le.png",
-        "description": "room 15A2"
+        "url": "/shots/mvNv3Le.webp",
+        "description": "room 15A2",
+        "thumb": "/shots/mvNv3Le@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/N3MSDpw.png",
-        "description": "room 15A2 inside"
+        "url": "/shots/N3MSDpw.webp",
+        "description": "room 15A2 inside",
+        "thumb": "/shots/N3MSDpw@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/Z2AAPQa.png",
-        "description": "Landing pad"
+        "url": "/shots/Z2AAPQa.webp",
+        "description": "Landing pad",
+        "thumb": "/shots/Z2AAPQa@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/34OvACc.png",
-        "description": "Wing A first floor southeast stairs"
+        "url": "/shots/34OvACc.webp",
+        "description": "Wing A first floor southeast stairs",
+        "thumb": "/shots/34OvACc@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/l9zgjUg.png",
-        "description": "South entrance"
+        "url": "/shots/l9zgjUg.webp",
+        "description": "South entrance",
+        "thumb": "/shots/l9zgjUg@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/PHkyMTl.png",
-        "description": "South entrances"
+        "url": "/shots/PHkyMTl.webp",
+        "description": "South entrances",
+        "thumb": "/shots/PHkyMTl@thumb.webp"
       }
     ]
   },
@@ -540,8 +636,9 @@
     "id": "mjrv23gm29chalazqa",
     "images": [
       {
-        "url": "https://i.imgur.com/n64SI94.png",
-        "description": "the blackhawk helicopter"
+        "url": "/shots/n64SI94.webp",
+        "description": "the blackhawk helicopter",
+        "thumb": "/shots/n64SI94@thumb.webp"
       }
     ]
   },
@@ -554,24 +651,29 @@
     "id": "mjrv2vig3klf2lnqy9d",
     "images": [
       {
-        "url": "https://imgur.com/znDA0MP.png",
-        "description": "Outside"
+        "url": "/shots/znDA0MP.webp",
+        "description": "Outside",
+        "thumb": "/shots/znDA0MP@thumb.webp"
       },
       {
-        "url": "https://imgur.com/lTuKQ0I.png",
-        "description": "Inside (1)"
+        "url": "/shots/lTuKQ0I.webp",
+        "description": "Inside (1)",
+        "thumb": "/shots/lTuKQ0I@thumb.webp"
       },
       {
-        "url": "https://imgur.com/stcrJr6.png",
-        "description": "Inside (2)"
+        "url": "/shots/stcrJr6.webp",
+        "description": "Inside (2)",
+        "thumb": "/shots/stcrJr6@thumb.webp"
       },
       {
-        "url": "https://imgur.com/ra7QtlH.png",
-        "description": "Inside (3)"
+        "url": "/shots/ra7QtlH.webp",
+        "description": "Inside (3)",
+        "thumb": "/shots/ra7QtlH@thumb.webp"
       },
       {
-        "url": "https://imgur.com/0zvbCL7.png",
-        "description": "Inside (4)"
+        "url": "/shots/0zvbCL7.webp",
+        "description": "Inside (4)",
+        "thumb": "/shots/0zvbCL7@thumb.webp"
       }
     ]
   },
@@ -584,24 +686,29 @@
     "id": "mjrv4bp27lq8yth8pz6",
     "images": [
       {
-        "url": "https://imgur.com/v0tYArH.png",
-        "description": ""
+        "url": "/shots/v0tYArH.webp",
+        "description": "",
+        "thumb": "/shots/v0tYArH@thumb.webp"
       },
       {
-        "url": "https://imgur.com/9tYptWH.png",
-        "description": ""
+        "url": "/shots/9tYptWH.webp",
+        "description": "",
+        "thumb": "/shots/9tYptWH@thumb.webp"
       },
       {
-        "url": "https://imgur.com/okKToF6.png",
-        "description": ""
+        "url": "/shots/okKToF6.webp",
+        "description": "",
+        "thumb": "/shots/okKToF6@thumb.webp"
       },
       {
-        "url": "https://imgur.com/6Isfx27.png",
-        "description": ""
+        "url": "/shots/6Isfx27.webp",
+        "description": "",
+        "thumb": "/shots/6Isfx27@thumb.webp"
       },
       {
-        "url": "https://imgur.com/93ZrzAH.png",
-        "description": ""
+        "url": "/shots/93ZrzAH.webp",
+        "description": "",
+        "thumb": "/shots/93ZrzAH@thumb.webp"
       }
     ]
   },
@@ -628,12 +735,14 @@
     "id": "mjrv5xcwy1hj2ugofn",
     "images": [
       {
-        "url": "https://i.imgur.com/tApI6cK.png",
-        "description": "Outside (Photographer:Nintendoboi2)"
+        "url": "/shots/tApI6cK.webp",
+        "description": "Outside (Photographer:Nintendoboi2)",
+        "thumb": "/shots/tApI6cK@thumb.webp"
       },
       {
-        "url": "https://imgur.com/KDrFLMn.png",
-        "description": "Inside"
+        "url": "/shots/KDrFLMn.webp",
+        "description": "Inside",
+        "thumb": "/shots/KDrFLMn@thumb.webp"
       }
     ]
   },
@@ -646,8 +755,9 @@
     "id": "mjrv6sqgvldq0vwu2rs",
     "images": [
       {
-        "url": "https://imgur.com/jfoJtg2.png",
-        "description": "Enemies in the alleyway and windows"
+        "url": "/shots/jfoJtg2.webp",
+        "description": "Enemies in the alleyway and windows",
+        "thumb": "/shots/jfoJtg2@thumb.webp"
       }
     ]
   },
@@ -660,36 +770,44 @@
     "id": "mjrv8r38qirhjh5858k",
     "images": [
       {
-        "url": "https://i.imgur.com/zdRLhEV.png",
-        "description": "View on the building (photographer:Nintendoboi2)"
+        "url": "/shots/zdRLhEV.webp",
+        "description": "View on the building (photographer:Nintendoboi2)",
+        "thumb": "/shots/zdRLhEV@thumb.webp"
       },
       {
-        "url": "https://imgur.com/gtsV0de.png",
-        "description": "Convinience store"
+        "url": "/shots/gtsV0de.webp",
+        "description": "Convinience store",
+        "thumb": "/shots/gtsV0de@thumb.webp"
       },
       {
-        "url": "https://imgur.com/9755Lby.png",
-        "description": "Store staff area"
+        "url": "/shots/9755Lby.webp",
+        "description": "Store staff area",
+        "thumb": "/shots/9755Lby@thumb.webp"
       },
       {
-        "url": "https://imgur.com/LyOGcp6.png",
-        "description": "Exit to alleyway"
+        "url": "/shots/LyOGcp6.webp",
+        "description": "Exit to alleyway",
+        "thumb": "/shots/LyOGcp6@thumb.webp"
       },
       {
-        "url": "https://imgur.com/JzMPDpf.png",
-        "description": "Second floor gym"
+        "url": "/shots/JzMPDpf.webp",
+        "description": "Second floor gym",
+        "thumb": "/shots/JzMPDpf@thumb.webp"
       },
       {
-        "url": "https://imgur.com/jxn3QbJ.png",
-        "description": "Fourth floor apartment"
+        "url": "/shots/jxn3QbJ.webp",
+        "description": "Fourth floor apartment",
+        "thumb": "/shots/jxn3QbJ@thumb.webp"
       },
       {
-        "url": "https://imgur.com/Rf48SHY.png",
-        "description": "Rooftop (1)"
+        "url": "/shots/Rf48SHY.webp",
+        "description": "Rooftop (1)",
+        "thumb": "/shots/Rf48SHY@thumb.webp"
       },
       {
-        "url": "https://imgur.com/6YupJFa.png",
-        "description": "Rooftop (2)"
+        "url": "/shots/6YupJFa.webp",
+        "description": "Rooftop (2)",
+        "thumb": "/shots/6YupJFa@thumb.webp"
       }
     ]
   },
@@ -702,8 +820,9 @@
     "id": "mjrv9gckk0fdmss301l",
     "images": [
       {
-        "url": "https://i.imgur.com/9i8xbTg.png",
-        "description": ""
+        "url": "/shots/9i8xbTg.webp",
+        "description": "",
+        "thumb": "/shots/9i8xbTg@thumb.webp"
       }
     ]
   },
@@ -776,40 +895,49 @@
     "id": "mjrvcgr8zcifyxvmm3",
     "images": [
       {
-        "url": "https://imgur.com/1iAwrYT.png",
-        "description": "Apartment occupied by majority of enemies"
+        "url": "/shots/1iAwrYT.webp",
+        "description": "Apartment occupied by majority of enemies",
+        "thumb": "/shots/1iAwrYT@thumb.webp"
       },
       {
-        "url": "https://imgur.com/wzbODL7.png",
-        "description": "Small Quill clothing store"
+        "url": "/shots/wzbODL7.webp",
+        "description": "Small Quill clothing store",
+        "thumb": "/shots/wzbODL7@thumb.webp"
       },
       {
-        "url": "https://imgur.com/teaUjqU.png",
-        "description": "Second floor apartment"
+        "url": "/shots/teaUjqU.webp",
+        "description": "Second floor apartment",
+        "thumb": "/shots/teaUjqU@thumb.webp"
       },
       {
-        "url": "https://imgur.com/vRWHHq7.png",
-        "description": "Second floor bedroom"
+        "url": "/shots/vRWHHq7.webp",
+        "description": "Second floor bedroom",
+        "thumb": "/shots/vRWHHq7@thumb.webp"
       },
       {
-        "url": "https://imgur.com/Q7J92ZU.png",
-        "description": "Third floor apartment"
+        "url": "/shots/Q7J92ZU.webp",
+        "description": "Third floor apartment",
+        "thumb": "/shots/Q7J92ZU@thumb.webp"
       },
       {
-        "url": "https://imgur.com/NAoxPWc.png",
-        "description": "Third floor bedroom"
+        "url": "/shots/NAoxPWc.webp",
+        "description": "Third floor bedroom",
+        "thumb": "/shots/NAoxPWc@thumb.webp"
       },
       {
-        "url": "https://imgur.com/1Ijm9U6.png",
-        "description": "Fourth floor apartment"
+        "url": "/shots/1Ijm9U6.webp",
+        "description": "Fourth floor apartment",
+        "thumb": "/shots/1Ijm9U6@thumb.webp"
       },
       {
-        "url": "https://imgur.com/9hAPEr8.png",
-        "description": "Fourth floor bedroom"
+        "url": "/shots/9hAPEr8.webp",
+        "description": "Fourth floor bedroom",
+        "thumb": "/shots/9hAPEr8@thumb.webp"
       },
       {
-        "url": "https://imgur.com/LgryClp.png",
-        "description": "A fire ladder leading to a camp on roof"
+        "url": "/shots/LgryClp.webp",
+        "description": "A fire ladder leading to a camp on roof",
+        "thumb": "/shots/LgryClp@thumb.webp"
       }
     ]
   },
@@ -822,8 +950,9 @@
     "id": "mjrvdg92ey7j6v936t9",
     "images": [
       {
-        "url": "https://i.imgur.com/7y7n7rI.png",
-        "description": "The camp"
+        "url": "/shots/7y7n7rI.webp",
+        "description": "The camp",
+        "thumb": "/shots/7y7n7rI@thumb.webp"
       }
     ]
   },
@@ -836,8 +965,9 @@
     "id": "mjrvg2yu12fqri0iple",
     "images": [
       {
-        "url": "https://imgur.com/MNMapFz.png",
-        "description": "The outpost"
+        "url": "/shots/MNMapFz.webp",
+        "description": "The outpost",
+        "thumb": "/shots/MNMapFz@thumb.webp"
       }
     ]
   },
@@ -934,8 +1064,9 @@
     "id": "mjrvj0bwpto8itfovkp",
     "images": [
       {
-        "url": "https://i.imgur.com/LUJESsD.png",
-        "description": ""
+        "url": "/shots/LUJESsD.webp",
+        "description": "",
+        "thumb": "/shots/LUJESsD@thumb.webp"
       }
     ]
   },
@@ -948,16 +1079,19 @@
     "id": "mjrvk7yp6ewdm0dtggd",
     "images": [
       {
-        "url": "https://imgur.com/T35cJjB.png",
-        "description": "Extraction point"
+        "url": "/shots/T35cJjB.webp",
+        "description": "Extraction point",
+        "thumb": "/shots/T35cJjB@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/i2cBHhq.png",
-        "description": "Northwest staircase"
+        "url": "/shots/i2cBHhq.webp",
+        "description": "Northwest staircase",
+        "thumb": "/shots/i2cBHhq@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/LjEBPhC.png",
-        "description": "Southeast staircase"
+        "url": "/shots/LjEBPhC.webp",
+        "description": "Southeast staircase",
+        "thumb": "/shots/LjEBPhC@thumb.webp"
       }
     ]
   },
@@ -970,20 +1104,24 @@
     "id": "mjrvn6gujqbuynmtqz",
     "images": [
       {
-        "url": "https://i.imgur.com/mhkP8eh.png",
-        "description": "Back entrance"
+        "url": "/shots/mhkP8eh.webp",
+        "description": "Back entrance",
+        "thumb": "/shots/mhkP8eh@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/06fSKna.png",
-        "description": "Stairs to upper floors"
+        "url": "/shots/06fSKna.webp",
+        "description": "Stairs to upper floors",
+        "thumb": "/shots/06fSKna@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/0SVecLj.png",
-        "description": "Restaurant "
+        "url": "/shots/0SVecLj.webp",
+        "description": "Restaurant ",
+        "thumb": "/shots/0SVecLj@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/Vw7DgUS.png",
-        "description": "Kitchen"
+        "url": "/shots/Vw7DgUS.webp",
+        "description": "Kitchen",
+        "thumb": "/shots/Vw7DgUS@thumb.webp"
       }
     ]
   },
@@ -996,12 +1134,14 @@
     "id": "mjrvnhy0kng3cvc4i2q",
     "images": [
       {
-        "url": "https://i.imgur.com/VRaQpIn.png",
-        "description": "Enemies main entrance"
+        "url": "/shots/VRaQpIn.webp",
+        "description": "Enemies main entrance",
+        "thumb": "/shots/VRaQpIn@thumb.webp"
       },
       {
-        "url": "https://imgur.com/dStF38g.png",
-        "description": "Enemies back entrance"
+        "url": "/shots/dStF38g.webp",
+        "description": "Enemies back entrance",
+        "thumb": "/shots/dStF38g@thumb.webp"
       }
     ]
   },
@@ -1014,12 +1154,14 @@
     "id": "mjrvob8nmok6jfgzced",
     "images": [
       {
-        "url": "https://i.imgur.com/0zJadsx.png",
-        "description": "Outside"
+        "url": "/shots/0zJadsx.webp",
+        "description": "Outside",
+        "thumb": "/shots/0zJadsx@thumb.webp"
       },
       {
-        "url": "https://imgur.com/4AKtpa9.png",
-        "description": "Office inside"
+        "url": "/shots/4AKtpa9.webp",
+        "description": "Office inside",
+        "thumb": "/shots/4AKtpa9@thumb.webp"
       }
     ]
   },
@@ -1032,32 +1174,39 @@
     "id": "mjrvol1mdop1ngywhtc",
     "images": [
       {
-        "url": "https://i.imgur.com/cBip203.png",
-        "description": "The apartment you need a key for"
+        "url": "/shots/cBip203.webp",
+        "description": "The apartment you need a key for",
+        "thumb": "/shots/cBip203@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/5aPAHOC.png",
-        "description": "outside"
+        "url": "/shots/5aPAHOC.webp",
+        "description": "outside",
+        "thumb": "/shots/5aPAHOC@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/HxAMVdH.png",
-        "description": "inside apartment 1"
+        "url": "/shots/HxAMVdH.webp",
+        "description": "inside apartment 1",
+        "thumb": "/shots/HxAMVdH@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/ms9f36R.png",
-        "description": "inside apartment 1"
+        "url": "/shots/ms9f36R.webp",
+        "description": "inside apartment 1",
+        "thumb": "/shots/ms9f36R@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/FwBaQ6r.png",
-        "description": "inside apartment 1"
+        "url": "/shots/FwBaQ6r.webp",
+        "description": "inside apartment 1",
+        "thumb": "/shots/FwBaQ6r@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/91NR3t6.png",
-        "description": "inside apartment 1"
+        "url": "/shots/91NR3t6.webp",
+        "description": "inside apartment 1",
+        "thumb": "/shots/91NR3t6@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/31qI5eS.png",
-        "description": "inside apartment 1"
+        "url": "/shots/31qI5eS.webp",
+        "description": "inside apartment 1",
+        "thumb": "/shots/31qI5eS@thumb.webp"
       }
     ]
   },
@@ -1070,12 +1219,14 @@
     "id": "mjrvoz6urfycx8xq8q",
     "images": [
       {
-        "url": "https://imgur.com/4SVpKHT.png",
-        "description": "The safe"
+        "url": "/shots/4SVpKHT.webp",
+        "description": "The safe",
+        "thumb": "/shots/4SVpKHT@thumb.webp"
       },
       {
-        "url": "https://imgur.com/0yMJUHT.png",
-        "description": "The second-to-last floor"
+        "url": "/shots/0yMJUHT.webp",
+        "description": "The second-to-last floor",
+        "thumb": "/shots/0yMJUHT@thumb.webp"
       }
     ]
   },
@@ -1088,16 +1239,19 @@
     "id": "mjrvpwtv3pnawe7s3dp",
     "images": [
       {
-        "url": "https://imgur.com/4omxuqD.png",
-        "description": "Reception"
+        "url": "/shots/4omxuqD.webp",
+        "description": "Reception",
+        "thumb": "/shots/4omxuqD@thumb.webp"
       },
       {
-        "url": "https://imgur.com/qVVwVio.png",
-        "description": "Office area"
+        "url": "/shots/qVVwVio.webp",
+        "description": "Office area",
+        "thumb": "/shots/qVVwVio@thumb.webp"
       },
       {
-        "url": "https://imgur.com/B3WsABE.png",
-        "description": "Meeting room"
+        "url": "/shots/B3WsABE.webp",
+        "description": "Meeting room",
+        "thumb": "/shots/B3WsABE@thumb.webp"
       }
     ]
   },
@@ -1110,16 +1264,19 @@
     "id": "mjrvq6fklicvyaavd9o",
     "images": [
       {
-        "url": "https://imgur.com/6tko6SR.png",
-        "description": "05 Room door"
+        "url": "/shots/6tko6SR.webp",
+        "description": "05 Room door",
+        "thumb": "/shots/6tko6SR@thumb.webp"
       },
       {
-        "url": "https://imgur.com/brICgdD.png",
-        "description": "Inside the room"
+        "url": "/shots/brICgdD.webp",
+        "description": "Inside the room",
+        "thumb": "/shots/brICgdD@thumb.webp"
       },
       {
-        "url": "https://imgur.com/KMrrj4i.png",
-        "description": "Gold bar spawn in one of the cabinets"
+        "url": "/shots/KMrrj4i.webp",
+        "description": "Gold bar spawn in one of the cabinets",
+        "thumb": "/shots/KMrrj4i@thumb.webp"
       }
     ]
   },
@@ -1132,20 +1289,24 @@
     "id": "mjrvqwzr30168dstyr8",
     "images": [
       {
-        "url": "https://imgur.com/B8znoE7.png",
-        "description": "Enterance"
+        "url": "/shots/B8znoE7.webp",
+        "description": "Enterance",
+        "thumb": "/shots/B8znoE7@thumb.webp"
       },
       {
-        "url": "https://imgur.com/pJBxDuY.png",
-        "description": "Inside view"
+        "url": "/shots/pJBxDuY.webp",
+        "description": "Inside view",
+        "thumb": "/shots/pJBxDuY@thumb.webp"
       },
       {
-        "url": "https://imgur.com/RFuzQqz.png",
-        "description": "Kithchen"
+        "url": "/shots/RFuzQqz.webp",
+        "description": "Kithchen",
+        "thumb": "/shots/RFuzQqz@thumb.webp"
       },
       {
-        "url": "https://imgur.com/HEdR195.png",
-        "description": "Backroom"
+        "url": "/shots/HEdR195.webp",
+        "description": "Backroom",
+        "thumb": "/shots/HEdR195@thumb.webp"
       }
     ]
   },
@@ -1158,8 +1319,9 @@
     "id": "mjrvr8dbyfizchv9dae",
     "images": [
       {
-        "url": "https://imgur.com/w6XogXt.png",
-        "description": "Locked room"
+        "url": "/shots/w6XogXt.webp",
+        "description": "Locked room",
+        "thumb": "/shots/w6XogXt@thumb.webp"
       }
     ]
   },
@@ -1172,8 +1334,9 @@
     "id": "mjrvrqkf557nhfupfur",
     "images": [
       {
-        "url": "https://imgur.com/sUQ7eQf.png",
-        "description": "Enemies in the kitchen"
+        "url": "/shots/sUQ7eQf.webp",
+        "description": "Enemies in the kitchen",
+        "thumb": "/shots/sUQ7eQf@thumb.webp"
       }
     ]
   },
@@ -1186,16 +1349,19 @@
     "id": "mjrvrytly5lyzeir8k",
     "images": [
       {
-        "url": "https://imgur.com/22ldi9c.png",
-        "description": "Enterance"
+        "url": "/shots/22ldi9c.webp",
+        "description": "Enterance",
+        "thumb": "/shots/22ldi9c@thumb.webp"
       },
       {
-        "url": "https://imgur.com/HpayMQK.png",
-        "description": "Inside store"
+        "url": "/shots/HpayMQK.webp",
+        "description": "Inside store",
+        "thumb": "/shots/HpayMQK@thumb.webp"
       },
       {
-        "url": "https://imgur.com/b9FoRWq.png",
-        "description": "Staff area"
+        "url": "/shots/b9FoRWq.webp",
+        "description": "Staff area",
+        "thumb": "/shots/b9FoRWq@thumb.webp"
       }
     ]
   },
@@ -1216,8 +1382,9 @@
     "id": "mjrvt84rqomx0v3io8",
     "images": [
       {
-        "url": "https://i.imgur.com/GlZypkG.png",
-        "description": "yes"
+        "url": "/shots/GlZypkG.webp",
+        "description": "yes",
+        "thumb": "/shots/GlZypkG@thumb.webp"
       }
     ]
   },
@@ -1230,20 +1397,24 @@
     "id": "mjrvtq3vt1itadzeuss",
     "images": [
       {
-        "url": "https://imgur.com/vBpq2Qm.png",
-        "description": "The outpost"
+        "url": "/shots/vBpq2Qm.webp",
+        "description": "The outpost",
+        "thumb": "/shots/vBpq2Qm@thumb.webp"
       },
       {
-        "url": "https://imgur.com/l6uWRNH.png",
-        "description": "Mission area (1)"
+        "url": "/shots/l6uWRNH.webp",
+        "description": "Mission area (1)",
+        "thumb": "/shots/l6uWRNH@thumb.webp"
       },
       {
-        "url": "https://imgur.com/dLdI7ay.png",
-        "description": "Mission area (2)"
+        "url": "/shots/dLdI7ay.webp",
+        "description": "Mission area (2)",
+        "thumb": "/shots/dLdI7ay@thumb.webp"
       },
       {
-        "url": "https://imgur.com/3kSTdx8.png",
-        "description": "Mission area (3)"
+        "url": "/shots/3kSTdx8.webp",
+        "description": "Mission area (3)",
+        "thumb": "/shots/3kSTdx8@thumb.webp"
       }
     ]
   },
@@ -1256,12 +1427,14 @@
     "id": "mjrvuh1xeb2sx6scjg",
     "images": [
       {
-        "url": "https://imgur.com/18FERB8.png",
-        "description": "Locked door at 3rd floor"
+        "url": "/shots/18FERB8.webp",
+        "description": "Locked door at 3rd floor",
+        "thumb": "/shots/18FERB8@thumb.webp"
       },
       {
-        "url": "https://imgur.com/TfbU1Cu.png",
-        "description": "Inside the room"
+        "url": "/shots/TfbU1Cu.webp",
+        "description": "Inside the room",
+        "thumb": "/shots/TfbU1Cu@thumb.webp"
       }
     ]
   },
@@ -1274,8 +1447,9 @@
     "id": "mjrvv68b48b96iwqjdc",
     "images": [
       {
-        "url": "https://i.imgur.com/KYoG5Yd.png",
-        "description": "West entrance point"
+        "url": "/shots/KYoG5Yd.webp",
+        "description": "West entrance point",
+        "thumb": "/shots/KYoG5Yd@thumb.webp"
       }
     ]
   },
@@ -1288,12 +1462,14 @@
     "id": "mjrvvish6y9sad2bfmb",
     "images": [
       {
-        "url": "https://i.imgur.com/1Xy1Lqq.png",
-        "description": "Northern entrance point (photographer:Nintendoboi2)"
+        "url": "/shots/1Xy1Lqq.webp",
+        "description": "Northern entrance point (photographer:Nintendoboi2)",
+        "thumb": "/shots/1Xy1Lqq@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/KYoG5Yd.png",
-        "description": "Western entrance point"
+        "url": "/shots/KYoG5Yd.webp",
+        "description": "Western entrance point",
+        "thumb": "/shots/KYoG5Yd@thumb.webp"
       }
     ]
   },
@@ -1306,16 +1482,19 @@
     "id": "mjrvw2jf49vtrwja4gr",
     "images": [
       {
-        "url": "https://i.imgur.com/vZ7Y8BR.png",
-        "description": "Western entrance point of the garage"
+        "url": "/shots/vZ7Y8BR.webp",
+        "description": "Western entrance point of the garage",
+        "thumb": "/shots/vZ7Y8BR@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/ISG3jJ1.png",
-        "description": "Better view of the gate"
+        "url": "/shots/ISG3jJ1.webp",
+        "description": "Better view of the gate",
+        "thumb": "/shots/ISG3jJ1@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/YIznejp.png",
-        "description": "Inside of the meeting room"
+        "url": "/shots/YIznejp.webp",
+        "description": "Inside of the meeting room",
+        "thumb": "/shots/YIznejp@thumb.webp"
       }
     ]
   },
@@ -1328,16 +1507,19 @@
     "id": "mjrvxkgr2pbael5wj9q",
     "images": [
       {
-        "url": "https://imgur.com/YO2CcHy.png",
-        "description": "Locked backroom with silver bars visible on the ground"
+        "url": "/shots/YO2CcHy.webp",
+        "description": "Locked backroom with silver bars visible on the ground",
+        "thumb": "/shots/YO2CcHy@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/RtKbNsm.png",
-        "description": "The locked backroom door"
+        "url": "/shots/RtKbNsm.webp",
+        "description": "The locked backroom door",
+        "thumb": "/shots/RtKbNsm@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/cHXBBf7.png",
-        "description": "Inside the backroom"
+        "url": "/shots/cHXBBf7.webp",
+        "description": "Inside the backroom",
+        "thumb": "/shots/cHXBBf7@thumb.webp"
       }
     ]
   },
@@ -1358,8 +1540,9 @@
     "id": "mjrvyhprb84kvtssp2a",
     "images": [
       {
-        "url": "https://imgur.com/X5H8X95.png",
-        "description": "Enemies"
+        "url": "/shots/X5H8X95.webp",
+        "description": "Enemies",
+        "thumb": "/shots/X5H8X95@thumb.webp"
       }
     ]
   },
@@ -1372,8 +1555,9 @@
     "id": "mjrvypk5pxrrb4sh73",
     "images": [
       {
-        "url": "https://i.imgur.com/vmJ26OA.png",
-        "description": "the gate (photographer:Nintendoboi2)"
+        "url": "/shots/vmJ26OA.webp",
+        "description": "the gate (photographer:Nintendoboi2)",
+        "thumb": "/shots/vmJ26OA@thumb.webp"
       }
     ]
   },
@@ -1386,12 +1570,14 @@
     "id": "mjrvzhe8153uoqgvi28",
     "images": [
       {
-        "url": "https://i.imgur.com/SLMAZ9G.png",
-        "description": "Armory room entrance"
+        "url": "/shots/SLMAZ9G.webp",
+        "description": "Armory room entrance",
+        "thumb": "/shots/SLMAZ9G@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/LWVL3iu.png",
-        "description": "Inside the armory"
+        "url": "/shots/LWVL3iu.webp",
+        "description": "Inside the armory",
+        "thumb": "/shots/LWVL3iu@thumb.webp"
       }
     ]
   },
@@ -1404,52 +1590,64 @@
     "id": "mjrvzs8dbgpc1cacni",
     "images": [
       {
-        "url": "https://i.imgur.com/omE0qOY.png",
-        "description": "Main entrance of the parking lot"
+        "url": "/shots/omE0qOY.webp",
+        "description": "Main entrance of the parking lot",
+        "thumb": "/shots/omE0qOY@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/4YeF78P.jpeg",
-        "description": "Alternative entrance (stairwell)"
+        "url": "/shots/4YeF78P.webp",
+        "description": "Alternative entrance (stairwell)",
+        "thumb": "/shots/4YeF78P@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/J4DMJDR.png",
-        "description": "Inside top floor"
+        "url": "/shots/J4DMJDR.webp",
+        "description": "Inside top floor",
+        "thumb": "/shots/J4DMJDR@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/7QRN7pB.png",
-        "description": "Office room on the top floor"
+        "url": "/shots/7QRN7pB.webp",
+        "description": "Office room on the top floor",
+        "thumb": "/shots/7QRN7pB@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/NxMUchr.png",
-        "description": "Driveway ramp going down"
+        "url": "/shots/NxMUchr.webp",
+        "description": "Driveway ramp going down",
+        "thumb": "/shots/NxMUchr@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/sL93go0.png",
-        "description": "First lower floor (1)"
+        "url": "/shots/sL93go0.webp",
+        "description": "First lower floor (1)",
+        "thumb": "/shots/sL93go0@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/jwpXeJK.png",
-        "description": "First lower floor (2)"
+        "url": "/shots/jwpXeJK.webp",
+        "description": "First lower floor (2)",
+        "thumb": "/shots/jwpXeJK@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/WSh6k2H.png",
-        "description": "Lowest floor (1)"
+        "url": "/shots/WSh6k2H.webp",
+        "description": "Lowest floor (1)",
+        "thumb": "/shots/WSh6k2H@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/BC4Cjcm.png",
-        "description": "Lowest floor (2)"
+        "url": "/shots/BC4Cjcm.webp",
+        "description": "Lowest floor (2)",
+        "thumb": "/shots/BC4Cjcm@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/mpjbRGt.png",
-        "description": "Lowest floor room (1)"
+        "url": "/shots/mpjbRGt.webp",
+        "description": "Lowest floor room (1)",
+        "thumb": "/shots/mpjbRGt@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/UCaAlYr.png",
-        "description": "Lowest floor room (2)"
+        "url": "/shots/UCaAlYr.webp",
+        "description": "Lowest floor room (2)",
+        "thumb": "/shots/UCaAlYr@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/y1jxYen.png",
-        "description": "Entrance"
+        "url": "/shots/y1jxYen.webp",
+        "description": "Entrance",
+        "thumb": "/shots/y1jxYen@thumb.webp"
       }
     ]
   },
@@ -1462,16 +1660,19 @@
     "id": "mjrw01k5pt8lvq0z0c",
     "images": [
       {
-        "url": "https://i.imgur.com/4BM5Khz.png",
-        "description": "Military checkpoint top view"
+        "url": "/shots/4BM5Khz.webp",
+        "description": "Military checkpoint top view",
+        "thumb": "/shots/4BM5Khz@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/eaTiHLB.png",
-        "description": "Outside"
+        "url": "/shots/eaTiHLB.webp",
+        "description": "Outside",
+        "thumb": "/shots/eaTiHLB@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/X0ZAqlA.png",
-        "description": "Back entrance, recommended entry point next to the basketball field"
+        "url": "/shots/X0ZAqlA.webp",
+        "description": "Back entrance, recommended entry point next to the basketball field",
+        "thumb": "/shots/X0ZAqlA@thumb.webp"
       }
     ]
   },
@@ -1484,24 +1685,29 @@
     "id": "mjrw0f5rf810z62ai7",
     "images": [
       {
-        "url": "https://imgur.com/6LsBJit.png",
-        "description": ""
+        "url": "/shots/6LsBJit.webp",
+        "description": "",
+        "thumb": "/shots/6LsBJit@thumb.webp"
       },
       {
-        "url": "https://imgur.com/mD1NTzk.png",
-        "description": ""
+        "url": "/shots/mD1NTzk.webp",
+        "description": "",
+        "thumb": "/shots/mD1NTzk@thumb.webp"
       },
       {
-        "url": "https://imgur.com/cZLjBwb.png",
-        "description": ""
+        "url": "/shots/cZLjBwb.webp",
+        "description": "",
+        "thumb": "/shots/cZLjBwb@thumb.webp"
       },
       {
-        "url": "https://imgur.com/aoVMfKK.png",
-        "description": ""
+        "url": "/shots/aoVMfKK.webp",
+        "description": "",
+        "thumb": "/shots/aoVMfKK@thumb.webp"
       },
       {
-        "url": "https://imgur.com/lMwWKxI.png",
-        "description": ""
+        "url": "/shots/lMwWKxI.webp",
+        "description": "",
+        "thumb": "/shots/lMwWKxI@thumb.webp"
       }
     ]
   },
@@ -1514,12 +1720,14 @@
     "id": "mjrw1r1ewvq9wl4885c",
     "images": [
       {
-        "url": "https://imgur.com/xio7ib4.png",
-        "description": "Enemies near intersection"
+        "url": "/shots/xio7ib4.webp",
+        "description": "Enemies near intersection",
+        "thumb": "/shots/xio7ib4@thumb.webp"
       },
       {
-        "url": "https://imgur.com/JyXnw6j.png",
-        "description": "Garage back entrance"
+        "url": "/shots/JyXnw6j.webp",
+        "description": "Garage back entrance",
+        "thumb": "/shots/JyXnw6j@thumb.webp"
       }
     ]
   },
@@ -1531,12 +1739,14 @@
     "category": "Player Spawn",
     "images": [
       {
-        "url": "https://i.imgur.com/UYzopDx.png",
-        "description": "spawn location"
+        "url": "/shots/UYzopDx.webp",
+        "description": "spawn location",
+        "thumb": "/shots/UYzopDx@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/uVqsq2P.png",
-        "description": "another spawn location"
+        "url": "/shots/uVqsq2P.webp",
+        "description": "another spawn location",
+        "thumb": "/shots/uVqsq2P@thumb.webp"
       }
     ],
     "id": "mjsnrnthymdi0vkio1"
@@ -1549,20 +1759,24 @@
     "category": "Explorable Area",
     "images": [
       {
-        "url": "https://i.imgur.com/Xf5D91H.png",
-        "description": "The hallway on the second to last floor."
+        "url": "/shots/Xf5D91H.webp",
+        "description": "The hallway on the second to last floor.",
+        "thumb": "/shots/Xf5D91H@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/d1eNGOI.png",
-        "description": "Entrance"
+        "url": "/shots/d1eNGOI.webp",
+        "description": "Entrance",
+        "thumb": "/shots/d1eNGOI@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/RbN64yH.png",
-        "description": "view on the outside stairs"
+        "url": "/shots/RbN64yH.webp",
+        "description": "view on the outside stairs",
+        "thumb": "/shots/RbN64yH@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/GlkHTwA.png",
-        "description": "last floor"
+        "url": "/shots/GlkHTwA.webp",
+        "description": "last floor",
+        "thumb": "/shots/GlkHTwA@thumb.webp"
       }
     ],
     "id": "mjsnzloswtsupdfe1xg"
@@ -1576,16 +1790,19 @@
     "id": "mjt40ao50mx9h7pcc3j",
     "images": [
       {
-        "url": "https://imgur.com/rddf46V.png",
-        "description": "Old Slip street side"
+        "url": "/shots/rddf46V.webp",
+        "description": "Old Slip street side",
+        "thumb": "/shots/rddf46V@thumb.webp"
       },
       {
-        "url": "https://imgur.com/c9YpnLp.png",
-        "description": "Stone street side"
+        "url": "/shots/c9YpnLp.webp",
+        "description": "Stone street side",
+        "thumb": "/shots/c9YpnLp@thumb.webp"
       },
       {
-        "url": "https://imgur.com/xFOyGuA.png",
-        "description": "Camp inside"
+        "url": "/shots/xFOyGuA.webp",
+        "description": "Camp inside",
+        "thumb": "/shots/xFOyGuA@thumb.webp"
       }
     ]
   },
@@ -1597,20 +1814,24 @@
     "category": "Explorable Area",
     "images": [
       {
-        "url": "https://i.imgur.com/ILAXWQ8.png",
-        "description": "One of the enterances"
+        "url": "/shots/ILAXWQ8.webp",
+        "description": "One of the enterances",
+        "thumb": "/shots/ILAXWQ8@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/vRozD2L.png",
-        "description": "First floor"
+        "url": "/shots/vRozD2L.webp",
+        "description": "First floor",
+        "thumb": "/shots/vRozD2L@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/QULNWLY.png",
-        "description": "Second floor"
+        "url": "/shots/QULNWLY.webp",
+        "description": "Second floor",
+        "thumb": "/shots/QULNWLY@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/eoYK4NZ.png",
-        "description": "Second floor office room"
+        "url": "/shots/eoYK4NZ.webp",
+        "description": "Second floor office room",
+        "thumb": "/shots/eoYK4NZ@thumb.webp"
       }
     ],
     "id": "mjt4hf7ssf7dc0z70l"
@@ -1623,20 +1844,24 @@
     "category": "Explorable Area",
     "images": [
       {
-        "url": "https://imgur.com/GzO6fnZ.png",
-        "description": "Enterance"
+        "url": "/shots/GzO6fnZ.webp",
+        "description": "Enterance",
+        "thumb": "/shots/GzO6fnZ@thumb.webp"
       },
       {
-        "url": "https://imgur.com/wEuf94Q.png",
-        "description": "First floor"
+        "url": "/shots/wEuf94Q.webp",
+        "description": "First floor",
+        "thumb": "/shots/wEuf94Q@thumb.webp"
       },
       {
-        "url": "https://imgur.com/BAbkzlP.png",
-        "description": "Balcony above first floor"
+        "url": "/shots/BAbkzlP.webp",
+        "description": "Balcony above first floor",
+        "thumb": "/shots/BAbkzlP@thumb.webp"
       },
       {
-        "url": "https://imgur.com/vAPud1B.png",
-        "description": "Extension of a balcony"
+        "url": "/shots/vAPud1B.webp",
+        "description": "Extension of a balcony",
+        "thumb": "/shots/vAPud1B@thumb.webp"
       }
     ],
     "id": "mjt4i7214ukvc6unyne"
@@ -1649,12 +1874,14 @@
     "category": "Player Spawn",
     "images": [
       {
-        "url": "https://i.imgur.com/SUyuFG1.png",
-        "description": "Player Spawn"
+        "url": "/shots/SUyuFG1.webp",
+        "description": "Player Spawn",
+        "thumb": "/shots/SUyuFG1@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/N48ePSP.png",
-        "description": "outside"
+        "url": "/shots/N48ePSP.webp",
+        "description": "outside",
+        "thumb": "/shots/N48ePSP@thumb.webp"
       }
     ],
     "id": "mjt4x7f9x4jf66sh7ae"
@@ -1667,8 +1894,9 @@
     "category": "Player Spawn",
     "images": [
       {
-        "url": "https://i.imgur.com/WaxzINR.png",
-        "description": "Player Spawn"
+        "url": "/shots/WaxzINR.webp",
+        "description": "Player Spawn",
+        "thumb": "/shots/WaxzINR@thumb.webp"
       }
     ],
     "id": "mjvl38frqesnehb57hm"
@@ -1681,24 +1909,29 @@
     "category": "Subway Station",
     "images": [
       {
-        "url": "https://imgur.com/OjKOasQ.png",
-        "description": "Entrance"
+        "url": "/shots/OjKOasQ.webp",
+        "description": "Entrance",
+        "thumb": "/shots/OjKOasQ@thumb.webp"
       },
       {
-        "url": "https://imgur.com/aeApToH.png",
-        "description": "Inside the metro (1)"
+        "url": "/shots/aeApToH.webp",
+        "description": "Inside the metro (1)",
+        "thumb": "/shots/aeApToH@thumb.webp"
       },
       {
-        "url": "https://imgur.com/IRn5kcQ.png",
-        "description": "Inside the metro (2)"
+        "url": "/shots/IRn5kcQ.webp",
+        "description": "Inside the metro (2)",
+        "thumb": "/shots/IRn5kcQ@thumb.webp"
       },
       {
-        "url": "https://imgur.com/HIKERgc.png",
-        "description": "Restroom"
+        "url": "/shots/HIKERgc.webp",
+        "description": "Restroom",
+        "thumb": "/shots/HIKERgc@thumb.webp"
       },
       {
-        "url": "https://imgur.com/bf3G5gZ.png",
-        "description": "Blocked off entrance"
+        "url": "/shots/bf3G5gZ.webp",
+        "description": "Blocked off entrance",
+        "thumb": "/shots/bf3G5gZ@thumb.webp"
       }
     ],
     "id": "mjvll2a7ck8qg0up0xl"
@@ -1711,32 +1944,39 @@
     "category": "Explorable Area",
     "images": [
       {
-        "url": "https://imgur.com/ONp1pUx.png",
-        "description": "Outside"
+        "url": "/shots/ONp1pUx.webp",
+        "description": "Outside",
+        "thumb": "/shots/ONp1pUx@thumb.webp"
       },
       {
-        "url": "https://imgur.com/8du4p3b.png",
-        "description": "Store area"
+        "url": "/shots/8du4p3b.webp",
+        "description": "Store area",
+        "thumb": "/shots/8du4p3b@thumb.webp"
       },
       {
-        "url": "https://imgur.com/8hruUTT.png",
-        "description": "Backroom"
+        "url": "/shots/8hruUTT.webp",
+        "description": "Backroom",
+        "thumb": "/shots/8hruUTT@thumb.webp"
       },
       {
-        "url": "https://imgur.com/eDKMqOs.png",
-        "description": "Basement"
+        "url": "/shots/eDKMqOs.webp",
+        "description": "Basement",
+        "thumb": "/shots/eDKMqOs@thumb.webp"
       },
       {
-        "url": "https://imgur.com/I8bXZsG.png",
-        "description": "Second floor apartment"
+        "url": "/shots/I8bXZsG.webp",
+        "description": "Second floor apartment",
+        "thumb": "/shots/I8bXZsG@thumb.webp"
       },
       {
-        "url": "https://imgur.com/8GCltXs.png",
-        "description": "Third floor apartment"
+        "url": "/shots/8GCltXs.webp",
+        "description": "Third floor apartment",
+        "thumb": "/shots/8GCltXs@thumb.webp"
       },
       {
-        "url": "https://imgur.com/MoPgndQ.png",
-        "description": "Fourth floor apartment"
+        "url": "/shots/MoPgndQ.webp",
+        "description": "Fourth floor apartment",
+        "thumb": "/shots/MoPgndQ@thumb.webp"
       }
     ],
     "id": "mjyvz0g2h8f6f6itq8s"
@@ -1750,24 +1990,29 @@
     "id": "mjz2g22gnhk3y5uk0yb",
     "images": [
       {
-        "url": "https://i.imgur.com/WzXrZNj.png",
-        "description": "entrance"
+        "url": "/shots/WzXrZNj.webp",
+        "description": "entrance",
+        "thumb": "/shots/WzXrZNj@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/me1JGSd.png",
-        "description": "entrance inside"
+        "url": "/shots/me1JGSd.webp",
+        "description": "entrance inside",
+        "thumb": "/shots/me1JGSd@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/oMYTexj.png",
-        "description": "entrance inside 2"
+        "url": "/shots/oMYTexj.webp",
+        "description": "entrance inside 2",
+        "thumb": "/shots/oMYTexj@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/Di6YYC4.png",
-        "description": "subway"
+        "url": "/shots/Di6YYC4.webp",
+        "description": "subway",
+        "thumb": "/shots/Di6YYC4@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/1k8OHTc.png",
-        "description": "the zombie nest"
+        "url": "/shots/1k8OHTc.webp",
+        "description": "the zombie nest",
+        "thumb": "/shots/1k8OHTc@thumb.webp"
       }
     ]
   },
@@ -1780,24 +2025,29 @@
     "id": "mjz2gox8a8bupwe6f0n",
     "images": [
       {
-        "url": "https://i.imgur.com/OcIAAHw.png",
-        "description": "hospital view from subway"
+        "url": "/shots/OcIAAHw.webp",
+        "description": "hospital view from subway",
+        "thumb": "/shots/OcIAAHw@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/hmbab6u.png",
-        "description": "entrance"
+        "url": "/shots/hmbab6u.webp",
+        "description": "entrance",
+        "thumb": "/shots/hmbab6u@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/ZLpWpCk.png",
-        "description": "entrance inside"
+        "url": "/shots/ZLpWpCk.webp",
+        "description": "entrance inside",
+        "thumb": "/shots/ZLpWpCk@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/vqwHcy1.png",
-        "description": "a small room inside the subway"
+        "url": "/shots/vqwHcy1.webp",
+        "description": "a small room inside the subway",
+        "thumb": "/shots/vqwHcy1@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/RtAETnH.png",
-        "description": "zombie nest near the exit of the subway along with the hallway"
+        "url": "/shots/RtAETnH.webp",
+        "description": "zombie nest near the exit of the subway along with the hallway",
+        "thumb": "/shots/RtAETnH@thumb.webp"
       }
     ]
   },
@@ -1810,8 +2060,9 @@
     "id": "mjztyhvdjwl1kgf5x9",
     "images": [
       {
-        "url": "https://i.imgur.com/sOY0dcn.png",
-        "description": "the crane (photographer:Nintendoboi2)"
+        "url": "/shots/sOY0dcn.webp",
+        "description": "the crane (photographer:Nintendoboi2)",
+        "thumb": "/shots/sOY0dcn@thumb.webp"
       }
     ]
   },
@@ -1823,16 +2074,19 @@
     "category": "Locked Door",
     "images": [
       {
-        "url": "https://i.imgur.com/d5XCWHx.png",
-        "description": "the door opened (photographer:Nintendoboi2)"
+        "url": "/shots/d5XCWHx.webp",
+        "description": "the door opened (photographer:Nintendoboi2)",
+        "thumb": "/shots/d5XCWHx@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/GlkHTwA.png",
-        "description": "the door closed"
+        "url": "/shots/GlkHTwA.webp",
+        "description": "the door closed",
+        "thumb": "/shots/GlkHTwA@thumb.webp"
       },
       {
-        "url": "https://imgur.com/1hEzhaN.png",
-        "description": "Unique loot spawn"
+        "url": "/shots/1hEzhaN.webp",
+        "description": "Unique loot spawn",
+        "thumb": "/shots/1hEzhaN@thumb.webp"
       }
     ],
     "id": "mjzuncmdpvmuxzfohv"
@@ -1846,16 +2100,19 @@
     "id": "mk30bc0959csc4m45a",
     "images": [
       {
-        "url": "https://i.imgur.com/n64SI94.png",
-        "description": "Crashed blackhawk helicopter next northeast"
+        "url": "/shots/n64SI94.webp",
+        "description": "Crashed blackhawk helicopter next northeast",
+        "thumb": "/shots/n64SI94@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/PciHtuL.png",
-        "description": "Wall street"
+        "url": "/shots/PciHtuL.webp",
+        "description": "Wall street",
+        "thumb": "/shots/PciHtuL@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/9wfPrTV.png",
-        "description": "Entrance to the hospital"
+        "url": "/shots/9wfPrTV.webp",
+        "description": "Entrance to the hospital",
+        "thumb": "/shots/9wfPrTV@thumb.webp"
       }
     ]
   },
@@ -1867,8 +2124,9 @@
     "category": "Explorable Area",
     "images": [
       {
-        "url": "https://i.imgur.com/avkwtL1.png",
-        "description": "outside (photographer:Nintendoboi2)"
+        "url": "/shots/avkwtL1.webp",
+        "description": "outside (photographer:Nintendoboi2)",
+        "thumb": "/shots/avkwtL1@thumb.webp"
       }
     ],
     "id": "mk31fgf6qoqp0b99vw"
@@ -1882,8 +2140,9 @@
     "id": "mk31ns977xd9nnm7cpx",
     "images": [
       {
-        "url": "https://imgur.com/Gn9KwJv.png",
-        "description": "View on the cafe"
+        "url": "/shots/Gn9KwJv.webp",
+        "description": "View on the cafe",
+        "thumb": "/shots/Gn9KwJv@thumb.webp"
       }
     ]
   },
@@ -1912,8 +2171,9 @@
     "id": "mk321525s3r8tei5w5o",
     "images": [
       {
-        "url": "https://imgur.com/aqC7fsE.png",
-        "description": "Enemies in the location"
+        "url": "/shots/aqC7fsE.webp",
+        "description": "Enemies in the location",
+        "thumb": "/shots/aqC7fsE@thumb.webp"
       }
     ]
   },
@@ -1925,8 +2185,9 @@
     "category": "Explorable Area",
     "images": [
       {
-        "url": "https://imgur.com/KdEBfC7.png",
-        "description": "The trashed gym"
+        "url": "/shots/KdEBfC7.webp",
+        "description": "The trashed gym",
+        "thumb": "/shots/KdEBfC7@thumb.webp"
       }
     ],
     "id": "mk324slfjz6t2o891v"
@@ -1939,24 +2200,29 @@
     "category": "Locked Door",
     "images": [
       {
-        "url": "https://i.imgur.com/2bfc9nr.png",
-        "description": "Stairs going up to the office"
+        "url": "/shots/2bfc9nr.webp",
+        "description": "Stairs going up to the office",
+        "thumb": "/shots/2bfc9nr@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/mT2ylCs.png",
-        "description": "Entrance to the office"
+        "url": "/shots/mT2ylCs.webp",
+        "description": "Entrance to the office",
+        "thumb": "/shots/mT2ylCs@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/q0Ccgn7.png",
-        "description": "Inside the office 1"
+        "url": "/shots/q0Ccgn7.webp",
+        "description": "Inside the office 1",
+        "thumb": "/shots/q0Ccgn7@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/wrGyded.png",
-        "description": "Inside the office 2"
+        "url": "/shots/wrGyded.webp",
+        "description": "Inside the office 2",
+        "thumb": "/shots/wrGyded@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/QBlSWdU.png",
-        "description": "The hole in the wall"
+        "url": "/shots/QBlSWdU.webp",
+        "description": "The hole in the wall",
+        "thumb": "/shots/QBlSWdU@thumb.webp"
       }
     ],
     "id": "mk3b64868bx8pknjl3d"
@@ -1969,12 +2235,14 @@
     "category": "Explorable Area",
     "images": [
       {
-        "url": "https://imgur.com/Vb3oJt0.png",
-        "description": "Interior"
+        "url": "/shots/Vb3oJt0.webp",
+        "description": "Interior",
+        "thumb": "/shots/Vb3oJt0@thumb.webp"
       },
       {
-        "url": "https://imgur.com/kmsbHKE.png",
-        "description": "Helipads"
+        "url": "/shots/kmsbHKE.webp",
+        "description": "Helipads",
+        "thumb": "/shots/kmsbHKE@thumb.webp"
       }
     ],
     "id": "mk3xixs4jq4o0c2do9"
@@ -1988,24 +2256,29 @@
     "id": "mn5zc2g8gkoa91dylma",
     "images": [
       {
-        "url": "https://imgur.com/mNHUcQo.png",
-        "description": "The apartment door"
+        "url": "/shots/mNHUcQo.webp",
+        "description": "The apartment door",
+        "thumb": "/shots/mNHUcQo@thumb.webp"
       },
       {
-        "url": "https://imgur.com/lhvEcYT.png",
-        "description": "Inside the apartment"
+        "url": "/shots/lhvEcYT.webp",
+        "description": "Inside the apartment",
+        "thumb": "/shots/lhvEcYT@thumb.webp"
       },
       {
-        "url": "https://imgur.com/QI4euWA.png",
-        "description": "Bedroom"
+        "url": "/shots/QI4euWA.webp",
+        "description": "Bedroom",
+        "thumb": "/shots/QI4euWA@thumb.webp"
       },
       {
-        "url": "https://imgur.com/S15DFRj.png",
-        "description": "Kitchen"
+        "url": "/shots/S15DFRj.webp",
+        "description": "Kitchen",
+        "thumb": "/shots/S15DFRj@thumb.webp"
       },
       {
-        "url": "https://imgur.com/Jppssbl.png",
-        "description": "Unique loot spot"
+        "url": "/shots/Jppssbl.webp",
+        "description": "Unique loot spot",
+        "thumb": "/shots/Jppssbl@thumb.webp"
       }
     ]
   },
@@ -2018,8 +2291,9 @@
     "id": "mn61mwlnfejyvbralv",
     "images": [
       {
-        "url": "https://imgur.com/OQAGxyM.png",
-        "description": "The security gate"
+        "url": "/shots/OQAGxyM.webp",
+        "description": "The security gate",
+        "thumb": "/shots/OQAGxyM@thumb.webp"
       }
     ]
   },
@@ -2032,24 +2306,29 @@
     "id": "mn6czme0s96dde5vgyf",
     "images": [
       {
-        "url": "https://i.imgur.com/FjHXrke.jpeg",
-        "description": "Entrance"
+        "url": "/shots/FjHXrke.webp",
+        "description": "Entrance",
+        "thumb": "/shots/FjHXrke@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/JoIDjBJ.jpeg",
-        "description": "First floor"
+        "url": "/shots/JoIDjBJ.webp",
+        "description": "First floor",
+        "thumb": "/shots/JoIDjBJ@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/gx00Tfi.jpeg",
-        "description": "Second floor"
+        "url": "/shots/gx00Tfi.webp",
+        "description": "Second floor",
+        "thumb": "/shots/gx00Tfi@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/5yansLD.jpeg",
-        "description": "Third floor bedroom"
+        "url": "/shots/5yansLD.webp",
+        "description": "Third floor bedroom",
+        "thumb": "/shots/5yansLD@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/ZcazlnP.jpeg",
-        "description": "Third floor kitchen / living area"
+        "url": "/shots/ZcazlnP.webp",
+        "description": "Third floor kitchen / living area",
+        "thumb": "/shots/ZcazlnP@thumb.webp"
       }
     ]
   },
@@ -2062,8 +2341,9 @@
     "id": "mn73lhins8wxl3qfugm",
     "images": [
       {
-        "url": "https://imgur.com/P4fRrUw.png",
-        "description": "Outpost and building view"
+        "url": "/shots/P4fRrUw.webp",
+        "description": "Outpost and building view",
+        "thumb": "/shots/P4fRrUw@thumb.webp"
       }
     ]
   },
@@ -2100,20 +2380,24 @@
     "id": "mnc8m2pzfgy2of36ma9",
     "images": [
       {
-        "url": "https://i.imgur.com/BAohrJ8.png",
-        "description": ""
+        "url": "/shots/BAohrJ8.webp",
+        "description": "",
+        "thumb": "/shots/BAohrJ8@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/xwJm5av.png",
-        "description": ""
+        "url": "/shots/xwJm5av.webp",
+        "description": "",
+        "thumb": "/shots/xwJm5av@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/e9zBpzB.png",
-        "description": ""
+        "url": "/shots/e9zBpzB.webp",
+        "description": "",
+        "thumb": "/shots/e9zBpzB@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/bFguaaf.png",
-        "description": ""
+        "url": "/shots/bFguaaf.webp",
+        "description": "",
+        "thumb": "/shots/bFguaaf@thumb.webp"
       }
     ]
   },
@@ -2126,12 +2410,14 @@
     "id": "mnc8ob1rtl2zh7dph5l",
     "images": [
       {
-        "url": "https://i.imgur.com/NGFwvBl.png",
-        "description": ""
+        "url": "/shots/NGFwvBl.webp",
+        "description": "",
+        "thumb": "/shots/NGFwvBl@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/HooiWQ7.png",
-        "description": ""
+        "url": "/shots/HooiWQ7.webp",
+        "description": "",
+        "thumb": "/shots/HooiWQ7@thumb.webp"
       }
     ]
   },
@@ -2144,8 +2430,9 @@
     "id": "mnc8qam2dp31rank2xg",
     "images": [
       {
-        "url": "https://i.imgur.com/BSehhBg.jpeg",
-        "description": ""
+        "url": "/shots/BSehhBg.webp",
+        "description": "",
+        "thumb": "/shots/BSehhBg@thumb.webp"
       }
     ]
   },
@@ -2158,16 +2445,19 @@
     "id": "mnc8tvt4fxoocgsky3o",
     "images": [
       {
-        "url": "https://imgur.com/JsSDy0G.png",
-        "description": "The jewellery"
+        "url": "/shots/JsSDy0G.webp",
+        "description": "The jewellery",
+        "thumb": "/shots/JsSDy0G@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/8KisrJs.jpeg",
-        "description": "Outside"
+        "url": "/shots/8KisrJs.webp",
+        "description": "Outside",
+        "thumb": "/shots/8KisrJs@thumb.webp"
       },
       {
-        "url": "https://i.imgur.com/Fbo8EAw.jpeg",
-        "description": "Inside"
+        "url": "/shots/Fbo8EAw.webp",
+        "description": "Inside",
+        "thumb": "/shots/Fbo8EAw@thumb.webp"
       }
     ]
   },
@@ -2180,8 +2470,9 @@
     "id": "mnc93ghe7slyzwvhlc",
     "images": [
       {
-        "url": "https://imgur.com/2eKfAOS.png",
-        "description": ""
+        "url": "/shots/2eKfAOS.webp",
+        "description": "",
+        "thumb": "/shots/2eKfAOS@thumb.webp"
       }
     ]
   },
@@ -2194,12 +2485,14 @@
     "id": "mnc93y2zacdgll7hos",
     "images": [
       {
-        "url": "https://imgur.com/MNLldES.png",
-        "description": ""
+        "url": "/shots/MNLldES.webp",
+        "description": "",
+        "thumb": "/shots/MNLldES@thumb.webp"
       },
       {
-        "url": "https://imgur.com/7O3jtXG.png",
-        "description": ""
+        "url": "/shots/7O3jtXG.webp",
+        "description": "",
+        "thumb": "/shots/7O3jtXG@thumb.webp"
       }
     ]
   },
@@ -2228,8 +2521,9 @@
     "id": "mnrin662uivi64wlm2f",
     "images": [
       {
-        "url": "https://i.imgur.com/sxQPygu.jpeg",
-        "description": "The basketball court"
+        "url": "/shots/sxQPygu.webp",
+        "description": "The basketball court",
+        "thumb": "/shots/sxQPygu@thumb.webp"
       }
     ]
   },
@@ -2241,8 +2535,9 @@
     "category": "Landmark",
     "images": [
       {
-        "url": "https://imgur.com/kiXkwKd.png",
-        "description": "The outpost"
+        "url": "/shots/kiXkwKd.webp",
+        "description": "The outpost",
+        "thumb": "/shots/kiXkwKd@thumb.webp"
       }
     ],
     "id": "mnvjyyg6hlprhtdbc4u"
@@ -2255,32 +2550,39 @@
     "category": "Explorable Area",
     "images": [
       {
-        "url": "https://imgur.com/VEF2jOo.png",
-        "description": ""
+        "url": "/shots/VEF2jOo.webp",
+        "description": "",
+        "thumb": "/shots/VEF2jOo@thumb.webp"
       },
       {
-        "url": "https://imgur.com/3vky2uH.png",
-        "description": ""
+        "url": "/shots/3vky2uH.webp",
+        "description": "",
+        "thumb": "/shots/3vky2uH@thumb.webp"
       },
       {
-        "url": "https://imgur.com/f5g8EwB.png",
-        "description": ""
+        "url": "/shots/f5g8EwB.webp",
+        "description": "",
+        "thumb": "/shots/f5g8EwB@thumb.webp"
       },
       {
-        "url": "https://imgur.com/smNa4Cr.png",
-        "description": ""
+        "url": "/shots/smNa4Cr.webp",
+        "description": "",
+        "thumb": "/shots/smNa4Cr@thumb.webp"
       },
       {
-        "url": "https://imgur.com/AWYk5UA.png",
-        "description": ""
+        "url": "/shots/AWYk5UA.webp",
+        "description": "",
+        "thumb": "/shots/AWYk5UA@thumb.webp"
       },
       {
-        "url": "https://imgur.com/R2UBHhB.png",
-        "description": ""
+        "url": "/shots/R2UBHhB.webp",
+        "description": "",
+        "thumb": "/shots/R2UBHhB@thumb.webp"
       },
       {
-        "url": "https://imgur.com/IyjC6cD.png",
-        "description": ""
+        "url": "/shots/IyjC6cD.webp",
+        "description": "",
+        "thumb": "/shots/IyjC6cD@thumb.webp"
       }
     ],
     "id": "mnx912fq4249rle1c7v"
@@ -2293,24 +2595,29 @@
     "category": "Explorable Area",
     "images": [
       {
-        "url": "https://imgur.com/SkUZoKl.png",
-        "description": "The building"
+        "url": "/shots/SkUZoKl.webp",
+        "description": "The building",
+        "thumb": "/shots/SkUZoKl@thumb.webp"
       },
       {
-        "url": "https://imgur.com/CN7Efet.png",
-        "description": "First floor"
+        "url": "/shots/CN7Efet.webp",
+        "description": "First floor",
+        "thumb": "/shots/CN7Efet@thumb.webp"
       },
       {
-        "url": "https://imgur.com/Q1YFRvS.png",
-        "description": "Second floor (1)"
+        "url": "/shots/Q1YFRvS.webp",
+        "description": "Second floor (1)",
+        "thumb": "/shots/Q1YFRvS@thumb.webp"
       },
       {
-        "url": "https://imgur.com/1OsPGzy.png",
-        "description": "Second floor (2)"
+        "url": "/shots/1OsPGzy.webp",
+        "description": "Second floor (2)",
+        "thumb": "/shots/1OsPGzy@thumb.webp"
       },
       {
-        "url": "https://imgur.com/45k4SDp.png",
-        "description": "Second floor (3)"
+        "url": "/shots/45k4SDp.webp",
+        "description": "Second floor (3)",
+        "thumb": "/shots/45k4SDp@thumb.webp"
       }
     ],
     "id": "mnx960iwxpikfixs5l"
@@ -2323,8 +2630,9 @@
     "category": "Safe",
     "images": [
       {
-        "url": "https://imgur.com/hXTJcVN.png",
-        "description": ""
+        "url": "/shots/hXTJcVN.webp",
+        "description": "",
+        "thumb": "/shots/hXTJcVN@thumb.webp"
       }
     ],
     "id": "mo1jz5qjuupptgbeu0a"
@@ -2337,8 +2645,9 @@
     "category": "Safe",
     "images": [
       {
-        "url": "https://imgur.com/6Vz2x3W.png",
-        "description": ""
+        "url": "/shots/6Vz2x3W.webp",
+        "description": "",
+        "thumb": "/shots/6Vz2x3W@thumb.webp"
       }
     ],
     "id": "mo1k1146tu0ti5y36vc"
@@ -2351,8 +2660,9 @@
     "category": "Safe",
     "images": [
       {
-        "url": "https://imgur.com/AGDXKMP.png",
-        "description": ""
+        "url": "/shots/AGDXKMP.webp",
+        "description": "",
+        "thumb": "/shots/AGDXKMP@thumb.webp"
       }
     ],
     "id": "mo2jo3r5pbtclla6vxc"
@@ -2365,8 +2675,9 @@
     "category": "Safe",
     "images": [
       {
-        "url": "https://imgur.com/scNGfRS.png",
-        "description": ""
+        "url": "/shots/scNGfRS.webp",
+        "description": "",
+        "thumb": "/shots/scNGfRS@thumb.webp"
       }
     ],
     "id": "mo2jqb49aj8ekho4zjh"
@@ -2379,12 +2690,14 @@
     "category": "Explorable Area",
     "images": [
       {
-        "url": "https://imgur.com/lxohReV.png",
-        "description": ""
+        "url": "/shots/lxohReV.webp",
+        "description": "",
+        "thumb": "/shots/lxohReV@thumb.webp"
       },
       {
-        "url": "https://imgur.com/7lyhqiM.png",
-        "description": ""
+        "url": "/shots/7lyhqiM.webp",
+        "description": "",
+        "thumb": "/shots/7lyhqiM@thumb.webp"
       }
     ],
     "id": "mo2k64rud0l6aww9xqb"
@@ -2397,8 +2710,9 @@
     "category": "Safe",
     "images": [
       {
-        "url": "https://imgur.com/yrZcjcP.png",
-        "description": ""
+        "url": "/shots/yrZcjcP.webp",
+        "description": "",
+        "thumb": "/shots/yrZcjcP@thumb.webp"
       }
     ],
     "id": "mo5fgei37nhzx1rmulj"
@@ -2411,8 +2725,9 @@
     "category": "Safe",
     "images": [
       {
-        "url": "https://imgur.com/TbUGgVT.png",
-        "description": ""
+        "url": "/shots/TbUGgVT.webp",
+        "description": "",
+        "thumb": "/shots/TbUGgVT@thumb.webp"
       }
     ],
     "id": "mo5fkdof7hz1ef4hhlh"
