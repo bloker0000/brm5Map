@@ -2,22 +2,22 @@
 // BG_CREDITS is indexed in lockstep with BG_IMAGES, so the two stay the same length
 
 export const BG_IMAGES = [
-  '/BG/BG1.jpeg',
-  '/BG/BG2.png',
-  '/BG/BG3.png',
-  '/BG/BG4.png',
-  '/BG/BG5.jpg',
-  '/BG/BG6.png',
-  '/BG/BG7.jpeg',
-  '/BG/BG8.png',
-  '/BG/BG9.png',
-  '/BG/BG10.png',
-  '/BG/BG11.png',
-  '/BG/BG12.png',
-  '/BG/BG13.png',
-  '/BG/BG14.png',
-  '/BG/BG15.png',
-  '/BG/BG16.png',
+  '/BG/BG1.webp',
+  '/BG/BG2.webp',
+  '/BG/BG3.webp',
+  '/BG/BG4.webp',
+  '/BG/BG5.webp',
+  '/BG/BG6.webp',
+  '/BG/BG7.webp',
+  '/BG/BG8.webp',
+  '/BG/BG9.webp',
+  '/BG/BG10.webp',
+  '/BG/BG11.webp',
+  '/BG/BG12.webp',
+  '/BG/BG13.webp',
+  '/BG/BG14.webp',
+  '/BG/BG15.webp',
+  '/BG/BG16.webp',
 ];
 
 export interface BgCredit {
