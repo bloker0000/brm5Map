@@ -1,10 +1,4 @@
-/* Roboto Condensed reserves descender space that these all-caps labels never use,
-   so centring the text box lands the caps about 1.5px high in a small control.
-   every fixed-height control below pays this back as top padding, which moves the
-   centred content down by half of it. one number, measured once against the cap
-   band, retune it if the display font ever changes. */
 .missions-page {
-  --cap-nudge: 3px;
   position: relative;
   display: flex;
   width: 100vw;
@@ -125,15 +119,8 @@
 }
 
 .missions-back-glyph {
-  position: relative;
-  top: -0.5px;
   font-size: 0.6rem;
   line-height: 1;
-}
-
-.missions-back-label {
-  position: relative;
-  top: 1px;
 }
 
 /* only useful once the rail collapses to a header, see the media query below */
@@ -174,7 +161,7 @@
   display: inline-flex;
   align-items: center;
   height: 24px;
-  padding: calc(var(--cap-nudge) - 2px) calc(9px - var(--tr-label)) 0 9px;
+  padding: 0 calc(9px - var(--tr-label)) 0 9px;
   line-height: 1;
   background-color: transparent;
   background-image: var(--dots-idle);
@@ -308,13 +295,6 @@
   gap: 2px;
 }
 
-/* the pips are geometry, so inside a badge they have to sit out the type nudge.
-   in the list rows there is no nudge to undo */
-.mission-badge .mission-difficulty {
-  position: relative;
-  top: calc(var(--cap-nudge) / -2);
-}
-
 .mission-pip {
   width: 4px;
   height: 10px;
@@ -409,7 +389,7 @@
   align-items: center;
   gap: 6px;
   height: 24px;
-  padding: var(--cap-nudge) 8px 0;
+  padding: 0 8px;
   border: 1px solid var(--brm-border);
   font-family: var(--font-display);
   font-size: 0.68rem;
@@ -430,8 +410,14 @@
   margin-right: 0;
 }
 
-.mission-badge--id {
-  padding-top: 0;
+/* trims the label down to its own cap band, so what the badge centres is the ink
+   rather than a box the font sized. the id badge is the one that needs it, its
+   mono face sits the caps higher than the display face does. where it is not
+   supported line-height 1 already lands everything within a fraction of a pixel */
+@supports (text-box: trim-both cap alphabetic) {
+  .mission-badge-label {
+    text-box: trim-both cap alphabetic;
+  }
 }
 
 .mission-badge.warn {
@@ -674,7 +660,7 @@
   height: 22px;
   /* letter-spacing leaves a trailing gap after the last letter, so the right
      padding gives that much back to keep the ink centred */
-  padding: var(--cap-nudge) calc(9px - var(--tr-micro)) 0 9px;
+  padding: 0 calc(9px - var(--tr-micro)) 0 9px;
   line-height: 1;
   background: transparent;
   border: 1px solid var(--brm-border);
@@ -707,7 +693,7 @@
   justify-content: center;
   min-width: 30px;
   height: 24px;
-  padding: calc(var(--cap-nudge) - 2px) 7px 0;
+  padding: 0 7px;
   line-height: 1;
   background: transparent;
   border: 1px solid var(--brm-border);
