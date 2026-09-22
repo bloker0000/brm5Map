@@ -25,6 +25,9 @@ dist-ssr
 MISSIONS.md
 
 info/
+tools/
+
+icon-preview.html
 
 # editor local history
 .history/
