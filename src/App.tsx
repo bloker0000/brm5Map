@@ -310,12 +310,14 @@ function App() {
           <div className="sidebar-tabs">
             <button
               className={`brm-tab ${activeTab === 'categories' ? 'active' : ''}`}
+              aria-pressed={activeTab === 'categories'}
               onClick={() => setActiveTab('categories')}
             >
               Categories
             </button>
             <button
               className={`brm-tab ${activeTab === 'locations' ? 'active' : ''}`}
+              aria-pressed={activeTab === 'locations'}
               onClick={() => setActiveTab('locations')}
             >
               Locations
@@ -348,7 +350,7 @@ function App() {
           <div className="sidebar-nav">
             <button className="brm-btn sidebar-missions" onClick={() => navigate('#/missions')}>
               Mission Library
-              <span className="sidebar-missions-glyph">▶</span>
+              <span className="sidebar-missions-glyph" aria-hidden="true">▶</span>
             </button>
           </div>
 
@@ -356,14 +358,14 @@ function App() {
             <h2 className="brm-section-title">Display</h2>
             <div className="option-row">
               <span className="option-label">Map pins</span>
-              <div className="brm-segment">
+              <div className="brm-segment" role="group" aria-label="Map pins">
                 <button aria-pressed={showPins} onClick={() => setShowPins(true)}>On</button>
                 <button aria-pressed={!showPins} onClick={() => setShowPins(false)}>Off</button>
               </div>
             </div>
             <div className="option-row">
               <span className="option-label">Compass</span>
-              <div className="brm-segment">
+              <div className="brm-segment" role="group" aria-label="Compass">
                 <button aria-pressed={showCompass} onClick={() => setShowCompass(true)}>On</button>
                 <button aria-pressed={!showCompass} onClick={() => setShowCompass(false)}>Off</button>
               </div>

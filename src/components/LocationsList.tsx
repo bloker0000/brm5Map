@@ -1,7 +1,7 @@
 // sidebar list of locations, grouped by category
 
 import { useState, useMemo } from 'react';
-import type { MapLocation } from '../types/location';
+import type { MapLocation, LocationCategory } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
 import { CategoryIcon } from './Icons';
 import './LocationsList.css';
@@ -22,30 +22,33 @@ export function LocationsList({
   onClearSelection,
 }: LocationsListProps) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
+  const [expandedCategories, setExpandedCategories] = useState<Set<LocationCategory>>(new Set());
+
+  const query = searchQuery.trim().toLowerCase();
 
   const filteredLocations = useMemo(() => {
-    if (!searchQuery.trim()) return locations;
-    const query = searchQuery.toLowerCase();
+    if (!query) return locations;
     return locations.filter(loc =>
       loc.name.toLowerCase().includes(query) ||
       loc.category.toLowerCase().includes(query) ||
       loc.description?.toLowerCase().includes(query)
     );
-  }, [locations, searchQuery]);
+  }, [locations, query]);
 
   const groupedLocations = useMemo(() => {
-    const groups: Record<string, MapLocation[]> = {};
+    const groups = new Map<LocationCategory, MapLocation[]>();
     filteredLocations.forEach(loc => {
-      if (!groups[loc.category]) {
-        groups[loc.category] = [];
+      const group = groups.get(loc.category);
+      if (group) {
+        group.push(loc);
+      } else {
+        groups.set(loc.category, [loc]);
       }
-      groups[loc.category].push(loc);
     });
-    return groups;
+    return [...groups];
   }, [filteredLocations]);
 
-  const toggleCategory = (category: string) => {
+  const toggleCategory = (category: LocationCategory) => {
     setExpandedCategories(prev => {
       const next = new Set(prev);
       if (next.has(category)) {
@@ -69,17 +72,13 @@ export function LocationsList({
     }
   };
 
-  const handleViewClick = (e: React.MouseEvent, location: MapLocation) => {
-    e.stopPropagation();
-    onSelectLocation(location);
-  };
-
   return (
     <div className="locations-list">
       <div className="locations-list-search">
         <input
           type="text"
           placeholder="Search locations..."
+          aria-label="Search locations"
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
         />
@@ -87,6 +86,7 @@ export function LocationsList({
           <button
             className="locations-list-clear"
             onClick={() => setSearchQuery('')}
+            aria-label="Clear search"
           >
             X
           </button>
@@ -113,9 +113,10 @@ export function LocationsList({
       </div>
 
       <div className="locations-list-content">
-        {Object.entries(groupedLocations).map(([category, locs]) => {
-          const isExpanded = expandedCategories.has(category);
-          const color = CATEGORY_COLORS[category as keyof typeof CATEGORY_COLORS] || '#888';
+        {groupedLocations.map(([category, locs]) => {
+          // while searching every group with a match is open, or the matches stay hidden
+          const isExpanded = query !== '' || expandedCategories.has(category);
+          const color = CATEGORY_COLORS[category];
           const selectedInCategory = locs.filter(l => selectedLocations.has(l.id)).length;
 
           return (
@@ -124,10 +125,11 @@ export function LocationsList({
                 className="locations-category-header"
                 onClick={() => toggleCategory(category)}
                 aria-expanded={isExpanded}
+                disabled={query !== ''}
                 style={{ '--cat-color': color } as React.CSSProperties}
               >
                 <span className="locations-category-icon">
-                  <CategoryIcon category={category as any} size={16} color={color} />
+                  <CategoryIcon category={category} size={16} color={color} />
                 </span>
                 <span className="locations-category-name">{category}</span>
                 <span className="locations-category-count">
@@ -144,23 +146,33 @@ export function LocationsList({
               <div className={`locations-group-body${isExpanded ? ' open' : ''}`}>
                 <div className="locations-group-clip">
                   <div className="locations-category-items">
-                    {locs.map(location => (
-                      <div
-                        key={location.id}
-                        className={`locations-item ${selectedLocations.has(location.id) ? 'selected' : ''}`}
-                        onClick={e => handleItemClick(e, location)}
-                      >
-                        <span className="locations-item-name">{location.name}</span>
-                        <button
-                          className="locations-item-view"
-                          onClick={e => handleViewClick(e, location)}
-                          tabIndex={isExpanded ? 0 : -1}
-                          title="View on map"
+                    {locs.map(location => {
+                      const isSelected = selectedLocations.has(location.id);
+                      return (
+                        <div
+                          key={location.id}
+                          className={`locations-item ${isSelected ? 'selected' : ''}`}
                         >
-                          VIEW
-                        </button>
-                      </div>
-                    ))}
+                          <button
+                            className="locations-item-select"
+                            onClick={e => handleItemClick(e, location)}
+                            aria-pressed={isSelected}
+                            tabIndex={isExpanded ? 0 : -1}
+                          >
+                            <span className="locations-item-name">{location.name}</span>
+                          </button>
+                          <button
+                            className="locations-item-view"
+                            onClick={() => onSelectLocation(location)}
+                            tabIndex={isExpanded ? 0 : -1}
+                            title="View on map"
+                            aria-label={`View ${location.name} on the map`}
+                          >
+                            VIEW
+                          </button>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

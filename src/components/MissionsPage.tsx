@@ -460,10 +460,11 @@ export function MissionsPage({ missionId, onSelectMission, onExit }: MissionsPag
             type="text"
             value={query}
             placeholder="Search missions"
+            aria-label="Search missions"
             onChange={e => setQuery(e.target.value)}
           />
           {query && (
-            <button className="locations-list-clear" onClick={() => setQuery('')}>
+            <button className="locations-list-clear" onClick={() => setQuery('')} aria-label="Clear search">
               X
             </button>
           )}

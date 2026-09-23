@@ -138,9 +138,13 @@
   text-align: left;
 }
 
-.locations-category-header:hover {
+.locations-category-header:hover:not(:disabled) {
   background: rgba(255, 255, 255, 0.04);
   color: var(--brm-text);
+}
+
+.locations-category-header:disabled {
+  cursor: default;
 }
 
 .locations-category-header::before {
@@ -246,10 +250,25 @@
   justify-content: space-between;
   gap: 8px;
   min-height: 32px;
-  padding: 4px 14px 4px 12px;
-  cursor: pointer;
+  padding: 0 14px 0 0;
   border-left: 1px solid var(--brm-border);
   transition: background-color var(--t-fast) var(--ease);
+}
+
+/* fills the row, so the whole row still selects */
+.locations-item-select {
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  padding: 4px 0 4px 12px;
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
 .locations-item:hover {
@@ -299,7 +318,7 @@
 }
 
 .locations-item:hover .locations-item-view,
-.locations-item-view:focus-visible {
+.locations-item:focus-within .locations-item-view {
   opacity: 1;
 }
 

@@ -142,6 +142,20 @@
 
 .about-modal-content a {
   color: var(--brm-accent);
+  text-decoration: underline;
+}
+
+.about-aside {
+  opacity: 0.5;
+  font-size: 0.8rem;
+}
+
+.about-modal-content .about-small {
+  font-size: 0.8rem;
+}
+
+.about-modal-content .about-source {
+  margin-top: 12px;
 }
 
 .faq-item {

@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef, lazy, Suspense } from 'react';
+import { useState, useEffect, useRef, useId, lazy, Suspense } from 'react';
 import type { MapLocation, LocationImage } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
 import { CategoryIcon, CloseIcon } from './Icons';
 import { missionsAt } from '../data/location-missions';
 import { ImageLightbox } from './ImageLightbox';
 import { useExitTransition } from '../hooks/useExitTransition';
+import { useDialog } from '../hooks/useDialog';
 import { loadMarkdown } from './markdownLoader';
 import './LocationModal.css';
 
@@ -32,8 +33,11 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [imageLoadStates, setImageLoadStates] = useState<Record<number, boolean>>({});
   const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const titleId = useId();
 
   const { rendered: shown, isClosing } = useExitTransition(location, 170);
+  useDialog(dialogRef, shown !== null && !isClosing);
 
   const [trackedId, setTrackedId] = useState(shown?.id);
   if (shown?.id !== trackedId) {
@@ -86,11 +90,16 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
         onClick={onClose}
       >
         <div
+          ref={dialogRef}
           className="modal brm-panel-anim"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={titleId}
+          tabIndex={-1}
           style={{ '--modal-color': color } as React.CSSProperties}
           onClick={(e) => e.stopPropagation()}
         >
-          <button className="modal-close" onClick={onClose}>
+          <button className="modal-close" onClick={onClose} aria-label="Close">
             <CloseIcon size={20} />
           </button>
 
@@ -99,7 +108,7 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
               <div className="modal-icon">
                 <CategoryIcon category={shown.category} size={28} color={color} />
               </div>
-              <h2 className="modal-title">{shown.name}</h2>
+              <h2 className="modal-title" id={titleId}>{shown.name}</h2>
             </div>
             <div className="modal-category">{shown.category}</div>
           </div>
@@ -125,10 +134,18 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
                 </div>
                 {hasMultipleImages && (
                   <>
-                    <button className="gallery-nav gallery-prev" onClick={(e) => { e.stopPropagation(); handlePrevImage(); }}>
+                    <button
+                      className="gallery-nav gallery-prev"
+                      aria-label="Previous image"
+                      onClick={(e) => { e.stopPropagation(); handlePrevImage(); }}
+                    >
                       <ChevronIcon direction="left" />
                     </button>
-                    <button className="gallery-nav gallery-next" onClick={(e) => { e.stopPropagation(); handleNextImage(); }}>
+                    <button
+                      className="gallery-nav gallery-next"
+                      aria-label="Next image"
+                      onClick={(e) => { e.stopPropagation(); handleNextImage(); }}
+                    >
                       <ChevronIcon direction="right" />
                     </button>
                   </>
@@ -144,6 +161,7 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
                       key={index}
                       ref={(el) => { thumbnailRefs.current[index] = el; }}
                       className={`modal-thumbnail ${index === safeIndex ? 'active' : ''}`}
+                      aria-current={index === safeIndex}
                       onClick={() => setCurrentImageIndex(index)}
                     >
                       <img src={img.thumb ?? img.url} alt={img.description || `Image ${index + 1}`} />

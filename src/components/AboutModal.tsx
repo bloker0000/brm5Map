@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useRef, useId } from 'react';
 import { useVisitorCount } from '../hooks/useVisitorCount';
+import { useDialog } from '../hooks/useDialog';
 import './AboutModal.css';
 
 interface AboutModalProps {
@@ -9,14 +10,14 @@ interface AboutModalProps {
 }
 
 export function AboutModal({ isOpen, onClose, onOpenChangelog }: AboutModalProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(isOpen);
   const { totalVisits, yourVisitNumber, isLoading } = useVisitorCount(isOpen);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const titleId = useId();
 
-  useEffect(() => {
-    if (isOpen) {
-      setIsVisible(true);
-    }
-  }, [isOpen]);
+  if (isOpen && !isVisible) setIsVisible(true);
+
+  useDialog(dialogRef, isOpen && isVisible);
 
   const handleAnimationEnd = () => {
     if (!isOpen) {
@@ -32,19 +33,28 @@ export function AboutModal({ isOpen, onClose, onOpenChangelog }: AboutModalProps
       onClick={onClose}
       onAnimationEnd={handleAnimationEnd}
     >
-      <div className="about-modal brm-panel-anim" onClick={e => e.stopPropagation()}>
+      <div
+        ref={dialogRef}
+        className="about-modal brm-panel-anim"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        tabIndex={-1}
+        onClick={e => e.stopPropagation()}
+      >
         <div className="about-modal-header">
-          <h2>About BRMap5</h2>
-          <button className="about-modal-close" onClick={onClose}>X</button>
+          <h2 id={titleId}>About BRMap5</h2>
+          <button className="about-modal-close" onClick={onClose} aria-label="Close">X</button>
         </div>
 
         <div className="about-modal-content">
           <section>
             <h3>Navigation</h3>
             <ul>
-              <li><strong>Pan:</strong> Click and drag the map to move around</li>
-              <li><strong>Zoom:</strong> Use the scroll wheel or the +/- buttons</li>
-              <li><strong>Rotate:</strong> Right-click and drag left/right, or left-click and drag the compass</li>
+              <li><strong>Pan:</strong> Drag the map with the mouse or one finger</li>
+              <li><strong>Zoom:</strong> Scroll wheel, pinch, double-click or double-tap, or the +/- buttons</li>
+              <li><strong>Rotate:</strong> Right-click and drag left/right, twist with two fingers, or drag the compass</li>
+              <li><strong>Keyboard:</strong> Click the map or Tab to it, then arrow keys pan, + and - zoom, Q and E rotate, 0 resets the view. Tab also steps through the markers</li>
               <li><strong>Reset Position:</strong> Click the crosshair button to center the map</li>
               <li><strong>Reset Rotation:</strong> Click the rotation arrow button to reset rotation</li>
             </ul>
@@ -54,7 +64,7 @@ export function AboutModal({ isOpen, onClose, onOpenChangelog }: AboutModalProps
             <h3>Locations</h3>
             <ul>
               <li><strong>Browse:</strong> Use the Locations tab to see all available pins</li>
-              <li><strong>Search:</strong> Type in the search bar to find specific locations</li>
+              <li><strong>Search:</strong> Type in the search box in the Locations tab to find specific locations</li>
               <li><strong>Filter:</strong> Use Categories to filter by location type</li>
               <li><strong>Select:</strong> Click on a pin or list item to view details</li>
               <li><strong>Un-Select:</strong> Click on a selected item to deselect, or use Clear button</li>
@@ -67,9 +77,9 @@ export function AboutModal({ isOpen, onClose, onOpenChangelog }: AboutModalProps
             <ul>
               <li><strong>Preview:</strong> Hover over a pin to see image slideshow (auto-cycles)</li>
               <li><strong>Expand:</strong> Click any image to open fullscreen lightbox</li>
-              <li><strong>Zoom:</strong> Use scroll wheel, +/- buttons, or +/- keys to zoom (up to 5x)</li>
-              <li><strong>Pan:</strong> Click and drag when zoomed to move around</li>
-              <li><strong>Navigate:</strong> Use arrow keys or thumbnails to browse images</li>
+              <li><strong>Zoom:</strong> Scroll wheel, pinch, +/- buttons, or +/- keys (up to 5x)</li>
+              <li><strong>Pan:</strong> Drag when zoomed to move around</li>
+              <li><strong>Navigate:</strong> Swipe, use the arrow keys, or pick a thumbnail</li>
               <li><strong>Shortcuts:</strong> Press 0 to reset zoom, Escape to close</li>
             </ul>
           </section>
@@ -120,8 +130,8 @@ export function AboutModal({ isOpen, onClose, onOpenChangelog }: AboutModalProps
             <p>Background artwork by many talented artists. See footer for current artist.</p>
             <p>Help is always welcome. Send me a DM on Discord at <span className="brm-handle">.multyply</span> if you want to contribute.</p>
             <h3>Contributors</h3>
-            <p><a href="https://github.com/T0TR0X" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brm-accent)', textDecoration: 'underline' }}>TotroX</a>: Location data, descriptions, images, and icon improvements <span style={{ opacity: 0.5, fontSize: '0.8rem' }}>(Discord: .totrox)</span></p>
-            <p><a href="https://roblox-blackhawk-rescue-mission-5.fandom.com/wiki/User:Nintendoboi2" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brm-accent)', textDecoration: 'underline' }}>Nintendoboi2</a>: Location images</p>
+            <p><a href="https://github.com/T0TR0X" target="_blank" rel="noopener noreferrer">TotroX</a>: Location data, descriptions, images, and icon improvements <span className="about-aside">(Discord: .totrox)</span></p>
+            <p><a href="https://roblox-blackhawk-rescue-mission-5.fandom.com/wiki/User:Nintendoboi2" target="_blank" rel="noopener noreferrer">Nintendoboi2</a>: Location images</p>
           </section>
 
           <section className="about-visits">
@@ -140,10 +150,10 @@ export function AboutModal({ isOpen, onClose, onOpenChangelog }: AboutModalProps
                 </div>
               </div>
             )}
-            <p style={{ marginTop: '12px', fontSize: '0.8rem' }}>
-              <a href="https://github.com/bloker0000/brm5Map" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brm-accent)', textDecoration: 'underline' }}>Source code</a> available on GitHub.
+            <p className="about-small about-source">
+              <a href="https://github.com/bloker0000/brm5Map" target="_blank" rel="noopener noreferrer">Source code</a> available on GitHub.
             </p>
-            <p style={{ fontSize: '0.8rem' }}>Hosted on Vercel.</p>
+            <p className="about-small">Hosted on Vercel.</p>
             <button
               className="about-changelog-btn"
               onClick={onOpenChangelog}

@@ -38,6 +38,7 @@ export function CategoryFilter({
               key={category}
               className={`category-filter-item ${isActive ? 'active' : 'inactive'}`}
               style={{ '--cat-color': color } as React.CSSProperties}
+              aria-pressed={selectedCategories.has(category)}
               onClick={() => onToggle(category)}
             >
               <span className="category-icon">

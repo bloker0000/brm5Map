@@ -1,7 +1,8 @@
 // changelog popup, also pops up on first visit and after updates
 
-import { useState, useEffect } from 'react';
+import { useState, useRef, useId } from 'react';
 import { CHANGELOG } from '../data/changelog';
+import { useDialog } from '../hooks/useDialog';
 import './ChangelogModal.css';
 
 interface ChangelogModalProps {
@@ -10,13 +11,13 @@ interface ChangelogModalProps {
 }
 
 export function ChangelogModal({ isOpen, onClose }: ChangelogModalProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(isOpen);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const titleId = useId();
 
-  useEffect(() => {
-    if (isOpen) {
-      setIsVisible(true);
-    }
-  }, [isOpen]);
+  if (isOpen && !isVisible) setIsVisible(true);
+
+  useDialog(dialogRef, isOpen && isVisible);
 
   const handleAnimationEnd = () => {
     if (!isOpen) {
@@ -32,10 +33,18 @@ export function ChangelogModal({ isOpen, onClose }: ChangelogModalProps) {
       onClick={onClose}
       onAnimationEnd={handleAnimationEnd}
     >
-      <div className="changelog-modal brm-panel-anim" onClick={e => e.stopPropagation()}>
+      <div
+        ref={dialogRef}
+        className="changelog-modal brm-panel-anim"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        tabIndex={-1}
+        onClick={e => e.stopPropagation()}
+      >
         <div className="changelog-modal-header">
-          <h2>Changelog</h2>
-          <button className="changelog-modal-close" onClick={onClose}>X</button>
+          <h2 id={titleId}>Changelog</h2>
+          <button className="changelog-modal-close" onClick={onClose} aria-label="Close">X</button>
         </div>
 
         <div className="changelog-modal-content">
