@@ -1,6 +1,6 @@
 // dev-only panel for editing locations
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import type { MapLocation, LocationCategory, LocationImage } from '../types/location';
 import { CATEGORY_COLORS, ALL_CATEGORIES } from '../types/location';
 import { CloseIcon, CrosshairIcon, CategoryIcon, SaveIcon } from './Icons';
@@ -70,20 +70,16 @@ export function AdminPanel({
   });
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const formCoordsRef = useRef({ x: 0, y: 0 });
-  formCoordsRef.current = { x: formData.x, y: formData.y };
   const prevClickPositionRef = useRef(clickPosition);
   const externalCoordsRef = useRef({ x: 0, y: 0 });
 
   const formDataRef = useRef(formData);
-  formDataRef.current = formData;
   const formHistoryRef = useRef<typeof formData[]>([]);
   const formFutureRef = useRef<typeof formData[]>([]);
   const typingTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const isInTypingGroupRef = useRef(false);
   const editingLocationRef = useRef(editingLocation);
-  editingLocationRef.current = editingLocation;
   const modeRef = useRef(mode);
-  modeRef.current = mode;
 
   const pushFormSnapshot = () => {
     const current = formDataRef.current;
@@ -186,9 +182,7 @@ export function AdminPanel({
   };
 
   const formUndoRef = useRef(formUndo);
-  formUndoRef.current = formUndo;
   const formRedoRef = useRef(formRedo);
-  formRedoRef.current = formRedo;
 
   useEffect(() => {
     if (mode === 'list') return;
@@ -207,6 +201,8 @@ export function AdminPanel({
     return () => window.removeEventListener('keydown', handleKeyDown, true);
   }, [mode]);
 
+  // a click on the map only reaches the panel as a new clickPosition prop, so this
+  // effect is where it becomes form state
   useEffect(() => {
     if (!clickPosition || clickPosition === prevClickPositionRef.current) return;
     prevClickPositionRef.current = clickPosition;
@@ -216,6 +212,7 @@ export function AdminPanel({
       const newX = Math.round(clickPosition.x);
       const newY = Math.round(clickPosition.y);
       formDataRef.current = { ...formDataRef.current, x: newX, y: newY };
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setFormData((prev) => ({ ...prev, x: newX, y: newY }));
     } else if (mode === 'edit' && editingLocation) {
       pushFormSnapshot();
@@ -227,7 +224,7 @@ export function AdminPanel({
       externalCoordsRef.current = { x: newX, y: newY };
       onUpdate(editingLocation.id, { x: newX, y: newY });
     }
-  }, [clickPosition, mode]);
+  }, [clickPosition, mode, editingLocation, onUpdate]);
 
   // take coords from a pin drag, but leave manually typed values alone
   useEffect(() => {
@@ -239,14 +236,9 @@ export function AdminPanel({
     externalCoordsRef.current = { x: current.x, y: current.y };
     if (current.x === formCoordsRef.current.x && current.y === formCoordsRef.current.y) return;
     formDataRef.current = { ...formDataRef.current, x: current.x, y: current.y };
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setFormData(prev => ({ ...prev, x: current.x, y: current.y }));
   }, [mode, editingLocation, locations]);
-
-  useEffect(() => {
-    if (mode === 'add' || mode === 'edit') {
-      setIsExpanded(true);
-    }
-  }, [mode]);
 
   useEffect(() => {
     onFormCategoryChange?.(formData.category);
@@ -254,9 +246,6 @@ export function AdminPanel({
 
   useEffect(() => {
     onModeChange?.(mode);
-    if (mode !== 'list') {
-      setIsDragMode(false);
-    }
   }, [mode, onModeChange]);
 
   useEffect(() => {
@@ -317,6 +306,7 @@ export function AdminPanel({
     }
     setMode('add');
     setIsExpanded(true);
+    setIsDragMode(false);
     clearFormHistory();
   };
 
@@ -326,11 +316,7 @@ export function AdminPanel({
     setEditingLocation(location);
     setOriginalLocation({ ...location });
     externalCoordsRef.current = { x: location.x, y: location.y };
-    const images: LocationImage[] = location.images && location.images.length > 0
-      ? location.images
-      : location.image
-        ? [{ url: location.image, description: '' }]
-        : [];
+    const images: LocationImage[] = location.images ?? [];
     setFormData({
       name: location.name,
       x: location.x,
@@ -342,6 +328,7 @@ export function AdminPanel({
     });
     setMode('edit');
     setIsExpanded(true);
+    setIsDragMode(false);
     clearFormHistory();
   };
 
@@ -371,7 +358,6 @@ export function AdminPanel({
       shortDescription: formData.shortDescription.trim() || undefined,
       category: formData.category,
       images: validImages.length > 0 ? validImages : undefined,
-      image: undefined, // drop the legacy single-image field once images[] is written
     };
 
     if (mode === 'add') {
@@ -400,7 +386,19 @@ export function AdminPanel({
   };
 
   const handleCancelRef = useRef(handleCancel);
-  handleCancelRef.current = handleCancel;
+
+  // the handlers and effects that read these all run after a commit, which is when
+  // they catch up with the render
+  useLayoutEffect(() => {
+    formCoordsRef.current = { x: formData.x, y: formData.y };
+    formDataRef.current = formData;
+    editingLocationRef.current = editingLocation;
+    modeRef.current = mode;
+    formUndoRef.current = formUndo;
+    formRedoRef.current = formRedo;
+    handleCancelRef.current = handleCancel;
+  });
+
   useEffect(() => {
     if (mode === 'list') return;
     const handleKeyDown = (e: KeyboardEvent) => {

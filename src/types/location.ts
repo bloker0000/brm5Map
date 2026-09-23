@@ -30,7 +30,6 @@ export interface MapLocation {
   y: number;
   description: string;
   category: LocationCategory;
-  image?: string;
   images?: LocationImage[];
   shortDescription?: string;
 }

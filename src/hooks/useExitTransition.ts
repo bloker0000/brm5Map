@@ -3,25 +3,21 @@
 import { useEffect, useState } from 'react';
 
 export function useExitTransition<T>(value: T | null | undefined, duration = 170) {
-  const [state, setState] = useState<{ rendered: T | null; isClosing: boolean }>(
-    () => ({ rendered: value ?? null, isClosing: false })
-  );
+  const [rendered, setRendered] = useState<T | null>(value ?? null);
+  const [previous, setPrevious] = useState(value);
+
+  if (value !== previous) {
+    setPrevious(value);
+    if (value != null) setRendered(value);
+  }
+
+  const isClosing = value == null && rendered != null;
 
   useEffect(() => {
-    if (value != null) {
-      setState({ rendered: value, isClosing: false });
-      return;
-    }
-
-    setState(prev => (prev.rendered == null ? prev : { rendered: prev.rendered, isClosing: true }));
-    const timer = window.setTimeout(() => {
-      setState(prev => (prev.rendered == null && !prev.isClosing
-        ? prev
-        : { rendered: null, isClosing: false }));
-    }, duration);
-
+    if (!isClosing) return;
+    const timer = window.setTimeout(() => setRendered(null), duration);
     return () => window.clearTimeout(timer);
-  }, [value, duration]);
+  }, [isClosing, duration]);
 
-  return state;
+  return { rendered, isClosing };
 }

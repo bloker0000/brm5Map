@@ -44,6 +44,7 @@ export function sanitizeLocation(raw: unknown): MapLocation | null {
   if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
 
   const images = sanitizeImages(loc.images);
+  // exports from before images[] had a single image field
   if (images.length === 0 && typeof loc.image === 'string' && loc.image.trim()) {
     images.push({ url: loc.image.trim() });
   }
