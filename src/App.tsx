@@ -30,7 +30,9 @@ const AdminPanel = import.meta.env.DEV
   ? lazy(() => import('./components/AdminPanel').then(m => ({ default: m.AdminPanel })))
   : null;
 
-const MISSIONS_ROUTE = /^#\/missions(?:\/([A-Za-z0-9_-]+))?$/;
+const MISSIONS_ROUTE = /^#\/missions(?:\/([A-Za-z0-9_-]+))?\/?$/;
+// same as the title in index.html, restored when coming back from the mission library
+const SITE_TITLE = 'BRMap5 - Blackhawk Rescue Mission 5 Zombies Map';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -98,6 +100,10 @@ function App() {
   const missionRoute = route.match(MISSIONS_ROUTE);
   const isMissionsRoute = missionRoute !== null;
   const missionId = missionRoute?.[1] ?? null;
+
+  useEffect(() => {
+    if (!isMissionsRoute) document.title = SITE_TITLE;
+  }, [isMissionsRoute]);
 
   const closeChangelog = useCallback(() => {
     markChangelogSeen();

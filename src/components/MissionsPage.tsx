@@ -386,6 +386,12 @@ export function MissionsPage({ missionId, bgIndex, onSelectMission, onExit }: Mi
   const credit = BG_CREDITS[bgIndex];
 
   const selected = missionId ? MISSIONS_BY_ID.get(missionId) ?? null : null;
+  const notFound = missionId !== null && selected === null;
+
+  // a shared mission link should say which mission it is in the tab and the history
+  useEffect(() => {
+    document.title = selected ? `${selected.name} - Mission Library - BRMap5` : 'Mission Library - BRMap5';
+  }, [selected]);
 
   const needle = query.trim();
 
@@ -454,6 +460,10 @@ export function MissionsPage({ missionId, bgIndex, onSelectMission, onExit }: Mi
             <span className="missions-subtitle">Operation CRYO Zombies</span>
           </div>
         </div>
+
+        {notFound && (
+          <p className="missions-notfound">There is no mission called "{missionId}".</p>
+        )}
 
         <div className="missions-search locations-list-search">
           <input
@@ -539,11 +549,23 @@ export function MissionsPage({ missionId, bgIndex, onSelectMission, onExit }: Mi
       ) : (
         <div className="mission-detail mission-detail--empty">
           <div className="missions-placeholder">
-            <p className="missions-placeholder-title">Select a mission</p>
-            <p className="missions-placeholder-text">
-              Every zombies mission: briefings, step by
-              step objectives, rewards, and the objective positions.
-            </p>
+            {notFound ? (
+              <>
+                <p className="missions-placeholder-title">Mission not found</p>
+                <p className="missions-placeholder-text">
+                  There is no mission called "{missionId}". The link may be from before
+                  it was renamed, pick it from the list instead.
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="missions-placeholder-title">Select a mission</p>
+                <p className="missions-placeholder-text">
+                  Every zombies mission: briefings, step by
+                  step objectives, rewards, and the objective positions.
+                </p>
+              </>
+            )}
           </div>
         </div>
       )}

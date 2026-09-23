@@ -290,6 +290,17 @@
   color: var(--brm-text-muted);
 }
 
+/* the detail pane says this on a wide screen, on a narrow one that pane is hidden */
+.missions-notfound {
+  display: none;
+  margin: 0;
+  padding: 10px 12px;
+  background: var(--brm-accent-wash);
+  border-left: 2px solid var(--brm-accent);
+  color: var(--brm-text-light);
+  font-size: 0.85rem;
+}
+
 .mission-difficulty {
   display: inline-flex;
   align-items: center;
@@ -890,6 +901,10 @@
 
   .mission-detail--empty {
     display: none;
+  }
+
+  .missions-notfound {
+    display: block;
   }
 
   .mission-detail-inner {
