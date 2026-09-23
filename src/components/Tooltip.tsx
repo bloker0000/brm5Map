@@ -1,7 +1,7 @@
 // hover card that follows the cursor
 
 import { useState, useEffect, useLayoutEffect, useCallback, useRef } from 'react';
-import type { MapLocation, LocationImage } from '../types/location';
+import type { MapLocation } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
 import { CategoryIcon } from './Icons';
 import './Tooltip.css';
@@ -10,23 +10,78 @@ interface TooltipProps {
   location: MapLocation | null;
 }
 
-function getAllImages(location: MapLocation): LocationImage[] {
-  const images: LocationImage[] = [];
-  if (location.images && location.images.length > 0) {
-    images.push(...location.images);
-  } else if (location.image) {
-    images.push({ url: location.image });
-  }
-  return images;
-}
-
 const SLIDESHOW_INTERVAL = 2000;
 
-export function Tooltip({ location }: TooltipProps) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+function previewText(location: MapLocation): string {
+  if (location.shortDescription) {
+    return location.shortDescription;
+  }
+  const plainText = (location.description || '')
+    .replace(/#{1,6}\s/g, '')
+    .replace(/\*\*/g, '')
+    .replace(/\*/g, '')
+    .replace(/~~.*?~~/g, '')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/`/g, '')
+    .replace(/>\s?/g, '')
+    .replace(/---/g, '')
+    .replace(/-\s/g, '')
+    .replace(/\n+/g, ' ')
+    .trim();
+
+  if (plainText.length > 80) {
+    return plainText.substring(0, 77) + '...';
+  }
+  return plainText;
+}
+
+// keyed by location, so a new pin always starts from its first image
+function TooltipImages({ location }: { location: MapLocation }) {
+  const images = location.images ?? [];
+  const [index, setIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const intervalRef = useRef<number | null>(null);
-  const prevLocationId = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (images.length < 2) return;
+    let fade: number | undefined;
+    const interval = window.setInterval(() => {
+      setIsTransitioning(true);
+      fade = window.setTimeout(() => {
+        setIndex(prev => (prev + 1) % images.length);
+        setIsTransitioning(false);
+      }, 300);
+    }, SLIDESHOW_INTERVAL);
+
+    return () => {
+      window.clearInterval(interval);
+      window.clearTimeout(fade);
+    };
+  }, [images.length]);
+
+  const image = images[index];
+  if (!image) return null;
+
+  return (
+    <div className="tooltip-image-container">
+      <div className={`tooltip-image ${isTransitioning ? 'transitioning' : ''}`}>
+        {/* the card is 250px wide, the full size shot is 1920 */}
+        <img src={image.thumb ?? image.url} alt="" />
+      </div>
+      {images.length > 1 && (
+        <div className="tooltip-slideshow-indicator">
+          {images.map((_, i) => (
+            <span
+              key={i}
+              className={`tooltip-dot ${i === index ? 'active' : ''}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function Tooltip({ location }: TooltipProps) {
   const elRef = useRef<HTMLDivElement>(null);
   const pointerRef = useRef({ x: 0, y: 0 });
   const frameRef = useRef<number | null>(null);
@@ -62,106 +117,31 @@ export function Tooltip({ location }: TooltipProps) {
     place();
   });
 
-  const images = location ? getAllImages(location) : [];
-  const hasMultipleImages = images.length > 1;
-
-  useEffect(() => {
-    if (location?.id !== prevLocationId.current) {
-      setCurrentImageIndex(0);
-      prevLocationId.current = location?.id || null;
-    }
-  }, [location?.id]);
-
-  useEffect(() => {
-    if (!location || !hasMultipleImages) {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-      return;
-    }
-
-    intervalRef.current = window.setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentImageIndex((prev) => (prev + 1) % images.length);
-        setIsTransitioning(false);
-      }, 300);
-    }, SLIDESHOW_INTERVAL);
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-    };
-  }, [location, hasMultipleImages, images.length]);
-
   if (!location) return null;
 
   const color = CATEGORY_COLORS[location.category];
-  const currentImage = images[currentImageIndex];
-
-  const getPreviewText = () => {
-    if (location.shortDescription) {
-      return location.shortDescription;
-    }
-    const desc = location.description || '';
-    const plainText = desc
-      .replace(/#{1,6}\s/g, '')
-      .replace(/\*\*/g, '')
-      .replace(/\*/g, '')
-      .replace(/~~.*?~~/g, '')
-      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-      .replace(/`/g, '')
-      .replace(/>\s?/g, '')
-      .replace(/---/g, '')
-      .replace(/-\s/g, '')
-      .replace(/\n+/g, ' ')
-      .trim();
-
-    if (plainText.length > 80) {
-      return plainText.substring(0, 77) + '...';
-    }
-    return plainText;
-  };
-
-  const previewText = getPreviewText();
+  const imageCount = location.images?.length ?? 0;
+  const preview = previewText(location);
 
   return (
     <div
       ref={elRef}
       className="tooltip"
       style={{ '--tooltip-color': color } as React.CSSProperties}
+      aria-hidden="true"
     >
-      {images.length > 0 && currentImage && (
-        <div className="tooltip-image-container">
-          <div className={`tooltip-image ${isTransitioning ? 'transitioning' : ''}`}>
-            <img src={currentImage.url} alt={location.name} />
-          </div>
-          {hasMultipleImages && (
-            <div className="tooltip-slideshow-indicator">
-              {images.map((_, index) => (
-                <span
-                  key={index}
-                  className={`tooltip-dot ${index === currentImageIndex ? 'active' : ''}`}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      )}
+      <TooltipImages key={location.id} location={location} />
       <div className="tooltip-header">
         <CategoryIcon category={location.category} size={16} color={color} />
         <span className="tooltip-name">{location.name}</span>
       </div>
       <div className="tooltip-category">{location.category}</div>
-      {previewText && (
-        <div className="tooltip-preview">{previewText}</div>
+      {preview && (
+        <div className="tooltip-preview">{preview}</div>
       )}
-      {hasMultipleImages && (
+      {imageCount > 1 && (
         <div className="tooltip-image-count">
-          {images.length} images
+          {imageCount} images
         </div>
       )}
       <div className="tooltip-hint">Click for details</div>
