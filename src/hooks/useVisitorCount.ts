@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { readStorage, writeStorage, removeStorage, canUseStorage } from '../storage';
 
 const STORAGE_KEY = 'brm5-real-visit-number';
 const OLD_STORAGE_KEY = 'brm5-visit-number';
@@ -8,49 +9,64 @@ interface VisitorData {
   totalVisits: number | null;
   yourVisitNumber: number | null;
   isLoading: boolean;
-  error: string | null;
 }
 
-export function useVisitorCount(): VisitorData {
+function parseCount(value: unknown): number | null {
+  const count = typeof value === 'string' ? Number(value) : value;
+  return typeof count === 'number' && Number.isInteger(count) && count > 0 ? count : null;
+}
+
+async function fetchCount(method: 'GET' | 'POST'): Promise<number | null> {
+  try {
+    const res = await fetch('/api/visitor-count', { method });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return parseCount(data?.count);
+  } catch {
+    return null;
+  }
+}
+
+// a new visitor is counted on arrival, the total is only asked for once the
+// about panel is actually opened
+export function useVisitorCount(isOpen: boolean): VisitorData {
+  const [yourVisitNumber, setYourVisitNumber] = useState(() => parseCount(readStorage(STORAGE_KEY)));
   const [totalVisits, setTotalVisits] = useState<number | null>(null);
-  const [yourVisitNumber, setYourVisitNumber] = useState<number | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [hasTotal, setHasTotal] = useState(false);
 
   useEffect(() => {
-    localStorage.removeItem(OLD_STORAGE_KEY);
-    localStorage.removeItem(OLD_FIRST_VISIT_KEY);
+    removeStorage(OLD_STORAGE_KEY);
+    removeStorage(OLD_FIRST_VISIT_KEY);
 
-    const storedVisitNumber = localStorage.getItem(STORAGE_KEY);
+    // without storage every page load would look like a first visit
+    if (readStorage(STORAGE_KEY) !== null || !canUseStorage()) return;
 
-    if (storedVisitNumber) {
-      setYourVisitNumber(parseInt(storedVisitNumber, 10));
-      fetch('/api/visitor-count')
-        .then(res => res.json())
-        .then(data => {
-          setTotalVisits(data.count);
-          setIsLoading(false);
-        })
-        .catch(() => {
-          setError('Failed to load visit count');
-          setIsLoading(false);
-        });
-    } else {
-      fetch('/api/visitor-count', { method: 'POST' })
-        .then(res => res.json())
-        .then(data => {
-          const visitNumber = data.count;
-          setTotalVisits(visitNumber);
-          setYourVisitNumber(visitNumber);
-          localStorage.setItem(STORAGE_KEY, visitNumber.toString());
-          setIsLoading(false);
-        })
-        .catch(() => {
-          setError('Failed to load visit count');
-          setIsLoading(false);
-        });
-    }
+    let cancelled = false;
+    fetchCount('POST').then(count => {
+      if (count === null) return;
+      writeStorage(STORAGE_KEY, String(count));
+      if (cancelled) return;
+      setYourVisitNumber(count);
+      setTotalVisits(count);
+      setHasTotal(true);
+    });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  return { totalVisits, yourVisitNumber, isLoading, error };
+  useEffect(() => {
+    if (!isOpen || hasTotal) return;
+    let cancelled = false;
+    fetchCount('GET').then(count => {
+      if (cancelled) return;
+      setTotalVisits(count);
+      setHasTotal(true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [isOpen, hasTotal]);
+
+  return { totalVisits, yourVisitNumber, isLoading: !hasTotal };
 }

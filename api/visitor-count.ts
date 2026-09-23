@@ -1,23 +1,36 @@
-export default async function handler(req: any, res: any) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+import { Redis } from '@upstash/redis';
 
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
+const KEY = 'brm5_visitor_count';
+
+// the bits of vercel's node request and response this uses
+interface Request {
+  method?: string;
+}
+
+interface Response {
+  status(code: number): Response;
+  setHeader(name: string, value: string): void;
+  json(body: unknown): void;
+}
+
+let redis: Redis | undefined;
+
+export default async function handler(req: Request, res: Response) {
+  res.setHeader('Cache-Control', 'no-store');
+
+  if (req.method !== 'GET' && req.method !== 'POST') {
+    res.setHeader('Allow', 'GET, POST');
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    const kv = await import('@vercel/kv').then(m => m.kv);
-
-    if (req.method === 'POST') {
-      const count = await kv.incr('brm5_visitor_count');
-      return res.status(200).json({ count });
-    }
-
-    const count = await kv.get('brm5_visitor_count') || 0;
+    // reads the KV_REST_API_* variables the old vercel kv store already has
+    redis ??= Redis.fromEnv();
+    const count = req.method === 'POST'
+      ? await redis.incr(KEY)
+      : (await redis.get<number>(KEY)) ?? 0;
     return res.status(200).json({ count });
-  } catch (error) {
-    return res.status(500).json({ count: 0, error: 'Service unavailable' });
+  } catch {
+    return res.status(503).json({ error: 'Service unavailable' });
   }
 }

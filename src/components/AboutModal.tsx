@@ -10,7 +10,7 @@ interface AboutModalProps {
 
 export function AboutModal({ isOpen, onClose, onOpenChangelog }: AboutModalProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const { totalVisits, yourVisitNumber, isLoading } = useVisitorCount();
+  const { totalVisits, yourVisitNumber, isLoading } = useVisitorCount(isOpen);
 
   useEffect(() => {
     if (isOpen) {

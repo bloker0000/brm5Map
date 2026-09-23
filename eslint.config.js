@@ -6,7 +6,7 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist', '.history']),
+  globalIgnores(['dist', '.history', 'tools']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
@@ -18,6 +18,13 @@ export default defineConfig([
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+    },
+  },
+  {
+    // these run in node, not the browser
+    files: ['api/**/*.ts', 'vite.config.ts'],
+    languageOptions: {
+      globals: globals.node,
     },
   },
 ])
