@@ -119,33 +119,3 @@
   70% { opacity: 0; }
   100% { transform: scale(1.9); opacity: 0; }
 }
-
-.pin-label {
-  position: absolute;
-  left: 50%;
-  bottom: calc(100% + 10px);
-  transform: translateX(-50%);
-  padding: 3px 9px 2px;
-  background: var(--brm-glass-deep);
-  border: 1px solid var(--brm-border);
-  border-bottom: 2px solid var(--pin-color);
-  color: var(--brm-text);
-  font-family: var(--font-display);
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: var(--tr-label);
-  text-transform: uppercase;
-  white-space: nowrap;
-  pointer-events: none;
-}
-
-.pin-label::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  width: 1px;
-  height: 8px;
-  transform: translateX(-50%);
-  background: var(--pin-color);
-}

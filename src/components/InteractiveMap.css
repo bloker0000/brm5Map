@@ -84,23 +84,6 @@
   pointer-events: none;
 }
 
-.admin-mode-indicator {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  z-index: 100;
-  padding: 6px 14px;
-  background-color: rgba(242, 169, 59, 0.06);
-  border: 1px solid var(--brm-accent);
-  color: var(--brm-accent);
-  font-family: var(--font-display);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: var(--tr-label);
-  text-transform: uppercase;
-  pointer-events: none;
-}
-
 .zoom-controls {
   position: absolute;
   bottom: 20px;

@@ -150,15 +150,6 @@ export function OtherIcon({ size = 16, color = 'currentColor', className }: Icon
   );
 }
 
-export function SearchIcon({ size = 16, color = 'currentColor', className }: IconProps) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
-      <circle cx="11" cy="11" r="8" />
-      <line x1="21" y1="21" x2="16.65" y2="16.65" />
-    </svg>
-  );
-}
-
 export function SafeIcon({ size = 16, color = 'currentColor', className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -193,15 +184,6 @@ export function MinusIcon({ size = 16, color = 'currentColor', className }: Icon
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
       <line x1="5" y1="12" x2="19" y2="12" />
-    </svg>
-  );
-}
-
-export function ResetIcon({ size = 16, color = 'currentColor', className }: IconProps) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
-      <polyline points="1 4 1 10 7 10" />
-      <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
     </svg>
   );
 }
@@ -284,17 +266,6 @@ export function getCategoryIconUri(category: LocationCategory, color: string): s
   uri = `data:image/svg+xml,${encodeURIComponent(svg)}`;
   dataUriCache.set(key, uri);
   return uri;
-}
-
-export function CategoryIconOutlined({ category, size = 25, color = 'currentColor' }: { category: LocationCategory; size?: number; color?: string }) {
-  const builder = iconSvgBuilders[category] || iconSvgBuilders['Other'];
-  const inner = builder(color);
-  return (
-    <svg width={size} height={size} viewBox="-1 -1 26 26" fill="none" strokeLinecap="round" strokeLinejoin="round">
-      <g stroke="rgba(0,0,0,0.7)" strokeWidth="3.5" dangerouslySetInnerHTML={{ __html: inner }} />
-      <g stroke={color} strokeWidth="2" dangerouslySetInnerHTML={{ __html: inner }} />
-    </svg>
-  );
 }
 
 export function ResetPositionIcon({ size = 16, color = 'currentColor', className }: IconProps) {

@@ -196,31 +196,6 @@
   text-align: center;
 }
 
-.modal-gallery-dots {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  padding: 10px 20px;
-  background: var(--brm-bg-dark);
-}
-
-.gallery-dot {
-  width: 16px;
-  height: 3px;
-  background: var(--brm-border-accent);
-  border: none;
-  cursor: pointer;
-  transition: background-color var(--t-fast) var(--ease);
-}
-
-.gallery-dot:hover {
-  background: var(--brm-text-muted);
-}
-
-.gallery-dot.active {
-  background: var(--brm-accent);
-}
-
 .modal-gallery-thumbnails {
   display: flex;
   gap: 4px;

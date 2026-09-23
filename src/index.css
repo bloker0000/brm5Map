@@ -120,9 +120,7 @@ h1, h2, h3, h4, h5, h6 {
 .brm-segment button,
 .sidebar-toggle-btn,
 .zoom-controls button,
-.admin-mode-indicator,
 .modal-header,
-.welcome-header,
 .about-modal-header,
 .about-changelog-btn,
 .visit-stat,
@@ -140,9 +138,7 @@ h1, h2, h3, h4, h5, h6 {
 .brm-segment button::before,
 .sidebar-toggle-btn::before,
 .zoom-controls button::before,
-.admin-mode-indicator::before,
 .modal-header::before,
-.welcome-header::before,
 .about-modal-header::before,
 .about-changelog-btn::before,
 .visit-stat::before,
@@ -164,7 +160,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .brm-tab.active::before,
 .brm-segment button[aria-pressed='true']::before,
-.admin-mode-indicator::before,
 .locations-item.selected::before {
   background-image: var(--dots-accent);
 }
@@ -249,20 +244,6 @@ h1, h2, h3, h4, h5, h6 {
 .brm-btn:hover {
   color: var(--brm-accent);
   border-color: var(--brm-accent);
-}
-
-.brm-btn--primary {
-  background-color: var(--brm-accent);
-  background-image: none;
-  border-color: var(--brm-accent);
-  color: #140d02;
-  font-weight: 700;
-}
-
-.brm-btn--primary:hover {
-  background-color: var(--brm-accent-hover);
-  border-color: var(--brm-accent-hover);
-  color: #140d02;
 }
 
 .brm-segment {

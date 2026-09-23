@@ -23,14 +23,6 @@ export interface LocationImage {
   thumb?: string;
 }
 
-export interface ContentBlock {
-  type: 'text' | 'image-left' | 'image-right' | 'gallery' | 'header' | 'divider';
-  content?: string;
-  imageUrl?: string;
-  imageCaption?: string;
-  level?: 1 | 2 | 3;
-}
-
 export interface MapLocation {
   id: string;
   name: string;
@@ -40,7 +32,6 @@ export interface MapLocation {
   category: LocationCategory;
   image?: string;
   images?: LocationImage[];
-  richContent?: ContentBlock[];
   shortDescription?: string;
 }
 

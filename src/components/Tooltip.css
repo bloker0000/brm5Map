@@ -74,15 +74,6 @@
   min-height: 16px;
 }
 
-.tooltip-icon {
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .tooltip-name {
   font-family: var(--font-display);
   font-size: 1.02rem;
