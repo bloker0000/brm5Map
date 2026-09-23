@@ -101,17 +101,21 @@
   background: var(--brm-void);
 }
 
+/* sideways swipes are ours to change the image, up and down still scroll the modal */
 .modal-image {
   position: relative;
   cursor: zoom-in;
   min-height: 150px;
   overflow: hidden;
+  touch-action: pan-y;
 }
 
 .modal-image img {
   width: 100%;
   height: auto;
   display: block;
+  user-select: none;
+  -webkit-user-drag: none;
   transition: opacity var(--t-med) var(--ease);
 }
 

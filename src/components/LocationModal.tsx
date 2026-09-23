@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useId, lazy, Suspense } from 'react';
-import type { MapLocation, LocationImage } from '../types/location';
+import type { MapLocation } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
-import { CategoryIcon, CloseIcon } from './Icons';
+import { CategoryIcon, CloseIcon, ChevronIcon, ExpandIcon } from './Icons';
 import { missionsAt } from '../data/location-missions';
 import { ImageLightbox } from './ImageLightbox';
 import { useExitTransition } from '../hooks/useExitTransition';
@@ -11,21 +11,12 @@ import './LocationModal.css';
 
 const Markdown = lazy(loadMarkdown);
 
+// how far a finger has to travel sideways before it counts as a swipe
+const SWIPE = 40;
+
 interface LocationModalProps {
   location: MapLocation | null;
   onClose: () => void;
-}
-
-function getAllImages(location: MapLocation): LocationImage[] {
-  const images: LocationImage[] = [];
-
-  if (location.images && location.images.length > 0) {
-    images.push(...location.images);
-  } else if (location.image) {
-    images.push({ url: location.image });
-  }
-
-  return images;
 }
 
 export function LocationModal({ location, onClose }: LocationModalProps) {
@@ -34,6 +25,8 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
   const [imageLoadStates, setImageLoadStates] = useState<Record<number, boolean>>({});
   const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const dialogRef = useRef<HTMLDivElement>(null);
+  const swipeRef = useRef<{ id: number; x: number; y: number } | null>(null);
+  const swipedRef = useRef(false);
   const titleId = useId();
 
   const { rendered: shown, isClosing } = useExitTransition(location, 170);
@@ -60,7 +53,7 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
   if (!shown) return null;
 
   const color = CATEGORY_COLORS[shown.category];
-  const images = getAllImages(shown);
+  const images = shown.images ?? [];
   const hasImages = images.length > 0;
   const hasMultipleImages = images.length > 1;
   const safeIndex = Math.min(currentImageIndex, images.length - 1);
@@ -79,7 +72,31 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
     setImageLoadStates(prev => (prev[index] ? prev : { ...prev, [index]: true }));
   };
 
+  const handleSwipeStart = (e: React.PointerEvent) => {
+    if (!e.isPrimary) return;
+    swipeRef.current = { id: e.pointerId, x: e.clientX, y: e.clientY };
+    swipedRef.current = false;
+  };
+
+  const handleSwipeEnd = (e: React.PointerEvent) => {
+    const start = swipeRef.current;
+    swipeRef.current = null;
+    if (!start || start.id !== e.pointerId || !hasMultipleImages) return;
+    const dx = e.clientX - start.x;
+    const dy = e.clientY - start.y;
+    if (Math.abs(dx) > SWIPE && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      swipedRef.current = true;
+      if (dx < 0) handleNextImage();
+      else handlePrevImage();
+    }
+  };
+
   const openLightbox = () => {
+    // a mouse swipe still ends in a click, which should not open the viewer
+    if (swipedRef.current) {
+      swipedRef.current = false;
+      return;
+    }
     setLightboxOpen(true);
   };
 
@@ -115,7 +132,13 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
 
           {hasImages && currentImage && (
             <div className="modal-gallery">
-              <div className="modal-image" onClick={openLightbox}>
+              <div
+                className="modal-image"
+                onClick={openLightbox}
+                onPointerDown={handleSwipeStart}
+                onPointerUp={handleSwipeEnd}
+                onPointerCancel={() => { swipeRef.current = null; }}
+              >
                 <div className={`modal-image-loader brm-loader ${imageLoadStates[safeIndex] ? 'hidden' : ''}`}>
                   <span className="brm-loader-label">Loading</span>
                   <span className="brm-loader-track" />
@@ -123,7 +146,8 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
                 <img
                   key={currentImage.url}
                   src={currentImage.url}
-                  alt={shown.name}
+                  alt={currentImage.description || shown.name}
+                  draggable={false}
                   ref={(el) => { if (el?.complete) handleImageLoad(safeIndex); }}
                   onLoad={() => handleImageLoad(safeIndex)}
                   style={{ opacity: imageLoadStates[safeIndex] ? 1 : 0 }}
@@ -216,36 +240,5 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
         />
       )}
     </>
-  );
-}
-
-function ChevronIcon({ direction }: { direction: 'left' | 'right' }) {
-  return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="square"
-    >
-      {direction === 'left' ? (
-        <polyline points="15 18 9 12 15 6" />
-      ) : (
-        <polyline points="9 6 15 12 9 18" />
-      )}
-    </svg>
-  );
-}
-
-function ExpandIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <polyline points="15 3 21 3 21 9" />
-      <polyline points="9 21 3 21 3 15" />
-      <line x1="21" y1="3" x2="14" y2="10" />
-      <line x1="3" y1="21" x2="10" y2="14" />
-    </svg>
   );
 }
