@@ -37,8 +37,8 @@ svg {
   --brm-danger: #c8322d;
   --brm-success: #3fa34d;
 
-  --font-display: 'Roboto Condensed', 'Arial Narrow', system-ui, sans-serif;
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Roboto Condensed Variable', 'Roboto Condensed', 'Arial Narrow', system-ui, sans-serif;
+  --font-body: 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, 'Cascadia Mono', 'Consolas', monospace;
 
   --tr-tight: 0.01em;
