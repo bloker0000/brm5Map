@@ -10,8 +10,8 @@ import {
   hasUnseenChangelog,
   markChangelogSeen,
   LocationsList,
-  AdminPanel,
 } from './components';
+import { preloadMarkdown } from './components/markdownLoader';
 import { useLocations } from './hooks/useLocations';
 import type { MapLocation, LocationCategory } from './types/location';
 import { BG_CREDITS } from './data/backgrounds';
@@ -22,7 +22,10 @@ const MissionsPage = lazy(() =>
   import('./components/MissionsPage').then(m => ({ default: m.MissionsPage }))
 );
 
-const IS_DEV = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+// a production build leaves the whole panel out, not just hides it
+const AdminPanel = import.meta.env.DEV
+  ? lazy(() => import('./components/AdminPanel').then(m => ({ default: m.AdminPanel })))
+  : null;
 
 const MISSIONS_ROUTE = /^#\/missions(?:\/([A-Za-z0-9_-]+))?$/;
 
@@ -118,11 +121,11 @@ function App() {
           setSelectedLocation(null);
         }
       }
-      if (IS_DEV && e.ctrlKey && e.shiftKey && e.key === 'A') {
+      if (import.meta.env.DEV && e.ctrlKey && e.shiftKey && e.key === 'A') {
         e.preventDefault();
         setIsAdminOpen(prev => !prev);
       }
-      if (IS_DEV && isAdminOpen && (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
+      if (import.meta.env.DEV && isAdminOpen && (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
         const tag = (e.target as HTMLElement)?.tagName;
         if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
         e.preventDefault();
@@ -142,6 +145,7 @@ function App() {
     setTimeout(() => {
       setIsFadingOut(true);
     }, 100);
+    preloadMarkdown();
   }, []);
 
   const handleFadeComplete = useCallback(() => {
@@ -156,7 +160,7 @@ function App() {
   );
 
   const handleMapClick = useCallback((x: number, y: number) => {
-    if (IS_DEV && isAdminOpen && (adminViewMode === 'add' || adminViewMode === 'edit')) {
+    if (import.meta.env.DEV && isAdminOpen && (adminViewMode === 'add' || adminViewMode === 'edit')) {
       setAdminClickPosition({ x, y });
     }
   }, [isAdminOpen, adminViewMode]);
@@ -372,14 +376,14 @@ function App() {
           onClick={handleLocationClick}
           onMapClick={handleMapClick}
           highlightedLocation={highlightedLocation}
-          isAdminMode={IS_DEV && isAdminOpen}
+          isAdminMode={import.meta.env.DEV && isAdminOpen}
           showPins={showPins}
           showCompass={showCompass}
           onBgChange={setCurrentBgIndex}
           focusedLocations={focusedLocations}
           onPinDrag={handlePinDrag}
-          placeholderPin={IS_DEV && isAdminOpen && adminViewMode === 'add' && adminClickPosition ? { x: adminClickPosition.x, y: adminClickPosition.y, category: adminFormCategory } : null}
-          isDragMode={IS_DEV && isAdminOpen && adminDragMode}
+          placeholderPin={import.meta.env.DEV && isAdminOpen && adminViewMode === 'add' && adminClickPosition ? { x: adminClickPosition.x, y: adminClickPosition.y, category: adminFormCategory } : null}
+          isDragMode={import.meta.env.DEV && isAdminOpen && adminDragMode}
         />
       </div>
 
@@ -390,26 +394,28 @@ function App() {
         onClose={() => setSelectedLocation(null)}
       />
 
-      {IS_DEV && (
-        <AdminPanel
-          isOpen={isAdminOpen}
-          onClose={() => setIsAdminOpen(false)}
-          locations={locations}
-          onAdd={handleAddLocation}
-          onUpdate={updateLocation}
-          onDelete={deleteLocation}
-          clickPosition={adminClickPosition}
-          saveStatus={saveStatus}
-          onManualSave={manualSave}
-          onFormCategoryChange={setAdminFormCategory}
-          onModeChange={setAdminViewMode}
-          onDragModeChange={setAdminDragMode}
-          onImport={importLocations}
-          onUndo={undo}
-          onRedo={redo}
-          canUndo={canUndo}
-          canRedo={canRedo}
-        />
+      {AdminPanel && (
+        <Suspense fallback={null}>
+          <AdminPanel
+            isOpen={isAdminOpen}
+            onClose={() => setIsAdminOpen(false)}
+            locations={locations}
+            onAdd={handleAddLocation}
+            onUpdate={updateLocation}
+            onDelete={deleteLocation}
+            clickPosition={adminClickPosition}
+            saveStatus={saveStatus}
+            onManualSave={manualSave}
+            onFormCategoryChange={setAdminFormCategory}
+            onModeChange={setAdminViewMode}
+            onDragModeChange={setAdminDragMode}
+            onImport={importLocations}
+            onUndo={undo}
+            onRedo={redo}
+            canUndo={canUndo}
+            canRedo={canRedo}
+          />
+        </Suspense>
       )}
     </div>
     </>

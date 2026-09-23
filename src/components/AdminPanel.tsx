@@ -4,8 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import type { MapLocation, LocationCategory, LocationImage } from '../types/location';
 import { CATEGORY_COLORS, ALL_CATEGORIES } from '../types/location';
 import { CloseIcon, CrosshairIcon, CategoryIcon, SaveIcon } from './Icons';
-import Markdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import { Markdown } from './Markdown';
 import './AdminPanel.css';
 
 interface AdminPanelProps {
@@ -897,7 +896,7 @@ Examples:
                       />
                     ) : (
                       <div className="admin-preview-content">
-                        <Markdown remarkPlugins={[remarkGfm]}>
+                        <Markdown>
                           {formData.description || '*No content yet*'}
                         </Markdown>
                       </div>

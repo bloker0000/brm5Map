@@ -1,9 +1,8 @@
-import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
-import Fuse from 'fuse.js';
+import { useState, useEffect, useLayoutEffect, useMemo, useCallback, useRef } from 'react';
 import type { MapLocation, LocationCategory } from '../types/location';
 import { loadLocations, generateId, sanitizeLocation } from '../data/locations';
 
-const IS_DEV = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+type SaveStatus = 'idle' | 'saving' | 'saved' | 'error';
 
 async function saveToFile(payload: string): Promise<{ ok: boolean; error?: string }> {
   try {
@@ -30,24 +29,24 @@ function serialize(locations: MapLocation[]): string {
 }
 
 export function useLocations() {
-  const [locations, setLocationsRaw] = useState<MapLocation[]>([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [locations, setLocationsRaw] = useState(loadLocations);
   const [selectedCategories, setSelectedCategories] = useState<Set<LocationCategory>>(new Set());
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle');
   const [canUndo, setCanUndo] = useState(false);
   const [canRedo, setCanRedo] = useState(false);
-  const initialLoadDone = useRef(false);
   const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const statusTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const lastSavedRef = useRef<string | null>(null);
 
   const undoStack = useRef<MapLocation[][]>([]);
   const redoStack = useRef<MapLocation[][]>([]);
-  const skipHistoryRef = useRef(false);
   const locationsRef = useRef(locations);
-  locationsRef.current = locations;
+
+  useLayoutEffect(() => {
+    locationsRef.current = locations;
+  }, [locations]);
 
   const syncHistoryFlags = useCallback(() => {
     setCanUndo(undoStack.current.length > 0);
@@ -55,11 +54,9 @@ export function useLocations() {
   }, []);
 
   const setLocations = useCallback((action: MapLocation[] | ((prev: MapLocation[]) => MapLocation[])) => {
-    if (!skipHistoryRef.current && initialLoadDone.current) {
-      undoStack.current = [...undoStack.current.slice(-(MAX_UNDO - 1)), locationsRef.current];
-      redoStack.current = [];
-      syncHistoryFlags();
-    }
+    undoStack.current = [...undoStack.current.slice(-(MAX_UNDO - 1)), locationsRef.current];
+    redoStack.current = [];
+    syncHistoryFlags();
     setLocationsRaw(action);
   }, [syncHistoryFlags]);
 
@@ -68,9 +65,7 @@ export function useLocations() {
     const prev = undoStack.current[undoStack.current.length - 1];
     undoStack.current = undoStack.current.slice(0, -1);
     redoStack.current = [...redoStack.current, locationsRef.current];
-    skipHistoryRef.current = true;
     setLocationsRaw(prev);
-    skipHistoryRef.current = false;
     syncHistoryFlags();
   }, [syncHistoryFlags]);
 
@@ -79,20 +74,9 @@ export function useLocations() {
     const next = redoStack.current[redoStack.current.length - 1];
     redoStack.current = redoStack.current.slice(0, -1);
     undoStack.current = [...undoStack.current, locationsRef.current];
-    skipHistoryRef.current = true;
     setLocationsRaw(next);
-    skipHistoryRef.current = false;
     syncHistoryFlags();
   }, [syncHistoryFlags]);
-
-  useEffect(() => {
-    const initial = loadLocations();
-    lastSavedRef.current = serialize(initial);
-    skipHistoryRef.current = true;
-    setLocationsRaw(initial);
-    skipHistoryRef.current = false;
-    initialLoadDone.current = true;
-  }, []);
 
   const flashStatus = useCallback((status: 'saved' | 'error') => {
     setSaveStatus(status);
@@ -109,10 +93,15 @@ export function useLocations() {
   }, [flashStatus]);
 
   useEffect(() => {
-    if (!IS_DEV || !initialLoadDone.current) return;
+    if (!import.meta.env.DEV) return;
 
     const payload = serialize(locations);
-    // skip the write on initial load and on undo/redo back to a saved state
+    // the first run only records what is already on disk
+    if (lastSavedRef.current === null) {
+      lastSavedRef.current = payload;
+      return;
+    }
+    // also skips undo/redo back to a saved state
     if (payload === lastSavedRef.current) return;
 
     clearTimeout(saveTimeoutRef.current);
@@ -131,28 +120,12 @@ export function useLocations() {
     return persist(serialize(locationsRef.current));
   }, [persist]);
 
-  const fuse = useMemo(() => {
-    return new Fuse(locations, {
-      keys: ['name', 'description', 'category'],
-      threshold: 0.4,
-      includeScore: true,
-    });
-  }, [locations]);
-
-  const filteredLocations = useMemo(() => {
-    let result = locations;
-
-    if (searchQuery.trim()) {
-      const searchResults = fuse.search(searchQuery);
-      result = searchResults.map(r => r.item);
-    }
-
-    if (selectedCategories.size > 0) {
-      result = result.filter(loc => selectedCategories.has(loc.category));
-    }
-
-    return result;
-  }, [locations, searchQuery, selectedCategories, fuse]);
+  const filteredLocations = useMemo(
+    () => (selectedCategories.size > 0
+      ? locations.filter(loc => selectedCategories.has(loc.category))
+      : locations),
+    [locations, selectedCategories]
+  );
 
   // held by id so an edit or delete is reflected without going stale
   const selectedLocation = useMemo(
@@ -178,16 +151,16 @@ export function useLocations() {
     return Array.from(cats).sort();
   }, [locations]);
 
-  const addLocation = (location: Omit<MapLocation, 'id'>) => {
+  const addLocation = useCallback((location: Omit<MapLocation, 'id'>) => {
     const newLocation: MapLocation = {
       ...location,
       id: generateId(),
     };
     setLocations(prev => [...prev, newLocation]);
     return newLocation;
-  };
+  }, [setLocations]);
 
-  const importLocations = (incoming: unknown[], replace: boolean = false) => {
+  const importLocations = useCallback((incoming: unknown[], replace: boolean = false) => {
     const seenIds = new Set<string>();
     const cleaned: MapLocation[] = [];
 
@@ -211,19 +184,19 @@ export function useLocations() {
     }
 
     return { imported: cleaned.length, skipped: incoming.length - cleaned.length };
-  };
+  }, [setLocations]);
 
-  const updateLocation = (id: string, updates: Partial<MapLocation>) => {
+  const updateLocation = useCallback((id: string, updates: Partial<MapLocation>) => {
     setLocations(prev =>
       prev.map(loc => (loc.id === id ? { ...loc, ...updates } : loc))
     );
-  };
+  }, [setLocations]);
 
-  const deleteLocation = (id: string) => {
+  const deleteLocation = useCallback((id: string) => {
     setLocations(prev => prev.filter(loc => loc.id !== id));
-  };
+  }, [setLocations]);
 
-  const toggleCategory = (category: LocationCategory) => {
+  const toggleCategory = useCallback((category: LocationCategory) => {
     setSelectedCategories(prev => {
       const next = new Set(prev);
       if (next.has(category)) {
@@ -233,18 +206,15 @@ export function useLocations() {
       }
       return next;
     });
-  };
+  }, []);
 
-  const clearFilters = () => {
-    setSearchQuery('');
+  const clearFilters = useCallback(() => {
     setSelectedCategories(new Set());
-  };
+  }, []);
 
   return {
     locations,
     filteredLocations,
-    searchQuery,
-    setSearchQuery,
     selectedCategories,
     toggleCategory,
     clearFilters,

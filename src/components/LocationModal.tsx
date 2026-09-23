@@ -1,13 +1,14 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import type { MapLocation, LocationImage } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
 import { CategoryIcon, CloseIcon } from './Icons';
 import { missionsAt } from '../data/location-missions';
 import { ImageLightbox } from './ImageLightbox';
 import { useExitTransition } from '../hooks/useExitTransition';
-import Markdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import { loadMarkdown } from './markdownLoader';
 import './LocationModal.css';
+
+const Markdown = lazy(loadMarkdown);
 
 interface LocationModalProps {
   location: MapLocation | null;
@@ -154,9 +155,15 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
           )}
 
           <div className="modal-description">
-            <Markdown remarkPlugins={[remarkGfm]}>
-              {shown.description}
-            </Markdown>
+            <Suspense
+              fallback={
+                <div className="modal-description-loading brm-loader">
+                  <span className="brm-loader-track" />
+                </div>
+              }
+            >
+              <Markdown>{shown.description}</Markdown>
+            </Suspense>
           </div>
 
           {missions.length > 0 && (

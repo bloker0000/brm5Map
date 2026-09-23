@@ -248,6 +248,11 @@
   line-height: 1.65;
 }
 
+.modal-description-loading {
+  align-items: flex-start;
+  padding: 10px 0;
+}
+
 .modal-description h1,
 .modal-description h2,
 .modal-description h3,
