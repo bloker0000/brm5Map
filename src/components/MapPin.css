@@ -2,13 +2,23 @@
   position: absolute;
   left: 0;
   top: 0;
-  cursor: pointer;
   z-index: 10;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
   pointer-events: auto;
 }
 
-.map-pin:hover {
+.map-pin:hover,
+.map-pin:focus-visible {
   z-index: 20;
+}
+
+.map-pin:focus-visible {
+  outline-offset: 3px;
 }
 
 .map-pin.selected {
@@ -77,6 +87,7 @@
 }
 
 .pin-icon {
+  display: block;
   opacity: 0.9;
   transition: transform var(--t-med) var(--ease-out), opacity var(--t-fast) var(--ease);
 }
@@ -85,10 +96,17 @@
   display: block;
 }
 
-.map-pin:hover .pin-icon,
-.map-pin.hovered .pin-icon {
+.map-pin.hovered .pin-icon,
+.map-pin:focus-visible .pin-icon {
   transform: scale(1.4);
   opacity: 1;
+}
+
+@media (hover: hover) {
+  .map-pin:hover .pin-icon {
+    transform: scale(1.4);
+    opacity: 1;
+  }
 }
 
 .map-pin.selected .pin-icon {

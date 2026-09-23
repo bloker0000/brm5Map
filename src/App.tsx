@@ -11,10 +11,11 @@ import {
   markChangelogSeen,
   LocationsList,
 } from './components';
+import type { FocusRequest } from './components/InteractiveMap';
 import { preloadMarkdown } from './components/markdownLoader';
 import { useLocations } from './hooks/useLocations';
 import type { MapLocation, LocationCategory } from './types/location';
-import { BG_CREDITS } from './data/backgrounds';
+import { BG_CREDITS, randomBgIndex } from './data/backgrounds';
 import './App.css';
 
 // the mission data is a third of the bundle, so it only loads on its own route
@@ -33,7 +34,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isPreloaderVisible, setIsPreloaderVisible] = useState(true);
   const [isFadingOut, setIsFadingOut] = useState(false);
-  const [highlightedLocation, setHighlightedLocation] = useState<MapLocation | null>(null);
+  const [focusRequest, setFocusRequest] = useState<FocusRequest | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [activeTab, setActiveTab] = useState<'categories' | 'locations'>('categories');
   const [isAboutOpen, setIsAboutOpen] = useState(false);
@@ -41,9 +42,8 @@ function App() {
   const [showPins, setShowPins] = useState(true);
   const [showSidebar, setShowSidebar] = useState(true);
   const [showCompass, setShowCompass] = useState(true);
-  const [currentBgIndex, setCurrentBgIndex] = useState(0);
+  const [bgIndex] = useState(randomBgIndex);
   const [selectedLocations, setSelectedLocations] = useState<Set<string>>(new Set());
-  const [focusedLocations, setFocusedLocations] = useState<MapLocation[]>([]);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [adminClickPosition, setAdminClickPosition] = useState<{ x: number; y: number } | null>(null);
   const [adminFormCategory, setAdminFormCategory] = useState<LocationCategory>('Other');
@@ -102,13 +102,14 @@ function App() {
 
   const missionRoute = route.match(MISSIONS_ROUTE);
   const isMissionsRoute = missionRoute !== null;
+  const missionId = missionRoute?.[1] ?? null;
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         if (isMissionsRoute) {
           // like the admin panel, back out of the mission first, then the page
-          navigate(missionRoute[1] ? '#/missions' : '');
+          navigate(missionId ? '#/missions' : '');
         } else if (isChangelogOpen) {
           markChangelogSeen();
           setIsChangelogOpen(false);
@@ -138,7 +139,7 @@ function App() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedLocation, setSelectedLocation, isAboutOpen, isAdminOpen, adminViewMode, isChangelogOpen, undo, redo, isMissionsRoute, missionRoute, navigate]);
+  }, [selectedLocation, setSelectedLocation, isAboutOpen, isAdminOpen, adminViewMode, isChangelogOpen, undo, redo, isMissionsRoute, missionId, navigate]);
 
   const handleLoaded = useCallback(() => {
     setIsLoading(false);
@@ -159,6 +160,10 @@ function App() {
     [setSelectedLocation]
   );
 
+  const handleCloseLocation = useCallback(() => {
+    setSelectedLocation(null);
+  }, [setSelectedLocation]);
+
   const handleMapClick = useCallback((x: number, y: number) => {
     if (import.meta.env.DEV && isAdminOpen && (adminViewMode === 'add' || adminViewMode === 'edit')) {
       setAdminClickPosition({ x, y });
@@ -174,35 +179,35 @@ function App() {
     setAdminClickPosition(null);
   }, [addLocation]);
 
+  // a new request each time, so asking for the same place twice still moves the map
+  const focusOn = useCallback((locs: MapLocation[]) => {
+    setFocusRequest(prev => ({ locations: locs, id: (prev?.id ?? 0) + 1 }));
+  }, []);
+
   const handleToggleLocation = useCallback(
     (location: MapLocation, multiSelect: boolean) => {
-      setSelectedLocations(prev => {
-        const next = new Set(multiSelect ? prev : []);
-        if (next.has(location.id)) {
-          next.delete(location.id);
-        } else {
-          next.add(location.id);
-        }
+      const next = new Set(multiSelect ? selectedLocations : []);
+      if (next.has(location.id)) {
+        next.delete(location.id);
+      } else {
+        next.add(location.id);
+      }
+      setSelectedLocations(next);
 
-        const locsToFocus = filteredLocations.filter(loc => next.has(loc.id));
-        if (locsToFocus.length > 0) {
-          setFocusedLocations([...locsToFocus]);
-          setTimeout(() => setFocusedLocations([]), 100);
-        }
-
-        return next;
-      });
+      const locsToFocus = filteredLocations.filter(loc => next.has(loc.id));
+      if (locsToFocus.length > 0) {
+        focusOn(locsToFocus);
+      }
     },
-    [filteredLocations]
+    [selectedLocations, filteredLocations, focusOn]
   );
 
   const handleLocationSelect = useCallback(
     (location: MapLocation) => {
-      setHighlightedLocation(location);
-      setTimeout(() => setHighlightedLocation(null), 500);
+      focusOn([location]);
       setSelectedLocation(location);
     },
-    [setSelectedLocation]
+    [focusOn, setSelectedLocation]
   );
 
   const handleClearSelection = useCallback(() => {
@@ -221,7 +226,14 @@ function App() {
     [filteredLocations, selectedLocations]
   );
 
-  const currentCredit = BG_CREDITS[currentBgIndex];
+  const placeholderPin = useMemo(
+    () => (import.meta.env.DEV && isAdminOpen && adminViewMode === 'add' && adminClickPosition
+      ? { x: adminClickPosition.x, y: adminClickPosition.y, category: adminFormCategory }
+      : null),
+    [isAdminOpen, adminViewMode, adminClickPosition, adminFormCategory]
+  );
+
+  const currentCredit = BG_CREDITS[bgIndex];
 
   if (isMissionsRoute) {
     return (
@@ -236,7 +248,7 @@ function App() {
         }
       >
         <MissionsPage
-          missionId={missionRoute[1] ?? null}
+          missionId={missionId}
           onSelectMission={id => navigate(id ? `#/missions/${id}` : '#/missions')}
           onExit={() => navigate('')}
         />
@@ -375,14 +387,13 @@ function App() {
           onHover={setHoveredLocation}
           onClick={handleLocationClick}
           onMapClick={handleMapClick}
-          highlightedLocation={highlightedLocation}
+          focusRequest={focusRequest}
+          bgIndex={bgIndex}
           isAdminMode={import.meta.env.DEV && isAdminOpen}
           showPins={showPins}
           showCompass={showCompass}
-          onBgChange={setCurrentBgIndex}
-          focusedLocations={focusedLocations}
           onPinDrag={handlePinDrag}
-          placeholderPin={import.meta.env.DEV && isAdminOpen && adminViewMode === 'add' && adminClickPosition ? { x: adminClickPosition.x, y: adminClickPosition.y, category: adminFormCategory } : null}
+          placeholderPin={placeholderPin}
           isDragMode={import.meta.env.DEV && isAdminOpen && adminDragMode}
         />
       </div>
@@ -391,7 +402,7 @@ function App() {
 
       <LocationModal
         location={selectedLocation}
-        onClose={() => setSelectedLocation(null)}
+        onClose={handleCloseLocation}
       />
 
       {AdminPanel && (

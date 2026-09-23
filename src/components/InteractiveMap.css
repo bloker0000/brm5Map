@@ -7,6 +7,15 @@
   background: var(--brm-void);
   overflow: hidden;
   cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.interactive-map:focus-visible {
+  outline: 2px solid var(--brm-accent);
+  outline-offset: -2px;
 }
 
 .map-bg {
@@ -56,10 +65,6 @@
   z-index: 2;
   transform-origin: 0 0;
   will-change: transform;
-}
-
-.map-content.animating {
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .pins-overlay {
@@ -124,20 +129,24 @@
   color: #140d02;
 }
 
+/* round, so the empty corners of the box do not catch presses meant for the map */
 .compass {
   position: absolute;
   top: 20px;
   right: 20px;
-  width: 300px;
-  height: 300px;
+  width: 240px;
+  height: 240px;
   z-index: 100;
+  border-radius: 50%;
   cursor: grab;
   transition: transform var(--t-med) var(--ease), opacity var(--t-med) var(--ease);
   transform-origin: top right;
 }
 
-.compass:hover {
-  transform: scale(1.3);
+@media (hover: hover) {
+  .compass:hover {
+    transform: scale(1.3);
+  }
 }
 
 .compass:active {
@@ -157,26 +166,26 @@
   pointer-events: none;
 }
 
-.rotation-display,
-.coords-display {
+.map-readouts {
   position: absolute;
   left: 20px;
+  bottom: 20px;
   z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.rotation-display,
+.coords-display {
   display: flex;
   align-items: baseline;
   gap: 10px;
   padding: 7px 13px;
   background: var(--brm-glass-deep);
   border: 1px solid var(--brm-border);
-  pointer-events: none;
-}
-
-.rotation-display {
-  bottom: 66px;
-}
-
-.coords-display {
-  bottom: 20px;
 }
 
 .rotation-label,
@@ -199,42 +208,43 @@
   color: var(--brm-accent);
 }
 
+/* the coordinates follow the mouse, so without one there is nothing to show */
+@media (hover: none) {
+  .coords-display {
+    display: none;
+  }
+}
+
+@media (pointer: coarse) {
+  .zoom-controls button {
+    width: 44px;
+    height: 44px;
+  }
+}
+
 @media (max-width: 768px) {
   .zoom-controls {
-    bottom: 10px;
-    right: 10px;
-  }
-
-  .zoom-controls button {
-    width: 38px;
-    height: 38px;
-    font-size: 0.95rem;
+    bottom: 12px;
+    right: 12px;
   }
 
   .compass {
-    top: 10px;
-    right: 10px;
-    width: 150px;
-    height: 150px;
+    top: 12px;
+    right: 12px;
+    width: 108px;
+    height: 108px;
   }
 
-  .compass:hover {
-    transform: scale(1.2);
+  .map-readouts {
+    left: 12px;
+    bottom: 12px;
+    gap: 6px;
   }
 
   .rotation-display,
   .coords-display {
-    left: 10px;
     padding: 5px 10px;
     gap: 8px;
-  }
-
-  .rotation-display {
-    bottom: 56px;
-  }
-
-  .coords-display {
-    bottom: 10px;
   }
 
   .rotation-label,
@@ -250,21 +260,21 @@
 
 @media (min-width: 769px) and (max-width: 1200px) {
   .compass {
-    width: 280px;
-    height: 280px;
+    width: 220px;
+    height: 220px;
   }
 }
 
 @media (min-width: 1201px) and (max-width: 1600px) {
   .compass {
-    width: 340px;
-    height: 340px;
+    width: 280px;
+    height: 280px;
   }
 }
 
 @media (min-width: 1601px) {
   .compass {
-    width: 400px;
-    height: 400px;
+    width: 320px;
+    height: 320px;
   }
 }
