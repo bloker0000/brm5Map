@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useRef, useCallback, Fragment } from 'rea
 import type { ReactNode, CSSProperties } from 'react';
 import Fuse from 'fuse.js';
 import { MISSIONS, MISSIONS_BY_ID, MISSION_GIVERS } from '../data/missions';
-import { BG_IMAGES, BG_CREDITS, randomBgIndex } from '../data/backgrounds';
+import { BG_IMAGES, BG_CREDITS } from '../data/backgrounds';
 import { spotsFor, SPOT_ASPECT } from '../data/mission-spots';
 import { noteFor, routeFor } from '../data/mission-notes';
 import { ImageLightbox } from './ImageLightbox';
@@ -12,6 +12,7 @@ import './MissionsPage.css';
 
 interface MissionsPageProps {
   missionId: string | null;
+  bgIndex: number;
   onSelectMission: (id: string | null) => void;
   onExit: () => void;
 }
@@ -377,10 +378,9 @@ function Detail({
   );
 }
 
-export function MissionsPage({ missionId, onSelectMission, onExit }: MissionsPageProps) {
+export function MissionsPage({ missionId, bgIndex, onSelectMission, onExit }: MissionsPageProps) {
   const [query, setQuery] = useState('');
   const [filters, setFilters] = useState<Set<Filter>>(new Set(['released']));
-  const [bgIndex] = useState(randomBgIndex);
   const listRef = useRef<HTMLDivElement>(null);
 
   const credit = BG_CREDITS[bgIndex];

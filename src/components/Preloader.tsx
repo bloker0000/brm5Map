@@ -1,95 +1,91 @@
 import { useState, useEffect } from 'react';
-import { BG_IMAGES, randomBgIndex } from '../data/backgrounds';
+import { BG_IMAGES } from '../data/backgrounds';
 import './Preloader.css';
 
 interface PreloaderProps {
+  bgIndex: number;
   onLoaded: () => void;
   isFadingOut?: boolean;
   onFadeComplete?: () => void;
 }
 
-const getRandomDelay = () => Math.random() * (400 - 150) + 150;
+// long enough for each status line to register, short enough not to be a wait
+const STEP = 140;
+// the artwork is decoration, a slow one should not hold the map back
+const BG_WAIT = 1500;
+const MAX_RETRY_DELAY = 8000;
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-export function Preloader({ onLoaded, isFadingOut = false, onFadeComplete }: PreloaderProps) {
-  const [progress, setProgress] = useState(0);
-  const [statusText, setStatusText] = useState('INITIALIZING...');
-  const [currentBgIndex] = useState(randomBgIndex);
-  const [nextBgIndex, setNextBgIndex] = useState(() => (randomBgIndex() + 1) % BG_IMAGES.length);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [bgReady, setBgReady] = useState(false);
+function loadImage(src: string) {
+  return new Promise<void>((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve();
+    img.onerror = () => reject(new Error(`Failed to load ${src}`));
+    img.src = src;
+  });
+}
 
-  const handleAnimationEnd = () => {
+export function Preloader({ bgIndex, onLoaded, isFadingOut = false, onFadeComplete }: PreloaderProps) {
+  const [progress, setProgress] = useState(10);
+  const [statusText, setStatusText] = useState('INITIALIZING...');
+  const [bgReady, setBgReady] = useState(false);
+  const background = BG_IMAGES[bgIndex];
+
+  // the artwork fading in bubbles up here too, only the preloader's own fade counts
+  const handleAnimationEnd = (e: React.AnimationEvent) => {
+    if (e.target !== e.currentTarget) return;
     if (isFadingOut && onFadeComplete) {
       onFadeComplete();
     }
   };
 
   useEffect(() => {
-    const img = new Image();
-    img.onload = () => setBgReady(true);
-    img.src = BG_IMAGES[currentBgIndex];
-  }, [currentBgIndex]);
+    let cancelled = false;
+    const backgroundLoaded = loadImage(background).then(
+      () => { if (!cancelled) setBgReady(true); },
+      () => {}
+    );
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setNextBgIndex((prev) => (prev + 1) % BG_IMAGES.length);
-        setIsTransitioning(false);
-      }, 1000);
-    }, 4000);
+    const run = async () => {
+      await delay(STEP);
+      if (cancelled) return;
+      setStatusText('LOADING MAP DATA...');
+      setProgress(30);
 
-    return () => clearInterval(interval);
-  }, [nextBgIndex]);
-
-  useEffect(() => {
-    const loadAssets = async () => {
-      try {
-        setStatusText('INITIALIZING...');
-        setProgress(10);
-        await delay(getRandomDelay());
-
-        setStatusText('LOADING MAP DATA...');
-        setProgress(30);
-        const mapImage = new Image();
-        await new Promise<void>((resolve, reject) => {
-          mapImage.onload = () => resolve();
-          mapImage.onerror = () => reject(new Error('Failed to load map'));
-          mapImage.src = '/Brm5Map.svg';
-        });
-        setProgress(50);
-        await delay(getRandomDelay());
-
-        setStatusText('LOADING ASSETS...');
-        setProgress(60);
-        const logoImage = new Image();
-        await new Promise<void>((resolve, reject) => {
-          logoImage.onload = () => resolve();
-          logoImage.onerror = () => reject(new Error('Failed to load logo'));
-          logoImage.src = '/logos/logowhite.svg';
-        });
-        setProgress(80);
-        await delay(getRandomDelay());
-
-        setStatusText('FINALIZING...');
-        setProgress(90);
-        await delay(getRandomDelay());
-
-        setStatusText('READY');
-        setProgress(100);
-        await delay(getRandomDelay());
-
-        onLoaded();
-      } catch (error) {
-        console.error('Failed to load assets:', error);
-        setTimeout(() => loadAssets(), 1000);
+      let retryDelay = 1000;
+      for (;;) {
+        try {
+          await loadImage('/Brm5Map.svg');
+          break;
+        } catch (error) {
+          if (cancelled) return;
+          console.error(error);
+          setStatusText('CONNECTION PROBLEM, RETRYING...');
+          await delay(retryDelay);
+          retryDelay = Math.min(retryDelay * 2, MAX_RETRY_DELAY);
+          if (cancelled) return;
+          setStatusText('LOADING MAP DATA...');
+        }
       }
+      if (cancelled) return;
+
+      setStatusText('LOADING ASSETS...');
+      setProgress(70);
+      await Promise.race([backgroundLoaded, delay(BG_WAIT)]);
+      if (cancelled) return;
+
+      setStatusText('READY');
+      setProgress(100);
+      await delay(STEP * 2);
+      if (!cancelled) onLoaded();
     };
 
-    loadAssets();
-  }, [onLoaded]);
+    void run();
+    return () => {
+      cancelled = true;
+    };
+  }, [background, onLoaded]);
 
   return (
     <div
@@ -97,16 +93,10 @@ export function Preloader({ onLoaded, isFadingOut = false, onFadeComplete }: Pre
       onAnimationEnd={handleAnimationEnd}
     >
       {bgReady && (
-        <>
-          <div
-            className="preloader-bg current"
-            style={{ backgroundImage: `url(${BG_IMAGES[currentBgIndex]})` }}
-          />
-          <div
-            className={`preloader-bg next ${isTransitioning ? 'visible' : ''}`}
-            style={{ backgroundImage: `url(${BG_IMAGES[nextBgIndex]})` }}
-          />
-        </>
+        <div
+          className="preloader-bg"
+          style={{ backgroundImage: `url(${background})` }}
+        />
       )}
       <div className="preloader-overlay" />
 
@@ -118,7 +108,7 @@ export function Preloader({ onLoaded, isFadingOut = false, onFadeComplete }: Pre
         />
         <div className="preloader-subtitle">Operation CRYO Zombies</div>
 
-        <div className="preloader-status">{statusText}</div>
+        <div className="preloader-status" role="status">{statusText}</div>
         <div
           className="preloader-bar-container"
           role="progressbar"

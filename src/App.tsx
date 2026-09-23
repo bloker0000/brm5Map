@@ -43,6 +43,7 @@ function App() {
   // on a phone the sidebar covers the map, so it starts out of the way
   const [showSidebar, setShowSidebar] = useState(() => !window.matchMedia(PHONE_QUERY).matches);
   const [showCompass, setShowCompass] = useState(true);
+  // one artwork per visit, shared by the loading screen, the map and the mission library
   const [bgIndex] = useState(randomBgIndex);
   const [selectedLocations, setSelectedLocations] = useState<Set<string>>(new Set());
   const [isAdminOpen, setIsAdminOpen] = useState(false);
@@ -250,6 +251,7 @@ function App() {
       >
         <MissionsPage
           missionId={missionId}
+          bgIndex={bgIndex}
           onSelectMission={id => navigate(id ? `#/missions/${id}` : '#/missions')}
           onExit={() => navigate('')}
         />
@@ -261,6 +263,7 @@ function App() {
     <>
       {isPreloaderVisible && (
         <Preloader
+          bgIndex={bgIndex}
           onLoaded={handleLoaded}
           isFadingOut={isFadingOut}
           onFadeComplete={handleFadeComplete}
