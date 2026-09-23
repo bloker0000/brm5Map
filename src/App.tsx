@@ -7,6 +7,7 @@ import {
   CategoryFilter,
   AboutModal,
   ChangelogModal,
+  ErrorBoundary,
   hasUnseenChangelog,
   markChangelogSeen,
   LocationsList,
@@ -239,23 +240,29 @@ function App() {
 
   if (isMissionsRoute) {
     return (
-      <Suspense
-        fallback={
-          <div className="missions-boot">
-            <div className="brm-loader">
-              <div className="brm-loader-track" />
-              <span className="brm-loader-label">Loading missions</span>
-            </div>
-          </div>
-        }
+      <ErrorBoundary
+        title="The mission library did not load"
+        message="The site was probably updated while you had it open. Reloading gets the new version."
+        onBack={() => navigate('')}
       >
-        <MissionsPage
-          missionId={missionId}
-          bgIndex={bgIndex}
-          onSelectMission={id => navigate(id ? `#/missions/${id}` : '#/missions')}
-          onExit={() => navigate('')}
-        />
-      </Suspense>
+        <Suspense
+          fallback={
+            <div className="missions-boot">
+              <div className="brm-loader">
+                <div className="brm-loader-track" />
+                <span className="brm-loader-label">Loading missions</span>
+              </div>
+            </div>
+          }
+        >
+          <MissionsPage
+            missionId={missionId}
+            bgIndex={bgIndex}
+            onSelectMission={id => navigate(id ? `#/missions/${id}` : '#/missions')}
+            onExit={() => navigate('')}
+          />
+        </Suspense>
+      </ErrorBoundary>
     );
   }
 

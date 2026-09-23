@@ -1,0 +1,42 @@
+.crash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  padding: 24px;
+  text-align: center;
+  background: var(--brm-bg-dark);
+}
+
+.crash-logo {
+  width: min(260px, 70vw);
+  height: auto;
+  margin-bottom: 18px;
+  opacity: 0.9;
+}
+
+.crash-title {
+  margin: 0;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  color: var(--brm-text);
+}
+
+.crash-text {
+  max-width: 420px;
+  margin: 0;
+  color: var(--brm-text-dim);
+  font-size: 0.9rem;
+}
+
+.crash-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
