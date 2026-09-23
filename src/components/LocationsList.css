@@ -38,6 +38,13 @@
   border-color: var(--brm-accent);
 }
 
+/* ios zooms the whole page in on any input with text smaller than 16px */
+@media (pointer: coarse) {
+  .locations-list-search input {
+    font-size: 16px;
+  }
+}
+
 .locations-list-clear {
   position: absolute;
   right: 1px;
@@ -105,6 +112,7 @@
   flex-direction: column;
   flex: 1;
   overflow-y: auto;
+  overscroll-behavior: contain;
   min-height: 0;
   margin: 0 -14px;
 }
@@ -293,6 +301,14 @@
 .locations-item:hover .locations-item-view,
 .locations-item-view:focus-visible {
   opacity: 1;
+}
+
+/* nothing hovers on a touch screen, so the button would never show */
+@media (hover: none) {
+  .locations-item-view {
+    opacity: 1;
+    padding: 5px 10px;
+  }
 }
 
 .locations-item-view:hover {

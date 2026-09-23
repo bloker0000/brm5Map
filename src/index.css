@@ -83,6 +83,13 @@ html, body, #root {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  overscroll-behavior: none;
+}
+
+/* pinch zoom stays available for anyone who needs it, a double tap on a
+   button just presses it. the map and the image viewer opt out entirely */
+html {
+  touch-action: manipulation;
 }
 
 body {

@@ -16,6 +16,7 @@
   width: 100%;
   max-width: 540px;
   max-height: 84vh;
+  max-height: 84dvh;
   overflow-y: auto;
   overscroll-behavior: contain;
   background: var(--brm-bg-panel);
@@ -530,6 +531,7 @@
 
   .modal {
     max-height: 92vh;
+    max-height: 92dvh;
   }
 
   .modal-header {

@@ -8,6 +8,7 @@
   display: flex;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   background: var(--brm-void);
 }
@@ -66,13 +67,17 @@
   display: flex;
   flex-direction: column;
   z-index: 50;
-  transition: margin-left var(--t-med) var(--ease), opacity var(--t-med) var(--ease);
+  transition: margin-left var(--t-med) var(--ease), opacity var(--t-med) var(--ease), visibility 0s;
 }
 
+/* visibility waits for the slide to finish, then keeps tab out of a hidden sidebar */
 .sidebar.hidden {
   margin-left: calc(var(--sidebar-w) * -1);
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
+  transition: margin-left var(--t-med) var(--ease), opacity var(--t-med) var(--ease),
+              visibility 0s linear var(--t-med);
 }
 
 .sidebar-header {
@@ -287,9 +292,12 @@
   color: var(--brm-accent);
 }
 
+/* its own stacking context, so the map hud stays under the sidebar and the modals */
 .map-container {
   flex: 1;
+  min-width: 0;
   position: relative;
+  z-index: 0;
   overflow: hidden;
 }
 
@@ -299,109 +307,46 @@
   justify-content: center;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   background: var(--brm-bg-dark);
 }
 
+/* on a phone the sidebar is a drawer over the map, so the map keeps the whole screen */
 @media (max-width: 768px) {
-  .app {
-    flex-direction: column;
-  }
-
-  .sidebar-toggle-btn {
-    top: auto;
-    bottom: 42vh;
-    left: 50%;
-    width: 60px;
-    height: 20px;
-    transform: translateX(-50%);
-    border: 1px solid var(--brm-border);
-    border-bottom: none;
-    transition: bottom var(--t-med) var(--ease), color var(--t-fast) var(--ease),
-                border-color var(--t-fast) var(--ease);
-  }
-
-  .sidebar-toggle-btn.sidebar-hidden {
-    bottom: 0;
-    left: 50%;
-  }
-
-  .sidebar-toggle-glyph {
-    transform: rotate(90deg);
+  :root {
+    --sidebar-w: min(336px, 86vw);
   }
 
   .sidebar {
-    width: 100%;
-    height: 42vh;
-    border-right: none;
-    border-bottom: 1px solid var(--brm-border);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 120;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    transition: transform var(--t-med) var(--ease), visibility 0s;
   }
 
   .sidebar.hidden {
     margin-left: 0;
-    margin-top: -42vh;
+    opacity: 1;
+    transform: translateX(-100%);
+    transition: transform var(--t-med) var(--ease), visibility 0s linear var(--t-med);
   }
 
-  .sidebar-header {
-    padding: 12px 14px;
-    align-items: center;
+  .sidebar-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 110;
+    background: rgba(4, 4, 5, 0.55);
+    animation: brm-scrim-in var(--t-enter) var(--ease-out) both;
   }
 
-  .sidebar-logo {
-    width: 122px;
-  }
-
-  .sidebar-lockup-secondary {
-    margin-top: 6px;
-    font-size: 0.62rem;
-  }
-
-  .sidebar-readout {
-    flex-direction: row;
-    gap: 14px;
-    align-items: baseline;
-  }
-
-  .sidebar-tabs {
-    padding: 10px 12px;
-  }
-
-  .sidebar-content {
-    padding: 12px;
-  }
-
-  .sidebar-display {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 8px 12px;
-  }
-
-  .sidebar-display .brm-section-title {
-    display: none;
-  }
-
-  .option-row {
-    height: auto;
-    margin: 0;
-    padding: 0;
-    gap: 8px;
-    border-bottom: none;
-  }
-
-  .option-row::before {
-    display: none;
-  }
-
-  .option-label {
-    font-size: 0.7rem;
-  }
-
-  .sidebar-footer {
-    display: none;
-  }
-
-  .map-container {
-    flex: 1;
-    min-height: 0;
+  .sidebar-toggle-btn {
+    position: fixed;
+    z-index: 130;
+    width: 28px;
+    height: 64px;
+    font-size: 0.75rem;
   }
 }

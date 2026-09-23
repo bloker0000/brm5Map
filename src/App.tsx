@@ -14,6 +14,7 @@ import {
 import type { FocusRequest } from './components/InteractiveMap';
 import { preloadMarkdown } from './components/markdownLoader';
 import { useLocations } from './hooks/useLocations';
+import { useMediaQuery, PHONE_QUERY, HOVER_QUERY } from './hooks/useMediaQuery';
 import type { MapLocation, LocationCategory } from './types/location';
 import { BG_CREDITS, randomBgIndex } from './data/backgrounds';
 import './App.css';
@@ -35,12 +36,12 @@ function App() {
   const [isPreloaderVisible, setIsPreloaderVisible] = useState(true);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [focusRequest, setFocusRequest] = useState<FocusRequest | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
   const [activeTab, setActiveTab] = useState<'categories' | 'locations'>('categories');
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isChangelogOpen, setIsChangelogOpen] = useState(false);
   const [showPins, setShowPins] = useState(true);
-  const [showSidebar, setShowSidebar] = useState(true);
+  // on a phone the sidebar covers the map, so it starts out of the way
+  const [showSidebar, setShowSidebar] = useState(() => !window.matchMedia(PHONE_QUERY).matches);
   const [showCompass, setShowCompass] = useState(true);
   const [bgIndex] = useState(randomBgIndex);
   const [selectedLocations, setSelectedLocations] = useState<Set<string>>(new Set());
@@ -50,6 +51,9 @@ function App() {
   const [adminViewMode, setAdminViewMode] = useState<'list' | 'add' | 'edit'>('list');
   const [adminDragMode, setAdminDragMode] = useState(false);
   const [route, setRoute] = useState(() => window.location.hash);
+
+  const isPhone = useMediaQuery(PHONE_QUERY);
+  const canHover = useMediaQuery(HOVER_QUERY);
 
   const {
     locations,
@@ -76,13 +80,6 @@ function App() {
 
   useEffect(() => {
     if (hasUnseenChangelog()) setIsChangelogOpen(true);
-  }, []);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   useEffect(() => {
@@ -120,6 +117,8 @@ function App() {
           setIsAboutOpen(false);
         } else if (selectedLocation) {
           setSelectedLocation(null);
+        } else if (isPhone && showSidebar) {
+          setShowSidebar(false);
         }
       }
       if (import.meta.env.DEV && e.ctrlKey && e.shiftKey && e.key === 'A') {
@@ -139,7 +138,7 @@ function App() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedLocation, setSelectedLocation, isAboutOpen, isAdminOpen, adminViewMode, isChangelogOpen, undo, redo, isMissionsRoute, missionId, navigate]);
+  }, [selectedLocation, setSelectedLocation, isAboutOpen, isAdminOpen, adminViewMode, isChangelogOpen, undo, redo, isMissionsRoute, missionId, navigate, isPhone, showSidebar]);
 
   const handleLoaded = useCallback(() => {
     setIsLoading(false);
@@ -197,17 +196,19 @@ function App() {
       const locsToFocus = filteredLocations.filter(loc => next.has(loc.id));
       if (locsToFocus.length > 0) {
         focusOn(locsToFocus);
+        if (isPhone) setShowSidebar(false);
       }
     },
-    [selectedLocations, filteredLocations, focusOn]
+    [selectedLocations, filteredLocations, focusOn, isPhone]
   );
 
   const handleLocationSelect = useCallback(
     (location: MapLocation) => {
       focusOn([location]);
       setSelectedLocation(location);
+      if (isPhone) setShowSidebar(false);
     },
-    [focusOn, setSelectedLocation]
+    [focusOn, setSelectedLocation, isPhone]
   );
 
   const handleClearSelection = useCallback(() => {
@@ -277,11 +278,18 @@ function App() {
           className={`sidebar-toggle-btn${showSidebar ? '' : ' sidebar-hidden'}`}
           onClick={() => setShowSidebar(!showSidebar)}
           title={showSidebar ? 'Hide Sidebar' : 'Show Sidebar'}
+          aria-label={showSidebar ? 'Hide sidebar' : 'Show sidebar'}
+          aria-expanded={showSidebar}
+          aria-controls="sidebar"
         >
-          <span className="sidebar-toggle-glyph">{showSidebar ? '◀' : '▶'}</span>
+          <span className="sidebar-toggle-glyph" aria-hidden="true">{showSidebar ? '◀' : '▶'}</span>
         </button>
 
-        <div className={`sidebar${showSidebar ? '' : ' hidden'}`}>
+        {isPhone && showSidebar && (
+          <div className="sidebar-scrim" onClick={() => setShowSidebar(false)} />
+        )}
+
+        <aside id="sidebar" className={`sidebar${showSidebar ? '' : ' hidden'}`}>
           <div className="sidebar-header">
             <div className="sidebar-lockup">
               <img src="/logos/logowhite.svg" alt="BRMap5" className="sidebar-logo" />
@@ -377,58 +385,58 @@ function App() {
               )}
             </div>
           </div>
-        </div>
+        </aside>
 
-      <div className="map-container">
-        <InteractiveMap
-          locations={displayedLocations}
-          hoveredLocation={hoveredLocation}
-          selectedLocation={selectedLocation}
-          onHover={setHoveredLocation}
-          onClick={handleLocationClick}
-          onMapClick={handleMapClick}
-          focusRequest={focusRequest}
-          bgIndex={bgIndex}
-          isAdminMode={import.meta.env.DEV && isAdminOpen}
-          showPins={showPins}
-          showCompass={showCompass}
-          onPinDrag={handlePinDrag}
-          placeholderPin={placeholderPin}
-          isDragMode={import.meta.env.DEV && isAdminOpen && adminDragMode}
-        />
-      </div>
-
-      {!isMobile && <Tooltip location={hoveredLocation} />}
-
-      <LocationModal
-        location={selectedLocation}
-        onClose={handleCloseLocation}
-      />
-
-      {AdminPanel && (
-        <Suspense fallback={null}>
-          <AdminPanel
-            isOpen={isAdminOpen}
-            onClose={() => setIsAdminOpen(false)}
-            locations={locations}
-            onAdd={handleAddLocation}
-            onUpdate={updateLocation}
-            onDelete={deleteLocation}
-            clickPosition={adminClickPosition}
-            saveStatus={saveStatus}
-            onManualSave={manualSave}
-            onFormCategoryChange={setAdminFormCategory}
-            onModeChange={setAdminViewMode}
-            onDragModeChange={setAdminDragMode}
-            onImport={importLocations}
-            onUndo={undo}
-            onRedo={redo}
-            canUndo={canUndo}
-            canRedo={canRedo}
+        <main className="map-container">
+          <InteractiveMap
+            locations={displayedLocations}
+            hoveredLocation={hoveredLocation}
+            selectedLocation={selectedLocation}
+            onHover={setHoveredLocation}
+            onClick={handleLocationClick}
+            onMapClick={handleMapClick}
+            focusRequest={focusRequest}
+            bgIndex={bgIndex}
+            isAdminMode={import.meta.env.DEV && isAdminOpen}
+            showPins={showPins}
+            showCompass={showCompass}
+            onPinDrag={handlePinDrag}
+            placeholderPin={placeholderPin}
+            isDragMode={import.meta.env.DEV && isAdminOpen && adminDragMode}
           />
-        </Suspense>
-      )}
-    </div>
+        </main>
+
+        {canHover && <Tooltip location={hoveredLocation} />}
+
+        <LocationModal
+          location={selectedLocation}
+          onClose={handleCloseLocation}
+        />
+
+        {AdminPanel && (
+          <Suspense fallback={null}>
+            <AdminPanel
+              isOpen={isAdminOpen}
+              onClose={() => setIsAdminOpen(false)}
+              locations={locations}
+              onAdd={handleAddLocation}
+              onUpdate={updateLocation}
+              onDelete={deleteLocation}
+              clickPosition={adminClickPosition}
+              saveStatus={saveStatus}
+              onManualSave={manualSave}
+              onFormCategoryChange={setAdminFormCategory}
+              onModeChange={setAdminViewMode}
+              onDragModeChange={setAdminDragMode}
+              onImport={importLocations}
+              onUndo={undo}
+              onRedo={redo}
+              canUndo={canUndo}
+              canRedo={canRedo}
+            />
+          </Suspense>
+        )}
+      </div>
     </>
   );
 }
