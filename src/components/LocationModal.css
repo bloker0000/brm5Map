@@ -28,7 +28,7 @@
 .modal-header {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 5px;
   padding: 18px 62px 16px 20px;
   background-color: var(--brm-bg-dark);
   border-bottom: 1px solid var(--brm-border);
@@ -544,10 +544,6 @@
 
   .modal-title {
     font-size: 1.2rem;
-  }
-
-  .modal-category {
-    padding-left: 0;
   }
 
   .modal-description {
