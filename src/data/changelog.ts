@@ -10,6 +10,23 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.12.0',
+    date: '2026-09-23',
+    changes: [
+      'The map now works on phones and tablets: drag with one finger, pinch to zoom, twist two fingers to rotate, and double-tap to zoom in',
+      'On a phone the sidebar is a drawer that slides over the map, instead of taking up the top half of the screen',
+      'View on map now lands on the right spot when the map is rotated',
+      'Image galleries can be swiped, and the fullscreen viewer can be pinched and dragged',
+      'The map works with a keyboard: Tab through the markers, arrow keys to pan, + and - to zoom, Q and E to rotate, 0 to reset',
+      'The site loads faster: less code up front, fonts served from this site, and one background image per visit instead of three',
+      'Hover cards show small preview images instead of downloading every full size screenshot',
+      'Searching the Locations tab opens the groups that have a match',
+      'The compass is a little smaller and no longer blocks the markers behind its corners',
+      'Fixed the page going blank when the browser blocks site storage, or when the site was updated while it was open',
+      'New visitors go straight to the map, this changelog only opens for people who have been here before',
+    ],
+  },
+  {
     version: '1.11.0',
     date: '2026-09-06',
     changes: [
