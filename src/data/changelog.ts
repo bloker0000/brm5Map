@@ -1,5 +1,7 @@
 // changelog entries and the "have you seen it yet" check
 
+import { readStorage, writeStorage } from '../storage';
+
 export interface ChangelogEntry {
   version: string;
   date: string;
@@ -271,18 +273,17 @@ export const LATEST_VERSION = CHANGELOG[0].version;
 
 const SEEN_KEY = 'brm5_map_changelog_version';
 
-export function hasUnseenChangelog(): boolean {
-  try {
-    return window.localStorage.getItem(SEEN_KEY) !== LATEST_VERSION;
-  } catch {
+// only a returning visitor has something to catch up on. someone new gets the map,
+// and is marked as up to date so the next update is the first one they see
+export function shouldShowChangelog(): boolean {
+  const seen = readStorage(SEEN_KEY);
+  if (seen === null) {
+    markChangelogSeen();
     return false;
   }
+  return seen !== LATEST_VERSION;
 }
 
 export function markChangelogSeen(): void {
-  try {
-    window.localStorage.setItem(SEEN_KEY, LATEST_VERSION);
-  } catch {
-    return;
-  }
+  writeStorage(SEEN_KEY, LATEST_VERSION);
 }

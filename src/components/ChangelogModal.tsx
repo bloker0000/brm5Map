@@ -1,4 +1,4 @@
-// changelog popup, also pops up on first visit and after updates
+// changelog popup, also pops up for returning visitors after an update
 
 import { useState, useRef, useId } from 'react';
 import { CHANGELOG } from '../data/changelog';

@@ -8,7 +8,7 @@ import {
   AboutModal,
   ChangelogModal,
   ErrorBoundary,
-  hasUnseenChangelog,
+  shouldShowChangelog,
   markChangelogSeen,
   LocationsList,
 } from './components';
@@ -39,7 +39,7 @@ function App() {
   const [focusRequest, setFocusRequest] = useState<FocusRequest | null>(null);
   const [activeTab, setActiveTab] = useState<'categories' | 'locations'>('categories');
   const [isAboutOpen, setIsAboutOpen] = useState(false);
-  const [isChangelogOpen, setIsChangelogOpen] = useState(false);
+  const [isChangelogOpen, setIsChangelogOpen] = useState(shouldShowChangelog);
   const [showPins, setShowPins] = useState(true);
   // on a phone the sidebar covers the map, so it starts out of the way
   const [showSidebar, setShowSidebar] = useState(() => !window.matchMedia(PHONE_QUERY).matches);
@@ -81,10 +81,6 @@ function App() {
   } = useLocations();
 
   useEffect(() => {
-    if (hasUnseenChangelog()) setIsChangelogOpen(true);
-  }, []);
-
-  useEffect(() => {
     const sync = () => setRoute(window.location.hash);
     window.addEventListener('hashchange', sync);
     window.addEventListener('popstate', sync);
@@ -103,6 +99,11 @@ function App() {
   const isMissionsRoute = missionRoute !== null;
   const missionId = missionRoute?.[1] ?? null;
 
+  const closeChangelog = useCallback(() => {
+    markChangelogSeen();
+    setIsChangelogOpen(false);
+  }, []);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -110,8 +111,7 @@ function App() {
           // like the admin panel, back out of the mission first, then the page
           navigate(missionId ? '#/missions' : '');
         } else if (isChangelogOpen) {
-          markChangelogSeen();
-          setIsChangelogOpen(false);
+          closeChangelog();
         } else if (isAdminOpen && adminViewMode === 'list') {
           // in add/edit the panel handles escape itself, backing out to the list
           setIsAdminOpen(false);
@@ -140,7 +140,7 @@ function App() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedLocation, setSelectedLocation, isAboutOpen, isAdminOpen, adminViewMode, isChangelogOpen, undo, redo, isMissionsRoute, missionId, navigate, isPhone, showSidebar]);
+  }, [selectedLocation, setSelectedLocation, isAboutOpen, isAdminOpen, adminViewMode, isChangelogOpen, closeChangelog, undo, redo, isMissionsRoute, missionId, navigate, isPhone, showSidebar]);
 
   const handleLoaded = useCallback(() => {
     setIsLoading(false);
@@ -217,11 +217,6 @@ function App() {
     setSelectedLocations(new Set());
   }, []);
 
-  const handleCloseChangelog = useCallback(() => {
-    markChangelogSeen();
-    setIsChangelogOpen(false);
-  }, []);
-
   const displayedLocations = useMemo(
     () => (selectedLocations.size > 0
       ? filteredLocations.filter(loc => selectedLocations.has(loc.id))
@@ -282,7 +277,8 @@ function App() {
           onClose={() => setIsAboutOpen(false)}
           onOpenChangelog={() => setIsChangelogOpen(true)}
         />
-        <ChangelogModal isOpen={isChangelogOpen} onClose={handleCloseChangelog} />
+        {/* waits for the loading screen, it cannot take focus while the app is hidden */}
+        <ChangelogModal isOpen={isChangelogOpen && !isLoading} onClose={closeChangelog} />
 
         <button
           className={`sidebar-toggle-btn${showSidebar ? '' : ' sidebar-hidden'}`}
