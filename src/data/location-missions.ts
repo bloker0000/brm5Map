@@ -115,7 +115,8 @@ const LOCATION_MISSIONS: Record<string, string[]> = {
   // Gate Bandit Camp
   'mjrvyhprb84kvtssp2a': ['Wetwork3'],
   // Top of Raised Park
-  'mjrvk7yp6ewdm0dtggd': ['Stryker2'],};
+  'mjrvk7yp6ewdm0dtggd': ['Stryker2'],
+};
 
 export interface MissionLink {
   id: string;
