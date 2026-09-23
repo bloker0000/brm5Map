@@ -55,7 +55,7 @@ export function ChangelogModal({ isOpen, onClose }: ChangelogModalProps) {
             </p>
             <p>
               Have screenshots or information to add? Message me on Discord at{' '}
-              <span className="brm-handle">.multyply</span> — contributors are
+              <span className="brm-handle">.multyply</span>, contributors are
               credited in the About panel.
             </p>
           </div>
