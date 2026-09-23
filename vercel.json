@@ -4,6 +4,12 @@
   "outputDirectory": "dist",
   "headers": [
     {
+      "source": "/assets/:file*",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
       "source": "/shots/:file*",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
@@ -15,8 +21,5 @@
         { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=2592000" }
       ]
     }
-  ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
   ]
 }
