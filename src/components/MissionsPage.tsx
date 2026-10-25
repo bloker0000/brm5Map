@@ -14,7 +14,6 @@ interface MissionsPageProps {
   missionId: string | null;
   bgIndex: number;
   onSelectMission: (id: string | null) => void;
-  onExit: () => void;
 }
 
 type Filter = 'unmarked' | 'variants' | 'gasmask' | 'raid' | 'released';
@@ -378,7 +377,7 @@ function Detail({
   );
 }
 
-export function MissionsPage({ missionId, bgIndex, onSelectMission, onExit }: MissionsPageProps) {
+export function MissionsPage({ missionId, bgIndex, onSelectMission }: MissionsPageProps) {
   const [query, setQuery] = useState('');
   const [filters, setFilters] = useState<Set<Filter>>(new Set(['released']));
   const listRef = useRef<HTMLDivElement>(null);
@@ -442,31 +441,19 @@ export function MissionsPage({ missionId, bgIndex, onSelectMission, onExit }: Mi
       <div className="missions-bg-scrim" />
 
       <div className="missions-rail">
-        <div className="missions-rail-head">
-          <div className="missions-back-row">
-            <button className="missions-back" onClick={onExit}>
-              <span className="missions-back-glyph">◀</span>
-              <span className="missions-back-label">Map</span>
-            </button>
-            {selected && (
-              <button className="missions-back to-list" onClick={() => onSelectMission(null)}>
-                <span className="missions-back-glyph">◀</span>
-                <span className="missions-back-label">All missions</span>
-              </button>
-            )}
-          </div>
-          <div className="missions-lockup">
-            <h1 className="missions-title">Mission Library</h1>
-            <span className="missions-subtitle">Operation CRYO Zombies</span>
-          </div>
-        </div>
+        {selected && (
+          <button className="brm-btn missions-to-list" onClick={() => onSelectMission(null)}>
+            &lt; All missions
+          </button>
+        )}
 
         {notFound && (
           <p className="missions-notfound">There is no mission called "{missionId}".</p>
         )}
 
-        <div className="missions-search locations-list-search">
+        <div className="brm-search missions-search">
           <input
+            className="brm-input"
             type="text"
             value={query}
             placeholder="Search missions"
@@ -474,7 +461,7 @@ export function MissionsPage({ missionId, bgIndex, onSelectMission, onExit }: Mi
             onChange={e => setQuery(e.target.value)}
           />
           {query && (
-            <button className="locations-list-clear" onClick={() => setQuery('')} aria-label="Clear search">
+            <button className="brm-btn brm-search-clear" onClick={() => setQuery('')} aria-label="Clear search">
               X
             </button>
           )}

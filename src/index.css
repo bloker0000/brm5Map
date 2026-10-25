@@ -1,5 +1,66 @@
 /* global styles and all the shared bits */
 
+/* Rajdhani's own metrics sit its capitals 0.036em above the middle of a line, so every
+   label landed a pixel high. evening out ascent and descent around the cap height
+   (643 of 1000) puts them dead centre, and the line height stays the same */
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@fontsource/rajdhani/files/rajdhani-latin-400-normal.woff2') format('woff2'),
+       url('@fontsource/rajdhani/files/rajdhani-latin-400-normal.woff') format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  ascent-override: 95.95%;
+  descent-override: 31.65%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('@fontsource/rajdhani/files/rajdhani-latin-700-normal.woff2') format('woff2'),
+       url('@fontsource/rajdhani/files/rajdhani-latin-700-normal.woff') format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  ascent-override: 95.95%;
+  descent-override: 31.65%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@fontsource/rajdhani/files/rajdhani-latin-ext-400-normal.woff2') format('woff2'),
+       url('@fontsource/rajdhani/files/rajdhani-latin-ext-400-normal.woff') format('woff');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308,
+    U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+    U+2C60-2C7F, U+A720-A7FF;
+  ascent-override: 95.95%;
+  descent-override: 31.65%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('@fontsource/rajdhani/files/rajdhani-latin-ext-700-normal.woff2') format('woff2'),
+       url('@fontsource/rajdhani/files/rajdhani-latin-ext-700-normal.woff') format('woff');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308,
+    U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+    U+2C60-2C7F, U+A720-A7FF;
+  ascent-override: 95.95%;
+  descent-override: 31.65%;
+  line-gap-override: 0%;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -9,52 +70,64 @@ svg {
   vertical-align: middle;
 }
 
+/* the one value a game button tweens on hover, its fill and outline both follow it */
+@property --n {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
 :root {
-  --brm-void: #050506;
-  --brm-bg-dark: #0a0a0c;
-  --brm-bg-panel: #0e0f12;
-  --brm-bg-element: #16171b;
-  --brm-bg-raised: #1e2026;
+  /* the game's palette, named like the colour table in the native menu */
+  --brm-gold: #ffc259;
+  --brm-gold-hot: #ffca5e;
+  --brm-gold-dim: #855816;
+  --brm-orange: #ff9411;
+  --brm-idle: #474747;
+  --brm-white: #fff;
+  --brm-black: #000;
+  --brm-btn: #101010;
+  --brm-btn-hover: #181818;
+  --brm-btn-active: #1f170b;
+  --brm-body: #d6d6d6;
+  --brm-sub: #8c8c8c;
+  --brm-dim: #646464;
+  --brm-red: #f37878;
+  --brm-green: #6eff92;
+  --brm-placeholder: #606060;
 
-  --brm-glass: rgba(9, 10, 12, 0.88);
-  --brm-glass-deep: rgba(5, 5, 6, 0.94);
+  --brm-line: rgba(239, 239, 239, 0.28);
+  --brm-line-soft: rgba(239, 239, 239, 0.1);
+  --brm-edge: #2e2e2e;
+  --brm-box-edge: #282828;
+  --brm-glass: rgba(0, 0, 0, 0.85);
+  --brm-glass-deep: rgba(0, 0, 0, 0.92);
 
-  --brm-border: #25262b;
-  --brm-border-accent: #3a3c43;
-  --brm-rule: rgba(255, 255, 255, 0.16);
-  --brm-rule-soft: rgba(255, 255, 255, 0.07);
-
-  --brm-accent: #f2a93b;
-  --brm-accent-hover: #ffc46b;
-  --brm-accent-dim: #6f4e19;
-  --brm-accent-wash: rgba(242, 169, 59, 0.10);
-
-  --brm-text: #ffffff;
-  --brm-text-light: #e4e6e9;
-  --brm-text-dim: #9ea2a8;
-  --brm-text-muted: #62656b;
-
-  --brm-danger: #c8322d;
-  --brm-success: #3fa34d;
-
-  --font-display: 'Roboto Condensed Variable', 'Roboto Condensed', 'Arial Narrow', system-ui, sans-serif;
-  --font-body: 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
+  --font: 'Rajdhani', 'Arial Narrow', system-ui, sans-serif;
   --font-mono: ui-monospace, 'Cascadia Mono', 'Consolas', monospace;
 
-  --tr-tight: 0.01em;
-  --tr-label: 0.04em;
-  --tr-micro: 0.09em;
+  /* the game lays its menus out at 1080p and everything here is sized in those
+     units. the scale steps up with the screen below, like the game's does */
+  --u: 0.7px;
+  --line-w: max(1px, round(calc(3 * var(--u)), 1px));
 
-  --dots-cell: 4px 4px;
-  --dots-idle: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.11) 0.4px, transparent 0.95px);
-  --dots-hover: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.19) 0.4px, transparent 0.95px);
-  --dots-accent: radial-gradient(circle at 50% 50%, rgba(242, 169, 59, 0.34) 0.4px, transparent 0.95px);
+  /* the game's dot texture, one dot in the corner of a 6px tile. it shrinks with
+     the scale like the native menu does, and the shift is what centres the grid */
+  --dot: clamp(3px, round(calc(6 * var(--u)), 1px), 6px);
+  --dot-shift: round(calc(var(--dot) * 5 / 12), 1px);
+  --dot-tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Crect x='5' y='5' width='1' height='1'/%3E%3C/svg%3E")
+    calc(50% - var(--dot-shift)) calc(50% - var(--dot-shift)) / var(--dot) var(--dot);
+  --dot-fade-btn: linear-gradient(90deg, #000 10%, rgba(0, 0, 0, 0.25) 40%, rgba(0, 0, 0, 0.25) 60%, #000 90%);
+  --dot-fade-head: linear-gradient(to bottom left, #000, transparent);
 
-  --dots-fade: radial-gradient(ellipse farthest-side at 50% 50%,
-      rgba(0, 0, 0, 0.14) 0%,
-      rgba(0, 0, 0, 0.22) 40%,
-      rgba(0, 0, 0, 0.55) 72%,
-      rgba(0, 0, 0, 1) 100%);
+  --panel: linear-gradient(rgba(0, 0, 0, 0.23), rgba(0, 0, 0, 0.5));
+  --glow: linear-gradient(180deg,
+      rgba(97, 59, 2, 0) 0%,
+      rgba(122, 79, 16, 0.206) 53.13%,
+      rgba(133, 88, 22, 0.506) 77.83%,
+      rgba(152, 102, 28, 0.563) 82.48%,
+      rgba(204, 139, 46, 0.879) 95.17%,
+      rgb(255, 218, 141) 100%);
 
   --ease: cubic-bezier(0.2, 0.8, 0.3, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -64,17 +137,43 @@ svg {
   --t-enter: 0.26s;
   --t-exit: 0.16s;
 
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.55;
+  font-family: var(--font);
+  /* 18px at the 0.8 scale, so the rem sized screens grow with the game sized ones */
+  font-size: max(16px, calc(22.5 * var(--u)));
+  line-height: 1.4;
   font-weight: 400;
   color-scheme: dark;
-  color: var(--brm-text);
-  background-color: var(--brm-bg-dark);
+  color: var(--brm-white);
+  background-color: var(--brm-black);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* steps instead of scaling with vh, so zooming the page in still makes it bigger */
+@media (max-width: 768px) {
+  :root {
+    --u: 0.75px;
+  }
+}
+
+@media (min-width: 1100px) and (min-height: 700px) {
+  :root {
+    --u: 0.8px;
+  }
+}
+
+@media (min-width: 1700px) and (min-height: 950px) {
+  :root {
+    --u: 0.9px;
+  }
+}
+
+@media (min-width: 2300px) and (min-height: 1200px) {
+  :root {
+    --u: 1px;
+  }
 }
 
 html, body, #root {
@@ -93,7 +192,7 @@ html {
 }
 
 body {
-  background: var(--brm-void);
+  background: var(--brm-black);
 }
 
 a {
@@ -112,9 +211,8 @@ input, textarea, select {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-weight: 700;
-  letter-spacing: var(--tr-tight);
 }
 
 .tabular {
@@ -122,175 +220,285 @@ h1, h2, h3, h4, h5, h6 {
   font-feature-settings: 'tnum' 1;
 }
 
-.brm-tab,
+/* MenuButtonComponent. the outline only shows at the two ends until hovered,
+   the colours switch at once and only the fill and the outline ease in */
 .brm-btn,
-.brm-segment button,
-.sidebar-toggle-btn,
-.zoom-controls button,
-.modal-header,
-.about-modal-header,
-.about-changelog-btn,
-.visit-stat,
-.changelog-modal-header,
-.lightbox-header,
-.lightbox-controls,
-.locations-list-search,
-.locations-item.selected {
+.brm-tab,
+.brm-segment button {
+  --tone: var(--brm-idle);
+  --label: var(--idle-label, var(--tone));
+  --fill: color-mix(in srgb, var(--brm-btn-hover) calc(var(--n) * 100%), var(--brm-btn));
+  --edge: color-mix(in srgb, var(--tone) 70%, transparent);
+  --edge-mid: color-mix(in srgb, var(--tone) calc(var(--n) * 70%), transparent);
   position: relative;
   isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: round(calc(12 * var(--u)), 1px);
+  min-width: 0;
+  min-height: round(calc(44 * var(--u)), 1px);
+  padding: 0 round(calc(20 * var(--u)), 1px);
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--fill), var(--fill)) padding-box,
+    linear-gradient(90deg, var(--edge), var(--edge-mid) 20%, var(--edge-mid) 80%, var(--edge)) border-box;
+  color: var(--label);
+  font-family: var(--font);
+  font-size: calc(24 * var(--u));
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: --n 0.3s var(--ease-out);
 }
 
-.brm-tab::before,
 .brm-btn::before,
-.brm-segment button::before,
-.sidebar-toggle-btn::before,
-.zoom-controls button::before,
-.modal-header::before,
-.about-modal-header::before,
-.about-changelog-btn::before,
-.visit-stat::before,
-.changelog-modal-header::before,
-.lightbox-header::before,
-.lightbox-controls::before,
-.locations-list-search::before,
-.locations-item.selected::before {
+.brm-tab::before,
+.brm-segment button::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image: var(--dots-idle);
-  background-size: var(--dots-cell);
-  -webkit-mask-image: var(--dots-fade);
-  mask-image: var(--dots-fade);
+  background: var(--tone);
+  opacity: 0.5;
+  -webkit-mask: var(--dot-tile), var(--dot-fade-btn);
+  -webkit-mask-composite: source-in;
+  mask: var(--dot-tile), var(--dot-fade-btn);
+  mask-composite: intersect;
 }
 
-.brm-tab.active::before,
-.brm-segment button[aria-pressed='true']::before,
-.locations-item.selected::before {
-  background-image: var(--dots-accent);
+@media (hover: hover) {
+  .brm-btn:hover:not(:disabled),
+  .brm-tab:hover:not(:disabled),
+  .brm-segment button:hover:not(:disabled) {
+    --n: 1;
+    --tone: var(--brm-white);
+    --label: var(--tone);
+  }
 }
 
-.brm-tab:hover:not(.active)::before,
-.brm-btn:hover::before,
-.about-changelog-btn:hover::before {
-  background-image: var(--dots-hover);
+.brm-btn.active,
+.brm-btn[aria-pressed='true'],
+.brm-tab.active,
+.brm-segment button[aria-pressed='true'] {
+  --tone: var(--brm-gold);
+  --label: var(--tone);
+  --fill: var(--brm-btn-active);
 }
 
-.brm-section-title {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: var(--tr-label);
-  text-transform: uppercase;
-  color: var(--brm-text);
-  white-space: nowrap;
-}
-
-.brm-section-title::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--brm-rule);
+.brm-btn:disabled,
+.brm-tab:disabled,
+.brm-segment button:disabled {
+  --label: color-mix(in srgb, var(--tone) 50%, transparent);
+  --edge: color-mix(in srgb, var(--tone) 35%, transparent);
+  cursor: default;
 }
 
 .brm-tab {
   flex: 1;
-  min-width: 0;
-  padding: 11px 10px;
-  background-color: var(--brm-bg-element);
-  background-image: var(--dots-idle);
-  background-size: var(--dots-cell);
-  border: 1px solid transparent;
-  color: var(--brm-text-dim);
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: var(--tr-label);
-  text-transform: uppercase;
-  text-align: center;
-  cursor: pointer;
-  transition: color var(--t-fast) var(--ease),
-              border-color var(--t-fast) var(--ease),
-              background-color var(--t-fast) var(--ease);
-}
-
-.brm-tab:hover {
-  color: var(--brm-text-light);
-  background-image: var(--dots-hover);
-}
-
-.brm-tab.active {
-  background-color: rgba(242, 169, 59, 0.05);
-  background-image: var(--dots-accent);
-  border-color: var(--brm-accent);
-  color: var(--brm-accent);
-}
-
-.brm-btn {
-  padding: 9px 14px;
-  background-color: var(--brm-bg-element);
-  background-image: var(--dots-idle);
-  background-size: var(--dots-cell);
-  border: 1px solid var(--brm-border);
-  color: var(--brm-text-light);
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: var(--tr-label);
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: color var(--t-fast) var(--ease),
-              border-color var(--t-fast) var(--ease);
-}
-
-.brm-btn:hover {
-  color: var(--brm-accent);
-  border-color: var(--brm-accent);
 }
 
 .brm-segment {
   display: flex;
-  gap: 4px;
+  gap: round(calc(13 * var(--u)), 1px);
   flex-shrink: 0;
 }
 
 .brm-segment button {
-  min-width: 44px;
-  padding: 5px 10px;
-  background-color: transparent;
-  background-image: var(--dots-idle);
-  background-size: var(--dots-cell);
-  border: 1px solid var(--brm-border);
-  color: var(--brm-text-dim);
-  font-family: var(--font-display);
-  font-size: 0.75rem;
+  width: round(calc(135 * var(--u)), 1px);
+  min-height: round(calc(36 * var(--u)), 1px);
+  padding: 0 round(calc(8 * var(--u)), 1px);
+  font-size: calc(22 * var(--u));
+}
+
+/* the section header, opaque black with the dots fading out to the bottom left */
+.brm-section-title {
+  --head: 70;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: round(calc(14 * var(--u)), 1px);
+  height: round(calc(var(--head) * var(--u)), 1px);
+  margin: 0;
+  padding: 0 round(calc(34 * var(--u)), 1px);
+  background: var(--brm-black);
+  color: var(--brm-white);
+  font-family: var(--font);
+  font-size: calc(28 * var(--u));
   font-weight: 700;
-  letter-spacing: var(--tr-label);
+  line-height: 1;
   text-transform: uppercase;
-  cursor: pointer;
-  transition: color var(--t-fast) var(--ease),
-              border-color var(--t-fast) var(--ease);
+  white-space: nowrap;
 }
 
-.brm-segment button:hover {
-  color: var(--brm-text-light);
+.brm-section-title::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--brm-idle);
+  opacity: 0.6;
+  -webkit-mask: var(--dot-tile), var(--dot-fade-head);
+  -webkit-mask-composite: source-in;
+  mask: var(--dot-tile), var(--dot-fade-head);
+  mask-composite: intersect;
 }
 
-.brm-segment button[aria-pressed='true'] {
-  background-color: rgba(242, 169, 59, 0.05);
-  background-image: var(--dots-accent);
-  border-color: var(--brm-accent);
-  color: var(--brm-accent);
+.brm-section-title :is(h2, h3) {
+  margin: 0;
+  font: inherit;
 }
 
+/* right side of a header, like the player count in the native player list */
+.brm-section-meta {
+  margin-left: auto;
+  color: var(--brm-sub);
+  font-size: calc(18 * var(--u));
+  font-weight: 700;
+}
+
+/* rows and panels share the game's frame: black getting heavier to the bottom
+   with the light line under it */
+.brm-panel,
+.brm-row {
+  position: relative;
+  background: var(--panel);
+}
+
+.brm-panel::after,
+.brm-row::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--line-w);
+  background: var(--brm-line);
+  pointer-events: none;
+}
+
+.brm-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: round(calc(18 * var(--u)), 1px);
+  min-height: round(calc(70 * var(--u)), 1px);
+  padding: 0 round(calc(34 * var(--u)), 1px);
+}
+
+.brm-row-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--brm-white);
+  font-size: calc(28 * var(--u));
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* the well the native player list scrolls its rows in */
+.brm-box {
+  padding: round(calc(8 * var(--u)), 1px);
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--brm-box-edge);
+}
+
+.brm-input {
+  width: 100%;
+  height: round(calc(46 * var(--u)), 1px);
+  padding: 0 round(calc(14 * var(--u)), 1px);
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid color-mix(in srgb, var(--brm-idle) 70%, transparent);
+  color: var(--brm-white);
+  font-size: calc(21 * var(--u));
+  font-weight: 400;
+}
+
+.brm-input::placeholder {
+  color: var(--brm-placeholder);
+  opacity: 1;
+  text-transform: uppercase;
+}
+
+.brm-input:focus {
+  outline: none;
+  border-color: color-mix(in srgb, var(--brm-gold) 70%, transparent);
+}
+
+/* ios zooms the whole page in on any input with text smaller than 16px */
+@media (pointer: coarse) {
+  .brm-input {
+    font-size: 16px;
+  }
+}
+
+/* the native search box, magnifier drawn the same way: a ring and a handle */
+.brm-search {
+  position: relative;
+}
+
+.brm-search .brm-input {
+  padding-left: round(calc(52 * var(--u)), 1px);
+  padding-right: round(calc(50 * var(--u)), 1px);
+}
+
+.brm-search::before,
+.brm-search::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  pointer-events: none;
+}
+
+.brm-search::before {
+  left: round(calc(16 * var(--u)), 1px);
+  width: round(calc(19 * var(--u)), 1px);
+  height: round(calc(19 * var(--u)), 1px);
+  margin-top: round(calc(-13 * var(--u)), 1px);
+  border: round(calc(2 * var(--u)), 1px) solid var(--brm-idle);
+  border-radius: 50%;
+}
+
+.brm-search::after {
+  left: round(calc(35 * var(--u)), 1px);
+  width: round(calc(9 * var(--u)), 1px);
+  height: round(calc(2 * var(--u)), 1px);
+  margin-top: round(calc(6 * var(--u)), 1px);
+  background: var(--brm-idle);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.brm-search:focus-within::before {
+  border-color: var(--brm-gold);
+}
+
+.brm-search:focus-within::after {
+  background: var(--brm-gold);
+}
+
+.brm-search-clear.brm-btn {
+  position: absolute;
+  top: 50%;
+  right: round(calc(6 * var(--u)), 1px);
+  width: round(calc(34 * var(--u)), 1px);
+  min-height: 0;
+  height: round(calc(34 * var(--u)), 1px);
+  padding: 0;
+  transform: translateY(-50%);
+  font-size: calc(17 * var(--u));
+}
+
+/* the game's scroller: a plain white bar that turns orange under the mouse */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: round(calc(12 * var(--u)), 1px);
+  height: round(calc(12 * var(--u)), 1px);
 }
 
 ::-webkit-scrollbar-track {
@@ -298,21 +506,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.28);
+  background: var(--brm-white);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--brm-orange);
 }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--brm-white) transparent;
+  }
 }
 
 ::selection {
-  background: var(--brm-accent);
-  color: #140d02;
+  background: var(--brm-gold);
+  color: var(--brm-black);
 }
 
 @keyframes brm-scrim-in {
@@ -326,18 +536,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes brm-panel-in {
-  from { opacity: 0; transform: translateY(14px) scale(0.985); }
+  from { opacity: 0; transform: scale(0.97); }
   to { opacity: 1; transform: none; }
 }
 
 @keyframes brm-panel-out {
   from { opacity: 1; transform: none; }
-  to { opacity: 0; transform: translateY(8px) scale(0.99); }
-}
-
-@keyframes brm-swap-in {
-  from { opacity: 0; transform: translateX(8px); }
-  to { opacity: 1; transform: none; }
+  to { opacity: 0; transform: scale(0.97); }
 }
 
 .brm-scrim {
@@ -365,12 +570,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .brm-loader-label {
-  font-family: var(--font-display);
-  font-size: 0.68rem;
+  font-family: var(--font);
+  font-size: calc(21 * var(--u));
   font-weight: 700;
-  letter-spacing: var(--tr-micro);
   text-transform: uppercase;
-  color: var(--brm-text-muted);
+  color: var(--brm-dim);
 }
 
 .brm-loader-track {
@@ -388,7 +592,7 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 0;
   left: 0;
   width: 38%;
-  background: var(--brm-accent);
+  background: var(--brm-gold);
   animation: brm-loader-sweep 1.05s var(--ease) infinite;
 }
 
@@ -398,25 +602,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .brm-handle {
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-weight: 700;
-  letter-spacing: var(--tr-tight);
-  color: var(--brm-accent);
+  color: var(--brm-gold);
   user-select: all;
 }
 
-.brm-tab:active,
-.brm-btn:active,
-.brm-segment button:active,
-.about-changelog-btn:active,
-.category-filter-clear:active,
-.locations-item-view:active {
-  transform: translateY(1px);
+:focus-visible {
+  outline: 1px solid var(--brm-gold);
+  outline-offset: 2px;
 }
 
-:focus-visible {
-  outline: 1px solid var(--brm-accent);
-  outline-offset: 2px;
+/* a well scrolls, and a scroller clips a ring drawn outside its rows */
+.brm-box :focus-visible {
+  outline-offset: -3px;
 }
 
 /* a dialog takes focus itself when it opens, which should not draw a box round it */

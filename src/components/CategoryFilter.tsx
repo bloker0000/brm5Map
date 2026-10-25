@@ -5,6 +5,7 @@ import './CategoryFilter.css';
 
 interface CategoryFilterProps {
   categories: LocationCategory[];
+  counts: Record<LocationCategory, number>;
   selectedCategories: Set<LocationCategory>;
   onToggle: (category: LocationCategory) => void;
   onClear: () => void;
@@ -12,6 +13,7 @@ interface CategoryFilterProps {
 
 export function CategoryFilter({
   categories,
+  counts,
   selectedCategories,
   onToggle,
   onClear,
@@ -20,35 +22,33 @@ export function CategoryFilter({
 
   return (
     <div className="category-filter">
-      <div className="category-filter-header">
-        <span className="category-filter-title">Categories</span>
+      <div className="brm-section-title">
+        <h2>Categories</h2>
         {hasFilters && (
-          <button className="category-filter-clear" onClick={onClear}>
+          <button className="brm-btn category-filter-clear" onClick={onClear}>
             Clear
           </button>
         )}
       </div>
-      <div className={`category-filter-list${hasFilters ? ' has-filters' : ''}`}>
-        {categories.map((category) => {
-          const isActive = selectedCategories.size === 0 || selectedCategories.has(category);
-          const color = CATEGORY_COLORS[category];
+      <div className="brm-box category-filter-box">
+        <div className="category-filter-list">
+          {categories.map((category) => {
+            const isShown = !hasFilters || selectedCategories.has(category);
 
-          return (
-            <button
-              key={category}
-              className={`category-filter-item ${isActive ? 'active' : 'inactive'}`}
-              style={{ '--cat-color': color } as React.CSSProperties}
-              aria-pressed={selectedCategories.has(category)}
-              onClick={() => onToggle(category)}
-            >
-              <span className="category-icon">
-                <CategoryIcon category={category} size={16} color={isActive ? color : '#666'} />
-              </span>
-              <span className="category-name">{category}</span>
-              <span className="category-indicator" />
-            </button>
-          );
-        })}
+            return (
+              <button
+                key={category}
+                className={`brm-btn category-filter-item${isShown ? '' : ' off-map'}`}
+                aria-pressed={selectedCategories.has(category)}
+                onClick={() => onToggle(category)}
+              >
+                <CategoryIcon category={category} size={16} color={isShown ? CATEGORY_COLORS[category] : '#646464'} />
+                <span className="category-name">{category}</span>
+                <span className="category-count tabular">{counts[category]}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

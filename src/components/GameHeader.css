@@ -1,0 +1,90 @@
+/* MenuHeaderComponent in the pause menu, 85% black. the tabs run the full width here,
+   so the gold glow ends in its bright line right above them instead of under them */
+.game-header {
+  position: relative;
+  z-index: 70;
+  flex-shrink: 0;
+  background: var(--brm-glass);
+}
+
+.game-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: round(calc(24 * var(--u)), 1px);
+  height: round(calc(98 * var(--u)), 1px);
+  padding: 0 round(calc(22 * var(--u)), 1px);
+  background: var(--glow);
+}
+
+.game-header-brand {
+  flex-shrink: 0;
+  height: round(calc(52 * var(--u)), 1px);
+  margin: 0;
+  filter: drop-shadow(0 1px 0 var(--brm-black));
+}
+
+.game-header-logo {
+  display: block;
+  height: 100%;
+  aspect-ratio: 946 / 260;
+  background: var(--brm-gold);
+  -webkit-mask: url('/logos/logowhite.svg') center / contain no-repeat;
+  mask: url('/logos/logowhite.svg') center / contain no-repeat;
+}
+
+/* where the game shows exp and money, gold with a one pixel black drop */
+.game-header-readout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 0;
+  color: var(--brm-gold);
+  font-size: calc(26 * var(--u));
+  line-height: 1.15;
+  text-align: right;
+  text-shadow: 0 1px 0 var(--brm-black);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.game-header-stat {
+  font-weight: 700;
+}
+
+.game-header-tabs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: round(calc(6 * var(--u)), 1px);
+  padding: round(calc(12 * var(--u)), 1px) round(calc(22 * var(--u)), 1px);
+}
+
+.game-header-tabs .brm-btn {
+  min-height: round(calc(52 * var(--u)), 1px);
+  font-size: calc(28 * var(--u));
+}
+
+@media (max-width: 768px) {
+  .game-header-bar {
+    height: round(calc(80 * var(--u)), 1px);
+  }
+
+  .game-header-brand {
+    height: round(calc(46 * var(--u)), 1px);
+  }
+
+  .game-header-op {
+    display: none;
+  }
+
+  .game-header-tabs {
+    padding-top: round(calc(10 * var(--u)), 1px);
+    padding-bottom: round(calc(10 * var(--u)), 1px);
+  }
+
+  .game-header-tabs .brm-btn {
+    min-height: round(calc(46 * var(--u)), 1px);
+    font-size: calc(24 * var(--u));
+  }
+}

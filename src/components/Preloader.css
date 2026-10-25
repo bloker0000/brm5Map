@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: var(--brm-void);
+  background: var(--brm-black);
   overflow: hidden;
 }
 
@@ -59,23 +59,21 @@
 
 .preloader-subtitle {
   margin-top: 12px;
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-size: clamp(0.72rem, 1.5vw, 0.92rem);
   font-weight: 600;
-  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--brm-text-dim);
+  color: var(--brm-sub);
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.95);
 }
 
 .preloader-status {
   margin-top: 42px;
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: var(--tr-micro);
   text-transform: uppercase;
-  color: var(--brm-text-dim);
+  color: var(--brm-sub);
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.95);
   transition: opacity var(--t-fast) var(--ease);
 }
@@ -90,7 +88,7 @@
 
 .preloader-bar {
   height: 100%;
-  background: var(--brm-accent);
+  background: var(--brm-gold);
   transition: width 0.4s var(--ease);
 }
 
@@ -106,10 +104,9 @@
   gap: 2px;
   padding: 0 20px;
   text-align: center;
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: var(--tr-tight);
   color: rgba(255, 255, 255, 0.46);
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9);
 }
@@ -126,10 +123,6 @@
 
   .preloader-status {
     margin-top: 32px;
-  }
-
-  .preloader-subtitle {
-    letter-spacing: 0.14em;
   }
 
   .preloader-footer {

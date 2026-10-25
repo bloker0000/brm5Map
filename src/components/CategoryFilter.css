@@ -3,172 +3,77 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
+  gap: round(calc(10 * var(--u)), 1px);
 }
 
-.category-filter-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.category-filter .brm-section-title {
+  --head: 48;
   flex-shrink: 0;
-  padding-bottom: 10px;
 }
 
-.category-filter-title {
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: var(--tr-label);
-  text-transform: uppercase;
-  color: var(--brm-text);
-  white-space: nowrap;
+.category-filter-clear.brm-btn {
+  margin-left: auto;
+  min-height: round(calc(30 * var(--u)), 1px);
+  padding: 0 round(calc(16 * var(--u)), 1px);
+  font-size: calc(18 * var(--u));
 }
 
-.category-filter-header::after {
-  content: '';
+.category-filter-box {
   flex: 1;
-  height: 1px;
-  background: var(--brm-rule);
-  order: 1;
-}
-
-.category-filter-clear {
-  order: 2;
-  background: none;
-  border: 1px solid var(--brm-accent-dim);
-  color: var(--brm-accent);
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: var(--tr-label);
-  text-transform: uppercase;
-  cursor: pointer;
-  padding: 3px 10px;
-  transition: background-color var(--t-fast) var(--ease),
-              color var(--t-fast) var(--ease),
-              border-color var(--t-fast) var(--ease);
-}
-
-.category-filter-clear:hover {
-  background: var(--brm-accent);
-  border-color: var(--brm-accent);
-  color: #140d02;
+  min-height: 0;
+  display: flex;
 }
 
 .category-filter-list {
   flex: 1;
   min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: round(calc(4 * var(--u)), 1px);
   overflow-y: auto;
   overscroll-behavior: contain;
-  margin: 0 -14px;
 }
 
-.category-filter-item {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  height: 42px;
-  padding: 0 14px;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--brm-rule-soft);
-  cursor: pointer;
-  text-align: left;
-  transition: background-color var(--t-fast) var(--ease),
-              opacity var(--t-fast) var(--ease);
-}
-
-.category-filter-item:hover {
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.category-filter-item::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 1px;
-  width: 2px;
-  background: var(--cat-color);
-  opacity: 0;
-  transition: opacity var(--t-fast) var(--ease);
-}
-
-.category-filter-item:hover::after {
-  opacity: 1;
-}
-
-.category-filter-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-style: solid;
-  border-width: 14px 14px 0 0;
-  border-color: var(--cat-color) transparent transparent transparent;
-  opacity: 0;
-  transition: opacity var(--t-fast) var(--ease);
-}
-
-.has-filters .category-filter-item.active::before {
-  opacity: 1;
-}
-
-.category-indicator {
-  position: absolute;
-  top: 3px;
-  left: 2px;
-  width: 6px;
-  height: 3px;
-  border-left: 1.5px solid #0a0a0c;
-  border-bottom: 1.5px solid #0a0a0c;
-  transform: rotate(-45deg);
-  opacity: 0;
-  transition: opacity var(--t-fast) var(--ease);
-}
-
-.has-filters .category-filter-item.active .category-indicator {
-  opacity: 1;
-}
-
-.category-filter-item.inactive {
-  opacity: 0.34;
-}
-
-.category-filter-item.inactive:hover {
-  opacity: 0.7;
-}
-
-.category-icon {
+/* a player list row: name on the left in the brighter idle colour, the count on the right */
+.category-filter-item.brm-btn {
+  --idle-label: var(--brm-body);
   flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 4px;
+  justify-content: flex-start;
+  min-height: round(calc(46 * var(--u)), 1px);
+  padding: 0 round(calc(18 * var(--u)), 1px);
+  font-size: calc(21 * var(--u));
+  text-align: left;
+}
+
+.category-filter-item svg {
+  flex-shrink: 0;
+  width: round(calc(22 * var(--u)), 1px);
+  height: round(calc(22 * var(--u)), 1px);
+}
+
+/* once a filter is on, what it leaves off the map dims like a dead player */
+.category-filter-item.off-map {
+  --idle-label: var(--brm-dim);
 }
 
 .category-name {
   flex: 1;
   min-width: 0;
-  font-family: var(--font-display);
-  font-size: 0.88rem;
-  font-weight: 600;
-  letter-spacing: var(--tr-label);
-  text-transform: uppercase;
-  color: var(--brm-text-dim);
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-  transition: color var(--t-fast) var(--ease);
 }
 
-.category-filter-item.active .category-name {
-  color: var(--brm-text);
+.category-count {
+  color: var(--brm-sub);
+  font-size: calc(18 * var(--u));
 }
 
-.category-filter-item:hover .category-name {
-  color: var(--brm-text);
+.category-filter-item[aria-pressed='true'] .category-count {
+  color: inherit;
+}
+
+@media (hover: hover) {
+  .category-filter-item:hover .category-count {
+    color: inherit;
+  }
 }

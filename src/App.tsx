@@ -11,13 +11,16 @@ import {
   shouldShowChangelog,
   markChangelogSeen,
   LocationsList,
+  GameHeader,
 } from './components';
 import type { FocusRequest } from './components/InteractiveMap';
+import type { Page } from './components/GameHeader';
 import { preloadMarkdown } from './components/markdownLoader';
 import { useLocations } from './hooks/useLocations';
 import { useMediaQuery, PHONE_QUERY, HOVER_QUERY } from './hooks/useMediaQuery';
 import type { MapLocation, LocationCategory } from './types/location';
 import { BG_CREDITS, randomBgIndex } from './data/backgrounds';
+import { MISSION_TITLES } from './data/mission-titles';
 import './App.css';
 
 // the mission data is a third of the bundle, so it only loads on its own route
@@ -33,6 +36,7 @@ const AdminPanel = import.meta.env.DEV
 const MISSIONS_ROUTE = /^#\/missions(?:\/([A-Za-z0-9_-]+))?\/?$/;
 // same as the title in index.html, restored when coming back from the mission library
 const SITE_TITLE = 'BRMap5 - Blackhawk Rescue Mission 5 Zombies Map';
+const MISSION_COUNT = Object.keys(MISSION_TITLES).length;
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -113,16 +117,16 @@ function App() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        if (isMissionsRoute) {
+        if (isChangelogOpen) {
+          closeChangelog();
+        } else if (isAboutOpen) {
+          setIsAboutOpen(false);
+        } else if (isMissionsRoute) {
           // like the admin panel, back out of the mission first, then the page
           navigate(missionId ? '#/missions' : '');
-        } else if (isChangelogOpen) {
-          closeChangelog();
         } else if (isAdminOpen && adminViewMode === 'list') {
           // in add/edit the panel handles escape itself, backing out to the list
           setIsAdminOpen(false);
-        } else if (isAboutOpen) {
-          setIsAboutOpen(false);
         } else if (selectedLocation) {
           setSelectedLocation(null);
         } else if (isPhone && showSidebar) {
@@ -237,33 +241,76 @@ function App() {
     [isAdminOpen, adminViewMode, adminClickPosition, adminFormCategory]
   );
 
+  const categoryCounts = useMemo(() => {
+    const counts = Object.fromEntries(allCategories.map(c => [c, 0])) as Record<LocationCategory, number>;
+    for (const loc of locations) counts[loc.category] = (counts[loc.category] ?? 0) + 1;
+    return counts;
+  }, [locations, allCategories]);
+
+  const openPage = useCallback((page: Page) => {
+    const hash = page === 'missions' ? '#/missions' : '';
+    if (route !== hash) navigate(hash);
+  }, [route, navigate]);
+
   const currentCredit = BG_CREDITS[bgIndex];
+
+  let stat = `${MISSION_COUNT} missions`;
+  if (!isMissionsRoute) {
+    stat = displayedLocations.length === locations.length
+      ? `${locations.length} markers`
+      : `${displayedLocations.length} of ${locations.length} markers`;
+  }
+
+  const header = (
+    <GameHeader
+      page={isMissionsRoute ? 'missions' : 'map'}
+      stat={stat}
+      isAboutOpen={isAboutOpen}
+      onNavigate={openPage}
+      onAbout={() => setIsAboutOpen(true)}
+    />
+  );
+
+  const dialogs = (
+    <>
+      <AboutModal
+        isOpen={isAboutOpen}
+        onClose={() => setIsAboutOpen(false)}
+        onOpenChangelog={() => setIsChangelogOpen(true)}
+      />
+      {/* waits for the loading screen, it cannot take focus while the app is hidden */}
+      <ChangelogModal isOpen={isChangelogOpen && (isMissionsRoute || !isLoading)} onClose={closeChangelog} />
+    </>
+  );
 
   if (isMissionsRoute) {
     return (
-      <ErrorBoundary
-        title="The mission library did not load"
-        message="The site was probably updated while you had it open. Reloading gets the new version."
-        onBack={() => navigate('')}
-      >
-        <Suspense
-          fallback={
-            <div className="missions-boot">
-              <div className="brm-loader">
-                <div className="brm-loader-track" />
-                <span className="brm-loader-label">Loading missions</span>
-              </div>
-            </div>
-          }
+      <div className="app app-visible">
+        {header}
+        <ErrorBoundary
+          title="The mission library did not load"
+          message="The site was probably updated while you had it open. Reloading gets the new version."
+          onBack={() => navigate('')}
         >
-          <MissionsPage
-            missionId={missionId}
-            bgIndex={bgIndex}
-            onSelectMission={id => navigate(id ? `#/missions/${id}` : '#/missions')}
-            onExit={() => navigate('')}
-          />
-        </Suspense>
-      </ErrorBoundary>
+          <Suspense
+            fallback={
+              <div className="missions-boot">
+                <div className="brm-loader">
+                  <div className="brm-loader-track" />
+                  <span className="brm-loader-label">Loading missions</span>
+                </div>
+              </div>
+            }
+          >
+            <MissionsPage
+              missionId={missionId}
+              bgIndex={bgIndex}
+              onSelectMission={id => navigate(id ? `#/missions/${id}` : '#/missions')}
+            />
+          </Suspense>
+        </ErrorBoundary>
+        {dialogs}
+      </div>
     );
   }
 
@@ -278,69 +325,48 @@ function App() {
         />
       )}
       <div className={`app ${isLoading ? 'app-hidden' : 'app-visible'}`}>
-        <AboutModal
-          isOpen={isAboutOpen}
-          onClose={() => setIsAboutOpen(false)}
-          onOpenChangelog={() => setIsChangelogOpen(true)}
-        />
-        {/* waits for the loading screen, it cannot take focus while the app is hidden */}
-        <ChangelogModal isOpen={isChangelogOpen && !isLoading} onClose={closeChangelog} />
+        {header}
+        {dialogs}
 
-        <button
-          className={`sidebar-toggle-btn${showSidebar ? '' : ' sidebar-hidden'}`}
-          onClick={() => setShowSidebar(!showSidebar)}
-          title={showSidebar ? 'Hide Sidebar' : 'Show Sidebar'}
-          aria-label={showSidebar ? 'Hide sidebar' : 'Show sidebar'}
-          aria-expanded={showSidebar}
-          aria-controls="sidebar"
-        >
-          <span className="sidebar-toggle-glyph" aria-hidden="true">{showSidebar ? '◀' : '▶'}</span>
-        </button>
+        <div className="app-body">
+          <button
+            className={`brm-btn sidebar-toggle-btn${showSidebar ? '' : ' sidebar-hidden'}`}
+            onClick={() => setShowSidebar(!showSidebar)}
+            title={showSidebar ? 'Hide Sidebar' : 'Show Sidebar'}
+            aria-label={showSidebar ? 'Hide sidebar' : 'Show sidebar'}
+            aria-expanded={showSidebar}
+            aria-controls="sidebar"
+          >
+            <span aria-hidden="true">{showSidebar ? '<' : '>'}</span>
+          </button>
 
-        {isPhone && showSidebar && (
-          <div className="sidebar-scrim" onClick={() => setShowSidebar(false)} />
-        )}
+          {isPhone && showSidebar && (
+            <div className="sidebar-scrim" onClick={() => setShowSidebar(false)} />
+          )}
 
-        <aside id="sidebar" className={`sidebar${showSidebar ? '' : ' hidden'}`}>
-          <div className="sidebar-header">
-            <div className="sidebar-lockup">
-              <img src="/logos/logowhite.svg" alt="BRMap5" className="sidebar-logo" />
-              <span className="sidebar-lockup-secondary">Operation CRYO Zombies</span>
+          <aside id="sidebar" className={`sidebar${showSidebar ? '' : ' hidden'}`}>
+            <div className="sidebar-tabs">
+              <button
+                className={`brm-tab${activeTab === 'categories' ? ' active' : ''}`}
+                aria-pressed={activeTab === 'categories'}
+                onClick={() => setActiveTab('categories')}
+              >
+                Categories
+              </button>
+              <button
+                className={`brm-tab${activeTab === 'locations' ? ' active' : ''}`}
+                aria-pressed={activeTab === 'locations'}
+                onClick={() => setActiveTab('locations')}
+              >
+                Locations
+              </button>
             </div>
-            <div className="sidebar-readout">
-              <div className="readout-row">
-                <span className="readout-value tabular">{locations.length}</span>
-                <span className="readout-label">Markers</span>
-              </div>
-              <div className="readout-row">
-                <span className="readout-value tabular">{displayedLocations.length}</span>
-                <span className="readout-label">Shown</span>
-              </div>
-            </div>
-          </div>
 
-          <div className="sidebar-tabs">
-            <button
-              className={`brm-tab ${activeTab === 'categories' ? 'active' : ''}`}
-              aria-pressed={activeTab === 'categories'}
-              onClick={() => setActiveTab('categories')}
-            >
-              Categories
-            </button>
-            <button
-              className={`brm-tab ${activeTab === 'locations' ? 'active' : ''}`}
-              aria-pressed={activeTab === 'locations'}
-              onClick={() => setActiveTab('locations')}
-            >
-              Locations
-            </button>
-          </div>
-
-          <div className="sidebar-content">
-            <div className="sidebar-panel" key={activeTab}>
+            <div className="sidebar-content">
               {activeTab === 'categories' && (
                 <CategoryFilter
                   categories={allCategories}
+                  counts={categoryCounts}
                   selectedCategories={selectedCategories}
                   onToggle={toggleCategory}
                   onClear={clearFilters}
@@ -357,68 +383,59 @@ function App() {
                 />
               )}
             </div>
-          </div>
 
-          <div className="sidebar-nav">
-            <button className="brm-btn sidebar-missions" onClick={() => navigate('#/missions')}>
-              Mission Library
-              <span className="sidebar-missions-glyph" aria-hidden="true">▶</span>
-            </button>
-          </div>
-
-          <div className="sidebar-display">
-            <h2 className="brm-section-title">Display</h2>
-            <div className="option-row">
-              <span className="option-label">Map pins</span>
-              <div className="brm-segment" role="group" aria-label="Map pins">
-                <button aria-pressed={showPins} onClick={() => setShowPins(true)}>On</button>
-                <button aria-pressed={!showPins} onClick={() => setShowPins(false)}>Off</button>
+            <section className="sidebar-display">
+              <div className="brm-section-title">
+                <h2>Display</h2>
               </div>
-            </div>
-            <div className="option-row">
-              <span className="option-label">Compass</span>
-              <div className="brm-segment" role="group" aria-label="Compass">
-                <button aria-pressed={showCompass} onClick={() => setShowCompass(true)}>On</button>
-                <button aria-pressed={!showCompass} onClick={() => setShowCompass(false)}>Off</button>
+              <div className="brm-row">
+                <span className="brm-row-label">Map pins</span>
+                <div className="brm-segment" role="group" aria-label="Map pins">
+                  <button aria-pressed={!showPins} onClick={() => setShowPins(false)}>Off</button>
+                  <button aria-pressed={showPins} onClick={() => setShowPins(true)}>On</button>
+                </div>
               </div>
-            </div>
-          </div>
+              <div className="brm-row">
+                <span className="brm-row-label">Compass</span>
+                <div className="brm-segment" role="group" aria-label="Compass">
+                  <button aria-pressed={!showCompass} onClick={() => setShowCompass(false)}>Off</button>
+                  <button aria-pressed={showCompass} onClick={() => setShowCompass(true)}>On</button>
+                </div>
+              </div>
+            </section>
 
-          <div className="sidebar-footer">
-            <button className="brm-btn sidebar-about" onClick={() => setIsAboutOpen(true)}>
-              About
-            </button>
-            <div className="footer-credit">
-              <span className="footer-credit-label">Art</span>
+            <footer className="brm-panel sidebar-footer">
+              <span>Art</span>
+              <span className="sidebar-footer-sep" aria-hidden="true">/</span>
               {currentCredit?.url ? (
                 <a href={currentCredit.url} target="_blank" rel="noopener noreferrer">
                   {currentCredit.name}
                 </a>
               ) : (
-                <span>{currentCredit?.name}</span>
+                <span className="sidebar-footer-name">{currentCredit?.name}</span>
               )}
-            </div>
-          </div>
-        </aside>
+            </footer>
+          </aside>
 
-        <main className="map-container">
-          <InteractiveMap
-            locations={displayedLocations}
-            hoveredLocation={hoveredLocation}
-            selectedLocation={selectedLocation}
-            onHover={setHoveredLocation}
-            onClick={handleLocationClick}
-            onMapClick={handleMapClick}
-            focusRequest={focusRequest}
-            bgIndex={bgIndex}
-            isAdminMode={import.meta.env.DEV && isAdminOpen}
-            showPins={showPins}
-            showCompass={showCompass}
-            onPinDrag={handlePinDrag}
-            placeholderPin={placeholderPin}
-            isDragMode={import.meta.env.DEV && isAdminOpen && adminDragMode}
-          />
-        </main>
+          <main className="map-container">
+            <InteractiveMap
+              locations={displayedLocations}
+              hoveredLocation={hoveredLocation}
+              selectedLocation={selectedLocation}
+              onHover={setHoveredLocation}
+              onClick={handleLocationClick}
+              onMapClick={handleMapClick}
+              focusRequest={focusRequest}
+              bgIndex={bgIndex}
+              isAdminMode={import.meta.env.DEV && isAdminOpen}
+              showPins={showPins}
+              showCompass={showCompass}
+              onPinDrag={handlePinDrag}
+              placeholderPin={placeholderPin}
+              isDragMode={import.meta.env.DEV && isAdminOpen && adminDragMode}
+            />
+          </main>
+        </div>
 
         {canHover && <Tooltip location={hoveredLocation} />}
 

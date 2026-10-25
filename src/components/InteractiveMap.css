@@ -4,7 +4,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background: var(--brm-void);
+  background: var(--brm-black);
   overflow: hidden;
   cursor: grab;
   touch-action: none;
@@ -14,7 +14,7 @@
 }
 
 .interactive-map:focus-visible {
-  outline: 2px solid var(--brm-accent);
+  outline: 2px solid var(--brm-gold);
   outline-offset: -2px;
 }
 
@@ -100,15 +100,15 @@
 }
 
 .zoom-controls button {
-  width: 40px;
-  height: 40px;
+  width: round(calc(50 * var(--u)), 1px);
+  height: round(calc(50 * var(--u)), 1px);
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--brm-glass-deep);
-  border: 1px solid var(--brm-border);
-  color: var(--brm-text-dim);
-  font-family: var(--font-display);
+  border: 1px solid var(--brm-edge);
+  color: var(--brm-sub);
+  font-family: var(--font);
   font-size: 1.05rem;
   font-weight: 600;
   cursor: pointer;
@@ -117,15 +117,20 @@
               background-color var(--t-fast) var(--ease);
 }
 
+.zoom-controls svg {
+  width: round(calc(22 * var(--u)), 1px);
+  height: round(calc(22 * var(--u)), 1px);
+}
+
 .zoom-controls button:hover {
-  color: var(--brm-accent);
-  border-color: var(--brm-accent);
+  color: var(--brm-gold);
+  border-color: var(--brm-gold);
 }
 
 .zoom-controls button:active {
-  background-color: var(--brm-accent);
+  background-color: var(--brm-gold);
   background-image: none;
-  border-color: var(--brm-accent);
+  border-color: var(--brm-gold);
   color: #140d02;
 }
 
@@ -185,27 +190,25 @@
   gap: 10px;
   padding: 7px 13px;
   background: var(--brm-glass-deep);
-  border: 1px solid var(--brm-border);
+  border: 1px solid var(--brm-edge);
 }
 
 .rotation-label,
 .coords-label {
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: var(--tr-micro);
   text-transform: uppercase;
-  color: var(--brm-text-muted);
+  color: var(--brm-dim);
 }
 
 .rotation-value,
 .coords-value {
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-size: 0.9rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-  letter-spacing: var(--tr-tight);
-  color: var(--brm-accent);
+  color: var(--brm-gold);
 }
 
 /* the coordinates follow the mouse, so without one there is nothing to show */
@@ -217,8 +220,8 @@
 
 @media (pointer: coarse) {
   .zoom-controls button {
-    width: 44px;
-    height: 44px;
+    width: max(44px, round(calc(50 * var(--u)), 1px));
+    height: max(44px, round(calc(50 * var(--u)), 1px));
   }
 }
 

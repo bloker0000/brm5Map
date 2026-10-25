@@ -74,17 +74,34 @@ export function LocationsList({
 
   return (
     <div className="locations-list">
-      <div className="locations-list-search">
+      <div className="brm-section-title">
+        <h2>Locations</h2>
+        {selectedLocations.size > 0 ? (
+          <>
+            <span className="brm-section-meta locations-selected-count tabular">
+              {selectedLocations.size} selected
+            </span>
+            <button className="brm-btn locations-clear-selection" onClick={onClearSelection}>
+              Clear
+            </button>
+          </>
+        ) : (
+          <span className="brm-section-meta tabular">{filteredLocations.length}</span>
+        )}
+      </div>
+
+      <div className="brm-search">
         <input
+          className="brm-input"
           type="text"
-          placeholder="Search locations..."
+          placeholder="Search locations"
           aria-label="Search locations"
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
         />
         {searchQuery && (
           <button
-            className="locations-list-clear"
+            className="brm-btn brm-search-clear"
             onClick={() => setSearchQuery('')}
             aria-label="Clear search"
           >
@@ -93,92 +110,66 @@ export function LocationsList({
         )}
       </div>
 
-      <div className="locations-list-info">
-        {selectedLocations.size > 0 && (
-          <>
-            <span className="locations-selected-count">
-              {selectedLocations.size} selected
-            </span>
-            <button
-              className="locations-list-clear-selection"
-              onClick={onClearSelection}
-            >
-              Clear
-            </button>
-          </>
-        )}
-        <span className="locations-total-count">
-          {filteredLocations.length} locations
-        </span>
-      </div>
+      <div className="brm-box locations-box">
+        <div className="locations-list-content">
+          {groupedLocations.map(([category, locs]) => {
+            // while searching every group with a match is open, or the matches stay hidden
+            const isExpanded = query !== '' || expandedCategories.has(category);
+            const selectedInCategory = locs.filter(l => selectedLocations.has(l.id)).length;
 
-      <div className="locations-list-content">
-        {groupedLocations.map(([category, locs]) => {
-          // while searching every group with a match is open, or the matches stay hidden
-          const isExpanded = query !== '' || expandedCategories.has(category);
-          const color = CATEGORY_COLORS[category];
-          const selectedInCategory = locs.filter(l => selectedLocations.has(l.id)).length;
+            return (
+              <div key={category} className="locations-category">
+                <button
+                  className="brm-btn locations-category-header"
+                  onClick={() => toggleCategory(category)}
+                  aria-expanded={isExpanded}
+                  disabled={query !== ''}
+                >
+                  <CategoryIcon category={category} size={16} color={CATEGORY_COLORS[category]} />
+                  <span className="locations-category-name">{category}</span>
+                  <span className="locations-category-count tabular">
+                    {selectedInCategory > 0 && (
+                      <span className="locations-category-selected">{selectedInCategory}/</span>
+                    )}
+                    {locs.length}
+                  </span>
+                  <span className={`locations-category-arrow${isExpanded ? ' expanded' : ''}`} aria-hidden="true">
+                    &gt;
+                  </span>
+                </button>
 
-          return (
-            <div key={category} className="locations-category">
-              <button
-                className="locations-category-header"
-                onClick={() => toggleCategory(category)}
-                aria-expanded={isExpanded}
-                disabled={query !== ''}
-                style={{ '--cat-color': color } as React.CSSProperties}
-              >
-                <span className="locations-category-icon">
-                  <CategoryIcon category={category} size={16} color={color} />
-                </span>
-                <span className="locations-category-name">{category}</span>
-                <span className="locations-category-count">
-                  {selectedInCategory > 0 && (
-                    <span className="locations-category-selected">{selectedInCategory}/</span>
-                  )}
-                  {locs.length}
-                </span>
-                <span className={`locations-category-arrow ${isExpanded ? 'expanded' : ''}`}>
-                  &gt;
-                </span>
-              </button>
-
-              <div className={`locations-group-body${isExpanded ? ' open' : ''}`}>
-                <div className="locations-group-clip">
-                  <div className="locations-category-items">
-                    {locs.map(location => {
-                      const isSelected = selectedLocations.has(location.id);
-                      return (
-                        <div
-                          key={location.id}
-                          className={`locations-item ${isSelected ? 'selected' : ''}`}
-                        >
+                <div className={`locations-group-body${isExpanded ? ' open' : ''}`}>
+                  <div className="locations-group-clip">
+                    <div className="locations-category-items">
+                      {locs.map(location => (
+                        <div key={location.id} className="locations-item">
                           <button
-                            className="locations-item-select"
+                            className="brm-btn locations-item-select"
                             onClick={e => handleItemClick(e, location)}
-                            aria-pressed={isSelected}
+                            aria-pressed={selectedLocations.has(location.id)}
                             tabIndex={isExpanded ? 0 : -1}
                           >
                             <span className="locations-item-name">{location.name}</span>
                           </button>
                           <button
-                            className="locations-item-view"
+                            className="brm-btn locations-item-view"
                             onClick={() => onSelectLocation(location)}
                             tabIndex={isExpanded ? 0 : -1}
                             title="View on map"
                             aria-label={`View ${location.name} on the map`}
                           >
-                            VIEW
+                            View
                           </button>
                         </div>
-                      );
-                    })}
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+          {groupedLocations.length === 0 && <p className="locations-empty">No locations match</p>}
+        </div>
       </div>
     </div>
   );

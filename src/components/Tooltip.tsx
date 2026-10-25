@@ -64,7 +64,7 @@ function TooltipImages({ location }: { location: MapLocation }) {
   return (
     <div className="tooltip-image-container">
       <div className={`tooltip-image ${isTransitioning ? 'transitioning' : ''}`}>
-        {/* the card is 250px wide, the full size shot is 1920 */}
+        {/* the card is around 300px wide, the full size shot is 1920 */}
         <img src={image.thumb ?? image.url} alt="" />
       </div>
       {images.length > 1 && (

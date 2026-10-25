@@ -14,13 +14,13 @@
 .modal {
   position: relative;
   width: 100%;
-  max-width: 540px;
+  max-width: 30rem;
   max-height: 84vh;
   max-height: 84dvh;
   overflow-y: auto;
   overscroll-behavior: contain;
-  background: var(--brm-bg-panel);
-  border: 1px solid var(--brm-border);
+  background: var(--brm-btn);
+  border: 1px solid var(--brm-edge);
   border-top: 2px solid var(--modal-color);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
 }
@@ -30,8 +30,8 @@
   flex-direction: column;
   gap: 5px;
   padding: 18px 62px 16px 20px;
-  background-color: var(--brm-bg-dark);
-  border-bottom: 1px solid var(--brm-border);
+  background-color: var(--brm-black);
+  border-bottom: 1px solid var(--brm-edge);
 }
 
 .modal-header-top {
@@ -51,22 +51,20 @@
 
 .modal-title {
   margin: 0;
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.05;
-  letter-spacing: var(--tr-tight);
   text-transform: uppercase;
-  color: var(--brm-text);
+  color: var(--brm-white);
   word-break: break-word;
 }
 
 .modal-category {
   padding-left: 42px;
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: var(--tr-micro);
   text-transform: uppercase;
   color: var(--modal-color);
 }
@@ -82,8 +80,8 @@
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
-  border: 1px solid var(--brm-border);
-  color: var(--brm-text-dim);
+  border: 1px solid var(--brm-edge);
+  color: var(--brm-sub);
   cursor: pointer;
   transition: background-color var(--t-fast) var(--ease),
               border-color var(--t-fast) var(--ease),
@@ -91,14 +89,14 @@
 }
 
 .modal-close:hover {
-  background: var(--brm-danger);
-  border-color: var(--brm-danger);
-  color: var(--brm-text);
+  background: var(--brm-red);
+  border-color: var(--brm-red);
+  color: var(--brm-white);
 }
 
 .modal-gallery {
-  border-bottom: 1px solid var(--brm-border);
-  background: var(--brm-void);
+  border-bottom: 1px solid var(--brm-edge);
+  background: var(--brm-black);
 }
 
 /* sideways swipes are ours to change the image, up and down still scroll the modal */
@@ -144,12 +142,11 @@
   gap: 7px;
   padding: 5px 9px;
   background: rgba(0, 0, 0, 0.75);
-  border: 1px solid var(--brm-border);
-  color: var(--brm-text-dim);
-  font-family: var(--font-display);
+  border: 1px solid var(--brm-edge);
+  color: var(--brm-sub);
+  font-family: var(--font);
   font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: var(--tr-micro);
   text-transform: uppercase;
   opacity: 0;
   transition: opacity var(--t-fast) var(--ease);
@@ -170,8 +167,8 @@
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.7);
-  border: 1px solid var(--brm-border);
-  color: var(--brm-text);
+  border: 1px solid var(--brm-edge);
+  color: var(--brm-white);
   cursor: pointer;
   transition: background-color var(--t-fast) var(--ease),
               border-color var(--t-fast) var(--ease),
@@ -179,8 +176,8 @@
 }
 
 .gallery-nav:hover {
-  background: var(--brm-accent);
-  border-color: var(--brm-accent);
+  background: var(--brm-gold);
+  border-color: var(--brm-gold);
   color: #140d02;
 }
 
@@ -194,9 +191,9 @@
 
 .modal-image-description {
   padding: 10px 20px;
-  background: var(--brm-bg-dark);
-  border-top: 1px solid var(--brm-border);
-  color: var(--brm-text-muted);
+  background: var(--brm-black);
+  border-top: 1px solid var(--brm-edge);
+  color: var(--brm-dim);
   font-size: 0.8rem;
   text-align: center;
 }
@@ -205,7 +202,7 @@
   display: flex;
   gap: 4px;
   padding: 10px 20px;
-  background: var(--brm-bg-dark);
+  background: var(--brm-black);
   overflow-x: auto;
   scroll-behavior: smooth;
 }
@@ -222,7 +219,7 @@
   height: 34px;
   padding: 0;
   background: none;
-  border: 1px solid var(--brm-border);
+  border: 1px solid var(--brm-edge);
   cursor: pointer;
   overflow: hidden;
   opacity: 0.5;
@@ -238,17 +235,17 @@
 
 .modal-thumbnail:hover {
   opacity: 0.85;
-  border-color: var(--brm-text-muted);
+  border-color: var(--brm-dim);
 }
 
 .modal-thumbnail.active {
   opacity: 1;
-  border-color: var(--brm-accent);
+  border-color: var(--brm-gold);
 }
 
 .modal-description {
   padding: 20px;
-  color: var(--brm-text-dim);
+  color: var(--brm-sub);
   font-size: 0.9rem;
   line-height: 1.65;
 }
@@ -266,11 +263,10 @@
   align-items: center;
   gap: 12px;
   margin: 22px 0 12px;
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-weight: 700;
-  letter-spacing: var(--tr-label);
   text-transform: uppercase;
-  color: var(--brm-text);
+  color: var(--brm-white);
 }
 
 .modal-description > :first-child {
@@ -283,7 +279,7 @@
   content: '';
   flex: 1;
   height: 1px;
-  background: var(--brm-rule-soft);
+  background: var(--brm-line-soft);
 }
 
 .modal-description h1 {
@@ -292,22 +288,22 @@
 }
 
 .modal-description h1::after {
-  background: var(--brm-rule);
+  background: var(--brm-line);
 }
 
 .modal-description h2 {
   font-size: 0.94rem;
-  color: var(--brm-accent);
+  color: var(--brm-gold);
 }
 
 .modal-description h3 {
   font-size: 0.86rem;
-  color: var(--brm-text-light);
+  color: var(--brm-body);
 }
 
 .modal-description h4 {
   font-size: 0.8rem;
-  color: var(--brm-text-dim);
+  color: var(--brm-sub);
 }
 
 .modal-description p {
@@ -335,9 +331,9 @@
 .modal-description blockquote {
   margin: 14px 0;
   padding: 10px 14px;
-  background: var(--brm-accent-wash);
-  border-left: 2px solid var(--brm-accent);
-  color: var(--brm-text-light);
+  background: var(--brm-btn-active);
+  border-left: 2px solid var(--brm-gold);
+  color: var(--brm-body);
 }
 
 .modal-description blockquote p {
@@ -346,33 +342,33 @@
 
 .modal-description hr {
   border: none;
-  border-top: 1px solid var(--brm-border);
+  border-top: 1px solid var(--brm-edge);
   margin: 18px 0;
 }
 
 .modal-description a {
-  color: var(--brm-accent);
-  border-bottom: 1px solid var(--brm-accent-dim);
+  color: var(--brm-gold);
+  border-bottom: 1px solid var(--brm-gold-dim);
   transition: border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
 }
 
 .modal-description a:hover {
-  color: var(--brm-accent-hover);
-  border-bottom-color: var(--brm-accent-hover);
+  color: var(--brm-gold-hot);
+  border-bottom-color: var(--brm-gold-hot);
 }
 
 .modal-description code {
-  background: var(--brm-bg-element);
-  border: 1px solid var(--brm-border);
+  background: var(--brm-btn);
+  border: 1px solid var(--brm-edge);
   padding: 1px 5px;
   font-family: var(--font-mono);
   font-size: 0.85em;
-  color: var(--brm-text-light);
+  color: var(--brm-body);
 }
 
 .modal-description pre {
-  background: var(--brm-bg-dark);
-  border: 1px solid var(--brm-border);
+  background: var(--brm-black);
+  border: 1px solid var(--brm-edge);
   padding: 12px 14px;
   margin: 12px 0;
   overflow-x: auto;
@@ -385,16 +381,16 @@
 }
 
 .modal-description strong {
-  color: var(--brm-text);
+  color: var(--brm-white);
   font-weight: 600;
 }
 
 .modal-description em {
-  color: var(--brm-text-light);
+  color: var(--brm-body);
 }
 
 .modal-description del {
-  color: var(--brm-text-muted);
+  color: var(--brm-dim);
 }
 
 .modal-description table {
@@ -407,22 +403,21 @@
 .modal-description th,
 .modal-description td {
   padding: 7px 10px;
-  border: 1px solid var(--brm-border);
+  border: 1px solid var(--brm-edge);
   text-align: left;
 }
 
 .modal-description th {
-  background: var(--brm-bg-dark);
-  color: var(--brm-text);
-  font-family: var(--font-display);
+  background: var(--brm-black);
+  color: var(--brm-white);
+  font-family: var(--font);
   font-size: 0.76rem;
   font-weight: 700;
-  letter-spacing: var(--tr-label);
   text-transform: uppercase;
 }
 
 .modal-description td {
-  background: var(--brm-bg-element);
+  background: var(--brm-btn);
 }
 
 .modal-description img {
@@ -430,22 +425,21 @@
   height: auto;
   display: block;
   margin: 12px 0;
-  border: 1px solid var(--brm-border);
+  border: 1px solid var(--brm-edge);
 }
 
 .modal-missions {
   padding: 16px 20px 18px;
-  border-top: 1px solid var(--brm-border);
+  border-top: 1px solid var(--brm-edge);
 }
 
 .modal-missions-label {
   margin-bottom: 10px;
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: var(--tr-micro);
   text-transform: uppercase;
-  color: var(--brm-text-muted);
+  color: var(--brm-dim);
 }
 
 .modal-mission {
@@ -454,9 +448,9 @@
   justify-content: space-between;
   gap: 10px;
   padding: 9px 12px;
-  border: 1px solid var(--brm-border);
+  border: 1px solid var(--brm-edge);
   border-bottom: none;
-  color: var(--brm-text-dim);
+  color: var(--brm-sub);
   text-decoration: none;
   transition: border-color var(--t-fast) var(--ease),
               background-color var(--t-fast) var(--ease),
@@ -464,26 +458,25 @@
 }
 
 .modal-mission:last-child {
-  border-bottom: 1px solid var(--brm-border);
+  border-bottom: 1px solid var(--brm-edge);
 }
 
 .modal-mission:hover {
-  background: var(--brm-accent-wash);
-  border-color: var(--brm-accent);
-  color: var(--brm-accent);
+  background: var(--brm-btn-active);
+  border-color: var(--brm-gold);
+  color: var(--brm-gold);
 }
 
 /* the hovered row owns both its own top border and the next row's, so the
    neighbour below does not draw a stale line over it */
 .modal-mission:hover + .modal-mission {
-  border-top-color: var(--brm-accent);
+  border-top-color: var(--brm-gold);
 }
 
 .modal-mission-name {
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-size: 0.88rem;
   font-weight: 700;
-  letter-spacing: var(--tr-label);
 }
 
 .modal-mission svg {
@@ -505,25 +498,23 @@
   align-items: center;
   gap: 12px;
   padding: 12px 20px;
-  background: var(--brm-bg-dark);
-  border-top: 1px solid var(--brm-border);
+  background: var(--brm-black);
+  border-top: 1px solid var(--brm-edge);
 }
 
 .modal-coords-label {
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: var(--tr-micro);
   text-transform: uppercase;
-  color: var(--brm-text-muted);
+  color: var(--brm-dim);
 }
 
 .modal-coords-value {
-  font-family: var(--font-display);
+  font-family: var(--font);
   font-size: 0.9rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-  letter-spacing: var(--tr-tight);
   color: var(--modal-color);
 }
 

@@ -1,19 +1,17 @@
-/* layout for the sidebar + map area */
+/* the page under the game header: the sidebar on the left, the map gets the rest */
 
 :root {
-  --sidebar-w: 336px;
+  --sidebar-w: round(calc(480 * var(--u)), 1px);
 }
 
 .app {
   display: flex;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   height: 100dvh;
   overflow: hidden;
-  background: var(--brm-void);
-}
-
-.app {
+  background: var(--brm-black);
   opacity: 0;
   transition: opacity 0.45s var(--ease-out);
 }
@@ -27,45 +25,39 @@
   opacity: 1;
 }
 
-.sidebar-toggle-btn {
+.app-body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+.sidebar-toggle-btn.brm-btn {
   position: absolute;
   top: 50%;
   left: var(--sidebar-w);
-  transform: translateY(-50%);
   z-index: 60;
   width: 20px;
+  min-height: 0;
   height: 60px;
-  background-color: var(--brm-bg-panel);
-  border: 1px solid var(--brm-border);
-  border-left: none;
-  color: var(--brm-text-muted);
-  font-size: 0.65rem;
-  cursor: pointer;
-  transition: left var(--t-med) var(--ease), color var(--t-fast) var(--ease),
-              border-color var(--t-fast) var(--ease);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sidebar-toggle-btn:hover {
-  color: var(--brm-accent);
-  border-color: var(--brm-accent);
+  padding: 0;
+  transform: translateY(-50%);
+  transition: --n 0.3s var(--ease-out), left var(--t-med) var(--ease);
 }
 
 .sidebar-toggle-btn.sidebar-hidden {
   left: 0;
 }
 
+/* the nav column of the game's options page, sitting on the page's 85% black */
 .sidebar {
   width: var(--sidebar-w);
   flex-shrink: 0;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.022) 0%, transparent 220px),
-    var(--brm-bg-panel);
-  border-right: 1px solid var(--brm-border);
   display: flex;
   flex-direction: column;
+  gap: round(calc(16 * var(--u)), 1px);
+  padding: round(calc(22 * var(--u)), 1px);
+  background: var(--brm-glass);
   z-index: 50;
   transition: margin-left var(--t-med) var(--ease), opacity var(--t-med) var(--ease), visibility 0s;
 }
@@ -80,78 +72,10 @@
               visibility 0s linear var(--t-med);
 }
 
-.sidebar-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 20px 16px 18px;
-  background: var(--brm-bg-dark);
-  border-bottom: 1px solid var(--brm-border);
-}
-
-.sidebar-lockup {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.sidebar-logo {
-  display: block;
-  width: 158px;
-  max-width: 100%;
-  height: auto;
-}
-
-.sidebar-lockup-secondary {
-  margin-top: 8px;
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: var(--tr-micro);
-  text-transform: uppercase;
-  color: var(--brm-text-muted);
-}
-
-.sidebar-readout {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 3px;
-  flex-shrink: 0;
-  padding-top: 2px;
-}
-
-.readout-row {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-}
-
-.readout-value {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: var(--tr-tight);
-  color: var(--brm-text);
-}
-
-.readout-label {
-  font-family: var(--font-display);
-  font-size: 0.66rem;
-  font-weight: 700;
-  letter-spacing: var(--tr-micro);
-  text-transform: uppercase;
-  color: var(--brm-text-muted);
-}
-
 .sidebar-tabs {
   display: flex;
-  gap: 6px;
-  padding: 12px 14px;
-  background: var(--brm-bg-dark);
-  border-bottom: 1px solid var(--brm-border);
+  gap: round(calc(6 * var(--u)), 1px);
+  flex-shrink: 0;
 }
 
 .sidebar-content {
@@ -159,137 +83,50 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding: 14px;
-  overflow: hidden;
-}
-
-.sidebar-panel {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  animation: brm-swap-in var(--t-enter) var(--ease-out) both;
 }
 
 .sidebar-display {
   flex-shrink: 0;
-  padding: 14px 14px 6px;
-  border-top: 1px solid var(--brm-border);
-}
-
-.option-row {
-  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  height: 40px;
-  padding: 0 14px;
-  margin: 8px -14px 0;
-  border-bottom: 1px solid var(--brm-rule-soft);
-  transition: background-color var(--t-fast) var(--ease);
+  flex-direction: column;
 }
 
-.option-row:hover {
-  background: rgba(255, 255, 255, 0.03);
+.sidebar-display .brm-section-title {
+  --head: 48;
 }
 
-.option-row::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 1px;
-  width: 2px;
-  background: var(--brm-accent);
-  opacity: 0;
-  transition: opacity var(--t-fast) var(--ease);
+/* the game's 135 wide pair does not fit beside a label in this column */
+.sidebar-display .brm-segment button {
+  width: round(calc(110 * var(--u)), 1px);
 }
 
-.option-row:hover::before {
-  opacity: 0.75;
-}
-
-.option-label {
-  font-family: var(--font-display);
-  font-size: 0.88rem;
-  font-weight: 700;
-  letter-spacing: var(--tr-label);
-  text-transform: uppercase;
-  color: var(--brm-text);
-}
-
+/* the game's footer bar, the artist where it would put a hovered setting in gold */
 .sidebar-footer {
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 14px;
-  background: var(--brm-bg-dark);
-  border-top: 1px solid var(--brm-border);
-}
-
-.sidebar-about {
-  flex-shrink: 0;
-}
-
-.footer-credit {
-  display: flex;
-  align-items: baseline;
-  gap: 7px;
+  gap: round(calc(14 * var(--u)), 1px);
   min-width: 0;
-  font-size: 0.78rem;
-  text-align: right;
-}
-
-.footer-credit-label {
-  font-family: var(--font-display);
-  font-size: 0.66rem;
-  font-weight: 700;
-  letter-spacing: var(--tr-micro);
+  min-height: round(calc(54 * var(--u)), 1px);
+  padding: 0 round(calc(34 * var(--u)), 1px);
+  color: var(--brm-sub);
+  font-size: calc(21 * var(--u));
+  line-height: 1;
   text-transform: uppercase;
-  color: var(--brm-text-muted);
-}
-
-.footer-credit a,
-.footer-credit > span:not(.footer-credit-label) {
-  color: var(--brm-text-light);
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.footer-credit a {
-  color: var(--brm-accent);
-  border-bottom: 1px solid transparent;
-  transition: border-color var(--t-fast) var(--ease);
+.sidebar-footer a,
+.sidebar-footer-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--brm-gold);
+  text-transform: none;
 }
 
-.footer-credit a:hover {
-  border-bottom-color: var(--brm-accent);
-}
-
-.sidebar-nav {
-  flex-shrink: 0;
-  padding: 12px 14px;
-}
-
-.sidebar-missions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  width: 100%;
-}
-
-.sidebar-missions-glyph {
-  font-size: 0.6rem;
-  color: var(--brm-text-muted);
-}
-
-.sidebar-missions:hover .sidebar-missions-glyph {
-  color: var(--brm-accent);
+.sidebar-footer a:hover {
+  color: var(--brm-white);
 }
 
 /* its own stacking context, so the map hud stays under the sidebar and the modals */
@@ -302,28 +139,27 @@
 }
 
 .missions-boot {
+  flex: 1;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  height: 100dvh;
-  background: var(--brm-bg-dark);
 }
 
 /* on a phone the sidebar is a drawer over the map, so the map keeps the whole screen */
 @media (max-width: 768px) {
   :root {
-    --sidebar-w: min(336px, 86vw);
+    --sidebar-w: min(round(calc(480 * var(--u)), 1px), 86vw);
   }
 
   .sidebar {
-    position: fixed;
+    position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     z-index: 120;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    background: var(--brm-glass-deep);
+    border-right: 1px solid var(--brm-edge);
     transition: transform var(--t-med) var(--ease), visibility 0s;
   }
 
@@ -335,18 +171,16 @@
   }
 
   .sidebar-scrim {
-    position: fixed;
+    position: absolute;
     inset: 0;
     z-index: 110;
-    background: rgba(4, 4, 5, 0.55);
+    background: rgba(0, 0, 0, 0.55);
     animation: brm-scrim-in var(--t-enter) var(--ease-out) both;
   }
 
-  .sidebar-toggle-btn {
-    position: fixed;
+  .sidebar-toggle-btn.brm-btn {
     z-index: 130;
     width: 28px;
     height: 64px;
-    font-size: 0.75rem;
   }
 }
