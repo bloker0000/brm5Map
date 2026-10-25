@@ -29,28 +29,28 @@ export function AboutModal({ isOpen, onClose, onOpenChangelog }: AboutModalProps
 
   return (
     <div
-      className={`about-modal-overlay brm-scrim ${isOpen ? 'open' : 'closing'}`}
+      className={`brm-modal-overlay brm-scrim ${isOpen ? 'open' : 'closing'}`}
       onClick={onClose}
       onAnimationEnd={handleAnimationEnd}
     >
       <div
         ref={dialogRef}
-        className="about-modal brm-panel-anim"
+        className="brm-modal brm-panel-anim"
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
         tabIndex={-1}
         onClick={e => e.stopPropagation()}
       >
-        <div className="about-modal-header">
-          <h2 id={titleId}>About BRMap5</h2>
-          <button className="about-modal-close" onClick={onClose} aria-label="Close">X</button>
+        <div className="brm-modal-head">
+          <h2 className="brm-modal-title" id={titleId}>About BRMap5</h2>
+          <button className="brm-btn brm-modal-close" onClick={onClose} aria-label="Close">X</button>
         </div>
 
-        <div className="about-modal-content">
+        <div className="brm-modal-body about-modal-content">
           <section>
-            <h3>Navigation</h3>
-            <ul>
+            <h3 className="brm-section-title">Navigation</h3>
+            <ul className="brm-bullets">
               <li><strong>Pan:</strong> Drag the map with the mouse or one finger</li>
               <li><strong>Zoom:</strong> Scroll wheel, pinch, double-click or double-tap, or the +/- buttons</li>
               <li><strong>Rotate:</strong> Right-click and drag left/right, twist with two fingers, or drag the compass</li>
@@ -61,8 +61,8 @@ export function AboutModal({ isOpen, onClose, onOpenChangelog }: AboutModalProps
           </section>
 
           <section>
-            <h3>Locations</h3>
-            <ul>
+            <h3 className="brm-section-title">Locations</h3>
+            <ul className="brm-bullets">
               <li><strong>Browse:</strong> Use the Locations tab to see all available pins</li>
               <li><strong>Search:</strong> Type in the search box in the Locations tab to find specific locations</li>
               <li><strong>Filter:</strong> Use Categories to filter by location type</li>
@@ -73,8 +73,8 @@ export function AboutModal({ isOpen, onClose, onOpenChangelog }: AboutModalProps
           </section>
 
           <section>
-            <h3>Images</h3>
-            <ul>
+            <h3 className="brm-section-title">Images</h3>
+            <ul className="brm-bullets">
               <li><strong>Preview:</strong> Hover over a pin to see image slideshow (auto-cycles)</li>
               <li><strong>Expand:</strong> Click any image to open fullscreen lightbox</li>
               <li><strong>Zoom:</strong> Scroll wheel, pinch, +/- buttons, or +/- keys (up to 5x)</li>
@@ -85,20 +85,21 @@ export function AboutModal({ isOpen, onClose, onOpenChangelog }: AboutModalProps
           </section>
 
           <section>
-            <h3>Display</h3>
-            <ul>
+            <h3 className="brm-section-title">Display</h3>
+            <ul className="brm-bullets">
+              <li><strong>Grid:</strong> The gold numbers along the top and left edge are metres, like on the game's own map. The Grid readout shows the spot under the mouse</li>
               <li><strong>Toggle Pins:</strong> Show or hide all map pins</li>
               <li><strong>Toggle Sidebar:</strong> Use the arrow button on the left edge to hide/show the sidebar</li>
-              <li><strong>Toggle Compass:</strong> Show or hide the compass via the sidebar button</li>
-              <li><strong>Compass Hover:</strong> Hover over the compass to enlarge it for easier interaction</li>
-              <li><strong>Background:</strong> Refresh the page for a new background image</li>
+              <li><strong>Toggle Compass:</strong> Show or hide the compass under Display in the sidebar</li>
+              <li><strong>Compass:</strong> Drag it to turn the map</li>
+              <li><strong>Artwork:</strong> A different piece every visit, on the loading screen and in the Mission Library</li>
             </ul>
           </section>
 
           <section>
-            <h3>Mission Library</h3>
-            <ul>
-              <li><strong>Open:</strong> Click Mission Library in the sidebar</li>
+            <h3 className="brm-section-title">Mission Library</h3>
+            <ul className="brm-bullets">
+              <li><strong>Open:</strong> Click Missions at the top</li>
               <li><strong>Browse:</strong> Missions are grouped by who gives them</li>
               <li><strong>Filter:</strong> Narrow by difficulty, gasmask, raids, or unmarked objectives</li>
               <li><strong>Variants:</strong> Some missions roll a random spawn point, every candidate is listed</li>
@@ -109,7 +110,7 @@ export function AboutModal({ isOpen, onClose, onOpenChangelog }: AboutModalProps
           </section>
 
           <section>
-            <h3>FAQ</h3>
+            <h3 className="brm-section-title">FAQ</h3>
             <div className="faq-item">
               <p className="faq-question"><strong>Q: What are the green and yellow shapes on the map?</strong></p>
               <p className="faq-answer">A: Green shapes represent military tents, and yellow shapes represent medical or quarantine tents.</p>
@@ -124,43 +125,41 @@ export function AboutModal({ isOpen, onClose, onOpenChangelog }: AboutModalProps
             </div>
           </section>
 
-          <section className="about-credits">
-            <h3>Credits</h3>
+          <section>
+            <h3 className="brm-section-title">Credits</h3>
             <p>Map and website made by Multyply</p>
-            <p>Background artwork by many talented artists. See footer for current artist.</p>
+            <p>Background artwork by many talented artists, the current one is credited on the loading screen and in the Mission Library.</p>
             <p>Help is always welcome. Send me a DM on Discord at <span className="brm-handle">.multyply</span> if you want to contribute.</p>
-            <h3>Contributors</h3>
+          </section>
+
+          <section>
+            <h3 className="brm-section-title">Contributors</h3>
             <p><a href="https://github.com/T0TR0X" target="_blank" rel="noopener noreferrer">TotroX</a>: Location data, descriptions, images, and icon improvements <span className="about-aside">(Discord: .totrox)</span></p>
             <p><a href="https://roblox-blackhawk-rescue-mission-5.fandom.com/wiki/User:Nintendoboi2" target="_blank" rel="noopener noreferrer">Nintendoboi2</a>: Location images</p>
           </section>
 
-          <section className="about-visits">
-            <h3>Site Stats</h3>
-            {isLoading ? (
-              <p>Loading visitor stats...</p>
-            ) : (
-              <div className="visit-stats">
-                <div className="visit-stat">
-                  <span className="visit-label">Total Visits</span>
-                  <span className="visit-number">{totalVisits?.toLocaleString() ?? '—'}</span>
-                </div>
-                <div className="visit-stat">
-                  <span className="visit-label">You Are Visitor</span>
-                  <span className="visit-number">#{yourVisitNumber?.toLocaleString() ?? '—'}</span>
-                </div>
-              </div>
-            )}
-            <p className="about-small about-source">
-              <a href="https://github.com/bloker0000/brm5Map" target="_blank" rel="noopener noreferrer">Source code</a> available on GitHub.
+          <section>
+            <h3 className="brm-section-title">Site Stats</h3>
+            <div className="brm-row about-stat">
+              <span className="brm-row-label">Total Visits</span>
+              <span className="about-stat-value tabular">
+                {isLoading ? '...' : totalVisits?.toLocaleString() ?? '-'}
+              </span>
+            </div>
+            <div className="brm-row about-stat">
+              <span className="brm-row-label">You Are Visitor</span>
+              <span className="about-stat-value tabular">
+                {isLoading ? '...' : `#${yourVisitNumber?.toLocaleString() ?? '-'}`}
+              </span>
+            </div>
+            <p className="about-small">
+              <a href="https://github.com/bloker0000/brm5Map" target="_blank" rel="noopener noreferrer">Source code</a> available on GitHub. Hosted on Vercel.
             </p>
-            <p className="about-small">Hosted on Vercel.</p>
-            <button
-              className="about-changelog-btn"
-              onClick={onOpenChangelog}
-            >
-              View Changelog
-            </button>
           </section>
+
+          <button className="brm-btn about-changelog-btn" onClick={onOpenChangelog}>
+            View Changelog
+          </button>
         </div>
       </div>
     </div>

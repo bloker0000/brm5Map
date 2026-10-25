@@ -1,163 +1,25 @@
+/* opened from the about panel, so it has to sit over it */
 .changelog-modal-overlay {
-  position: fixed;
-  inset: 0;
   z-index: 1001;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem 1rem;
-  background: rgba(4, 4, 5, 0.82);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.changelog-modal {
-  width: 100%;
-  max-width: 30rem;
-  max-height: 84vh;
-  max-height: 84dvh;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  background: var(--brm-btn);
-  border: 1px solid var(--brm-edge);
-  border-top: 2px solid var(--brm-gold);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
-}
-
-.changelog-modal-header {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  padding: 15px 18px;
-  background-color: var(--brm-black);
-  border-bottom: 1px solid var(--brm-edge);
-}
-
-.changelog-modal-header h2 {
-  margin: 0;
-  font-family: var(--font);
-  font-size: 1.25rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--brm-white);
-}
-
-.changelog-modal-close {
-  flex-shrink: 0;
-  width: 30px;
-  height: 30px;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid var(--brm-edge);
-  color: var(--brm-sub);
-  font-family: var(--font);
-  font-size: 0.85rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background-color var(--t-fast) var(--ease),
-              border-color var(--t-fast) var(--ease),
-              color var(--t-fast) var(--ease);
-}
-
-.changelog-modal-close:hover {
-  background: var(--brm-red);
-  border-color: var(--brm-red);
-  color: var(--brm-white);
-}
-
-.changelog-modal-content {
-  padding: 18px;
 }
 
 .changelog-note {
-  margin-bottom: 20px;
-  padding: 13px 15px;
+  padding: round(calc(14 * var(--u)), 1px) round(calc(18 * var(--u)), 1px);
   background: var(--brm-btn-active);
   border-left: 2px solid var(--brm-gold);
 }
 
 .changelog-note p {
   margin: 0;
-  color: var(--brm-body);
-  font-size: 0.86rem;
-  line-height: 1.6;
 }
 
 .changelog-note p + p {
-  margin-top: 8px;
+  margin-top: round(calc(8 * var(--u)), 1px);
   color: var(--brm-sub);
 }
 
 .changelog-entry {
-  margin-bottom: 18px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--brm-edge);
-}
-
-.changelog-entry:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: none;
-}
-
-.changelog-entry-header {
   display: flex;
-  align-items: baseline;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-
-.changelog-version {
-  font-family: var(--font);
-  font-size: 1.05rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-variant-numeric: tabular-nums;
-  color: var(--brm-gold);
-}
-
-.changelog-entry-header::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--brm-line-soft);
-  order: 1;
-}
-
-.changelog-date {
-  order: 2;
-  font-family: var(--font);
-  font-size: 0.74rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-variant-numeric: tabular-nums;
-  color: var(--brm-dim);
-}
-
-.changelog-changes {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.changelog-changes li {
-  position: relative;
-  padding: 3px 0 3px 14px;
-  color: var(--brm-sub);
-  font-size: 0.85rem;
-  line-height: 1.55;
-}
-
-.changelog-changes li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: calc(3px + 0.775em);
-  transform: translateY(-50%);
-  width: 4px;
-  height: 4px;
-  background: var(--brm-gold-dim);
+  flex-direction: column;
+  gap: round(calc(8 * var(--u)), 1px);
 }

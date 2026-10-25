@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BG_IMAGES } from '../data/backgrounds';
+import { BG_IMAGES, BG_CREDITS } from '../data/backgrounds';
 import './Preloader.css';
 
 interface PreloaderProps {
@@ -31,6 +31,7 @@ export function Preloader({ bgIndex, onLoaded, isFadingOut = false, onFadeComple
   const [statusText, setStatusText] = useState('INITIALIZING...');
   const [bgReady, setBgReady] = useState(false);
   const background = BG_IMAGES[bgIndex];
+  const credit = BG_CREDITS[bgIndex];
 
   // the artwork fading in bubbles up here too, only the preloader's own fade counts
   const handleAnimationEnd = (e: React.AnimationEvent) => {
@@ -101,30 +102,42 @@ export function Preloader({ bgIndex, onLoaded, isFadingOut = false, onFadeComple
       <div className="preloader-overlay" />
 
       <div className="preloader-content">
-        <img
-          src="/logos/logowhite.svg"
-          alt="BRMap5"
-          className="preloader-logo-image"
-        />
+        <div className="preloader-brand">
+          <span className="preloader-logo" role="img" aria-label="BRMap5" />
+        </div>
         <div className="preloader-subtitle">Operation CRYO Zombies</div>
 
-        <div className="preloader-status" role="status">{statusText}</div>
-        <div
-          className="preloader-bar-container"
-          role="progressbar"
-          aria-valuenow={progress}
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-label="Loading"
-        >
-          <div className="preloader-bar" style={{ width: `${progress}%` }} />
+        <div className="preloader-loading">
+          <div className="preloader-status">
+            <span role="status">{statusText}</span>
+            <span className="preloader-percent" aria-hidden="true">{progress}%</span>
+          </div>
+          <div
+            className="preloader-bar-container"
+            role="progressbar"
+            aria-valuenow={progress}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="Loading"
+          >
+            <div className="preloader-bar" style={{ width: `${progress}%` }} />
+          </div>
         </div>
       </div>
 
-      <div className="preloader-footer">
-        <span>A community project by Multyply. Map data is fan-made.</span>
-        <span>Not affiliated with GameLoaded Entertainment or the PLATINUM FIVE team.</span>
-      </div>
+      <footer className="brm-panel preloader-footer">
+        {credit && (
+          <span className="preloader-credit">
+            <span>Art</span>
+            <span aria-hidden="true">/</span>
+            <span className="preloader-credit-name">{credit.name}</span>
+          </span>
+        )}
+        <span className="preloader-disclaimer">
+          A community project by Multyply. Map data is fan-made. Not affiliated with
+          GameLoaded Entertainment or the PLATINUM FIVE team.
+        </span>
+      </footer>
     </div>
   );
 }

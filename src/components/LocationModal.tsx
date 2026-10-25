@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef, useId, lazy, Suspense } from 'react';
 import type { MapLocation } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
-import { CategoryIcon, CloseIcon, ChevronIcon, ExpandIcon } from './Icons';
+import { CategoryIcon, ExpandIcon } from './Icons';
 import { missionsAt } from '../data/location-missions';
+import { gridReference } from './mapGrid';
 import { ImageLightbox } from './ImageLightbox';
 import { useExitTransition } from '../hooks/useExitTransition';
 import { useDialog } from '../hooks/useDialog';
@@ -103,12 +104,12 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
   return (
     <>
       <div
-        className={`modal-overlay brm-scrim${isClosing ? ' closing' : ''}`}
+        className={`brm-modal-overlay modal-overlay brm-scrim${isClosing ? ' closing' : ''}`}
         onClick={onClose}
       >
         <div
           ref={dialogRef}
-          className="modal brm-panel-anim"
+          className="brm-modal modal brm-panel-anim"
           role="dialog"
           aria-modal="true"
           aria-labelledby={titleId}
@@ -116,117 +117,114 @@ export function LocationModal({ location, onClose }: LocationModalProps) {
           style={{ '--modal-color': color } as React.CSSProperties}
           onClick={(e) => e.stopPropagation()}
         >
-          <button className="modal-close" onClick={onClose} aria-label="Close">
-            <CloseIcon size={20} />
-          </button>
-
-          <div className="modal-header">
-            <div className="modal-header-top">
-              <div className="modal-icon">
-                <CategoryIcon category={shown.category} size={28} color={color} />
-              </div>
-              <h2 className="modal-title" id={titleId}>{shown.name}</h2>
+          <div className="brm-modal-head">
+            <div className="modal-heading">
+              <h2 className="brm-modal-title" id={titleId}>{shown.name}</h2>
+              <span className="brm-plate modal-category" style={{ '--plate': color } as React.CSSProperties}>
+                <CategoryIcon category={shown.category} size={16} color={color} />
+                {shown.category}
+              </span>
             </div>
-            <div className="modal-category">{shown.category}</div>
+            <button className="brm-btn brm-modal-close" onClick={onClose} aria-label="Close">X</button>
           </div>
 
-          {hasImages && currentImage && (
-            <div className="modal-gallery">
-              <div
-                className="modal-image"
-                onClick={openLightbox}
-                onPointerDown={handleSwipeStart}
-                onPointerUp={handleSwipeEnd}
-                onPointerCancel={() => { swipeRef.current = null; }}
-              >
-                <div className={`modal-image-loader brm-loader ${imageLoadStates[safeIndex] ? 'hidden' : ''}`}>
-                  <span className="brm-loader-label">Loading</span>
-                  <span className="brm-loader-track" />
+          <div className="brm-modal-body">
+            {hasImages && currentImage && (
+              <div className="modal-gallery">
+                <div
+                  className="modal-image"
+                  onClick={openLightbox}
+                  onPointerDown={handleSwipeStart}
+                  onPointerUp={handleSwipeEnd}
+                  onPointerCancel={() => { swipeRef.current = null; }}
+                >
+                  <div className={`modal-image-loader brm-loader ${imageLoadStates[safeIndex] ? 'hidden' : ''}`}>
+                    <span className="brm-loader-label">Loading</span>
+                    <span className="brm-loader-track" />
+                  </div>
+                  <img
+                    key={currentImage.url}
+                    src={currentImage.url}
+                    alt={currentImage.description || shown.name}
+                    draggable={false}
+                    ref={(el) => { if (el?.complete) handleImageLoad(safeIndex); }}
+                    onLoad={() => handleImageLoad(safeIndex)}
+                    style={{ opacity: imageLoadStates[safeIndex] ? 1 : 0 }}
+                  />
+                  <div className="brm-plate modal-image-zoom-hint">
+                    <ExpandIcon />
+                    <span>Click to enlarge</span>
+                  </div>
+                  {hasMultipleImages && (
+                    <>
+                      <button
+                        className="brm-btn gallery-nav gallery-prev"
+                        aria-label="Previous image"
+                        onClick={(e) => { e.stopPropagation(); handlePrevImage(); }}
+                      >
+                        &lt;
+                      </button>
+                      <button
+                        className="brm-btn gallery-nav gallery-next"
+                        aria-label="Next image"
+                        onClick={(e) => { e.stopPropagation(); handleNextImage(); }}
+                      >
+                        &gt;
+                      </button>
+                    </>
+                  )}
                 </div>
-                <img
-                  key={currentImage.url}
-                  src={currentImage.url}
-                  alt={currentImage.description || shown.name}
-                  draggable={false}
-                  ref={(el) => { if (el?.complete) handleImageLoad(safeIndex); }}
-                  onLoad={() => handleImageLoad(safeIndex)}
-                  style={{ opacity: imageLoadStates[safeIndex] ? 1 : 0 }}
-                />
-                <div className="modal-image-zoom-hint">
-                  <ExpandIcon />
-                  <span>Click to enlarge</span>
-                </div>
+                {currentImage.description && (
+                  <div className="modal-image-description">{currentImage.description}</div>
+                )}
                 {hasMultipleImages && (
-                  <>
-                    <button
-                      className="gallery-nav gallery-prev"
-                      aria-label="Previous image"
-                      onClick={(e) => { e.stopPropagation(); handlePrevImage(); }}
-                    >
-                      <ChevronIcon direction="left" />
-                    </button>
-                    <button
-                      className="gallery-nav gallery-next"
-                      aria-label="Next image"
-                      onClick={(e) => { e.stopPropagation(); handleNextImage(); }}
-                    >
-                      <ChevronIcon direction="right" />
-                    </button>
-                  </>
+                  <div className="modal-gallery-thumbnails">
+                    {images.map((img, index) => (
+                      <button
+                        key={index}
+                        ref={(el) => { thumbnailRefs.current[index] = el; }}
+                        className={`modal-thumbnail ${index === safeIndex ? 'active' : ''}`}
+                        aria-current={index === safeIndex}
+                        onClick={() => setCurrentImageIndex(index)}
+                      >
+                        <img src={img.thumb ?? img.url} alt={img.description || `Image ${index + 1}`} />
+                      </button>
+                    ))}
+                  </div>
                 )}
               </div>
-              {currentImage.description && (
-                <div className="modal-image-description">{currentImage.description}</div>
-              )}
-              {hasMultipleImages && (
-                <div className="modal-gallery-thumbnails">
-                  {images.map((img, index) => (
-                    <button
-                      key={index}
-                      ref={(el) => { thumbnailRefs.current[index] = el; }}
-                      className={`modal-thumbnail ${index === safeIndex ? 'active' : ''}`}
-                      aria-current={index === safeIndex}
-                      onClick={() => setCurrentImageIndex(index)}
-                    >
-                      <img src={img.thumb ?? img.url} alt={img.description || `Image ${index + 1}`} />
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
+            )}
 
-          <div className="modal-description">
-            <Suspense
-              fallback={
-                <div className="modal-description-loading brm-loader">
-                  <span className="brm-loader-track" />
-                </div>
-              }
-            >
-              <Markdown>{shown.description}</Markdown>
-            </Suspense>
+            <div className="modal-description">
+              <Suspense
+                fallback={
+                  <div className="modal-description-loading brm-loader">
+                    <span className="brm-loader-track" />
+                  </div>
+                }
+              >
+                <Markdown>{shown.description}</Markdown>
+              </Suspense>
+            </div>
+
+            {missions.length > 0 && (
+              <div className="modal-missions">
+                <h3 className="brm-section-title">
+                  {missions.length === 1 ? 'Mission here' : 'Missions here'}
+                </h3>
+                {missions.map((mission) => (
+                  <a key={mission.id} className="brm-btn modal-mission" href={`#/missions/${mission.id}`}>
+                    <span className="modal-mission-name">{mission.name}</span>
+                    <span aria-hidden="true">&gt;</span>
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
-          {missions.length > 0 && (
-            <div className="modal-missions">
-              <div className="modal-missions-label">
-                {missions.length === 1 ? 'Mission here' : 'Missions here'}
-              </div>
-              {missions.map((mission) => (
-                <a key={mission.id} className="modal-mission" href={`#/missions/${mission.id}`}>
-                  <span className="modal-mission-name">{mission.name}</span>
-                  <ChevronIcon direction="right" />
-                </a>
-              ))}
-            </div>
-          )}
-
-          <div className="modal-coords">
-            <span className="modal-coords-label">Coordinates</span>
-            <span className="modal-coords-value">
-              X: {shown.x} | Y: {shown.y}
-            </span>
+          <div className="modal-footer">
+            <span>Grid</span>
+            <span className="modal-footer-value tabular">{gridReference(shown.x, shown.y)}</span>
           </div>
         </div>
       </div>

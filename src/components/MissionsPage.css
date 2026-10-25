@@ -40,206 +40,157 @@
   z-index: 1;
 }
 
+/* the same column the map page has, on the same 85% black */
 .missions-rail {
   width: var(--sidebar-w);
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 14px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.022) 0%, transparent 220px),
-    rgba(14, 15, 18, 0.9);
-  border-right: 1px solid var(--brm-edge);
+  gap: round(calc(16 * var(--u)), 1px);
+  padding: round(calc(22 * var(--u)), 1px);
+  background: var(--brm-glass);
 }
 
-.missions-rail-footer {
+.missions-browse {
+  flex: 1;
+  min-height: 0;
   display: flex;
-  align-items: baseline;
-  gap: 7px;
+  flex-direction: column;
+  gap: round(calc(10 * var(--u)), 1px);
+}
+
+.missions-browse > .brm-section-title {
+  --head: 48;
   flex-shrink: 0;
-  margin: 0 -14px -14px;
-  padding: 10px 14px;
-  background: rgba(10, 10, 12, 0.6);
-  border-top: 1px solid var(--brm-edge);
-  font-size: 0.78rem;
 }
 
-.missions-rail-footer a {
-  color: var(--brm-gold);
-  border-bottom: 1px solid transparent;
-  transition: border-color var(--t-fast) var(--ease);
-}
-
-.missions-rail-footer a:hover {
-  border-bottom-color: var(--brm-gold);
-}
-
-.missions-rail-footer > span:not(.footer-credit-label) {
-  color: var(--brm-body);
-}
-
-/* only useful once the rail collapses to a header, see the media query below */
-.missions-to-list.brm-btn {
-  display: none;
-  flex-shrink: 0;
-  align-self: flex-start;
-}
-
-.missions-search {
+.missions-browse > .brm-search {
   flex-shrink: 0;
 }
 
 .missions-filters {
+  flex-shrink: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: round(calc(6 * var(--u)), 1px);
 }
 
-.missions-filter {
-  display: inline-flex;
-  align-items: center;
-  height: 24px;
-  padding: 0 9px;
-  line-height: 1;
-  background-color: transparent;
-  border: 1px solid var(--brm-edge);
-  color: var(--brm-sub);
-  font-family: var(--font);
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+.missions-filter.brm-btn {
+  flex: 1 1 auto;
+  min-height: round(calc(36 * var(--u)), 1px);
+  padding: 0 round(calc(14 * var(--u)), 1px);
+  font-size: calc(18 * var(--u));
 }
 
-.missions-filter:hover {
-  color: var(--brm-body);
-}
-
-.missions-filter[aria-pressed='true'] {
-  background-color: var(--brm-btn-active);
-  border-color: var(--brm-gold);
-  color: var(--brm-gold);
-}
-
-.missions-count {
-  font-family: var(--font);
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--brm-dim);
+.missions-box {
+  flex: 1;
+  min-height: 0;
+  display: flex;
 }
 
 .missions-list {
   flex: 1;
   min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: round(calc(10 * var(--u)), 1px);
   overflow-y: auto;
-  margin: 0 -14px;
+  overscroll-behavior: contain;
 }
 
-.missions-group-name {
+.missions-group {
+  flex-shrink: 0;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin: 0;
-  padding: 14px 14px 6px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--brm-dim);
-  border-bottom: 1px solid var(--brm-line-soft);
+  flex-direction: column;
+  gap: round(calc(4 * var(--u)), 1px);
 }
 
-.missions-group-count {
-  font-weight: 600;
+/* the giver stays at the top of the well while their missions scroll under it */
+.missions-group-name.brm-section-title {
+  --head: 40;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 0 round(calc(16 * var(--u)), 1px);
+  font-size: calc(19 * var(--u));
 }
 
-.missions-item {
-  position: relative;
-  display: flex;
-  align-items: center;
+.missions-item.brm-btn {
+  --idle-label: var(--brm-body);
+  flex-shrink: 0;
   justify-content: space-between;
-  gap: 10px;
-  width: 100%;
-  min-height: 34px;
-  padding: 5px 14px;
-  background: transparent;
-  border: none;
-  border-left: 2px solid transparent;
-  color: var(--brm-sub);
+  min-height: round(calc(42 * var(--u)), 1px);
+  padding: 0 round(calc(14 * var(--u)), 1px) 0 round(calc(18 * var(--u)), 1px);
+  font-size: calc(20 * var(--u));
   text-align: left;
-  cursor: pointer;
-  transition: background-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
-}
-
-.missions-item:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--brm-white);
-}
-
-.missions-item.selected {
-  background: var(--brm-btn-active);
-  border-left-color: var(--brm-gold);
-  color: var(--brm-gold);
 }
 
 .missions-item-name {
   min-width: 0;
-  font-family: var(--font);
-  font-size: 0.85rem;
-  font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .missions-item-meta {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: round(calc(8 * var(--u)), 1px);
   flex-shrink: 0;
 }
 
-/* drawn rather than typed, a bullet glyph sits on the baseline and never lines up
-   with the pips beside it */
+/* square like the bullets, a dot glyph would sit on the baseline next to the pips */
 .missions-item-flag {
-  width: 5px;
-  height: 5px;
+  width: round(calc(7 * var(--u)), 1px);
+  height: round(calc(7 * var(--u)), 1px);
   flex-shrink: 0;
-  border-radius: 50%;
   background: var(--brm-gold);
 }
 
 .missions-empty {
-  padding: 24px 14px;
-  font-family: var(--font);
-  font-size: 0.8rem;
-  text-transform: uppercase;
+  margin: 0;
+  padding: round(calc(30 * var(--u)), 1px) 0;
   color: var(--brm-dim);
+  font-size: calc(20 * var(--u));
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.missions-rail-footer a {
+  color: var(--brm-gold);
+  transition: color var(--t-fast) var(--ease);
+}
+
+.missions-rail-footer a:hover {
+  color: var(--brm-white);
+}
+
+/* only useful once the rail collapses to a bar, see the media query below */
+.missions-to-list.brm-btn {
+  display: none;
+  flex-shrink: 0;
 }
 
 /* the detail pane says this on a wide screen, on a narrow one that pane is hidden */
 .missions-notfound {
   display: none;
   margin: 0;
-  padding: 10px 12px;
+  padding: round(calc(12 * var(--u)), 1px) round(calc(16 * var(--u)), 1px);
   background: var(--brm-btn-active);
   border-left: 2px solid var(--brm-gold);
   color: var(--brm-body);
-  font-size: 0.85rem;
+  font-size: calc(20 * var(--u));
 }
 
 .mission-difficulty {
   display: inline-flex;
   align-items: center;
-  gap: 2px;
+  gap: max(1px, round(calc(2 * var(--u)), 1px));
 }
 
 .mission-pip {
-  width: 4px;
-  height: 10px;
+  width: round(calc(5 * var(--u)), 1px);
+  height: round(calc(13 * var(--u)), 1px);
   background: var(--brm-idle);
 }
 
@@ -254,8 +205,8 @@
 }
 
 .mission-detail-inner {
-  max-width: 43rem;
-  padding: 40px 40px 96px;
+  max-width: round(calc(1000 * var(--u)), 1px);
+  padding: round(calc(44 * var(--u)), 1px) round(calc(50 * var(--u)), 1px) round(calc(110 * var(--u)), 1px);
 }
 
 .mission-detail--empty {
@@ -265,241 +216,229 @@
 }
 
 .missions-placeholder {
-  max-width: 420px;
+  max-width: round(calc(520 * var(--u)), 1px);
   padding: 24px;
   text-align: center;
 }
 
 .missions-placeholder-title {
-  margin: 0 0 10px;
-  font-family: var(--font);
-  font-size: 0.9rem;
+  margin: 0 0 round(calc(12 * var(--u)), 1px);
+  color: var(--brm-white);
+  font-size: calc(30 * var(--u));
   font-weight: 700;
+  line-height: 1;
   text-transform: uppercase;
-  color: var(--brm-sub);
 }
 
 .missions-placeholder-text {
   margin: 0;
-  font-size: 0.88rem;
-  line-height: 1.65;
-  color: var(--brm-dim);
+  color: var(--brm-sub);
+  font-size: calc(21 * var(--u));
+  line-height: 1.5;
 }
 
 .mission-detail-head {
-  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: round(calc(12 * var(--u)), 1px);
+  margin-bottom: round(calc(26 * var(--u)), 1px);
 }
 
 .mission-detail-giver {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin: 0 0 6px;
-  font-family: var(--font);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
+  gap: round(calc(12 * var(--u)), 1px);
+  margin: 0;
   color: var(--brm-gold);
+  font-size: calc(22 * var(--u));
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 .mission-detail-faction {
-  padding-left: 8px;
+  padding-left: round(calc(12 * var(--u)), 1px);
   border-left: 1px solid var(--brm-line);
-  color: var(--brm-dim);
+  color: var(--brm-sub);
 }
 
 .mission-detail-name {
-  margin: 0 0 14px;
-  font-size: 2rem;
-  line-height: 1.15;
+  margin: 0;
+  color: var(--brm-white);
+  font-size: calc(48 * var(--u));
+  line-height: 1.05;
   text-transform: uppercase;
 }
 
 .mission-detail-badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: round(calc(6 * var(--u)), 1px);
+  margin-top: round(calc(4 * var(--u)), 1px);
 }
 
-/* fixed even height so the 1px border lands on whole pixels instead of drifting
-   as the page zooms, and line-height 1 so what flex centres is the text box
-   rather than a line box padded out by descender space the caps never use */
-.mission-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  height: 24px;
-  padding: 0 8px;
-  border: 1px solid var(--brm-edge);
-  font-family: var(--font);
-  font-size: 0.68rem;
-  font-weight: 700;
-  line-height: 1;
-  text-transform: uppercase;
-  color: var(--brm-sub);
+.mission-badge.brm-plate {
+  --plate: var(--brm-sub);
 }
 
-/* trims the label down to its own cap band, so what the badge centres is the ink
-   rather than a box the font sized. the id badge is the one that needs it, its
-   mono face sits the caps higher than the display face does. where it is not
-   supported line-height 1 already lands everything within a fraction of a pixel */
+.mission-badge.warn {
+  --plate: var(--brm-orange);
+}
+
+.mission-badge.stub {
+  --plate: var(--brm-red);
+}
+
+.mission-badge--id.brm-plate {
+  --plate: var(--brm-dim);
+  font-family: var(--font-mono);
+  font-size: calc(16 * var(--u));
+  font-weight: 400;
+  text-transform: none;
+}
+
+/* the mono face sits its caps higher in the box than Rajdhani does, trimming the
+   label to its cap band centres it. without support it is off by about a pixel */
 @supports (text-box: trim-both cap alphabetic) {
-  .mission-badge-label {
+  .mission-badge--id .mission-badge-label {
     text-box: trim-both cap alphabetic;
   }
 }
 
-.mission-badge.warn {
-  border-color: var(--brm-gold-dim);
-  color: var(--brm-gold);
-}
-
-.mission-badge--id {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--brm-dim);
-}
-
 .mission-rewards {
-  margin-bottom: 28px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--brm-line-soft);
+  display: flex;
+  flex-direction: column;
+  gap: round(calc(12 * var(--u)), 1px);
+  margin-bottom: round(calc(30 * var(--u)), 1px);
 }
 
 .mission-payout {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 44px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(round(calc(120 * var(--u)), 1px), 1fr));
+  gap: round(calc(8 * var(--u)), 1px);
   margin: 0;
 }
 
 .mission-payout-item {
   display: flex;
   flex-direction: column;
+  gap: round(calc(8 * var(--u)), 1px);
+  padding: round(calc(16 * var(--u)), 1px) round(calc(20 * var(--u)), 1px) round(calc(18 * var(--u)), 1px);
 }
 
 .mission-payout-label {
-  font-family: var(--font);
-  font-size: 0.65rem;
+  color: var(--brm-sub);
+  font-size: calc(18 * var(--u));
   font-weight: 700;
+  line-height: 1;
   text-transform: uppercase;
-  color: var(--brm-dim);
 }
 
 .mission-payout-value {
-  margin: 2px 0 0;
-  font-family: var(--font);
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.1;
+  margin: 0;
   color: var(--brm-white);
+  font-size: calc(38 * var(--u));
+  font-weight: 700;
+  line-height: 1;
 }
 
 .mission-payout-repeat {
-  margin: 1px 0 0;
-  font-size: 0.72rem;
+  margin: 0;
   color: var(--brm-dim);
+  font-size: calc(17 * var(--u));
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 .mission-unlocks {
-  margin: 16px 0 0;
-  font-size: 0.88rem;
-  line-height: 1.5;
-  color: var(--brm-gold);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: round(calc(6 * var(--u)), 1px);
 }
 
 .mission-unlocks-label {
-  margin-right: 10px;
-  font-family: var(--font);
-  font-size: 0.65rem;
+  margin-right: round(calc(8 * var(--u)), 1px);
+  color: var(--brm-sub);
+  font-size: calc(18 * var(--u));
   font-weight: 700;
+  line-height: normal;
   text-transform: uppercase;
-  color: var(--brm-dim);
 }
 
 .mission-section {
-  margin-bottom: 28px;
+  margin-bottom: round(calc(30 * var(--u)), 1px);
 }
 
-.mission-section .brm-section-title {
-  margin-bottom: 12px;
+.mission-section > .brm-section-title {
+  margin-bottom: round(calc(14 * var(--u)), 1px);
 }
 
 .mission-note {
-  margin: 0 0 12px;
-  font-size: 0.82rem;
-  line-height: 1.6;
-  color: var(--brm-dim);
+  margin: 0 0 round(calc(14 * var(--u)), 1px);
+  color: var(--brm-sub);
+  font-size: calc(20 * var(--u));
+  line-height: 1.45;
 }
 
 .mission-prereqs {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: round(calc(6 * var(--u)), 1px);
 }
 
-.mission-prereq {
-  padding: 4px 9px;
-  background: transparent;
-  border: 1px solid var(--brm-edge);
-  color: var(--brm-sub);
-  font-family: var(--font);
-  font-size: 0.75rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+.mission-prereq.brm-btn {
+  --idle-label: var(--brm-body);
+  min-height: round(calc(40 * var(--u)), 1px);
+  padding: 0 round(calc(16 * var(--u)), 1px);
+  font-size: calc(19 * var(--u));
 }
 
-.mission-prereq:hover {
-  color: var(--brm-gold);
-  border-color: var(--brm-gold);
+/* a prerequisite from another mode, nothing to link to so it is a plate not a button */
+.mission-prereq-other.brm-plate {
+  --plate: var(--brm-dim);
+  height: round(calc(40 * var(--u)), 1px);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  text-transform: none;
 }
 
-.mission-prereq.disabled {
-  color: var(--brm-dim);
-  cursor: default;
-}
-
-.mission-brief {
+.mission-brief.brm-box {
   margin: 0;
-  padding: 14px 18px;
-  background: var(--brm-btn);
-  border-left: 2px solid var(--brm-gold-dim);
-  font-size: 0.92rem;
-  line-height: 1.7;
+  padding: round(calc(20 * var(--u)), 1px) round(calc(26 * var(--u)), 1px);
   color: var(--brm-body);
+  font-size: calc(22 * var(--u));
+  line-height: 1.55;
 }
 
 .mission-brief strong {
   color: var(--brm-white);
 }
 
-.mission-route {
-  margin: 0 0 14px;
-  padding: 12px 16px;
-  background: var(--brm-btn);
-  border-left: 2px solid var(--brm-gold-dim);
-  font-size: 0.88rem;
-  line-height: 1.65;
+.mission-route.brm-box {
+  margin: 0 0 round(calc(14 * var(--u)), 1px);
+  padding: round(calc(16 * var(--u)), 1px) round(calc(22 * var(--u)), 1px);
   color: var(--brm-body);
+  font-size: calc(20 * var(--u));
+  line-height: 1.5;
 }
 
 .mission-route-label {
   display: block;
-  margin-bottom: 4px;
-  font-family: var(--font);
-  font-size: 0.65rem;
+  margin-bottom: round(calc(8 * var(--u)), 1px);
+  color: var(--brm-gold);
+  font-size: calc(17 * var(--u));
   font-weight: 700;
+  line-height: 1;
   text-transform: uppercase;
-  color: var(--brm-dim);
 }
 
 .mission-spots {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(212px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(round(calc(260 * var(--u)), 1px), 1fr));
+  gap: round(calc(10 * var(--u)), 1px);
 }
 
 .mission-spot {
@@ -507,14 +446,11 @@
   flex-direction: column;
   padding: 0;
   background: var(--brm-btn);
-  border: 1px solid var(--brm-edge);
+  border: 1px solid color-mix(in srgb, var(--brm-idle) 70%, transparent);
+  color: inherit;
   text-align: left;
   cursor: pointer;
   transition: border-color var(--t-fast) var(--ease);
-}
-
-.mission-spot:hover {
-  border-color: var(--brm-gold);
 }
 
 .mission-spot img {
@@ -528,139 +464,96 @@
   transition: filter var(--t-fast) var(--ease);
 }
 
-.mission-spot:hover img {
-  filter: brightness(1.3);
-}
-
 .mission-spot-text {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: round(calc(5 * var(--u)), 1px);
   /* pushes the caption block to the bottom so cards in a row line up even when
      only some of them carry a hint */
   flex: 1;
-  padding: 7px 9px;
-  border-top: 1px solid var(--brm-edge);
+  padding: round(calc(10 * var(--u)), 1px) round(calc(12 * var(--u)), 1px) round(calc(12 * var(--u)), 1px);
 }
 
 .mission-spot-label {
-  font-family: var(--font);
-  font-size: 0.74rem;
+  color: var(--brm-body);
+  font-size: calc(18 * var(--u));
   font-weight: 700;
+  line-height: 1.1;
   text-transform: uppercase;
-  color: var(--brm-sub);
 }
 
 .mission-spot-note {
-  font-size: 0.78rem;
-  line-height: 1.4;
-  color: var(--brm-dim);
-}
-
-.mission-spot:hover .mission-spot-label {
-  color: var(--brm-gold);
-}
-
-.mission-spot:hover .mission-spot-note {
   color: var(--brm-sub);
+  font-size: calc(17 * var(--u));
+  line-height: 1.35;
 }
 
-.mission-objectives-head {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
+@media (hover: hover) {
+  .mission-spot:hover {
+    border-color: var(--brm-white);
+  }
+
+  .mission-spot:hover img {
+    filter: brightness(1.3);
+  }
+
+  .mission-spot:hover .mission-spot-label {
+    color: var(--brm-white);
+  }
+
+  .mission-spot:hover .mission-spot-note {
+    color: var(--brm-body);
+  }
 }
 
-.mission-objectives-head .brm-section-title {
-  flex: 1;
-  margin-bottom: 0;
+.mission-toggle.brm-btn {
+  margin-left: auto;
+  min-height: round(calc(34 * var(--u)), 1px);
+  padding: 0 round(calc(16 * var(--u)), 1px);
+  font-size: calc(18 * var(--u));
 }
 
-.mission-toggle {
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  height: 22px;
-  padding: 0 9px;
-  line-height: 1;
-  background: transparent;
-  border: 1px solid var(--brm-edge);
-  color: var(--brm-dim);
-  font-family: var(--font);
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
-}
-
-.mission-toggle:hover,
-.mission-toggle[aria-pressed='true'] {
-  color: var(--brm-gold);
-  border-color: var(--brm-gold);
+.mission-variant-row.brm-row {
+  margin-bottom: round(calc(10 * var(--u)), 1px);
 }
 
 .mission-variants {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
-  margin-bottom: 16px;
+  justify-content: flex-end;
+  gap: round(calc(8 * var(--u)), 1px);
 }
 
-.mission-variant {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 30px;
-  height: 24px;
-  padding: 0 7px;
-  line-height: 1;
-  background: transparent;
-  border: 1px solid var(--brm-edge);
-  color: var(--brm-sub);
-  font-family: var(--font);
-  font-size: 0.75rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  cursor: pointer;
-  transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
-}
-
-.mission-variant:hover {
-  color: var(--brm-white);
-}
-
-.mission-variant[aria-pressed='true'] {
-  background: var(--brm-btn-active);
-  border-color: var(--brm-gold);
-  color: var(--brm-gold);
+.mission-variant.brm-btn {
+  width: round(calc(56 * var(--u)), 1px);
+  min-height: round(calc(38 * var(--u)), 1px);
+  padding: 0;
+  font-size: calc(22 * var(--u));
 }
 
 .mission-steps {
+  display: flex;
+  flex-direction: column;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.mission-step {
+.mission-step.brm-panel {
   display: flex;
-  gap: 14px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--brm-line-soft);
+  gap: round(calc(18 * var(--u)), 1px);
+  padding: round(calc(18 * var(--u)), 1px) round(calc(24 * var(--u)), 1px) round(calc(20 * var(--u)), 1px);
 }
 
-.mission-step:last-child {
-  border-bottom: none;
-}
-
+/* Rajdhani has no tabular figures, a 1 is two thirds the width of a 0, so the
+   column is as wide as the widest pair or the step text would not line up */
 .mission-step-num {
   flex-shrink: 0;
-  padding-top: 1px;
-  font-family: var(--font);
-  font-size: 0.8rem;
+  min-width: 1.1em;
+  color: var(--brm-gold);
+  font-size: calc(22 * var(--u));
   font-weight: 700;
-  color: var(--brm-dim);
+  line-height: 1.4;
 }
 
 .mission-step-body {
@@ -670,56 +563,52 @@
 
 .mission-step-desc {
   margin: 0;
-  font-size: 0.92rem;
-  line-height: 1.5;
   color: var(--brm-body);
+  font-size: calc(22 * var(--u));
+  line-height: 1.4;
 }
 
 .mission-step-taglines {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
-  margin-top: 7px;
+  gap: round(calc(6 * var(--u)), 1px);
+  margin-top: round(calc(10 * var(--u)), 1px);
 }
 
-.mission-chip {
-  padding: 2px 7px;
-  background: var(--brm-btn);
-  font-family: var(--font);
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: var(--brm-sub);
+.mission-chip.brm-plate {
+  --plate: var(--brm-sub);
+  height: round(calc(28 * var(--u)), 1px);
+  font-size: calc(16 * var(--u));
 }
 
 .mission-chip.hidden-chip {
-  background: var(--brm-btn-active);
-  color: var(--brm-gold);
+  --plate: var(--brm-gold);
 }
 
 .mission-tasks {
-  margin: 8px 0 0;
+  margin: round(calc(10 * var(--u)), 1px) 0 0;
   padding: 0;
   list-style: none;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  line-height: 1.7;
+  font-size: calc(16 * var(--u));
+  line-height: 1.6;
 }
 
 .mission-task {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 8px;
-  padding: 3px 0;
-  color: var(--brm-dim);
-}
-
-.mission-task-type {
+  gap: round(calc(10 * var(--u)), 1px);
+  padding: round(calc(3 * var(--u)), 1px) 0;
   color: var(--brm-sub);
 }
 
-.mission-task-tagline {
+.mission-task-type {
   color: var(--brm-body);
+}
+
+.mission-task-tagline {
+  color: var(--brm-white);
 }
 
 .mission-task-item,
@@ -728,47 +617,18 @@
 }
 
 .mission-task-flag {
-  margin-left: 6px;
-  color: var(--brm-dim);
+  margin-left: round(calc(8 * var(--u)), 1px);
+  color: var(--brm-sub);
 }
 
 .mission-task-args {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-}
-
-/* a small step up on big monitors, mostly a wider reading column */
-@media (min-width: 1400px) {
-  .mission-detail-inner {
-    max-width: 49rem;
-    padding: 48px 48px 104px;
-  }
-
-  .mission-detail-name {
-    font-size: 2.2rem;
-  }
-
-  .mission-brief,
-  .mission-step-desc {
-    font-size: 0.98rem;
-  }
-
-  .missions-item-name {
-    font-size: 0.9rem;
-  }
-
-  .mission-spots {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  }
-
-  .mission-payout-value {
-    font-size: 1.6rem;
-  }
+  gap: round(calc(10 * var(--u)), 1px);
 }
 
 /* one column at a time: the list fills the screen until a mission is picked,
-   then the rail collapses to its header and the detail takes over */
+   then the rail shrinks to a bar with the way back and the credit */
 @media (max-width: 900px) {
   .missions-page {
     flex-direction: column;
@@ -778,19 +638,29 @@
     width: 100%;
     flex: 1;
     min-height: 0;
-    border-right: none;
-    border-bottom: 1px solid var(--brm-edge);
   }
 
   .has-detail .missions-rail {
     flex: 0 0 auto;
-    padding-bottom: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: round(calc(14 * var(--u)), 1px);
+    padding-bottom: round(calc(14 * var(--u)), 1px);
+    border-bottom: var(--line-w) solid var(--brm-line);
   }
 
-  .has-detail .missions-search,
-  .has-detail .missions-filters,
-  .has-detail .missions-count,
-  .has-detail .missions-list {
+  .has-detail .missions-browse {
+    display: none;
+  }
+
+  .has-detail .missions-rail-footer {
+    min-height: 0;
+    padding: 0;
+    background: none;
+  }
+
+  .has-detail .missions-rail-footer::after {
     display: none;
   }
 
@@ -811,18 +681,14 @@
   }
 
   .mission-detail-inner {
-    padding: 24px 18px 64px;
+    padding: round(calc(26 * var(--u)), 1px) 18px round(calc(70 * var(--u)), 1px);
   }
 
   .mission-detail-name {
-    font-size: 1.5rem;
-  }
-
-  .mission-rewards {
-    margin-bottom: 22px;
+    font-size: calc(38 * var(--u));
   }
 
   .mission-spots {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(round(calc(200 * var(--u)), 1px), 1fr));
   }
 }

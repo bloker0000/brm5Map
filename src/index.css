@@ -2,7 +2,9 @@
 
 /* Rajdhani's own metrics sit its capitals 0.036em above the middle of a line, so every
    label landed a pixel high. evening out ascent and descent around the cap height
-   (643 of 1000) puts them dead centre, and the line height stays the same */
+   (643 of 1000) puts them dead centre, and the line height stays the same. labels in a
+   box use line-height normal on top of this, line-height 1 leaves a negative half
+   leading that chrome rounds down, which puts small text up to a pixel high again */
 @font-face {
   font-family: 'Rajdhani';
   font-style: normal;
@@ -89,6 +91,7 @@ svg {
   --brm-btn: #101010;
   --brm-btn-hover: #181818;
   --brm-btn-active: #1f170b;
+  --brm-card: #181818;
   --brm-body: #d6d6d6;
   --brm-sub: #8c8c8c;
   --brm-dim: #646464;
@@ -247,7 +250,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font);
   font-size: calc(24 * var(--u));
   font-weight: 700;
-  line-height: 1;
+  line-height: normal;
   text-transform: uppercase;
   white-space: nowrap;
   cursor: pointer;
@@ -330,12 +333,13 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font);
   font-size: calc(28 * var(--u));
   font-weight: 700;
-  line-height: 1;
+  line-height: normal;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
-.brm-section-title::before {
+.brm-section-title::before,
+.brm-hud-head::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -360,6 +364,182 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--brm-sub);
   font-size: calc(18 * var(--u));
   font-weight: 700;
+}
+
+/* the native HUD panels: a dotted black head over a see through body, the light line
+   under it, and text with a one pixel black drop */
+.brm-hud {
+  position: relative;
+  background: rgba(0, 0, 0, 0.6);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
+}
+
+.brm-hud::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: max(1px, round(calc(2 * var(--u)), 1px));
+  background: var(--brm-line);
+  pointer-events: none;
+}
+
+.brm-hud-head {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: round(calc(10 * var(--u)), 1px);
+  min-height: round(calc(34 * var(--u)), 1px);
+  padding: 0 round(calc(14 * var(--u)), 1px);
+  background: var(--brm-black);
+  color: var(--brm-white);
+  font-size: calc(18 * var(--u));
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.brm-hud-body {
+  padding: round(calc(4 * var(--u)), 1px) round(calc(12 * var(--u)), 1px);
+}
+
+.brm-hud-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: round(calc(8 * var(--u)), 1px);
+  min-height: round(calc(26 * var(--u)), 1px);
+  color: var(--brm-white);
+  font-size: calc(15 * var(--u));
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.brm-hud-row > :first-child {
+  color: color-mix(in srgb, var(--brm-body) 76%, transparent);
+}
+
+/* the game's plate: a bold label on a dark tint of its own colour, edged in it */
+.brm-plate {
+  --plate: var(--brm-gold);
+  display: inline-flex;
+  align-items: center;
+  gap: round(calc(8 * var(--u)), 1px);
+  height: round(calc(30 * var(--u)), 1px);
+  padding: 0 round(calc(12 * var(--u)), 1px);
+  border: 1px solid var(--plate);
+  border-radius: 1px;
+  background: linear-gradient(to top, color-mix(in srgb, var(--plate) 44%, #000), color-mix(in srgb, var(--plate) 21%, #000));
+  color: var(--plate);
+  font-size: calc(18 * var(--u));
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* the game's popup card: a 55% black backdrop, the card going from #181818 to #0a0a0a
+   over its last third with a grey edge, and it opens from 97% */
+.brm-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.brm-modal {
+  position: relative;
+  width: 100%;
+  max-width: round(calc(660 * var(--u)), 1px);
+  max-height: 84vh;
+  max-height: 84dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: linear-gradient(var(--brm-card) 65%, #0a0a0a);
+  border: 1px solid var(--brm-idle);
+}
+
+/* stays put while the card scrolls, so the close button is always in reach */
+.brm-modal-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  gap: round(calc(16 * var(--u)), 1px);
+  padding: round(calc(34 * var(--u)), 1px) round(calc(40 * var(--u)), 1px) round(calc(16 * var(--u)), 1px);
+  background: var(--brm-card);
+  /* sticky lands a fraction of a pixel low, this covers what would peek over it */
+  box-shadow: 0 -4px 0 var(--brm-card);
+}
+
+.brm-modal-title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  color: var(--brm-white);
+  font-size: calc(34 * var(--u));
+  font-weight: 700;
+  line-height: 1.05;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.brm-modal-close.brm-btn {
+  flex-shrink: 0;
+  width: round(calc(44 * var(--u)), 1px);
+  min-height: 0;
+  height: round(calc(44 * var(--u)), 1px);
+  padding: 0;
+  font-size: calc(20 * var(--u));
+}
+
+.brm-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: round(calc(16 * var(--u)), 1px);
+  padding: 0 round(calc(40 * var(--u)), 1px) round(calc(30 * var(--u)), 1px);
+  color: var(--brm-body);
+  font-size: calc(21 * var(--u));
+  line-height: 1.4;
+}
+
+.brm-modal-body .brm-section-title {
+  --head: 48;
+  padding: 0 round(calc(20 * var(--u)), 1px);
+  font-size: calc(24 * var(--u));
+}
+
+/* square bullets, like the objective tracker's */
+.brm-bullets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.brm-bullets > li {
+  position: relative;
+  padding: round(calc(4 * var(--u)), 1px) 0 round(calc(4 * var(--u)), 1px) round(calc(22 * var(--u)), 1px);
+}
+
+.brm-bullets > li::before {
+  content: '';
+  position: absolute;
+  left: round(calc(4 * var(--u)), 1px);
+  top: calc(round(calc(4 * var(--u)), 1px) + 0.7em);
+  width: round(calc(7 * var(--u)), 1px);
+  height: round(calc(7 * var(--u)), 1px);
+  background: var(--bullet, var(--brm-gold));
+  transform: translateY(-50%);
 }
 
 /* rows and panels share the game's frame: black getting heavier to the bottom
@@ -399,7 +579,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--brm-white);
   font-size: calc(28 * var(--u));
   font-weight: 400;
-  line-height: 1;
+  line-height: normal;
   text-transform: uppercase;
 }
 

@@ -17,8 +17,9 @@
   z-index: 20;
 }
 
+/* the brackets show focus, a ring as well would only crowd them */
 .map-pin:focus-visible {
-  outline-offset: 3px;
+  outline: none;
 }
 
 .map-pin.selected {
@@ -89,51 +90,59 @@
 .pin-icon {
   display: block;
   opacity: 0.9;
-  transition: transform var(--t-med) var(--ease-out), opacity var(--t-fast) var(--ease);
+  transition: opacity var(--t-fast) var(--ease);
 }
 
 .pin-icon img {
   display: block;
 }
 
-.map-pin.hovered .pin-icon,
-.map-pin:focus-visible .pin-icon {
-  transform: scale(1.4);
-  opacity: 1;
-}
-
-@media (hover: hover) {
-  .map-pin:hover .pin-icon {
-    transform: scale(1.4);
-    opacity: 1;
-  }
-}
-
-.map-pin.selected .pin-icon {
-  transform: scale(1.6);
-  opacity: 1;
-}
-
-.map-pin.selected::after {
+/* the game's map markers: gold corner brackets that grow out over 0.3s on hover */
+.map-pin::before {
+  --bar: linear-gradient(var(--brm-gold), var(--brm-gold));
   content: '';
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 34px;
-  height: 34px;
-  margin: -17px 0 0 -17px;
-  border: 2px solid var(--pin-color);
-  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  margin: -19px 0 0 -19px;
+  background:
+    var(--bar) left top / 30% 3px,
+    var(--bar) left top / 3px 30%,
+    var(--bar) right top / 30% 3px,
+    var(--bar) right top / 3px 30%,
+    var(--bar) left bottom / 30% 3px,
+    var(--bar) left bottom / 3px 30%,
+    var(--bar) right bottom / 30% 3px,
+    var(--bar) right bottom / 3px 30%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(0.67);
+  transition: opacity var(--t-fast) var(--ease), transform 0.3s var(--ease-out);
   pointer-events: none;
-  animation: pin-ping 1.8s var(--ease-out) infinite;
 }
 
-.interactive-map.dragging .map-pin.selected::after {
-  animation-play-state: paused;
+.map-pin.hovered::before,
+.map-pin:focus-visible::before,
+.map-pin.selected::before {
+  opacity: 1;
+  transform: none;
 }
 
-@keyframes pin-ping {
-  0% { transform: scale(0.55); opacity: 0.85; }
-  70% { opacity: 0; }
-  100% { transform: scale(1.9); opacity: 0; }
+.map-pin.hovered .pin-icon,
+.map-pin:focus-visible .pin-icon,
+.map-pin.selected .pin-icon {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .map-pin:hover::before {
+    opacity: 1;
+    transform: none;
+  }
+
+  .map-pin:hover .pin-icon {
+    opacity: 1;
+  }
 }

@@ -2,12 +2,12 @@
 
 import { useState, useRef, useCallback, useEffect, useLayoutEffect, memo } from 'react';
 import { MapPin } from './MapPin';
-import { PlusIcon, MinusIcon, ResetPositionIcon, ResetRotationIcon, CategoryIcon } from './Icons';
+import { PlusIcon, MinusIcon, ResetPositionIcon, ResetRotationIcon, CategoryIcon, CompassRose } from './Icons';
 import type { MapLocation, LocationCategory } from '../types/location';
 import { CATEGORY_COLORS } from '../types/location';
-import { BG_IMAGES } from '../data/backgrounds';
 import { MAP_WIDTH, MAP_HEIGHT, MIN_SCALE, MAX_SCALE, fitScale, pinScale } from './mapView';
 import type { View } from './mapView';
+import { drawGrid, gridReference } from './mapGrid';
 import './InteractiveMap.css';
 
 export interface FocusRequest {
@@ -23,7 +23,6 @@ interface InteractiveMapProps {
   onClick: (location: MapLocation) => void;
   onMapClick: (x: number, y: number) => void;
   focusRequest: FocusRequest | null;
-  bgIndex: number;
   isAdminMode?: boolean;
   showPins?: boolean;
   showCompass?: boolean;
@@ -72,7 +71,6 @@ function InteractiveMapImpl({
   onClick,
   onMapClick,
   focusRequest,
-  bgIndex,
   isAdminMode = false,
   showPins = true,
   showCompass = true,
@@ -83,10 +81,11 @@ function InteractiveMapImpl({
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const compassRef = useRef<HTMLDivElement>(null);
-  const compassImageRef = useRef<HTMLImageElement>(null);
   const rotationDisplayRef = useRef<HTMLSpanElement>(null);
   const coordsRef = useRef<HTMLSpanElement>(null);
   const pinsOverlayRef = useRef<HTMLDivElement>(null);
+  const gridLinesRef = useRef<HTMLCanvasElement>(null);
+  const gridLabelsRef = useRef<HTMLCanvasElement>(null);
 
   const [gestureClass, setGestureClass] = useState<'dragging' | 'rotating' | null>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -142,22 +141,41 @@ function InteractiveMapImpl({
       `translate(${cx}px, ${cy}px) rotate(${view.rotation}deg) translate(${-cx}px, ${-cy}px) translate(${view.x}px, ${view.y}px) scale(${view.scale})`;
   }, []);
 
+  // the grid is drawn in screen pixels like the game's, so a zoom never thickens a line
+  const writeGrid = useCallback((view: View) => {
+    const lines = gridLinesRef.current;
+    const labels = gridLabelsRef.current;
+    if (!lines || !labels) return;
+    const { width, height } = sizeRef.current;
+    const dpr = window.devicePixelRatio || 1;
+    for (const canvas of [lines, labels]) {
+      const w = Math.round(width * dpr);
+      const h = Math.round(height * dpr);
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+      }
+      canvas.getContext('2d')!.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    drawGrid(lines.getContext('2d')!, labels.getContext('2d')!, view, width, height, dpr);
+  }, []);
+
   const applyView = useCallback((view: View) => {
     viewRef.current = view;
     writeContent(view);
-    if (compassImageRef.current) {
-      compassImageRef.current.style.transform = `rotate(${view.rotation - MAP_NORTH_OFFSET}deg)`;
-    }
+    writeGrid(view);
+    compassRef.current?.style.setProperty('--turn', `${view.rotation - MAP_NORTH_OFFSET}deg`);
     if (rotationDisplayRef.current) {
       rotationDisplayRef.current.textContent = String(headingOf(view.rotation));
     }
     updatePinPositions();
-  }, [writeContent, updatePinPositions]);
+  }, [writeContent, writeGrid, updatePinPositions]);
 
   // during a plain pan the pins ride along as one layer instead of moving one by one
   const writePan = useCallback((view: View, base: Point) => {
     viewRef.current = view;
     writeContent(view);
+    writeGrid(view);
     const overlay = pinsOverlayRef.current;
     if (!overlay) return;
     const cos = Math.cos(toRad(view.rotation));
@@ -165,7 +183,7 @@ function InteractiveMapImpl({
     const dx = view.x - base.x;
     const dy = view.y - base.y;
     overlay.style.transform = `translate3d(${dx * cos - dy * sin}px, ${dx * sin + dy * cos}px, 0)`;
-  }, [writeContent]);
+  }, [writeContent, writeGrid]);
 
   const settlePins = useCallback(() => {
     if (pinsOverlayRef.current) pinsOverlayRef.current.style.transform = '';
@@ -360,6 +378,13 @@ function InteractiveMapImpl({
   useLayoutEffect(() => {
     updatePinPositions();
   }, [locations, showPins, placeholderPin, updatePinPositions]);
+
+  // the grid labels are canvas text, drawn again once the font has arrived
+  useEffect(() => {
+    const redraw = () => writeGrid(viewRef.current);
+    document.fonts.addEventListener('loadingdone', redraw);
+    return () => document.fonts.removeEventListener('loadingdone', redraw);
+  }, [writeGrid]);
 
   useEffect(() => {
     const overlay = pinsOverlayRef.current;
@@ -616,11 +641,12 @@ function InteractiveMapImpl({
     onMapClick(x, y);
   }, [onMapClick, screenToMap]);
 
+  // placing a pin wants the map's own units, everyone else gets the grid reference
   const handleHover = useCallback((e: React.PointerEvent) => {
     if (e.pointerType !== 'mouse' || !coordsRef.current) return;
     const { x, y } = screenToMap(e.clientX, e.clientY);
-    coordsRef.current.textContent = `${x}, ${y}`;
-  }, [screenToMap]);
+    coordsRef.current.textContent = isAdminMode ? `${x}, ${y}` : gridReference(x, y);
+  }, [screenToMap, isAdminMode]);
 
   const handleImageLoad = useCallback(() => {
     applyView(fitView(0));
@@ -641,12 +667,6 @@ function InteractiveMapImpl({
       onDoubleClick={handleDoubleClick}
       onKeyDown={handleKeyDown}
     >
-      <div
-        className="map-bg"
-        style={{ backgroundImage: `url(${BG_IMAGES[bgIndex]})` }}
-      />
-      <div className="map-overlay" />
-
       <div className="map-content" ref={contentRef} onClick={handleContentClick}>
         <img
           src="/Brm5Map.svg"
@@ -658,6 +678,8 @@ function InteractiveMapImpl({
           onLoad={handleImageLoad}
         />
       </div>
+
+      <canvas className="map-grid" ref={gridLinesRef} aria-hidden="true" />
 
       <div className="pins-overlay" ref={pinsOverlayRef}>
         {showPins && placeholderPin && (
@@ -692,17 +714,22 @@ function InteractiveMapImpl({
         ))}
       </div>
 
+      <div className="map-band map-band-x" />
+      <div className="map-band map-band-y" />
+      <canvas className="map-grid-labels" ref={gridLabelsRef} aria-hidden="true" />
+      <div className="map-grain" />
+
       <div className="zoom-controls map-hud">
-        <button type="button" onClick={() => zoomBy(STEP_ZOOM)} title="Zoom In" aria-label="Zoom in">
+        <button type="button" className="brm-btn" onClick={() => zoomBy(STEP_ZOOM)} title="Zoom In" aria-label="Zoom in">
           <PlusIcon size={18} />
         </button>
-        <button type="button" onClick={() => zoomBy(1 / STEP_ZOOM)} title="Zoom Out" aria-label="Zoom out">
+        <button type="button" className="brm-btn" onClick={() => zoomBy(1 / STEP_ZOOM)} title="Zoom Out" aria-label="Zoom out">
           <MinusIcon size={18} />
         </button>
-        <button type="button" onClick={resetPosition} title="Reset Position" aria-label="Reset position">
+        <button type="button" className="brm-btn" onClick={resetPosition} title="Reset Position" aria-label="Reset position">
           <ResetPositionIcon size={18} />
         </button>
-        <button type="button" onClick={resetRotation} title="Reset Rotation" aria-label="Reset rotation">
+        <button type="button" className="brm-btn" onClick={resetRotation} title="Reset Rotation" aria-label="Reset rotation">
           <ResetRotationIcon size={18} />
         </button>
       </div>
@@ -713,23 +740,28 @@ function InteractiveMapImpl({
         onPointerDown={handleCompassPointerDown}
         aria-hidden="true"
       >
-        <img
-          ref={compassImageRef}
-          src="/compass.svg"
-          alt=""
-          className="compass-image"
-          draggable={false}
-        />
+        <div className="compass-face">
+          <CompassRose className="compass-rose" />
+        </div>
+        <div className="compass-letters">
+          <span className="compass-letter north">N</span>
+          <span className="compass-letter east">E</span>
+          <span className="compass-letter south">S</span>
+          <span className="compass-letter west">W</span>
+        </div>
       </div>
 
-      <div className="map-readouts">
-        <div className="rotation-display">
-          <span className="rotation-label">Rotation</span>
-          <span className="rotation-value" ref={rotationDisplayRef}>{MAP_NORTH_OFFSET}</span>
-        </div>
-        <div className="coords-display">
-          <span className="coords-label">Coords</span>
-          <span className="coords-value" ref={coordsRef}>0, 0</span>
+      <div className="map-readouts brm-hud">
+        <div className="brm-hud-head">Map</div>
+        <div className="brm-hud-body">
+          <div className="brm-hud-row">
+            <span>Rotation</span>
+            <span className="tabular" ref={rotationDisplayRef}>{MAP_NORTH_OFFSET}</span>
+          </div>
+          <div className="brm-hud-row map-readout-grid">
+            <span>{isAdminMode ? 'Coords' : 'Grid'}</span>
+            <span className="tabular" ref={coordsRef}>-</span>
+          </div>
         </div>
       </div>
     </div>

@@ -75,8 +75,7 @@ function RichText({ text }: { text: string }) {
   );
 }
 
-// the label is wrapped so the trailing letter-spacing after the last letter can be
-// pulled back off, otherwise the text sits left of centre in the box
+// the label is its own box so the id badge's mono face can be trimmed to its caps
 function Badge({
   label,
   className,
@@ -87,7 +86,7 @@ function Badge({
   children?: ReactNode;
 }) {
   return (
-    <span className={`mission-badge${className ? ` ${className}` : ''}`}>
+    <span className={`brm-plate mission-badge${className ? ` ${className}` : ''}`}>
       <span className="mission-badge-label">{label}</span>
       {children}
     </span>
@@ -138,16 +137,16 @@ function Steps({ steps, technical }: { steps: MissionStep[]; technical: boolean 
   return (
     <ol className="mission-steps">
       {steps.map((step, i) => (
-        <li key={i} className="mission-step">
+        <li key={i} className="brm-panel mission-step">
           <span className="mission-step-num tabular">{String(i + 1).padStart(2, '0')}</span>
           <div className="mission-step-body">
             <p className="mission-step-desc">{step.desc}</p>
-            {!technical && (
+            {!technical && step.tasks.some(task => task.tagline) && (
               <div className="mission-step-taglines">
                 {step.tasks
                   .filter(task => task.tagline)
                   .map((task, j) => (
-                    <span key={j} className={`mission-chip${task.hidden ? ' hidden-chip' : ''}`}>
+                    <span key={j} className={`brm-plate mission-chip${task.hidden ? ' hidden-chip' : ''}`}>
                       {task.tagline}
                     </span>
                   ))}
@@ -182,7 +181,7 @@ function Rewards({ mission }: { mission: Mission }) {
       {pairs.length > 0 && (
         <dl className="mission-payout">
           {pairs.map(([label, [first, repeat]]) => (
-            <div key={label} className="mission-payout-item">
+            <div key={label} className="brm-panel mission-payout-item">
               <dt className="mission-payout-label">{label}</dt>
               <dd className="mission-payout-value tabular">{first.toLocaleString()}</dd>
               <dd className="mission-payout-repeat tabular">{repeat.toLocaleString()} on repeat</dd>
@@ -191,10 +190,12 @@ function Rewards({ mission }: { mission: Mission }) {
         </dl>
       )}
       {unlocks.length > 0 && (
-        <p className="mission-unlocks">
+        <div className="mission-unlocks">
           <span className="mission-unlocks-label">Unlocks</span>
-          {unlocks.join(', ')}
-        </p>
+          {unlocks.map((name, i) => (
+            <span key={i} className="brm-plate mission-unlock">{name}</span>
+          ))}
+        </div>
       )}
     </div>
   );
@@ -235,7 +236,7 @@ function Detail({
             {mission.extraction && <Badge label="Extraction" />}
             {mission.exclusive && <Badge label="Exclusive" />}
             {mission.raid && <Badge label="Raid" />}
-            {mission.stub && <Badge label="Not in game yet" className="warn" />}
+            {mission.stub && <Badge label="Not in game yet" className="stub" />}
             <Badge label={mission.id} className="mission-badge--id" />
           </div>
         </header>
@@ -249,11 +250,11 @@ function Detail({
               {mission.prerequisites.map(id => {
                 const prereq = MISSIONS_BY_ID.get(id);
                 return prereq ? (
-                  <button key={id} className="mission-prereq" onClick={() => onSelectMission(id)}>
+                  <button key={id} className="brm-btn mission-prereq" onClick={() => onSelectMission(id)}>
                     {prereq.name}
                   </button>
                 ) : (
-                  <span key={id} className="mission-prereq disabled" title="Not a zombies mission">
+                  <span key={id} className="brm-plate mission-prereq-other" title="Not a zombies mission">
                     {id}
                   </span>
                 );
@@ -265,7 +266,7 @@ function Detail({
         {mission.briefing && (
           <section className="mission-section">
             <h2 className="brm-section-title">Briefing</h2>
-            <blockquote className="mission-brief">
+            <blockquote className="brm-box mission-brief">
               <RichText text={mission.briefing} />
             </blockquote>
           </section>
@@ -281,7 +282,7 @@ function Detail({
                 : ''}
             </p>
             {route && (
-              <p className="mission-route">
+              <p className="brm-box mission-route">
                 <span className="mission-route-label">Suggested route</span>
                 {route}
               </p>
@@ -309,14 +310,14 @@ function Detail({
         )}
 
         <section className="mission-section">
-          <div className="mission-objectives-head">
-            <h2 className="brm-section-title">Objectives</h2>
+          <div className="brm-section-title">
+            <h2>Objectives</h2>
             <button
-              className="mission-toggle"
+              className="brm-btn mission-toggle"
               aria-pressed={technical}
               onClick={() => setTechnical(t => !t)}
             >
-              {technical ? 'Simple' : 'Technical'}
+              Technical
             </button>
           </div>
 
@@ -326,17 +327,21 @@ function Detail({
                 This mission has {mission.variants.length} variants. The server picks one at the
                 start of a run and does not tell you which, so every listed spot is a candidate.
               </p>
-              <div className="mission-variants">
-                {mission.variants.map((_, i) => (
-                  <button
-                    key={i}
-                    className="mission-variant"
-                    aria-pressed={i === variant}
-                    onClick={() => setVariant(i)}
-                  >
-                    {i + 1}
-                  </button>
-                ))}
+              <div className="brm-row mission-variant-row">
+                <span className="brm-row-label">Variant</span>
+                <div className="mission-variants">
+                  {mission.variants.map((_, i) => (
+                    <button
+                      key={i}
+                      className="brm-btn mission-variant tabular"
+                      aria-pressed={i === variant}
+                      aria-label={`Variant ${i + 1}`}
+                      onClick={() => setVariant(i)}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+                </div>
               </div>
             </>
           )}
@@ -351,7 +356,7 @@ function Detail({
         {mission.debriefing && (
           <section className="mission-section">
             <h2 className="brm-section-title">Debriefing</h2>
-            <blockquote className="mission-brief">
+            <blockquote className="brm-box mission-brief">
               <RichText text={mission.debriefing} />
             </blockquote>
           </section>
@@ -451,75 +456,83 @@ export function MissionsPage({ missionId, bgIndex, onSelectMission }: MissionsPa
           <p className="missions-notfound">There is no mission called "{missionId}".</p>
         )}
 
-        <div className="brm-search missions-search">
-          <input
-            className="brm-input"
-            type="text"
-            value={query}
-            placeholder="Search missions"
-            aria-label="Search missions"
-            onChange={e => setQuery(e.target.value)}
-          />
-          {query && (
-            <button className="brm-btn brm-search-clear" onClick={() => setQuery('')} aria-label="Clear search">
-              X
-            </button>
-          )}
-        </div>
+        <div className="missions-browse">
+          <div className="brm-section-title">
+            <h2>Missions</h2>
+            <span className="brm-section-meta tabular">
+              {visible.length} / {MISSIONS.length}
+            </span>
+          </div>
 
-        <div className="missions-filters">
-          {FILTERS.map(({ key, label }) => (
-            <button
-              key={key}
-              className="missions-filter"
-              aria-pressed={filters.has(key)}
-              onClick={() => toggleFilter(key)}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+          <div className="brm-search">
+            <input
+              className="brm-input"
+              type="text"
+              value={query}
+              placeholder="Search missions"
+              aria-label="Search missions"
+              onChange={e => setQuery(e.target.value)}
+            />
+            {query && (
+              <button className="brm-btn brm-search-clear" onClick={() => setQuery('')} aria-label="Clear search">
+                X
+              </button>
+            )}
+          </div>
 
-        <div className="missions-count">
-          <span className="tabular">{visible.length}</span> of{' '}
-          <span className="tabular">{MISSIONS.length}</span> missions
-        </div>
+          <div className="missions-filters">
+            {FILTERS.map(({ key, label }) => (
+              <button
+                key={key}
+                className="brm-btn missions-filter"
+                aria-pressed={filters.has(key)}
+                onClick={() => toggleFilter(key)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
 
-        <div className="missions-list" ref={listRef}>
-          {groups.map(group => (
-            <section key={group.giver} className="missions-group">
-              <h2 className="missions-group-name">
-                {group.giver}
-                <span className="missions-group-count tabular">{group.missions.length}</span>
-              </h2>
-              {group.missions.map(mission => (
-                <button
-                  key={mission.id}
-                  data-mission={mission.id}
-                  className={`missions-item${mission.id === missionId ? ' selected' : ''}`}
-                  onClick={() => onSelectMission(mission.id)}
-                >
-                  <span className="missions-item-name">{mission.name}</span>
-                  <span className="missions-item-meta">
-                    {mission.difficulty !== null && <Difficulty value={mission.difficulty} />}
-                    {spotsFor(mission.id).length > 0 && (
-                      <span
-                        className="missions-item-flag"
-                        role="img"
-                        aria-label="Has unmarked objectives"
-                        title="Has unmarked objectives"
-                      />
-                    )}
-                  </span>
-                </button>
+          <div className="brm-box missions-box">
+            <div className="missions-list" ref={listRef}>
+              {groups.map(group => (
+                <section key={group.giver} className="missions-group">
+                  <h3 className="brm-section-title missions-group-name">
+                    {group.giver}
+                    <span className="brm-section-meta tabular">{group.missions.length}</span>
+                  </h3>
+                  {group.missions.map(mission => (
+                    <button
+                      key={mission.id}
+                      data-mission={mission.id}
+                      className={`brm-btn missions-item${mission.id === missionId ? ' active' : ''}`}
+                      aria-current={mission.id === missionId ? 'true' : undefined}
+                      onClick={() => onSelectMission(mission.id)}
+                    >
+                      <span className="missions-item-name">{mission.name}</span>
+                      <span className="missions-item-meta">
+                        {mission.difficulty !== null && <Difficulty value={mission.difficulty} />}
+                        {spotsFor(mission.id).length > 0 && (
+                          <span
+                            className="missions-item-flag"
+                            role="img"
+                            aria-label="Has unmarked objectives"
+                            title="Has unmarked objectives"
+                          />
+                        )}
+                      </span>
+                    </button>
+                  ))}
+                </section>
               ))}
-            </section>
-          ))}
-          {groups.length === 0 && <p className="missions-empty">No missions match.</p>}
+              {groups.length === 0 && <p className="missions-empty">No missions match</p>}
+            </div>
+          </div>
         </div>
 
-        <div className="missions-rail-footer">
-          <span className="footer-credit-label">Art</span>
+        <footer className="brm-panel sidebar-footer missions-rail-footer">
+          <span>Art</span>
+          <span aria-hidden="true">/</span>
           {credit?.url ? (
             <a href={credit.url} target="_blank" rel="noopener noreferrer">
               {credit.name}
@@ -527,7 +540,7 @@ export function MissionsPage({ missionId, bgIndex, onSelectMission }: MissionsPa
           ) : (
             <span>{credit?.name}</span>
           )}
-        </div>
+        </footer>
       </div>
 
       {selected ? (

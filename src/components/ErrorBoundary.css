@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   flex: 1;
-  gap: 14px;
+  gap: round(calc(16 * var(--u)), 1px);
   width: 100%;
   height: 100%;
   min-height: 0;
@@ -16,28 +16,34 @@
 .crash-logo {
   width: min(260px, 70vw);
   height: auto;
-  margin-bottom: 18px;
+  margin-bottom: round(calc(18 * var(--u)), 1px);
   opacity: 0.9;
 }
 
 .crash-title {
   margin: 0;
-  font-size: 1.1rem;
-  text-transform: uppercase;
   color: var(--brm-white);
+  font-size: calc(34 * var(--u));
+  line-height: 1.05;
+  text-transform: uppercase;
 }
 
 .crash-text {
-  max-width: 420px;
+  max-width: round(calc(560 * var(--u)), 1px);
   margin: 0;
   color: var(--brm-sub);
-  font-size: 0.9rem;
+  font-size: calc(22 * var(--u));
 }
 
 .crash-actions {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
-  margin-top: 10px;
+  gap: round(calc(10 * var(--u)), 1px);
+  margin-top: round(calc(10 * var(--u)), 1px);
+}
+
+.crash-actions .brm-btn {
+  min-width: round(calc(220 * var(--u)), 1px);
+  min-height: round(calc(56 * var(--u)), 1px);
 }

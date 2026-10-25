@@ -4,24 +4,34 @@
   top: 0;
   will-change: transform;
   z-index: 1000;
-  width: 14rem;
-  max-width: 14rem;
+  width: round(calc(300 * var(--u)), 1px);
   overflow: hidden;
-  background: var(--brm-glass-deep);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid var(--brm-edge);
-  border-top: 2px solid var(--tooltip-color);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.6);
   pointer-events: none;
+}
+
+/* over the busy map the panel's usual 60% leaves the preview text hard to read */
+.tooltip.brm-hud {
+  background: rgba(0, 0, 0, 0.82);
+}
+
+/* a long name wraps here instead of running off the panel */
+.tooltip-head.brm-hud-head {
+  padding-block: round(calc(8 * var(--u)), 1px);
+  line-height: 1.15;
+  white-space: normal;
+}
+
+.tooltip-head svg {
+  flex-shrink: 0;
+  width: round(calc(20 * var(--u)), 1px);
+  height: round(calc(20 * var(--u)), 1px);
 }
 
 .tooltip-image-container {
   position: relative;
   width: 100%;
-  height: 116px;
+  height: round(calc(150 * var(--u)), 1px);
   overflow: hidden;
-  border-bottom: 1px solid var(--brm-edge);
 }
 
 .tooltip-image {
@@ -42,7 +52,7 @@
 
 .tooltip-slideshow-indicator {
   position: absolute;
-  bottom: 7px;
+  bottom: round(calc(8 * var(--u)), 1px);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -60,62 +70,22 @@
   background: var(--brm-gold);
 }
 
-.tooltip-header {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 11px 14px 0;
-  margin-bottom: 3px;
-}
-
-.tooltip-header svg {
-  flex-shrink: 0;
-  min-width: 16px;
-  min-height: 16px;
-}
-
-.tooltip-name {
-  font-family: var(--font);
-  font-size: 1.02rem;
-  font-weight: 700;
-  line-height: 1.15;
-  text-transform: uppercase;
-  color: var(--brm-white);
-}
-
 .tooltip-category {
-  padding: 0 14px 10px;
-  font-family: var(--font);
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
   color: var(--tooltip-color);
 }
 
 .tooltip-preview {
-  padding: 9px 14px;
-  background: rgba(255, 255, 255, 0.03);
-  border-top: 1px solid var(--brm-line-soft);
-  border-bottom: 1px solid var(--brm-line-soft);
-  color: var(--brm-sub);
-  font-size: 0.76rem;
-  line-height: 1.45;
-}
-
-.tooltip-image-count,
-.tooltip-hint {
-  font-family: var(--font);
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--brm-dim);
-}
-
-.tooltip-image-count {
-  padding: 9px 14px 0;
+  margin: round(calc(4 * var(--u)), 1px) 0;
+  color: var(--brm-body);
+  font-size: calc(17 * var(--u));
+  line-height: 1.3;
 }
 
 .tooltip-hint {
-  padding: 9px 14px 11px;
+  padding: round(calc(4 * var(--u)), 1px) 0 round(calc(8 * var(--u)), 1px);
   color: var(--brm-gold);
+  font-size: calc(15 * var(--u));
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
 }

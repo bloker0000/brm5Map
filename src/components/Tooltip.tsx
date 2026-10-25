@@ -126,25 +126,29 @@ export function Tooltip({ location }: TooltipProps) {
   return (
     <div
       ref={elRef}
-      className="tooltip"
+      className="tooltip brm-hud"
       style={{ '--tooltip-color': color } as React.CSSProperties}
       aria-hidden="true"
     >
-      <TooltipImages key={location.id} location={location} />
-      <div className="tooltip-header">
+      <div className="brm-hud-head tooltip-head">
         <CategoryIcon category={location.category} size={16} color={color} />
-        <span className="tooltip-name">{location.name}</span>
+        <span>{location.name}</span>
       </div>
-      <div className="tooltip-category">{location.category}</div>
-      {preview && (
-        <div className="tooltip-preview">{preview}</div>
-      )}
-      {imageCount > 1 && (
-        <div className="tooltip-image-count">
-          {imageCount} images
+      <TooltipImages key={location.id} location={location} />
+      <div className="brm-hud-body">
+        <div className="brm-hud-row">
+          <span>Category</span>
+          <span className="tooltip-category">{location.category}</span>
         </div>
-      )}
-      <div className="tooltip-hint">Click for details</div>
+        {imageCount > 1 && (
+          <div className="brm-hud-row">
+            <span>Images</span>
+            <span className="tabular">{imageCount}</span>
+          </div>
+        )}
+        {preview && <p className="tooltip-preview">{preview}</p>}
+        <div className="tooltip-hint">Click for details</div>
+      </div>
     </div>
   );
 }

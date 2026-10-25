@@ -188,18 +188,6 @@ export function MinusIcon({ size = 16, color = 'currentColor', className }: Icon
   );
 }
 
-export function ChevronIcon({ direction, size = 24, className }: IconProps & { direction: 'left' | 'right' }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className={className}>
-      {direction === 'left' ? (
-        <polyline points="15 18 9 12 15 6" />
-      ) : (
-        <polyline points="9 6 15 12 9 18" />
-      )}
-    </svg>
-  );
-}
-
 export function ExpandIcon({ size = 18, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
@@ -262,6 +250,28 @@ export function ResetPositionIcon({ size = 16, color = 'currentColor', className
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" className={className}>
       <circle cx="12" cy="12" r="3" />
       <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+    </svg>
+  );
+}
+
+// the game's map compass: four long points and four short ones, the clockwise half of
+// each filled, inside a ring that breaks where the long points cross it
+export function CompassRose({ className }: { className?: string }) {
+  return (
+    <svg viewBox="-50 -50 100 100" fill="none" stroke="currentColor" strokeLinejoin="miter" className={className}>
+      <circle r="37" strokeWidth="2.6" strokeDasharray="50.33 7.78" strokeDashoffset="54.22" />
+      {[45, 135, 225, 315].map(angle => (
+        <g key={angle} transform={`rotate(${angle})`}>
+          <path d="M0 -32L4.6 -4.6L0 0L-4.6 -4.6Z" strokeWidth="1.5" />
+          <path d="M0 -32L4.6 -4.6L0 0Z" fill="currentColor" stroke="none" />
+        </g>
+      ))}
+      {[0, 90, 180, 270].map(angle => (
+        <g key={angle} transform={`rotate(${angle})`}>
+          <path d="M0 -49L7.5 -7.5L0 0L-7.5 -7.5Z" strokeWidth="1.8" />
+          <path d="M0 -49L7.5 -7.5L0 0Z" fill="currentColor" stroke="none" />
+        </g>
+      ))}
     </svg>
   );
 }

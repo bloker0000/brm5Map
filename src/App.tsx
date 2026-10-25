@@ -19,7 +19,7 @@ import { preloadMarkdown } from './components/markdownLoader';
 import { useLocations } from './hooks/useLocations';
 import { useMediaQuery, PHONE_QUERY, HOVER_QUERY } from './hooks/useMediaQuery';
 import type { MapLocation, LocationCategory } from './types/location';
-import { BG_CREDITS, randomBgIndex } from './data/backgrounds';
+import { randomBgIndex } from './data/backgrounds';
 import { MISSION_TITLES } from './data/mission-titles';
 import './App.css';
 
@@ -252,8 +252,6 @@ function App() {
     if (route !== hash) navigate(hash);
   }, [route, navigate]);
 
-  const currentCredit = BG_CREDITS[bgIndex];
-
   let stat = `${MISSION_COUNT} missions`;
   if (!isMissionsRoute) {
     stat = displayedLocations.length === locations.length
@@ -405,15 +403,9 @@ function App() {
             </section>
 
             <footer className="brm-panel sidebar-footer">
-              <span>Art</span>
-              <span className="sidebar-footer-sep" aria-hidden="true">/</span>
-              {currentCredit?.url ? (
-                <a href={currentCredit.url} target="_blank" rel="noopener noreferrer">
-                  {currentCredit.name}
-                </a>
-              ) : (
-                <span className="sidebar-footer-name">{currentCredit?.name}</span>
-              )}
+              <span>Map</span>
+              <span aria-hidden="true">/</span>
+              <span>{activeTab}</span>
             </footer>
           </aside>
 
@@ -426,7 +418,6 @@ function App() {
               onClick={handleLocationClick}
               onMapClick={handleMapClick}
               focusRequest={focusRequest}
-              bgIndex={bgIndex}
               isAdminMode={import.meta.env.DEV && isAdminOpen}
               showPins={showPins}
               showCompass={showCompass}

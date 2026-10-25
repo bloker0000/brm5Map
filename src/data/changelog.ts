@@ -10,6 +10,21 @@ export interface ChangelogEntry {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: '1.13.0',
+    date: '2026-10-25',
+    changes: [
+      'The whole site now looks like the menus in Blackhawk Rescue Mission 5: the same font, buttons, colors and section headers',
+      'Map, Missions and About are now tabs in a header at the top of both pages',
+      'The map tab looks like the map screen in the game, with a navy background and a meter grid whose gold coordinates get finer as you zoom in',
+      'Hovering the map shows the grid reference of the spot under the mouse, and each location window shows the grid reference of that place at the bottom',
+      'A new gold compass drawn after the one in the game, and markers get gold corner brackets when hovered or selected',
+      'Location windows, About, this changelog and the image viewer now look like the popup windows in the game',
+      'The Mission Library uses the same sidebar as the map, keeps each mission giver pinned at the top while you scroll, and lays out rewards, objectives and variants like an options page',
+      'The background artwork now shows on the loading screen and in the Mission Library, with the artist credited on both',
+      'Fixed the Tutorial mission listing "{, }" as an unlock',
+    ],
+  },
+  {
     version: '1.12.0',
     date: '2026-09-23',
     changes: [

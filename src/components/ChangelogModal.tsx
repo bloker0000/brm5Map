@@ -29,25 +29,25 @@ export function ChangelogModal({ isOpen, onClose }: ChangelogModalProps) {
 
   return (
     <div
-      className={`changelog-modal-overlay brm-scrim ${isOpen ? 'open' : 'closing'}`}
+      className={`brm-modal-overlay changelog-modal-overlay brm-scrim ${isOpen ? 'open' : 'closing'}`}
       onClick={onClose}
       onAnimationEnd={handleAnimationEnd}
     >
       <div
         ref={dialogRef}
-        className="changelog-modal brm-panel-anim"
+        className="brm-modal brm-panel-anim"
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
         tabIndex={-1}
         onClick={e => e.stopPropagation()}
       >
-        <div className="changelog-modal-header">
-          <h2 id={titleId}>Changelog</h2>
-          <button className="changelog-modal-close" onClick={onClose} aria-label="Close">X</button>
+        <div className="brm-modal-head">
+          <h2 className="brm-modal-title" id={titleId}>Changelog</h2>
+          <button className="brm-btn brm-modal-close" onClick={onClose} aria-label="Close">X</button>
         </div>
 
-        <div className="changelog-modal-content">
+        <div className="brm-modal-body">
           <div className="changelog-note">
             <p>
               The map is finished and now gets updates now and then. Some locations
@@ -61,17 +61,17 @@ export function ChangelogModal({ isOpen, onClose }: ChangelogModalProps) {
           </div>
 
           {CHANGELOG.map((entry) => (
-            <div key={entry.version} className="changelog-entry">
-              <div className="changelog-entry-header">
-                <span className="changelog-version">v{entry.version}</span>
-                <span className="changelog-date">{entry.date}</span>
-              </div>
-              <ul className="changelog-changes">
+            <section key={entry.version} className="changelog-entry">
+              <h3 className="brm-section-title">
+                v{entry.version}
+                <span className="brm-section-meta tabular">{entry.date}</span>
+              </h3>
+              <ul className="brm-bullets">
                 {entry.changes.map((change, index) => (
                   <li key={index}>{change}</li>
                 ))}
               </ul>
-            </div>
+            </section>
           ))}
         </div>
       </div>

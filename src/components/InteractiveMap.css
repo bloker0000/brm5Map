@@ -1,51 +1,23 @@
-/* map + the hud stuff on top of it */
+/* the game's map tab, plus the hud on top of it */
 
 .interactive-map {
   position: relative;
   width: 100%;
   height: 100%;
-  background: var(--brm-black);
+  /* the navy MenuInteractiveMapComponent draws behind its tiles */
+  background: #001324;
   overflow: hidden;
   cursor: grab;
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
+  container-type: size;
 }
 
 .interactive-map:focus-visible {
   outline: 2px solid var(--brm-gold);
   outline-offset: -2px;
-}
-
-.map-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  z-index: 0;
-}
-
-.map-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 1;
-}
-
-.interactive-map::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  pointer-events: none;
-  background: radial-gradient(ellipse 80% 75% at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.42) 100%);
 }
 
 .interactive-map.dragging {
@@ -62,9 +34,32 @@
 
 .map-content {
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   transform-origin: 0 0;
   will-change: transform;
+}
+
+/* the game tints its map tiles down to 206 grey */
+.map-image {
+  display: block;
+  max-width: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+  filter: brightness(0.81);
+}
+
+.map-grid,
+.map-grid-labels {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.map-grid {
+  z-index: 2;
 }
 
 .pins-overlay {
@@ -81,12 +76,41 @@
   will-change: transform;
 }
 
-.map-image {
-  display: block;
-  max-width: none;
-  user-select: none;
-  -webkit-user-drag: none;
+/* the gold glow along the top and left edge the coordinates sit in, 8% of the height deep */
+.map-band {
+  position: absolute;
+  z-index: 4;
   pointer-events: none;
+}
+
+.map-band-x {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8cqh;
+  background: linear-gradient(rgba(255, 194, 89, 0.15), rgba(255, 194, 89, 0));
+}
+
+.map-band-y {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 8cqh;
+  background: linear-gradient(90deg, rgba(255, 194, 89, 0.15), rgba(255, 194, 89, 0));
+}
+
+.map-grid-labels {
+  z-index: 5;
+}
+
+/* the game's film grain lies over everything on the map, dark grey noise at 15% */
+.map-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0.36 0 0 0 0 0.36 0 0 0 0 0.36 0 0 0 0 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23g)'/%3E%3C/svg%3E") 0 0 / 256px 256px;
+  opacity: 0.15;
 }
 
 .zoom-controls {
@@ -96,25 +120,14 @@
   z-index: 100;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: round(calc(6 * var(--u)), 1px);
 }
 
-.zoom-controls button {
+.zoom-controls .brm-btn {
   width: round(calc(50 * var(--u)), 1px);
+  min-height: 0;
   height: round(calc(50 * var(--u)), 1px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--brm-glass-deep);
-  border: 1px solid var(--brm-edge);
-  color: var(--brm-sub);
-  font-family: var(--font);
-  font-size: 1.05rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: color var(--t-fast) var(--ease),
-              border-color var(--t-fast) var(--ease),
-              background-color var(--t-fast) var(--ease);
+  padding: 0;
 }
 
 .zoom-controls svg {
@@ -122,41 +135,31 @@
   height: round(calc(22 * var(--u)), 1px);
 }
 
-.zoom-controls button:hover {
-  color: var(--brm-gold);
-  border-color: var(--brm-gold);
+@media (pointer: coarse) {
+  .zoom-controls .brm-btn {
+    width: max(44px, round(calc(50 * var(--u)), 1px));
+    height: max(44px, round(calc(50 * var(--u)), 1px));
+  }
 }
 
-.zoom-controls button:active {
-  background-color: var(--brm-gold);
-  background-image: none;
-  border-color: var(--brm-gold);
-  color: #140d02;
-}
-
-/* round, so the empty corners of the box do not catch presses meant for the map */
+/* the game's compass: gold, a tenth of the map's height, bottom right, lower half faded.
+   round, so the empty corners of the box do not catch presses meant for the map */
 .compass {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 240px;
-  height: 240px;
+  left: 90%;
+  top: 92%;
   z-index: 100;
+  width: 10cqh;
+  height: 10cqh;
+  margin: -10cqh 0 0 -5cqh;
   border-radius: 50%;
+  color: var(--brm-gold);
   cursor: grab;
-  transition: transform var(--t-med) var(--ease), opacity var(--t-med) var(--ease);
-  transform-origin: top right;
-}
-
-@media (hover: hover) {
-  .compass:hover {
-    transform: scale(1.3);
-  }
+  transition: opacity var(--t-med) var(--ease);
 }
 
 .compass:active {
   cursor: grabbing;
-  transform: scale(1.25);
 }
 
 .compass.hidden {
@@ -164,64 +167,76 @@
   pointer-events: none;
 }
 
-.compass-image {
+.compass-face {
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: linear-gradient(#000 30%, rgba(0, 0, 0, 0.5) 50%);
+  mask-image: linear-gradient(#000 30%, rgba(0, 0, 0, 0.5) 50%);
+}
+
+.compass-rose {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  transform: rotate(var(--turn, 0deg));
+}
+
+/* the letters go round with the rose but stay upright */
+.compass-letters {
+  position: absolute;
+  inset: 0;
+  transform: rotate(var(--turn, 0deg));
   pointer-events: none;
+}
+
+.compass-letter {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  height: 30%;
+  font-size: 2.35cqh;
+  line-height: normal;
+  opacity: 0.5;
+  transform: rotate(calc(var(--turn, 0deg) * -1));
+}
+
+.compass-letter.north {
+  left: 35%;
+  bottom: 100%;
+  font-weight: 700;
+  opacity: 1;
+}
+
+.compass-letter.south {
+  left: 35%;
+  top: 100%;
+}
+
+.compass-letter.east {
+  top: 35%;
+  left: 100%;
+}
+
+.compass-letter.west {
+  top: 35%;
+  right: 100%;
 }
 
 .map-readouts {
   position: absolute;
-  left: 20px;
+  left: calc(8cqh + round(calc(14 * var(--u)), 1px));
   bottom: 20px;
   z-index: 100;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
+  width: round(calc(230 * var(--u)), 1px);
   pointer-events: none;
 }
 
-.rotation-display,
-.coords-display {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  padding: 7px 13px;
-  background: var(--brm-glass-deep);
-  border: 1px solid var(--brm-edge);
-}
-
-.rotation-label,
-.coords-label {
-  font-family: var(--font);
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--brm-dim);
-}
-
-.rotation-value,
-.coords-value {
-  font-family: var(--font);
-  font-size: 0.9rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  color: var(--brm-gold);
-}
-
-/* the coordinates follow the mouse, so without one there is nothing to show */
+/* the grid reference follows the mouse, so without one there is nothing to show */
 @media (hover: none) {
-  .coords-display {
+  .map-readout-grid {
     display: none;
-  }
-}
-
-@media (pointer: coarse) {
-  .zoom-controls button {
-    width: max(44px, round(calc(50 * var(--u)), 1px));
-    height: max(44px, round(calc(50 * var(--u)), 1px));
   }
 }
 
@@ -231,53 +246,16 @@
     right: 12px;
   }
 
+  /* the zoom buttons take the bottom right corner on a phone */
   .compass {
-    top: 12px;
-    right: 12px;
-    width: 108px;
-    height: 108px;
+    left: auto;
+    right: calc(12px + 3cqh);
+    top: calc(12px + 3cqh);
+    margin: 0;
   }
 
   .map-readouts {
-    left: 12px;
+    left: calc(8cqh + 8px);
     bottom: 12px;
-    gap: 6px;
-  }
-
-  .rotation-display,
-  .coords-display {
-    padding: 5px 10px;
-    gap: 8px;
-  }
-
-  .rotation-label,
-  .coords-label {
-    font-size: 0.66rem;
-  }
-
-  .rotation-value,
-  .coords-value {
-    font-size: 0.8rem;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1200px) {
-  .compass {
-    width: 220px;
-    height: 220px;
-  }
-}
-
-@media (min-width: 1201px) and (max-width: 1600px) {
-  .compass {
-    width: 280px;
-    height: 280px;
-  }
-}
-
-@media (min-width: 1601px) {
-  .compass {
-    width: 320px;
-    height: 320px;
   }
 }

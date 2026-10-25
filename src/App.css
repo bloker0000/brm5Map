@@ -100,7 +100,7 @@
   width: round(calc(110 * var(--u)), 1px);
 }
 
-/* the game's footer bar, the artist where it would put a hovered setting in gold */
+/* the game's footer bar and its breadcrumb */
 .sidebar-footer {
   flex-shrink: 0;
   display: flex;
@@ -111,22 +111,9 @@
   padding: 0 round(calc(34 * var(--u)), 1px);
   color: var(--brm-sub);
   font-size: calc(21 * var(--u));
-  line-height: 1;
+  line-height: normal;
   text-transform: uppercase;
   white-space: nowrap;
-}
-
-.sidebar-footer a,
-.sidebar-footer-name {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: var(--brm-gold);
-  text-transform: none;
-}
-
-.sidebar-footer a:hover {
-  color: var(--brm-white);
 }
 
 /* its own stacking context, so the map hud stays under the sidebar and the modals */

@@ -1,6 +1,7 @@
 import { useState, useEffect, useLayoutEffect, useCallback, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import type { LocationImage } from '../types/location';
-import { ChevronIcon, CloseIcon, MinusIcon, PlusIcon, ResetPositionIcon } from './Icons';
+import { MinusIcon, PlusIcon, ResetPositionIcon } from './Icons';
 import { useDialog } from '../hooks/useDialog';
 import './ImageLightbox.css';
 
@@ -281,7 +282,8 @@ export function ImageLightbox({ images, initialIndex, onClose, locationName }: I
     toggleZoom({ x: e.clientX, y: e.clientY });
   };
 
-  return (
+  // on body, inside the mission page the header ended up on top of it
+  return createPortal(
     <div className={`lightbox-overlay brm-scrim${isClosing ? ' closing' : ''}`} onClick={requestClose}>
       <div
         ref={dialogRef}
@@ -299,9 +301,12 @@ export function ImageLightbox({ images, initialIndex, onClose, locationName }: I
               <span className="lightbox-description">{currentImage.description}</span>
             )}
           </div>
-          <div className="lightbox-counter">
+          <div className="brm-plate lightbox-counter tabular">
             {currentIndex + 1} / {images.length}
           </div>
+          <button className="brm-btn lightbox-close" onClick={requestClose} title="Close (Esc)">
+            Close
+          </button>
         </div>
 
         <div
@@ -331,11 +336,11 @@ export function ImageLightbox({ images, initialIndex, onClose, locationName }: I
 
           {hasMultiple && (
             <>
-              <button className="lightbox-nav lightbox-prev" onClick={goToPrev} aria-label="Previous image">
-                <ChevronIcon direction="left" size={32} />
+              <button className="brm-btn lightbox-nav lightbox-prev" onClick={goToPrev} aria-label="Previous image">
+                &lt;
               </button>
-              <button className="lightbox-nav lightbox-next" onClick={goToNext} aria-label="Next image">
-                <ChevronIcon direction="right" size={32} />
+              <button className="brm-btn lightbox-nav lightbox-next" onClick={goToNext} aria-label="Next image">
+                &gt;
               </button>
             </>
           )}
@@ -343,14 +348,14 @@ export function ImageLightbox({ images, initialIndex, onClose, locationName }: I
 
         <div className="lightbox-controls">
           <div className="lightbox-zoom-controls">
-            <button onClick={() => zoomAt(1 / STEP_ZOOM)} disabled={zoom <= 1} title="Zoom Out (-)" aria-label="Zoom out">
+            <button className="brm-btn" onClick={() => zoomAt(1 / STEP_ZOOM)} disabled={zoom <= 1} title="Zoom Out (-)" aria-label="Zoom out">
               <MinusIcon size={20} />
             </button>
-            <span className="lightbox-zoom-level">{Math.round(zoom * 100)}%</span>
-            <button onClick={() => zoomAt(STEP_ZOOM)} disabled={zoom >= MAX_ZOOM} title="Zoom In (+)" aria-label="Zoom in">
+            <span className="lightbox-zoom-level tabular">{Math.round(zoom * 100)}%</span>
+            <button className="brm-btn" onClick={() => zoomAt(STEP_ZOOM)} disabled={zoom >= MAX_ZOOM} title="Zoom In (+)" aria-label="Zoom in">
               <PlusIcon size={20} />
             </button>
-            <button onClick={resetView} disabled={zoom === 1} title="Reset View (0)" aria-label="Reset zoom">
+            <button className="brm-btn" onClick={resetView} disabled={zoom === 1} title="Reset View (0)" aria-label="Reset zoom">
               <ResetPositionIcon size={20} />
             </button>
           </div>
@@ -371,11 +376,8 @@ export function ImageLightbox({ images, initialIndex, onClose, locationName }: I
             </div>
           )}
         </div>
-
-        <button className="lightbox-close" onClick={requestClose} title="Close (Esc)" aria-label="Close">
-          <CloseIcon size={24} />
-        </button>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

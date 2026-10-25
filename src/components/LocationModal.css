@@ -1,110 +1,30 @@
 .modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(4, 4, 5, 0.8);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 2000;
-  padding: 1.5rem 1rem;
 }
 
-.modal {
-  position: relative;
-  width: 100%;
-  max-width: 30rem;
-  max-height: 84vh;
-  max-height: 84dvh;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  background: var(--brm-btn);
-  border: 1px solid var(--brm-edge);
-  border-top: 2px solid var(--modal-color);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
-}
-
-.modal-header {
+.modal-heading {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  padding: 18px 62px 16px 20px;
-  background-color: var(--brm-black);
-  border-bottom: 1px solid var(--brm-edge);
+  align-items: flex-start;
+  gap: round(calc(12 * var(--u)), 1px);
 }
 
-.modal-header-top {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.modal-icon {
+.modal-category svg {
   flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-title {
-  margin: 0;
-  font-family: var(--font);
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1.05;
-  text-transform: uppercase;
-  color: var(--brm-white);
-  word-break: break-word;
-}
-
-.modal-category {
-  padding-left: 42px;
-  font-family: var(--font);
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--modal-color);
-}
-
-.modal-close {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  z-index: 3;
-  width: 34px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid var(--brm-edge);
-  color: var(--brm-sub);
-  cursor: pointer;
-  transition: background-color var(--t-fast) var(--ease),
-              border-color var(--t-fast) var(--ease),
-              color var(--t-fast) var(--ease);
-}
-
-.modal-close:hover {
-  background: var(--brm-red);
-  border-color: var(--brm-red);
-  color: var(--brm-white);
-}
-
-.modal-gallery {
-  border-bottom: 1px solid var(--brm-edge);
-  background: var(--brm-black);
+  width: round(calc(18 * var(--u)), 1px);
+  height: round(calc(18 * var(--u)), 1px);
 }
 
 /* sideways swipes are ours to change the image, up and down still scroll the modal */
 .modal-image {
   position: relative;
-  cursor: zoom-in;
   min-height: 150px;
   overflow: hidden;
+  border: 1px solid var(--brm-edge);
+  background: var(--brm-black);
+  cursor: zoom-in;
   touch-action: pan-y;
 }
 
@@ -133,76 +53,55 @@
   pointer-events: none;
 }
 
-.modal-image-zoom-hint {
+.modal-image-zoom-hint.brm-plate {
+  --plate: var(--brm-sub);
   position: absolute;
-  bottom: 10px;
-  right: 10px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 5px 9px;
-  background: rgba(0, 0, 0, 0.75);
-  border: 1px solid var(--brm-edge);
-  color: var(--brm-sub);
-  font-family: var(--font);
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
+  right: round(calc(10 * var(--u)), 1px);
+  bottom: round(calc(10 * var(--u)), 1px);
   opacity: 0;
   transition: opacity var(--t-fast) var(--ease);
   pointer-events: none;
+}
+
+.modal-image-zoom-hint svg {
+  width: round(calc(16 * var(--u)), 1px);
+  height: round(calc(16 * var(--u)), 1px);
 }
 
 .modal-image:hover .modal-image-zoom-hint {
   opacity: 1;
 }
 
-.gallery-nav {
+.gallery-nav.brm-btn {
   position: absolute;
   top: 50%;
+  width: round(calc(40 * var(--u)), 1px);
+  min-height: 0;
+  height: round(calc(56 * var(--u)), 1px);
+  padding: 0;
   transform: translateY(-50%);
-  width: 36px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.7);
-  border: 1px solid var(--brm-edge);
-  color: var(--brm-white);
-  cursor: pointer;
-  transition: background-color var(--t-fast) var(--ease),
-              border-color var(--t-fast) var(--ease),
-              color var(--t-fast) var(--ease);
-}
-
-.gallery-nav:hover {
-  background: var(--brm-gold);
-  border-color: var(--brm-gold);
-  color: #140d02;
+  font-size: calc(24 * var(--u));
 }
 
 .gallery-prev {
-  left: 8px;
+  left: round(calc(8 * var(--u)), 1px);
 }
 
 .gallery-next {
-  right: 8px;
+  right: round(calc(8 * var(--u)), 1px);
 }
 
 .modal-image-description {
-  padding: 10px 20px;
-  background: var(--brm-black);
-  border-top: 1px solid var(--brm-edge);
-  color: var(--brm-dim);
-  font-size: 0.8rem;
+  padding-top: round(calc(8 * var(--u)), 1px);
+  color: var(--brm-sub);
+  font-size: calc(19 * var(--u));
   text-align: center;
 }
 
 .modal-gallery-thumbnails {
   display: flex;
-  gap: 4px;
-  padding: 10px 20px;
-  background: var(--brm-black);
+  gap: round(calc(6 * var(--u)), 1px);
+  padding-top: round(calc(10 * var(--u)), 1px);
   overflow-x: auto;
   scroll-behavior: smooth;
 }
@@ -215,16 +114,15 @@
 
 .modal-thumbnail {
   flex-shrink: 0;
-  width: 52px;
-  height: 34px;
+  width: round(calc(80 * var(--u)), 1px);
+  height: round(calc(52 * var(--u)), 1px);
   padding: 0;
   background: none;
   border: 1px solid var(--brm-edge);
   cursor: pointer;
   overflow: hidden;
   opacity: 0.5;
-  transition: opacity var(--t-fast) var(--ease),
-              border-color var(--t-fast) var(--ease);
+  transition: opacity var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
 }
 
 .modal-thumbnail img {
@@ -235,7 +133,7 @@
 
 .modal-thumbnail:hover {
   opacity: 0.85;
-  border-color: var(--brm-dim);
+  border-color: var(--brm-white);
 }
 
 .modal-thumbnail.active {
@@ -243,97 +141,89 @@
   border-color: var(--brm-gold);
 }
 
-.modal-description {
-  padding: 20px;
-  color: var(--brm-sub);
-  font-size: 0.9rem;
-  line-height: 1.65;
-}
-
 .modal-description-loading {
   align-items: flex-start;
   padding: 10px 0;
 }
 
-.modal-description h1,
-.modal-description h2,
-.modal-description h3,
-.modal-description h4 {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 22px 0 12px;
-  font-family: var(--font);
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--brm-white);
+.modal-description > * {
+  margin: round(calc(12 * var(--u)), 1px) 0 0;
+}
+
+.modal-description > .brm-section-title {
+  margin-top: round(calc(22 * var(--u)), 1px);
 }
 
 .modal-description > :first-child {
   margin-top: 0;
 }
 
-.modal-description h1::after,
-.modal-description h2::after,
-.modal-description h3::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--brm-line-soft);
-}
-
-.modal-description h1 {
-  font-size: 1rem;
+/* the few h1s are notices, rescue mode only and the like */
+.modal-description h1.brm-section-title {
   color: var(--modal-color);
 }
 
-.modal-description h1::after {
-  background: var(--brm-line);
+.modal-description .brm-bullets {
+  --bullet: var(--modal-color);
 }
 
-.modal-description h2 {
-  font-size: 0.94rem;
-  color: var(--brm-gold);
-}
-
-.modal-description h3 {
-  font-size: 0.86rem;
-  color: var(--brm-body);
-}
-
-.modal-description h4 {
-  font-size: 0.8rem;
-  color: var(--brm-sub);
-}
-
-.modal-description p {
-  margin: 0 0 12px;
-}
-
-.modal-description p:last-child {
-  margin-bottom: 0;
-}
-
-.modal-description ul,
 .modal-description ol {
-  margin: 0 0 12px;
-  padding-left: 20px;
+  padding-left: round(calc(26 * var(--u)), 1px);
 }
 
-.modal-description li {
-  margin-bottom: 5px;
+/* a list item with a nested list gets its text wrapped in a paragraph */
+.modal-description li > p {
+  margin: 0;
 }
 
-.modal-description li::marker {
-  color: var(--modal-color);
+.modal-description li > :is(ul, ol) {
+  margin-top: round(calc(4 * var(--u)), 1px);
+}
+
+.modal-description strong {
+  color: var(--brm-white);
+  font-weight: 700;
+}
+
+.modal-description del {
+  color: var(--brm-dim);
+}
+
+.modal-description a {
+  color: var(--brm-gold);
+  border-bottom: 1px solid var(--brm-gold-dim);
+}
+
+.modal-description a:hover {
+  color: var(--brm-white);
+  border-bottom-color: var(--brm-white);
+}
+
+.modal-description code {
+  padding: 1px 5px;
+  background: var(--brm-black);
+  border: 1px solid var(--brm-edge);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+.modal-description pre {
+  padding: 12px 14px;
+  overflow-x: auto;
+  background: var(--brm-black);
+  border: 1px solid var(--brm-edge);
+}
+
+.modal-description pre code {
+  padding: 0;
+  background: none;
+  border: none;
 }
 
 .modal-description blockquote {
-  margin: 14px 0;
-  padding: 10px 14px;
+  padding: round(calc(10 * var(--u)), 1px) round(calc(14 * var(--u)), 1px);
   background: var(--brm-btn-active);
   border-left: 2px solid var(--brm-gold);
-  color: var(--brm-body);
 }
 
 .modal-description blockquote p {
@@ -341,63 +231,14 @@
 }
 
 .modal-description hr {
+  height: var(--line-w);
   border: none;
-  border-top: 1px solid var(--brm-edge);
-  margin: 18px 0;
-}
-
-.modal-description a {
-  color: var(--brm-gold);
-  border-bottom: 1px solid var(--brm-gold-dim);
-  transition: border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
-}
-
-.modal-description a:hover {
-  color: var(--brm-gold-hot);
-  border-bottom-color: var(--brm-gold-hot);
-}
-
-.modal-description code {
-  background: var(--brm-btn);
-  border: 1px solid var(--brm-edge);
-  padding: 1px 5px;
-  font-family: var(--font-mono);
-  font-size: 0.85em;
-  color: var(--brm-body);
-}
-
-.modal-description pre {
-  background: var(--brm-black);
-  border: 1px solid var(--brm-edge);
-  padding: 12px 14px;
-  margin: 12px 0;
-  overflow-x: auto;
-}
-
-.modal-description pre code {
-  background: none;
-  border: none;
-  padding: 0;
-}
-
-.modal-description strong {
-  color: var(--brm-white);
-  font-weight: 600;
-}
-
-.modal-description em {
-  color: var(--brm-body);
-}
-
-.modal-description del {
-  color: var(--brm-dim);
+  background: var(--brm-line);
 }
 
 .modal-description table {
   width: 100%;
   border-collapse: collapse;
-  margin: 12px 0;
-  font-size: 0.82rem;
 }
 
 .modal-description th,
@@ -410,112 +251,64 @@
 .modal-description th {
   background: var(--brm-black);
   color: var(--brm-white);
-  font-family: var(--font);
-  font-size: 0.76rem;
   font-weight: 700;
   text-transform: uppercase;
 }
 
-.modal-description td {
-  background: var(--brm-btn);
-}
-
 .modal-description img {
+  display: block;
   max-width: 100%;
   height: auto;
-  display: block;
-  margin: 12px 0;
   border: 1px solid var(--brm-edge);
 }
 
 .modal-missions {
-  padding: 16px 20px 18px;
-  border-top: 1px solid var(--brm-edge);
-}
-
-.modal-missions-label {
-  margin-bottom: 10px;
-  font-family: var(--font);
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--brm-dim);
-}
-
-.modal-mission {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: round(calc(4 * var(--u)), 1px);
+}
+
+.modal-missions .brm-section-title {
+  margin-bottom: round(calc(6 * var(--u)), 1px);
+}
+
+.modal-mission.brm-btn {
+  --idle-label: var(--brm-body);
   justify-content: space-between;
-  gap: 10px;
-  padding: 9px 12px;
-  border: 1px solid var(--brm-edge);
-  border-bottom: none;
-  color: var(--brm-sub);
-  text-decoration: none;
-  transition: border-color var(--t-fast) var(--ease),
-              background-color var(--t-fast) var(--ease),
-              color var(--t-fast) var(--ease);
-}
-
-.modal-mission:last-child {
-  border-bottom: 1px solid var(--brm-edge);
-}
-
-.modal-mission:hover {
-  background: var(--brm-btn-active);
-  border-color: var(--brm-gold);
-  color: var(--brm-gold);
-}
-
-/* the hovered row owns both its own top border and the next row's, so the
-   neighbour below does not draw a stale line over it */
-.modal-mission:hover + .modal-mission {
-  border-top-color: var(--brm-gold);
+  min-height: round(calc(46 * var(--u)), 1px);
+  padding: 0 round(calc(18 * var(--u)), 1px);
+  font-size: calc(21 * var(--u));
+  text-align: left;
 }
 
 .modal-mission-name {
-  font-family: var(--font);
-  font-size: 0.88rem;
-  font-weight: 700;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.modal-mission svg {
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  opacity: 0.5;
-}
-
-.modal-mission:hover svg {
-  opacity: 1;
-}
-
-.modal-coords {
+/* the game's footer bar, kept at the bottom of the card while it scrolls */
+.modal-footer {
   position: sticky;
   bottom: 0;
+  z-index: 2;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
-  background: var(--brm-black);
-  border-top: 1px solid var(--brm-edge);
-}
-
-.modal-coords-label {
-  font-family: var(--font);
-  font-size: 0.72rem;
-  font-weight: 700;
+  justify-content: space-between;
+  gap: round(calc(14 * var(--u)), 1px);
+  min-height: round(calc(54 * var(--u)), 1px);
+  padding: 0 round(calc(40 * var(--u)), 1px);
+  background: #0a0a0a;
+  border-top: var(--line-w) solid var(--brm-line);
+  color: var(--brm-sub);
+  font-size: calc(21 * var(--u));
+  line-height: normal;
   text-transform: uppercase;
-  color: var(--brm-dim);
 }
 
-.modal-coords-value {
-  font-family: var(--font);
-  font-size: 0.9rem;
+.modal-footer-value {
+  color: var(--brm-gold);
   font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  color: var(--modal-color);
 }
 
 @media (max-width: 600px) {
@@ -527,21 +320,5 @@
   .modal {
     max-height: 92vh;
     max-height: 92dvh;
-  }
-
-  .modal-header {
-    padding: 16px 56px 14px 16px;
-  }
-
-  .modal-title {
-    font-size: 1.2rem;
-  }
-
-  .modal-description {
-    padding: 16px;
-  }
-
-  .modal-coords {
-    padding: 10px 16px;
   }
 }
