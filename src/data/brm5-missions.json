@@ -9930,9 +9930,7 @@
   "exclusive": false,
   "raid": false,
   "prerequisites": [],
-  "rewards": {
-   "Vouchers": "{}"
-  },
+  "rewards": {},
   "variants": [
    [
     {
